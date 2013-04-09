@@ -68,6 +68,14 @@ public:
             setContentOwned (new MainContentComponent(), true);
 
             centreWithSize (getWidth(), getHeight());
+            setUsingNativeTitleBar(true);
+            
+            #if JUCE_IPHONE || JUCE_ANDROID
+
+                setFullScreen(true);
+            
+            #endif
+            
             setVisible (true);
         }
 

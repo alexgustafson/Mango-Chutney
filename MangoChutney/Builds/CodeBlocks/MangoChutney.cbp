@@ -59,6 +59,7 @@
       <Add library="kernel32"/>
       <Add library="comctl32"/>
     </Linker>
+    <Unit filename="../Android/res/drawable/icon.png"/>
     <Unit filename="../../Source/MainComponent.cpp"/>
     <Unit filename="../../Source/MainComponent.h">
       <Option compile="0"/>
@@ -3294,6 +3295,11 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../JuceLibraryCode/AppConfig.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/BinaryData.cpp"/>
+    <Unit filename="../../JuceLibraryCode/BinaryData.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>

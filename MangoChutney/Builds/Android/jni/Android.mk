@@ -7,8 +7,10 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := juce_jni
 LOCAL_SRC_FILES := \
+  ../res/drawable/icon.png\
   ../../../Source/MainComponent.cpp\
   ../../../Source/Main.cpp\
+  ../../../JuceLibraryCode/BinaryData.cpp\
   ../../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.cpp\
   ../../../JuceLibraryCode/modules/juce_audio_devices/juce_audio_devices.cpp\
   ../../../JuceLibraryCode/modules/juce_audio_formats/juce_audio_formats.cpp\
@@ -24,10 +26,10 @@ LOCAL_SRC_FILES := \
   ../../../JuceLibraryCode/modules/juce_video/juce_video.cpp\
 
 ifeq ($(CONFIG),Debug)
-  LOCAL_CPPFLAGS += -fsigned-char -fexceptions -frtti -g -I "../../JuceLibraryCode" -O0 -D "JUCE_ANDROID=1" -D "JUCE_ANDROID_API_VERSION=8" -D "JUCE_ANDROID_ACTIVITY_CLASSNAME=com_alexgustafson_mangochutney_MangoChutney" -D JUCE_ANDROID_ACTIVITY_CLASSPATH=\"com/alexgustafson/mangochutney/MangoChutney\" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_ANDROID_7F0E4A25=1"
+  LOCAL_CPPFLAGS += -fsigned-char -fexceptions -frtti -g -I "../../JuceLibraryCode" -O0 -D "JUCE_ANDROID=1" -D "JUCE_ANDROID_API_VERSION=17" -D "JUCE_ANDROID_ACTIVITY_CLASSNAME=com_alexgustafson_mangochutney_MangoChutney" -D JUCE_ANDROID_ACTIVITY_CLASSPATH=\"com/alexgustafson/mangochutney/MangoChutney\" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_ANDROID_7F0E4A25=1"
   LOCAL_LDLIBS := -llog -lGLESv2
 else
-  LOCAL_CPPFLAGS += -fsigned-char -fexceptions -frtti -I "../../JuceLibraryCode" -Os -D "JUCE_ANDROID=1" -D "JUCE_ANDROID_API_VERSION=8" -D "JUCE_ANDROID_ACTIVITY_CLASSNAME=com_alexgustafson_mangochutney_MangoChutney" -D JUCE_ANDROID_ACTIVITY_CLASSPATH=\"com/alexgustafson/mangochutney/MangoChutney\" -D "NDEBUG=1" -D "JUCER_ANDROID_7F0E4A25=1"
+  LOCAL_CPPFLAGS += -fsigned-char -fexceptions -frtti -I "../../JuceLibraryCode" -Os -D "JUCE_ANDROID=1" -D "JUCE_ANDROID_API_VERSION=17" -D "JUCE_ANDROID_ACTIVITY_CLASSNAME=com_alexgustafson_mangochutney_MangoChutney" -D JUCE_ANDROID_ACTIVITY_CLASSPATH=\"com/alexgustafson/mangochutney/MangoChutney\" -D "NDEBUG=1" -D "JUCER_ANDROID_7F0E4A25=1"
   LOCAL_LDLIBS := -llog -lGLESv2
 endif
 
