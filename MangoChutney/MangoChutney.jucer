@@ -35,6 +35,14 @@
                        isDebug="0" optimisation="2" targetName="MangoChutney"/>
       </CONFIGURATIONS>
     </XCODE_MAC>
+    <XCODE_IPHONE targetFolder="Builds/iOS" juceFolder="../../JUCE/JUCE/modules">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" iosCompatibility="default" isDebug="1" optimisation="1"
+                       targetName="MangoChutney"/>
+        <CONFIGURATION name="Release" iosCompatibility="default" isDebug="0" optimisation="2"
+                       targetName="MangoChutney"/>
+      </CONFIGURATIONS>
+    </XCODE_IPHONE>
     <CODEBLOCKS targetFolder="Builds/CodeBlocks" juceFolder="../../JUCE/JUCE/modules">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="MangoChutney"/>
