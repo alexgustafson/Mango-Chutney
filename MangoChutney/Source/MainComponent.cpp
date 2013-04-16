@@ -9,10 +9,24 @@
 #include "MainComponent.h"
 
 
+
 //==============================================================================
 MainContentComponent::MainContentComponent()
 {
     setSize (500, 400);
+    
+    juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
+    DirectoryIterator iter (theDocumentDirectory, true);
+    
+    juce::String fileName = theDocumentDirectory.getFileName();
+    
+    while (iter.next())
+    {
+        File theFileItFound (iter.getFile());
+        std::cout << theFileItFound.getFileName();
+    }
+    std::cout << theDocumentDirectory.getFullPathName();
+    
 }
 
 MainContentComponent::~MainContentComponent()
@@ -23,9 +37,6 @@ void MainContentComponent::paint (Graphics& g)
 {
     g.fillAll (Colour (0xffeeddff));
 
-    g.setFont (Font (16.0f));
-    g.setColour (Colours::black);
-    g.drawText ("Hello World!", getLocalBounds(), Justification::centred, true);
 }
 
 void MainContentComponent::resized()

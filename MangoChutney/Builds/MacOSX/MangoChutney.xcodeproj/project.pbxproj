@@ -16,6 +16,7 @@
 		4CA13B036135BCB938459CD6 /* juce_gui_basics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 60B3AF9B555DF1D692CAF4A8 /* juce_gui_basics.mm */; };
 		4D01B664C599F75AF71FB3C9 /* juce_audio_processors.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4166241B18F2054E9349FC32 /* juce_audio_processors.mm */; };
 		61E1959ABD17AB07C0B9ADDC /* juce_data_structures.mm in Sources */ = {isa = PBXBuildFile; fileRef = 27BE2AFF5CC5629A498F5A33 /* juce_data_structures.mm */; };
+		660BCCA4171D95C500B41874 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660BCCA3171D95C500B41874 /* Foundation.framework */; };
 		84EB74DFA678E487F6D1E76E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 258161ED667242858BE953F1 /* Cocoa.framework */; };
 		8CEBCE246C77EB3B3820994C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CEA59D1003F9FEE1074FC40 /* OpenGL.framework */; };
 		99BD591F824A1FAD5F484E12 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B11EE5B662943DEBE2716459 /* IOKit.framework */; };
@@ -338,6 +339,7 @@
 		65560D4CBB9B4CEBD5AF923C /* juce_ColourGradient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ColourGradient.cpp; path = ../../JuceLibraryCode/modules/juce_graphics/colour/juce_ColourGradient.cpp; sourceTree = SOURCE_ROOT; };
 		65FF07D3051C8F17A24DE8AA /* juce_ResizableEdgeComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ResizableEdgeComponent.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/layout/juce_ResizableEdgeComponent.h; sourceTree = SOURCE_ROOT; };
 		66035CCB32E24D090B247BD1 /* juce_GlyphArrangement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_GlyphArrangement.h; path = ../../JuceLibraryCode/modules/juce_graphics/fonts/juce_GlyphArrangement.h; sourceTree = SOURCE_ROOT; };
+		660BCCA3171D95C500B41874 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		6629B3D2B095722F2283251C /* juce_ListBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ListBox.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/widgets/juce_ListBox.h; sourceTree = SOURCE_ROOT; };
 		66341C51385938EE4B8B28A8 /* juce_VSTMidiEventList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_VSTMidiEventList.h; path = ../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTMidiEventList.h; sourceTree = SOURCE_ROOT; };
 		6646BEE2C27F5E8882522BE9 /* juce_Desktop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Desktop.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/components/juce_Desktop.h; sourceTree = SOURCE_ROOT; };
@@ -892,6 +894,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660BCCA4171D95C500B41874 /* Foundation.framework in Frameworks */,
 				1EE9116B77D871862E5DDF43 /* Accelerate.framework in Frameworks */,
 				D74A929DD84B1B34EF8B4A6C /* AudioToolbox.framework in Frameworks */,
 				C24BFE6A278408833987BAF4 /* Carbon.framework in Frameworks */,
@@ -2063,6 +2066,7 @@
 		A1B6591A6ABE321AB710DE7A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				660BCCA3171D95C500B41874 /* Foundation.framework */,
 				31819191B9D162D6CFEE5AF8 /* Accelerate.framework */,
 				D8ABE75AB80643DCE71A65FE /* AudioToolbox.framework */,
 				CA59B5BDD69A0029D4194684 /* Carbon.framework */,
