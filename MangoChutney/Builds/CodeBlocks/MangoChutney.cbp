@@ -24,7 +24,21 @@
           <Add directory="."/>
           <Add directory="..\..\JuceLibraryCode"/>
         </Compiler>
-        <Linker/>
+        <Linker>
+          <Add library="comdlg32"/>
+          <Add library="imm32"/>
+          <Add library="ole32"/>
+          <Add library="oleaut32"/>
+          <Add library="opengl32"/>
+          <Add library="rpcrt4"/>
+          <Add library="shlwapi"/>
+          <Add library="uuid"/>
+          <Add library="version"/>
+          <Add library="wininet"/>
+          <Add library="winmm"/>
+          <Add library="ws2_32"/>
+          <Add library="wsock32"/>
+        </Linker>
       </Target>
       <Target title="Release">
         <Option output="bin/Release/MangoChutney"
@@ -45,6 +59,19 @@
         </Compiler>
         <Linker>
           <Add option="-s"/>
+          <Add library="comdlg32"/>
+          <Add library="imm32"/>
+          <Add library="ole32"/>
+          <Add library="oleaut32"/>
+          <Add library="opengl32"/>
+          <Add library="rpcrt4"/>
+          <Add library="shlwapi"/>
+          <Add library="uuid"/>
+          <Add library="version"/>
+          <Add library="wininet"/>
+          <Add library="winmm"/>
+          <Add library="ws2_32"/>
+          <Add library="wsock32"/>
         </Linker>
       </Target>
     </Build>
@@ -60,6 +87,11 @@
       <Add library="comctl32"/>
     </Linker>
     <Unit filename="../Android/res/drawable/icon.png"/>
+    <Unit filename="../../Source/MainViewComponent.cpp"/>
+    <Unit filename="../../Source/MainViewComponent.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../Source/MainComponent.cpp"/>
     <Unit filename="../../Source/MainComponent.h">
       <Option compile="0"/>
@@ -615,10 +647,6 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_AudioUnitPluginFormat.mm">
-      <Option compile="0"/>
-      <Option link="0"/>
-    </Unit>
-    <Unit filename="../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_DirectXPluginFormat.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
@@ -1907,6 +1935,10 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_graphics/native/juce_android_GraphicsContext.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_graphics/native/juce_freetype_Fonts.cpp">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>

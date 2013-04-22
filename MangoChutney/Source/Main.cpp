@@ -9,7 +9,7 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "MainComponent.h"
+#include "MainViewComponent.h"
 
 
 //==============================================================================
@@ -65,7 +65,7 @@ public:
                                         Colours::lightgrey,
                                         DocumentWindow::allButtons)
         {
-            setContentOwned (new MainContentComponent(), true);
+            setContentOwned (new MainViewComponent(), true);
 
             centreWithSize (getWidth(), getHeight());
             setUsingNativeTitleBar(true);
