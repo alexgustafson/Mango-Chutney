@@ -8,6 +8,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := juce_jni
 LOCAL_SRC_FILES := \
   ../res/drawable/icon.png\
+  ../../../../Media/sounds/binaryfiles/drumSamples.cpp\
   ../../../Source/MainViewComponent.cpp\
   ../../../Source/MainComponent.cpp\
   ../../../Source/Main.cpp\
