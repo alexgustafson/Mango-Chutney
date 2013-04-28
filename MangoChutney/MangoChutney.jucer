@@ -5,6 +5,16 @@
   <MAINGROUP id="XJU6G3" name="MangoChutney">
     <FILE id="g95Z3N" name="icon.png" compile="1" resource="1" file="Builds/Android/res/drawable/icon.png"/>
     <GROUP id="{759C40BD-AFAB-D3EE-6CE6-57B4C71CDEBB}" name="Source">
+      <FILE id="dKFeKe" name="DrumController.cpp" compile="1" resource="0"
+            file="Source/DrumController.cpp"/>
+      <FILE id="uJ2dxi" name="DrumController.h" compile="0" resource="0"
+            file="Source/DrumController.h"/>
+      <FILE id="alq3T6" name="AudioEngine.cpp" compile="1" resource="0" file="Source/AudioEngine.cpp"/>
+      <FILE id="BCu5DD" name="AudioEngine.h" compile="0" resource="0" file="Source/AudioEngine.h"/>
+      <FILE id="uwjCQr" name="PadFieldComponent.cpp" compile="1" resource="0"
+            file="Source/PadFieldComponent.cpp"/>
+      <FILE id="mO8yE2" name="PadFieldComponent.h" compile="0" resource="0"
+            file="Source/PadFieldComponent.h"/>
       <FILE id="VCO3Vs" name="drumSamples.cpp" compile="1" resource="0" file="../Media/sounds/binaryfiles/drumSamples.cpp"/>
       <FILE id="tbPNQh" name="drumSamples.h" compile="0" resource="0" file="../Media/sounds/binaryfiles/drumSamples.h"/>
       <FILE id="tGO162" name="MainViewComponent.cpp" compile="1" resource="0"

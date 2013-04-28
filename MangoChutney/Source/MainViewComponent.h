@@ -22,9 +22,11 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
-class SynthAudioSource;
+#include "AudioEngine.h"
+#include "DrumController.h" 
 //[/Headers]
 
+#include "PadFieldComponent.h"
 
 
 //==============================================================================
@@ -69,32 +71,14 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    AudioDeviceManager deviceManager;
-    MidiKeyboardState keyboardState;
-    AudioSourcePlayer audioSourcePlayer;
-    ScopedPointer<SynthAudioSource> synthAudioSource;
+    ScopedPointer<DrumController> drumController;
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<ImageButton> pad9;
-    ScopedPointer<ImageButton> pad10;
-    ScopedPointer<ImageButton> pad11;
-    ScopedPointer<ImageButton> pad12;
-    ScopedPointer<ImageButton> pad13;
-    ScopedPointer<ImageButton> pad14;
-    ScopedPointer<ImageButton> pad15;
-    ScopedPointer<ImageButton> pad16;
-    ScopedPointer<ImageButton> pad1;
-    ScopedPointer<ImageButton> pad2;
-    ScopedPointer<ImageButton> pad3;
-    ScopedPointer<ImageButton> pad4;
-    ScopedPointer<ImageButton> pad5;
-    ScopedPointer<ImageButton> pad6;
-    ScopedPointer<ImageButton> pad7;
-    ScopedPointer<ImageButton> pad8;
     ScopedPointer<ImageButton> setupButton;
     ScopedPointer<ImageButton> stepButton;
     ScopedPointer<ImageButton> playButton;
+    ScopedPointer<PadField> component;
     Image cachedImage_background_png_1;
     Image cachedImage_label_03_png;
 

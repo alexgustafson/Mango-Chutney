@@ -19,254 +19,11 @@
 
 //[Headers] You can add your own extra header files here...
 #include "MainViewComponent.h"
-#include "drumSamples.h"
-//==============================================================================
-/** Our demo synth sound is just a basic sine wave..
- */
-class SineWaveSound : public SynthesiserSound
-{
-public:
-    SineWaveSound()
-    {
-    }
-
-    bool appliesToNote (const int /*midiNoteNumber*/)           { return true; }
-    bool appliesToChannel (const int /*midiChannel*/)           { return true; }
-};
-
 
 //==============================================================================
-/** Our demo synth voice just plays a sine wave..
- */
-class SineWaveVoice  : public SynthesiserVoice
-{
-public:
-    SineWaveVoice()
-    : angleDelta (0.0),
-    tailOff (0.0)
-    {
-    }
-
-    bool canPlaySound (SynthesiserSound* sound)
-    {
-        return dynamic_cast <SineWaveSound*> (sound) != 0;
-    }
-
-    void startNote (const int midiNoteNumber, const float velocity,
-                    SynthesiserSound* /*sound*/, const int /*currentPitchWheelPosition*/)
-    {
-        currentAngle = 0.0;
-        level = velocity * 0.15;
-        tailOff = 0.0;
-
-        double cyclesPerSecond = MidiMessage::getMidiNoteInHertz (midiNoteNumber);
-        double cyclesPerSample = cyclesPerSecond / getSampleRate();
-
-        angleDelta = cyclesPerSample * 2.0 * double_Pi;
-    }
-
-    void stopNote (const bool allowTailOff)
-    {
-        if (allowTailOff)
-        {
-            // start a tail-off by setting this flag. The render callback will pick up on
-            // this and do a fade out, calling clearCurrentNote() when it's finished.
-
-            if (tailOff == 0.0) // we only need to begin a tail-off if it's not already doing so - the
-                // stopNote method could be called more than once.
-                tailOff = 1.0;
-        }
-        else
-        {
-            // we're being told to stop playing immediately, so reset everything..
-
-            clearCurrentNote();
-            angleDelta = 0.0;
-        }
-    }
-
-    void pitchWheelMoved (const int /*newValue*/)
-    {
-        // can't be bothered implementing this for the demo!
-    }
-
-    void controllerMoved (const int /*controllerNumber*/, const int /*newValue*/)
-    {
-        // not interested in controllers in this case.
-    }
-
-    void renderNextBlock (AudioSampleBuffer& outputBuffer, int startSample, int numSamples)
-    {
-        if (angleDelta != 0.0)
-        {
-            if (tailOff > 0)
-            {
-                while (--numSamples >= 0)
-                {
-                    const float currentSample = (float) (sin (currentAngle) * level * tailOff);
-
-                    for (int i = outputBuffer.getNumChannels(); --i >= 0;)
-                        *outputBuffer.getSampleData (i, startSample) += currentSample;
-
-                    currentAngle += angleDelta;
-                    ++startSample;
-
-                    tailOff *= 0.99;
-
-                    if (tailOff <= 0.005)
-                    {
-                        clearCurrentNote();
-
-                        angleDelta = 0.0;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                while (--numSamples >= 0)
-                {
-                    const float currentSample = (float) (sin (currentAngle) * level);
-
-                    for (int i = outputBuffer.getNumChannels(); --i >= 0;)
-                        *outputBuffer.getSampleData (i, startSample) += currentSample;
-
-                    currentAngle += angleDelta;
-                    ++startSample;
-                }
-            }
-        }
-    }
-
-private:
-    double currentAngle, angleDelta, level, tailOff;
-};
 
 
-// This is an audio source that streams the output of our demo synth.
-class SynthAudioSource  : public AudioSource
-{
-public:
-    //==============================================================================
-    // this collects real-time midi messages from the midi input device, and
-    // turns them into blocks that we can process in our audio callback
-    MidiMessageCollector midiCollector;
 
-    // this represents the state of which keys on our on-screen keyboard are held
-    // down. When the mouse is clicked on the keyboard component, this object also
-    // generates midi messages for this, which we can pass on to our synth.
-    MidiKeyboardState& keyboardState;
-
-    // the synth itself!
-    Synthesiser synth;
-
-    //==============================================================================
-    SynthAudioSource (MidiKeyboardState& keyboardState_)
-    : keyboardState (keyboardState_)
-    {
-        // add some voices to our synth, to play the sounds..
-        for (int i = 16; --i >= 0;)
-        {
-            synth.addVoice (new SineWaveVoice());   // These voices will play our custom sine-wave sounds..
-            synth.addVoice (new SamplerVoice());    // and these ones play the sampled sounds
-        }
-
-        // and add some sounds for them to play...
-        setUsingSineWaveSound();
-    }
-
-    void setUsingSineWaveSound()
-    {
-        synth.clearSounds();
-        synth.addSound (new SineWaveSound());
-    }
-
-    void setUsingSampledSound()
-    {
-        synth.clearSounds();
-
-        WavAudioFormat wavFormat;
-
-        ScopedPointer<AudioFormatReader> audioReader (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_clap_01_clean_wav,
-                                                                                                        drumSamples::wa_808tape_clap_01_clean_wavSize,
-                                                                                                        false),
-                                                                                 true));
-
-        BigInteger notes;
-        notes.setRange (1, 1, true);
-
-        synth.addSound (new SamplerSound ("clap",
-                                          *audioReader,
-                                          notes,
-                                          1,   // root midi note
-                                          0.01,  // attack time
-                                          0.3,  // release time
-                                          10.0  // maximum sample length
-                                          ));
-
-
-        notes.setRange (2, 1, true);
-        ScopedPointer<AudioFormatReader> audioReader2 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_kick_17_clean_wav,
-                                                                                                        drumSamples::wa_808tape_kick_17_clean_wavSize,
-                                                                                                        false),
-                                                                                 true));
-        synth.addSound(new SamplerSound ("bass drum", *audioReader2, notes,2,0.01,0.3,10.0));
-
-
-        notes.setRange (3, 1, true);
-        ScopedPointer<AudioFormatReader> audioReader3 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_snare_02_clean_wav,
-                                                                                                         drumSamples::wa_808tape_snare_02_clean_wavSize,
-                                                                                                         false),
-                                                                                  true));
-        synth.addSound(new SamplerSound ("bass drum", *audioReader3, notes,3,0.01,0.3,10.0));
-
-        notes.setRange (4, 1, true);
-        ScopedPointer<AudioFormatReader> audioReader4 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_closedhat_01_clean_wav,
-                                                                                                         drumSamples::wa_808tape_closedhat_01_clean_wavSize,
-                                                                                                         false),
-                                                                                  true));
-        synth.addSound(new SamplerSound ("bass drum", *audioReader4, notes,4,0.01,0.3,10.0));
-        notes.setRange (5, 1, true);
-        ScopedPointer<AudioFormatReader> audioReader5 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_rim_01_sat_wav,
-                                                                                                         drumSamples::wa_808tape_rim_01_sat_wavSize,
-                                                                                                         false),
-                                                                                  true));
-        synth.addSound(new SamplerSound ("bass drum", *audioReader5, notes,5,0.01,0.3,10.0));
-
-
-    }
-
-    void prepareToPlay (int /*samplesPerBlockExpected*/, double sampleRate)
-    {
-        midiCollector.reset (sampleRate);
-
-        synth.setCurrentPlaybackSampleRate (sampleRate);
-    }
-
-    void releaseResources()
-    {
-    }
-
-    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill)
-    {
-        // the synth always adds its output to the audio buffer, so we have to clear it
-        // first..
-        bufferToFill.clearActiveBufferRegion();
-
-        // fill a midi buffer with incoming messages from the midi input.
-        MidiBuffer incomingMidi;
-        midiCollector.removeNextBlockOfMessages (incomingMidi, bufferToFill.numSamples);
-
-        // pass these messages to the keyboard state so that it can update the component
-        // to show on-screen which keys are being pressed on the physical midi keyboard.
-        // This call will also add midi messages to the buffer which were generated by
-        // the mouse-clicking on the on-screen keyboard.
-        keyboardState.processNextMidiBuffer (incomingMidi, 0, bufferToFill.numSamples, true);
-
-        // and now get the synth to process the midi events and generate its output.
-        synth.renderNextBlock (*bufferToFill.buffer, incomingMidi, 0, bufferToFill.numSamples);
-    }
-};
 //[/Headers]
 
 #include "MainViewComponent.h"
@@ -278,122 +35,6 @@ public:
 //==============================================================================
 MainViewComponent::MainViewComponent ()
 {
-    addAndMakeVisible (pad9 = new ImageButton ("new button"));
-    pad9->addListener (this);
-
-    pad9->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad10 = new ImageButton ("new button"));
-    pad10->addListener (this);
-
-    pad10->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad11 = new ImageButton ("new button"));
-    pad11->addListener (this);
-
-    pad11->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad12 = new ImageButton ("new button"));
-    pad12->addListener (this);
-
-    pad12->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad13 = new ImageButton ("new button"));
-    pad13->addListener (this);
-
-    pad13->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad14 = new ImageButton ("new button"));
-    pad14->addListener (this);
-
-    pad14->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad15 = new ImageButton ("new button"));
-    pad15->addListener (this);
-
-    pad15->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad16 = new ImageButton ("new button"));
-    pad16->addListener (this);
-
-    pad16->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad1 = new ImageButton ("new button"));
-    pad1->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnBottom);
-    pad1->addListener (this);
-
-    pad1->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad2 = new ImageButton ("new button"));
-    pad2->setConnectedEdges (Button::ConnectedOnBottom);
-    pad2->addListener (this);
-
-    pad2->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad3 = new ImageButton ("new button"));
-    pad3->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnBottom);
-    pad3->addListener (this);
-
-    pad3->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad4 = new ImageButton ("new button"));
-    pad4->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnBottom);
-    pad4->addListener (this);
-
-    pad4->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad5 = new ImageButton ("new button"));
-    pad5->addListener (this);
-
-    pad5->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad6 = new ImageButton ("new button"));
-    pad6->addListener (this);
-
-    pad6->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad7 = new ImageButton ("new button"));
-    pad7->addListener (this);
-
-    pad7->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad8 = new ImageButton ("new button"));
-    pad8->addListener (this);
-
-    pad8->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
     addAndMakeVisible (setupButton = new ImageButton ("new button"));
     setupButton->addListener (this);
 
@@ -415,6 +56,7 @@ MainViewComponent::MainViewComponent ()
                            ImageCache::getFromMemory (pushbutton_off_png, pushbutton_off_pngSize), 1.000f, Colour (0x00000000),
                            Image(), 1.000f, Colour (0x00000000),
                            ImageCache::getFromMemory (pushbutton_on_png, pushbutton_on_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (component = new PadField ());
     cachedImage_background_png_1 = ImageCache::getFromMemory (background_png, background_pngSize);
     cachedImage_label_03_png = ImageCache::getFromMemory (label_03_png, label_03_pngSize);
 
@@ -426,13 +68,10 @@ MainViewComponent::MainViewComponent ()
 
     //[Constructor] You can add your own custom stuff here..
 
+    drumController = new DrumController();
+    component->addDrumController(drumController);
     setSize (getParentWidth(), getParentHeight());
-    deviceManager.initialise (2, 2, 0, true, String::empty, 0);
-    synthAudioSource = new SynthAudioSource (keyboardState);
-    audioSourcePlayer.setSource (synthAudioSource);
-    deviceManager.addAudioCallback (&audioSourcePlayer);
-    deviceManager.addMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
-    synthAudioSource->setUsingSampledSound();
+    
 
     playButton->setClickingTogglesState(true);
     setupButton->setClickingTogglesState(true);
@@ -447,33 +86,17 @@ MainViewComponent::MainViewComponent ()
 MainViewComponent::~MainViewComponent()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
-    audioSourcePlayer.setSource (0);
-    deviceManager.removeMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
-    deviceManager.removeAudioCallback (&audioSourcePlayer);
+
     //[/Destructor_pre]
 
-    pad9 = nullptr;
-    pad10 = nullptr;
-    pad11 = nullptr;
-    pad12 = nullptr;
-    pad13 = nullptr;
-    pad14 = nullptr;
-    pad15 = nullptr;
-    pad16 = nullptr;
-    pad1 = nullptr;
-    pad2 = nullptr;
-    pad3 = nullptr;
-    pad4 = nullptr;
-    pad5 = nullptr;
-    pad6 = nullptr;
-    pad7 = nullptr;
-    pad8 = nullptr;
     setupButton = nullptr;
     stepButton = nullptr;
     playButton = nullptr;
+    component = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
+    drumController = nullptr;
     //[/Destructor]
 }
 
@@ -505,45 +128,12 @@ void MainViewComponent::paint (Graphics& g)
 
 void MainViewComponent::resized()
 {
-    pad9->setBounds (8, 248, 80, 80);
-    pad10->setBounds (80, 248, 80, 80);
-    pad11->setBounds (152, 248, 80, 80);
-    pad12->setBounds (224, 248, 80, 80);
-    pad13->setBounds (296, 248, 80, 80);
-    pad14->setBounds (368, 248, 80, 80);
-    pad15->setBounds (440, 248, 80, 80);
-    pad16->setBounds (512, 248, 80, 80);
-    pad1->setBounds (8, 320, 80, 80);
-    pad2->setBounds (80, 320, 80, 80);
-    pad3->setBounds (152, 320, 80, 80);
-    pad4->setBounds (224, 320, 80, 80);
-    pad5->setBounds (296, 320, 80, 80);
-    pad6->setBounds (368, 320, 80, 80);
-    pad7->setBounds (440, 320, 80, 80);
-    pad8->setBounds (512, 320, 80, 80);
     setupButton->setBounds (16, 40, 40, 64);
     stepButton->setBounds (56, 40, 40, 64);
     playButton->setBounds (96, 40, 40, 64);
+    component->setBounds (24, 152, 300, 300);
     //[UserResized] Add your own custom resize handling here..
-    int padWidth = (int) (getWidth() / 8);
-    int i = 0;
-    pad9->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
-    pad10->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
-    pad11->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
-    pad12->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
-    pad13->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
-    pad14->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
-    pad15->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
-    pad16->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
-    i = 0;
-    pad1->setBounds (padWidth* i++, getHeight()-padWidth, padWidth, padWidth);
-    pad2->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
-    pad3->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
-    pad4->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
-    pad5->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
-    pad6->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
-    pad7->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
-    pad8->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
+
     //[/UserResized]
 }
 
@@ -552,87 +142,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == pad9)
-    {
-        //[UserButtonCode_pad9] -- add your button handler code here..
-        //[/UserButtonCode_pad9]
-    }
-    else if (buttonThatWasClicked == pad10)
-    {
-        //[UserButtonCode_pad10] -- add your button handler code here..
-        //[/UserButtonCode_pad10]
-    }
-    else if (buttonThatWasClicked == pad11)
-    {
-        //[UserButtonCode_pad11] -- add your button handler code here..
-        //[/UserButtonCode_pad11]
-    }
-    else if (buttonThatWasClicked == pad12)
-    {
-        //[UserButtonCode_pad12] -- add your button handler code here..
-        //[/UserButtonCode_pad12]
-    }
-    else if (buttonThatWasClicked == pad13)
-    {
-        //[UserButtonCode_pad13] -- add your button handler code here..
-        //[/UserButtonCode_pad13]
-    }
-    else if (buttonThatWasClicked == pad14)
-    {
-        //[UserButtonCode_pad14] -- add your button handler code here..
-        //[/UserButtonCode_pad14]
-    }
-    else if (buttonThatWasClicked == pad15)
-    {
-        //[UserButtonCode_pad15] -- add your button handler code here..
-        //[/UserButtonCode_pad15]
-    }
-    else if (buttonThatWasClicked == pad16)
-    {
-        //[UserButtonCode_pad16] -- add your button handler code here..
-        //[/UserButtonCode_pad16]
-    }
-    else if (buttonThatWasClicked == pad1)
-    {
-        //[UserButtonCode_pad1] -- add your button handler code here..
-        //[/UserButtonCode_pad1]
-    }
-    else if (buttonThatWasClicked == pad2)
-    {
-        //[UserButtonCode_pad2] -- add your button handler code here..
-        //[/UserButtonCode_pad2]
-    }
-    else if (buttonThatWasClicked == pad3)
-    {
-        //[UserButtonCode_pad3] -- add your button handler code here..
-        //[/UserButtonCode_pad3]
-    }
-    else if (buttonThatWasClicked == pad4)
-    {
-        //[UserButtonCode_pad4] -- add your button handler code here..
-        //[/UserButtonCode_pad4]
-    }
-    else if (buttonThatWasClicked == pad5)
-    {
-        //[UserButtonCode_pad5] -- add your button handler code here..
-        //[/UserButtonCode_pad5]
-    }
-    else if (buttonThatWasClicked == pad6)
-    {
-        //[UserButtonCode_pad6] -- add your button handler code here..
-        //[/UserButtonCode_pad6]
-    }
-    else if (buttonThatWasClicked == pad7)
-    {
-        //[UserButtonCode_pad7] -- add your button handler code here..
-        //[/UserButtonCode_pad7]
-    }
-    else if (buttonThatWasClicked == pad8)
-    {
-        //[UserButtonCode_pad8] -- add your button handler code here..
-        //[/UserButtonCode_pad8]
-    }
-    else if (buttonThatWasClicked == setupButton)
+    if (buttonThatWasClicked == setupButton)
     {
         //[UserButtonCode_setupButton] -- add your button handler code here..
         //[/UserButtonCode_setupButton]
@@ -658,45 +168,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
 void MainViewComponent::buttonStateChanged(Button * buttonThatChanged)
 {
 
-    if (buttonThatChanged == pad1)
-    {
-        //[UserButtonCode_imageButton] -- add your button handler code here..
-        if (!buttonThatChanged->isDown()) return;
-        keyboardState.noteOn(1, 1, 1.0);
 
-
-        //[/UserButtonCode_imageButton]
-    }
-    else if (buttonThatChanged == pad2)
-    {
-        //[UserButtonCode_imageButton2] -- add your button handler code here..
-        if (!buttonThatChanged->isDown()) return;
-        keyboardState.noteOn(1, 2, 1.0);
-        //[/UserButtonCode_imageButton2]
-    }
-    else if (buttonThatChanged == pad3)
-    {
-        //[UserButtonCode_imageButton2] -- add your button handler code here..
-        if (!buttonThatChanged->isDown()) return;
-        keyboardState.noteOn(1, 3, 1.0);
-        //[/UserButtonCode_imageButton2]
-    }
-    else if (buttonThatChanged == pad4)
-    {
-        //[UserButtonCode_imageButton2] -- add your button handler code here..
-        if (!buttonThatChanged->isDown()) return;
-        keyboardState.noteOn(1, 4, 1.0);
-
-        //[/UserButtonCode_imageButton2]
-    }
-    else if (buttonThatChanged == pad5)
-    {
-        //[UserButtonCode_imageButton2] -- add your button handler code here..
-        if (!buttonThatChanged->isDown()) return;
-        keyboardState.noteOn(1, 5, 1.0);
-
-        //[/UserButtonCode_imageButton2]
-    }
 
 }
 //[/MiscUserCode]
@@ -720,102 +192,6 @@ BEGIN_JUCER_METADATA
                hasStroke="1" stroke="5, mitered, butt" strokeColour="solid: ff5e5e5e"/>
     <IMAGE pos="4 4 252 36" resource="label_03_png" opacity="1" mode="1"/>
   </BACKGROUND>
-  <IMAGEBUTTON name="new button" id="a80836391577303d" memberName="pad9" virtualName=""
-               explicitFocusOrder="0" pos="8 248 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="a1ede4f4957d047f" memberName="pad10" virtualName=""
-               explicitFocusOrder="0" pos="80 248 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="faaec0a33fb004bb" memberName="pad11" virtualName=""
-               explicitFocusOrder="0" pos="152 248 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="c46fea7861a7a8ac" memberName="pad12" virtualName=""
-               explicitFocusOrder="0" pos="224 248 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="3a7d4f5fc4f58467" memberName="pad13" virtualName=""
-               explicitFocusOrder="0" pos="296 248 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="fefc12cbf2d3e714" memberName="pad14" virtualName=""
-               explicitFocusOrder="0" pos="368 248 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="21b927ea0bb1ce19" memberName="pad15" virtualName=""
-               explicitFocusOrder="0" pos="440 248 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="bfabca1a8ce86678" memberName="pad16" virtualName=""
-               explicitFocusOrder="0" pos="512 248 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="a542889a85fcc075" memberName="pad1" virtualName=""
-               explicitFocusOrder="0" pos="8 320 80 80" buttonText="new button"
-               connectedEdges="9" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="cd3cedaa6b2f43e8" memberName="pad2" virtualName=""
-               explicitFocusOrder="0" pos="80 320 80 80" buttonText="new button"
-               connectedEdges="8" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="5bc8d9849fd6997c" memberName="pad3" virtualName=""
-               explicitFocusOrder="0" pos="152 320 80 80" buttonText="new button"
-               connectedEdges="9" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="8b0babb8603c4bf4" memberName="pad4" virtualName=""
-               explicitFocusOrder="0" pos="224 320 80 80" buttonText="new button"
-               connectedEdges="9" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="6c9e67fa9b7f6040" memberName="pad5" virtualName=""
-               explicitFocusOrder="0" pos="296 320 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="588d5be70f491e9a" memberName="pad6" virtualName=""
-               explicitFocusOrder="0" pos="368 320 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="fad8919f118ad727" memberName="pad7" virtualName=""
-               explicitFocusOrder="0" pos="440 320 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="45a93e611a1dd885" memberName="pad8" virtualName=""
-               explicitFocusOrder="0" pos="512 320 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="new button" id="6fc8c6b2dd61df0d" memberName="setupButton"
                virtualName="" explicitFocusOrder="0" pos="16 40 40 64" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
@@ -834,6 +210,9 @@ BEGIN_JUCER_METADATA
                resourceNormal="pushbutton_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pushbutton_on_png"
                opacityDown="1" colourDown="0"/>
+  <JUCERCOMP name="" id="c33e7dac6962d4cf" memberName="component" virtualName=""
+             explicitFocusOrder="0" pos="24 152 300 300" sourceFile="PadFieldComponent.cpp"
+             constructorParams="keyboardState"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
