@@ -63,6 +63,8 @@ public:
     static const int pushbutton_off_pngSize;
     static const char* pushbutton_on_png;
     static const int pushbutton_on_pngSize;
+    static const char* label_03_png;
+    static const int label_03_pngSize;
 
 
 private:
@@ -74,27 +76,27 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<ImageButton> imageButton;
-    ScopedPointer<ImageButton> imageButton2;
-    ScopedPointer<ImageButton> imageButton3;
-    ScopedPointer<ImageButton> imageButton4;
-    ScopedPointer<ImageButton> imageButton5;
-    ScopedPointer<ImageButton> imageButton6;
-    ScopedPointer<ImageButton> imageButton7;
-    ScopedPointer<ImageButton> imageButton8;
-    ScopedPointer<ImageButton> imageButton9;
-    ScopedPointer<ImageButton> imageButton10;
-    ScopedPointer<ImageButton> imageButton11;
-    ScopedPointer<ImageButton> imageButton12;
-    ScopedPointer<ImageButton> imageButton13;
-    ScopedPointer<ImageButton> imageButton14;
-    ScopedPointer<ImageButton> imageButton15;
-    ScopedPointer<ImageButton> imageButton16;
+    ScopedPointer<ImageButton> pad9;
+    ScopedPointer<ImageButton> pad10;
+    ScopedPointer<ImageButton> pad11;
+    ScopedPointer<ImageButton> pad12;
+    ScopedPointer<ImageButton> pad13;
+    ScopedPointer<ImageButton> pad14;
+    ScopedPointer<ImageButton> pad15;
+    ScopedPointer<ImageButton> pad16;
+    ScopedPointer<ImageButton> pad1;
+    ScopedPointer<ImageButton> pad2;
+    ScopedPointer<ImageButton> pad3;
+    ScopedPointer<ImageButton> pad4;
+    ScopedPointer<ImageButton> pad5;
+    ScopedPointer<ImageButton> pad6;
+    ScopedPointer<ImageButton> pad7;
+    ScopedPointer<ImageButton> pad8;
     ScopedPointer<ImageButton> setupButton;
     ScopedPointer<ImageButton> stepButton;
     ScopedPointer<ImageButton> playButton;
-    ScopedPointer<Label> label;
     Image cachedImage_background_png_1;
+    Image cachedImage_label_03_png;
 
 
     //==============================================================================

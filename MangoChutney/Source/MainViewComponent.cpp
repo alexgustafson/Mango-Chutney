@@ -203,31 +203,37 @@ public:
                                           0.3,  // release time
                                           10.0  // maximum sample length
                                           ));
-        
 
-        notes.setRange (2, 2, true);
+
+        notes.setRange (2, 1, true);
         ScopedPointer<AudioFormatReader> audioReader2 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_kick_17_clean_wav,
                                                                                                         drumSamples::wa_808tape_kick_17_clean_wavSize,
                                                                                                         false),
                                                                                  true));
         synth.addSound(new SamplerSound ("bass drum", *audioReader2, notes,2,0.01,0.3,10.0));
-        
-        
-        notes.setRange (3, 3, true);
+
+
+        notes.setRange (3, 1, true);
         ScopedPointer<AudioFormatReader> audioReader3 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_snare_02_clean_wav,
                                                                                                          drumSamples::wa_808tape_snare_02_clean_wavSize,
                                                                                                          false),
                                                                                   true));
         synth.addSound(new SamplerSound ("bass drum", *audioReader3, notes,3,0.01,0.3,10.0));
-        
-        notes.setRange (4, 4, true);
+
+        notes.setRange (4, 1, true);
         ScopedPointer<AudioFormatReader> audioReader4 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_closedhat_01_clean_wav,
                                                                                                          drumSamples::wa_808tape_closedhat_01_clean_wavSize,
                                                                                                          false),
                                                                                   true));
         synth.addSound(new SamplerSound ("bass drum", *audioReader4, notes,4,0.01,0.3,10.0));
-        
-        
+        notes.setRange (5, 1, true);
+        ScopedPointer<AudioFormatReader> audioReader5 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_rim_01_sat_wav,
+                                                                                                         drumSamples::wa_808tape_rim_01_sat_wavSize,
+                                                                                                         false),
+                                                                                  true));
+        synth.addSound(new SamplerSound ("bass drum", *audioReader5, notes,5,0.01,0.3,10.0));
+
+
     }
 
     void prepareToPlay (int /*samplesPerBlockExpected*/, double sampleRate)
@@ -272,118 +278,122 @@ public:
 //==============================================================================
 MainViewComponent::MainViewComponent ()
 {
-    addAndMakeVisible (imageButton = new ImageButton ("new button"));
-    imageButton->addListener (this);
+    addAndMakeVisible (pad9 = new ImageButton ("new button"));
+    pad9->addListener (this);
 
-    imageButton->setImages (false, true, true,
-                            ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                            Image(), 1.000f, Colour (0x00000000),
-                            ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton2 = new ImageButton ("new button"));
-    imageButton2->addListener (this);
+    pad9->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad10 = new ImageButton ("new button"));
+    pad10->addListener (this);
 
-    imageButton2->setImages (false, true, true,
-                             ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                             Image(), 1.000f, Colour (0x00000000),
-                             ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton3 = new ImageButton ("new button"));
-    imageButton3->addListener (this);
+    pad10->setImages (false, true, true,
+                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                      Image(), 1.000f, Colour (0x00000000),
+                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad11 = new ImageButton ("new button"));
+    pad11->addListener (this);
 
-    imageButton3->setImages (false, true, true,
-                             ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                             Image(), 1.000f, Colour (0x00000000),
-                             ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton4 = new ImageButton ("new button"));
-    imageButton4->addListener (this);
+    pad11->setImages (false, true, true,
+                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                      Image(), 1.000f, Colour (0x00000000),
+                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad12 = new ImageButton ("new button"));
+    pad12->addListener (this);
 
-    imageButton4->setImages (false, true, true,
-                             ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                             Image(), 1.000f, Colour (0x00000000),
-                             ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton5 = new ImageButton ("new button"));
-    imageButton5->addListener (this);
+    pad12->setImages (false, true, true,
+                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                      Image(), 1.000f, Colour (0x00000000),
+                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad13 = new ImageButton ("new button"));
+    pad13->addListener (this);
 
-    imageButton5->setImages (false, true, true,
-                             ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                             Image(), 1.000f, Colour (0x00000000),
-                             ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton6 = new ImageButton ("new button"));
-    imageButton6->addListener (this);
+    pad13->setImages (false, true, true,
+                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                      Image(), 1.000f, Colour (0x00000000),
+                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad14 = new ImageButton ("new button"));
+    pad14->addListener (this);
 
-    imageButton6->setImages (false, true, true,
-                             ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                             Image(), 1.000f, Colour (0x00000000),
-                             ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton7 = new ImageButton ("new button"));
-    imageButton7->addListener (this);
+    pad14->setImages (false, true, true,
+                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                      Image(), 1.000f, Colour (0x00000000),
+                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad15 = new ImageButton ("new button"));
+    pad15->addListener (this);
 
-    imageButton7->setImages (false, true, true,
-                             ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                             Image(), 1.000f, Colour (0x00000000),
-                             ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton8 = new ImageButton ("new button"));
-    imageButton8->addListener (this);
+    pad15->setImages (false, true, true,
+                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                      Image(), 1.000f, Colour (0x00000000),
+                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad16 = new ImageButton ("new button"));
+    pad16->addListener (this);
 
-    imageButton8->setImages (false, true, true,
-                             ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                             Image(), 1.000f, Colour (0x00000000),
-                             ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton9 = new ImageButton ("new button"));
-    imageButton9->addListener (this);
+    pad16->setImages (false, true, true,
+                      ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                      Image(), 1.000f, Colour (0x00000000),
+                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad1 = new ImageButton ("new button"));
+    pad1->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnBottom);
+    pad1->addListener (this);
 
-    imageButton9->setImages (false, true, true,
-                             ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                             Image(), 1.000f, Colour (0x00000000),
-                             ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton10 = new ImageButton ("new button"));
-    imageButton10->addListener (this);
+    pad1->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad2 = new ImageButton ("new button"));
+    pad2->setConnectedEdges (Button::ConnectedOnBottom);
+    pad2->addListener (this);
 
-    imageButton10->setImages (false, true, true,
-                              ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton11 = new ImageButton ("new button"));
-    imageButton11->addListener (this);
+    pad2->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad3 = new ImageButton ("new button"));
+    pad3->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnBottom);
+    pad3->addListener (this);
 
-    imageButton11->setImages (false, true, true,
-                              ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton12 = new ImageButton ("new button"));
-    imageButton12->addListener (this);
+    pad3->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad4 = new ImageButton ("new button"));
+    pad4->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnBottom);
+    pad4->addListener (this);
 
-    imageButton12->setImages (false, true, true,
-                              ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton13 = new ImageButton ("new button"));
-    imageButton13->addListener (this);
+    pad4->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad5 = new ImageButton ("new button"));
+    pad5->addListener (this);
 
-    imageButton13->setImages (false, true, true,
-                              ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton14 = new ImageButton ("new button"));
-    imageButton14->addListener (this);
+    pad5->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad6 = new ImageButton ("new button"));
+    pad6->addListener (this);
 
-    imageButton14->setImages (false, true, true,
-                              ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton15 = new ImageButton ("new button"));
-    imageButton15->addListener (this);
+    pad6->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad7 = new ImageButton ("new button"));
+    pad7->addListener (this);
 
-    imageButton15->setImages (false, true, true,
-                              ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (imageButton16 = new ImageButton ("new button"));
-    imageButton16->addListener (this);
+    pad7->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad8 = new ImageButton ("new button"));
+    pad8->addListener (this);
 
-    imageButton16->setImages (false, true, true,
-                              ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
+    pad8->setImages (false, true, true,
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x00000000),
+                     Image(), 1.000f, Colour (0x00000000),
+                     ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
     addAndMakeVisible (setupButton = new ImageButton ("new button"));
     setupButton->addListener (this);
 
@@ -405,38 +415,31 @@ MainViewComponent::MainViewComponent ()
                            ImageCache::getFromMemory (pushbutton_off_png, pushbutton_off_pngSize), 1.000f, Colour (0x00000000),
                            Image(), 1.000f, Colour (0x00000000),
                            ImageCache::getFromMemory (pushbutton_on_png, pushbutton_on_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (label = new Label ("new label",
-                                          "ddx - 80"));
-    label->setFont (Font ("Eurostile", 28.40f, Font::bold));
-    label->setJustificationType (Justification::centredLeft);
-    label->setEditable (false, false, false);
-    label->setColour (TextEditor::textColourId, Colours::black);
-    label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
     cachedImage_background_png_1 = ImageCache::getFromMemory (background_png, background_pngSize);
+    cachedImage_label_03_png = ImageCache::getFromMemory (label_03_png, label_03_pngSize);
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (600, 400);
+    setSize (600, 300);
 
 
     //[Constructor] You can add your own custom stuff here..
+
+    setSize (getParentWidth(), getParentHeight());
     deviceManager.initialise (2, 2, 0, true, String::empty, 0);
     synthAudioSource = new SynthAudioSource (keyboardState);
     audioSourcePlayer.setSource (synthAudioSource);
     deviceManager.addAudioCallback (&audioSourcePlayer);
     deviceManager.addMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
     synthAudioSource->setUsingSampledSound();
-    
+
     playButton->setClickingTogglesState(true);
     setupButton->setClickingTogglesState(true);
     stepButton->setClickingTogglesState(true);
     playButton->setRadioGroupId (34567);
     setupButton->setRadioGroupId (34567);
     stepButton->setRadioGroupId (34567);
-    
-    playButton->setState(Button::buttonDown);
 
     //[/Constructor]
 }
@@ -449,26 +452,25 @@ MainViewComponent::~MainViewComponent()
     deviceManager.removeAudioCallback (&audioSourcePlayer);
     //[/Destructor_pre]
 
-    imageButton = nullptr;
-    imageButton2 = nullptr;
-    imageButton3 = nullptr;
-    imageButton4 = nullptr;
-    imageButton5 = nullptr;
-    imageButton6 = nullptr;
-    imageButton7 = nullptr;
-    imageButton8 = nullptr;
-    imageButton9 = nullptr;
-    imageButton10 = nullptr;
-    imageButton11 = nullptr;
-    imageButton12 = nullptr;
-    imageButton13 = nullptr;
-    imageButton14 = nullptr;
-    imageButton15 = nullptr;
-    imageButton16 = nullptr;
+    pad9 = nullptr;
+    pad10 = nullptr;
+    pad11 = nullptr;
+    pad12 = nullptr;
+    pad13 = nullptr;
+    pad14 = nullptr;
+    pad15 = nullptr;
+    pad16 = nullptr;
+    pad1 = nullptr;
+    pad2 = nullptr;
+    pad3 = nullptr;
+    pad4 = nullptr;
+    pad5 = nullptr;
+    pad6 = nullptr;
+    pad7 = nullptr;
+    pad8 = nullptr;
     setupButton = nullptr;
     stepButton = nullptr;
     playButton = nullptr;
-    label = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -486,10 +488,16 @@ void MainViewComponent::paint (Graphics& g)
     g.setTiledImageFill (cachedImage_background_png_1,
                          0, 0,
                          1.0000f);
-    g.fillRoundedRectangle (4.0f, 4.0f, 600.0f, 400.0f, 2.000f);
+    g.fillRoundedRectangle (4.0f, 4.0f, 665.0f, 577.0f, 2.000f);
 
     g.setColour (Colour (0xff5e5e5e));
-    g.drawRoundedRectangle (4.0f, 4.0f, 600.0f, 400.0f, 2.000f, 5.000f);
+    g.drawRoundedRectangle (4.0f, 4.0f, 665.0f, 577.0f, 2.000f, 5.000f);
+
+    g.setColour (Colours::black);
+    g.drawImageWithin (cachedImage_label_03_png,
+                       4, 4, 252, 36,
+                       RectanglePlacement::centred,
+                       false);
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -497,27 +505,45 @@ void MainViewComponent::paint (Graphics& g)
 
 void MainViewComponent::resized()
 {
-    imageButton->setBounds (8, 248, 80, 80);
-    imageButton2->setBounds (80, 248, 80, 80);
-    imageButton3->setBounds (152, 248, 80, 80);
-    imageButton4->setBounds (224, 248, 80, 80);
-    imageButton5->setBounds (296, 248, 80, 80);
-    imageButton6->setBounds (368, 248, 80, 80);
-    imageButton7->setBounds (440, 248, 80, 80);
-    imageButton8->setBounds (512, 248, 80, 80);
-    imageButton9->setBounds (8, 320, 80, 80);
-    imageButton10->setBounds (80, 320, 80, 80);
-    imageButton11->setBounds (152, 320, 80, 80);
-    imageButton12->setBounds (224, 320, 80, 80);
-    imageButton13->setBounds (296, 320, 80, 80);
-    imageButton14->setBounds (368, 320, 80, 80);
-    imageButton15->setBounds (440, 320, 80, 80);
-    imageButton16->setBounds (512, 320, 80, 80);
+    pad9->setBounds (8, 248, 80, 80);
+    pad10->setBounds (80, 248, 80, 80);
+    pad11->setBounds (152, 248, 80, 80);
+    pad12->setBounds (224, 248, 80, 80);
+    pad13->setBounds (296, 248, 80, 80);
+    pad14->setBounds (368, 248, 80, 80);
+    pad15->setBounds (440, 248, 80, 80);
+    pad16->setBounds (512, 248, 80, 80);
+    pad1->setBounds (8, 320, 80, 80);
+    pad2->setBounds (80, 320, 80, 80);
+    pad3->setBounds (152, 320, 80, 80);
+    pad4->setBounds (224, 320, 80, 80);
+    pad5->setBounds (296, 320, 80, 80);
+    pad6->setBounds (368, 320, 80, 80);
+    pad7->setBounds (440, 320, 80, 80);
+    pad8->setBounds (512, 320, 80, 80);
     setupButton->setBounds (16, 40, 40, 64);
     stepButton->setBounds (56, 40, 40, 64);
     playButton->setBounds (96, 40, 40, 64);
-    label->setBounds (17, 16, 150, 24);
     //[UserResized] Add your own custom resize handling here..
+    int padWidth = (int) (getWidth() / 8);
+    int i = 0;
+    pad9->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
+    pad10->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
+    pad11->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
+    pad12->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
+    pad13->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
+    pad14->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
+    pad15->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
+    pad16->setBounds (padWidth* i++, getHeight()-padWidth*2, padWidth, padWidth);
+    i = 0;
+    pad1->setBounds (padWidth* i++, getHeight()-padWidth, padWidth, padWidth);
+    pad2->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
+    pad3->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
+    pad4->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
+    pad5->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
+    pad6->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
+    pad7->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
+    pad8->setBounds (padWidth * i++, getHeight()-padWidth, padWidth, padWidth);
     //[/UserResized]
 }
 
@@ -526,85 +552,85 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == imageButton)
+    if (buttonThatWasClicked == pad9)
     {
-        //[UserButtonCode_imageButton] -- add your button handler code here..
-        //[/UserButtonCode_imageButton]
+        //[UserButtonCode_pad9] -- add your button handler code here..
+        //[/UserButtonCode_pad9]
     }
-    else if (buttonThatWasClicked == imageButton2)
+    else if (buttonThatWasClicked == pad10)
     {
-        //[UserButtonCode_imageButton2] -- add your button handler code here..
-        //[/UserButtonCode_imageButton2]
+        //[UserButtonCode_pad10] -- add your button handler code here..
+        //[/UserButtonCode_pad10]
     }
-    else if (buttonThatWasClicked == imageButton3)
+    else if (buttonThatWasClicked == pad11)
     {
-        //[UserButtonCode_imageButton3] -- add your button handler code here..
-        //[/UserButtonCode_imageButton3]
+        //[UserButtonCode_pad11] -- add your button handler code here..
+        //[/UserButtonCode_pad11]
     }
-    else if (buttonThatWasClicked == imageButton4)
+    else if (buttonThatWasClicked == pad12)
     {
-        //[UserButtonCode_imageButton4] -- add your button handler code here..
-        //[/UserButtonCode_imageButton4]
+        //[UserButtonCode_pad12] -- add your button handler code here..
+        //[/UserButtonCode_pad12]
     }
-    else if (buttonThatWasClicked == imageButton5)
+    else if (buttonThatWasClicked == pad13)
     {
-        //[UserButtonCode_imageButton5] -- add your button handler code here..
-        //[/UserButtonCode_imageButton5]
+        //[UserButtonCode_pad13] -- add your button handler code here..
+        //[/UserButtonCode_pad13]
     }
-    else if (buttonThatWasClicked == imageButton6)
+    else if (buttonThatWasClicked == pad14)
     {
-        //[UserButtonCode_imageButton6] -- add your button handler code here..
-        //[/UserButtonCode_imageButton6]
+        //[UserButtonCode_pad14] -- add your button handler code here..
+        //[/UserButtonCode_pad14]
     }
-    else if (buttonThatWasClicked == imageButton7)
+    else if (buttonThatWasClicked == pad15)
     {
-        //[UserButtonCode_imageButton7] -- add your button handler code here..
-        //[/UserButtonCode_imageButton7]
+        //[UserButtonCode_pad15] -- add your button handler code here..
+        //[/UserButtonCode_pad15]
     }
-    else if (buttonThatWasClicked == imageButton8)
+    else if (buttonThatWasClicked == pad16)
     {
-        //[UserButtonCode_imageButton8] -- add your button handler code here..
-        //[/UserButtonCode_imageButton8]
+        //[UserButtonCode_pad16] -- add your button handler code here..
+        //[/UserButtonCode_pad16]
     }
-    else if (buttonThatWasClicked == imageButton9)
+    else if (buttonThatWasClicked == pad1)
     {
-        //[UserButtonCode_imageButton9] -- add your button handler code here..
-        //[/UserButtonCode_imageButton9]
+        //[UserButtonCode_pad1] -- add your button handler code here..
+        //[/UserButtonCode_pad1]
     }
-    else if (buttonThatWasClicked == imageButton10)
+    else if (buttonThatWasClicked == pad2)
     {
-        //[UserButtonCode_imageButton10] -- add your button handler code here..
-        //[/UserButtonCode_imageButton10]
+        //[UserButtonCode_pad2] -- add your button handler code here..
+        //[/UserButtonCode_pad2]
     }
-    else if (buttonThatWasClicked == imageButton11)
+    else if (buttonThatWasClicked == pad3)
     {
-        //[UserButtonCode_imageButton11] -- add your button handler code here..
-        //[/UserButtonCode_imageButton11]
+        //[UserButtonCode_pad3] -- add your button handler code here..
+        //[/UserButtonCode_pad3]
     }
-    else if (buttonThatWasClicked == imageButton12)
+    else if (buttonThatWasClicked == pad4)
     {
-        //[UserButtonCode_imageButton12] -- add your button handler code here..
-        //[/UserButtonCode_imageButton12]
+        //[UserButtonCode_pad4] -- add your button handler code here..
+        //[/UserButtonCode_pad4]
     }
-    else if (buttonThatWasClicked == imageButton13)
+    else if (buttonThatWasClicked == pad5)
     {
-        //[UserButtonCode_imageButton13] -- add your button handler code here..
-        //[/UserButtonCode_imageButton13]
+        //[UserButtonCode_pad5] -- add your button handler code here..
+        //[/UserButtonCode_pad5]
     }
-    else if (buttonThatWasClicked == imageButton14)
+    else if (buttonThatWasClicked == pad6)
     {
-        //[UserButtonCode_imageButton14] -- add your button handler code here..
-        //[/UserButtonCode_imageButton14]
+        //[UserButtonCode_pad6] -- add your button handler code here..
+        //[/UserButtonCode_pad6]
     }
-    else if (buttonThatWasClicked == imageButton15)
+    else if (buttonThatWasClicked == pad7)
     {
-        //[UserButtonCode_imageButton15] -- add your button handler code here..
-        //[/UserButtonCode_imageButton15]
+        //[UserButtonCode_pad7] -- add your button handler code here..
+        //[/UserButtonCode_pad7]
     }
-    else if (buttonThatWasClicked == imageButton16)
+    else if (buttonThatWasClicked == pad8)
     {
-        //[UserButtonCode_imageButton16] -- add your button handler code here..
-        //[/UserButtonCode_imageButton16]
+        //[UserButtonCode_pad8] -- add your button handler code here..
+        //[/UserButtonCode_pad8]
     }
     else if (buttonThatWasClicked == setupButton)
     {
@@ -632,7 +658,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
 void MainViewComponent::buttonStateChanged(Button * buttonThatChanged)
 {
 
-    if (buttonThatChanged == imageButton)
+    if (buttonThatChanged == pad1)
     {
         //[UserButtonCode_imageButton] -- add your button handler code here..
         if (!buttonThatChanged->isDown()) return;
@@ -641,25 +667,33 @@ void MainViewComponent::buttonStateChanged(Button * buttonThatChanged)
 
         //[/UserButtonCode_imageButton]
     }
-    else if (buttonThatChanged == imageButton2)
+    else if (buttonThatChanged == pad2)
     {
         //[UserButtonCode_imageButton2] -- add your button handler code here..
         if (!buttonThatChanged->isDown()) return;
         keyboardState.noteOn(1, 2, 1.0);
         //[/UserButtonCode_imageButton2]
     }
-    else if (buttonThatChanged == imageButton3)
+    else if (buttonThatChanged == pad3)
     {
         //[UserButtonCode_imageButton2] -- add your button handler code here..
         if (!buttonThatChanged->isDown()) return;
         keyboardState.noteOn(1, 3, 1.0);
         //[/UserButtonCode_imageButton2]
     }
-    else if (buttonThatChanged == imageButton4)
+    else if (buttonThatChanged == pad4)
     {
         //[UserButtonCode_imageButton2] -- add your button handler code here..
         if (!buttonThatChanged->isDown()) return;
         keyboardState.noteOn(1, 4, 1.0);
+
+        //[/UserButtonCode_imageButton2]
+    }
+    else if (buttonThatChanged == pad5)
+    {
+        //[UserButtonCode_imageButton2] -- add your button handler code here..
+        if (!buttonThatChanged->isDown()) return;
+        keyboardState.noteOn(1, 5, 1.0);
 
         //[/UserButtonCode_imageButton2]
     }
@@ -680,103 +714,104 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="MainViewComponent" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330000013"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 fixedSize="0" initialWidth="600" initialHeight="300">
   <BACKGROUND backgroundColour="ff000000">
-    <ROUNDRECT pos="4 4 600 400" cornerSize="2" fill="image: background_png, 1, 0 0"
+    <ROUNDRECT pos="4 4 665 577" cornerSize="2" fill="image: background_png, 1, 0 0"
                hasStroke="1" stroke="5, mitered, butt" strokeColour="solid: ff5e5e5e"/>
+    <IMAGE pos="4 4 252 36" resource="label_03_png" opacity="1" mode="1"/>
   </BACKGROUND>
-  <IMAGEBUTTON name="new button" id="a80836391577303d" memberName="imageButton"
-               virtualName="" explicitFocusOrder="0" pos="8 248 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="a80836391577303d" memberName="pad9" virtualName=""
+               explicitFocusOrder="0" pos="8 248 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="a1ede4f4957d047f" memberName="imageButton2"
-               virtualName="" explicitFocusOrder="0" pos="80 248 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="a1ede4f4957d047f" memberName="pad10" virtualName=""
+               explicitFocusOrder="0" pos="80 248 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="faaec0a33fb004bb" memberName="imageButton3"
-               virtualName="" explicitFocusOrder="0" pos="152 248 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="faaec0a33fb004bb" memberName="pad11" virtualName=""
+               explicitFocusOrder="0" pos="152 248 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="c46fea7861a7a8ac" memberName="imageButton4"
-               virtualName="" explicitFocusOrder="0" pos="224 248 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="c46fea7861a7a8ac" memberName="pad12" virtualName=""
+               explicitFocusOrder="0" pos="224 248 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="3a7d4f5fc4f58467" memberName="imageButton5"
-               virtualName="" explicitFocusOrder="0" pos="296 248 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="3a7d4f5fc4f58467" memberName="pad13" virtualName=""
+               explicitFocusOrder="0" pos="296 248 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="fefc12cbf2d3e714" memberName="imageButton6"
-               virtualName="" explicitFocusOrder="0" pos="368 248 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="fefc12cbf2d3e714" memberName="pad14" virtualName=""
+               explicitFocusOrder="0" pos="368 248 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="21b927ea0bb1ce19" memberName="imageButton7"
-               virtualName="" explicitFocusOrder="0" pos="440 248 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="21b927ea0bb1ce19" memberName="pad15" virtualName=""
+               explicitFocusOrder="0" pos="440 248 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="bfabca1a8ce86678" memberName="imageButton8"
-               virtualName="" explicitFocusOrder="0" pos="512 248 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="bfabca1a8ce86678" memberName="pad16" virtualName=""
+               explicitFocusOrder="0" pos="512 248 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="a542889a85fcc075" memberName="imageButton9"
-               virtualName="" explicitFocusOrder="0" pos="8 320 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="a542889a85fcc075" memberName="pad1" virtualName=""
+               explicitFocusOrder="0" pos="8 320 80 80" buttonText="new button"
+               connectedEdges="9" needsCallback="1" radioGroupId="0" keepProportions="1"
+               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
+               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
+               opacityDown="1" colourDown="0"/>
+  <IMAGEBUTTON name="new button" id="cd3cedaa6b2f43e8" memberName="pad2" virtualName=""
+               explicitFocusOrder="0" pos="80 320 80 80" buttonText="new button"
+               connectedEdges="8" needsCallback="1" radioGroupId="0" keepProportions="1"
+               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
+               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
+               opacityDown="1" colourDown="0"/>
+  <IMAGEBUTTON name="new button" id="5bc8d9849fd6997c" memberName="pad3" virtualName=""
+               explicitFocusOrder="0" pos="152 320 80 80" buttonText="new button"
+               connectedEdges="9" needsCallback="1" radioGroupId="0" keepProportions="1"
+               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
+               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
+               opacityDown="1" colourDown="0"/>
+  <IMAGEBUTTON name="new button" id="8b0babb8603c4bf4" memberName="pad4" virtualName=""
+               explicitFocusOrder="0" pos="224 320 80 80" buttonText="new button"
+               connectedEdges="9" needsCallback="1" radioGroupId="0" keepProportions="1"
+               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
+               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
+               opacityDown="1" colourDown="0"/>
+  <IMAGEBUTTON name="new button" id="6c9e67fa9b7f6040" memberName="pad5" virtualName=""
+               explicitFocusOrder="0" pos="296 320 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="cd3cedaa6b2f43e8" memberName="imageButton10"
-               virtualName="" explicitFocusOrder="0" pos="80 320 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="588d5be70f491e9a" memberName="pad6" virtualName=""
+               explicitFocusOrder="0" pos="368 320 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="5bc8d9849fd6997c" memberName="imageButton11"
-               virtualName="" explicitFocusOrder="0" pos="152 320 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="fad8919f118ad727" memberName="pad7" virtualName=""
+               explicitFocusOrder="0" pos="440 320 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="8b0babb8603c4bf4" memberName="imageButton12"
-               virtualName="" explicitFocusOrder="0" pos="224 320 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="6c9e67fa9b7f6040" memberName="imageButton13"
-               virtualName="" explicitFocusOrder="0" pos="296 320 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="588d5be70f491e9a" memberName="imageButton14"
-               virtualName="" explicitFocusOrder="0" pos="368 320 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="fad8919f118ad727" memberName="imageButton15"
-               virtualName="" explicitFocusOrder="0" pos="440 320 80 80" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="45a93e611a1dd885" memberName="imageButton16"
-               virtualName="" explicitFocusOrder="0" pos="512 320 80 80" buttonText="new button"
+  <IMAGEBUTTON name="new button" id="45a93e611a1dd885" memberName="pad8" virtualName=""
+               explicitFocusOrder="0" pos="512 320 80 80" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="pad_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
@@ -799,11 +834,6 @@ BEGIN_JUCER_METADATA
                resourceNormal="pushbutton_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pushbutton_on_png"
                opacityDown="1" colourDown="0"/>
-  <LABEL name="new label" id="9b23c5a0105533f5" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="17 16 150 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="ddx - 80" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Eurostile" fontsize="28.4"
-         bold="1" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
@@ -5639,6 +5669,53 @@ static const unsigned char resource_MainViewComponent_pushbutton_on_png[] = { 13
 
 const char* MainViewComponent::pushbutton_on_png = (const char*) resource_MainViewComponent_pushbutton_on_png;
 const int MainViewComponent::pushbutton_on_pngSize = 14419;
+
+// JUCER_RESOURCE: label_03_png, 2324, "../../Media/buttons/Bilder/label_03.png"
+static const unsigned char resource_MainViewComponent_label_03_png[] = { 137,80,78,71,13,10,26,10,0,0,0,13,73,72,68,82,0,0,1,11,0,0,0,39,8,6,0,0,0,24,76,109,171,0,0,0,25,116,69,88,116,83,111,102,116,119,
+97,114,101,0,65,100,111,98,101,32,73,109,97,103,101,82,101,97,100,121,113,201,101,60,0,0,8,182,73,68,65,84,120,218,236,93,61,104,228,74,12,158,60,174,115,63,189,251,233,221,111,191,112,229,194,149,11,
+41,3,41,15,82,6,82,6,82,6,82,62,72,121,176,189,123,247,238,221,187,119,125,111,23,52,172,78,79,210,104,236,205,85,250,192,100,207,158,31,73,163,209,223,216,239,221,253,254,253,59,56,28,14,71,9,255,184,
+8,28,14,135,27,11,135,195,225,198,194,225,112,184,177,112,56,28,110,44,28,14,135,27,11,135,195,225,198,194,225,112,56,220,88,56,28,14,55,22,14,135,227,118,248,182,166,211,221,221,221,229,79,123,190,26,
+161,201,114,190,38,225,89,130,103,139,50,133,165,141,4,141,174,11,102,184,44,253,52,62,36,52,48,150,4,141,175,53,50,205,243,105,227,70,184,104,155,60,223,88,144,103,184,161,28,44,107,111,93,179,220,190,
+180,78,73,24,99,141,188,37,89,114,109,70,230,94,9,210,184,201,168,207,85,250,87,243,6,247,221,154,215,189,207,198,226,120,254,179,47,52,187,8,234,137,220,251,121,190,58,32,246,81,80,128,87,96,246,210,
+230,71,37,105,22,186,2,208,53,26,251,125,194,101,53,84,175,134,118,247,12,239,175,133,69,190,224,116,190,62,200,189,127,65,65,36,121,93,158,189,195,223,225,124,189,32,229,123,134,223,31,48,54,197,238,
+124,61,20,218,212,202,65,91,215,172,31,28,184,249,15,112,5,208,39,110,115,63,0,31,180,141,54,151,69,222,19,140,199,25,138,119,248,157,229,189,7,29,179,130,234,71,73,55,94,96,174,14,248,210,240,199,222,
+171,217,255,107,211,144,214,208,38,10,138,155,255,54,138,71,10,133,232,96,11,93,28,109,177,146,143,80,160,125,141,108,226,202,126,53,116,69,97,172,102,35,63,53,253,154,149,243,53,5,121,212,142,217,172,
+212,167,166,176,22,205,13,228,24,43,245,58,86,232,71,179,118,93,191,173,84,134,17,133,69,39,33,108,138,224,185,38,100,157,71,20,18,78,202,216,187,66,104,204,205,117,132,191,131,48,118,139,60,201,136,60,
+83,14,99,165,232,225,66,203,47,193,203,72,33,94,14,237,71,129,214,3,242,150,19,242,66,59,232,127,82,248,124,134,182,39,196,75,167,200,107,1,121,71,34,23,220,190,3,57,244,112,37,68,35,215,94,219,92,199,
+130,94,52,224,253,22,224,127,134,62,57,149,26,5,30,58,224,61,211,136,117,37,48,50,221,67,159,70,8,215,71,180,246,37,121,99,29,158,128,214,161,144,22,96,121,159,144,94,100,236,81,132,50,144,254,35,60,123,
+128,191,189,146,134,97,250,7,36,255,65,217,99,71,34,255,47,53,22,56,127,26,132,5,254,133,218,126,144,126,17,126,143,194,230,212,114,52,105,67,103,67,208,11,27,255,128,218,236,160,205,129,132,114,156,98,
+31,42,162,22,154,3,75,116,236,208,38,157,8,223,141,98,184,176,76,79,104,140,160,132,212,56,87,78,140,156,41,111,61,50,162,129,24,148,82,221,162,67,253,70,129,143,159,196,209,204,40,5,188,220,255,46,232,
+219,145,208,72,121,72,132,206,35,35,135,22,233,92,66,242,150,54,35,167,195,45,154,251,77,208,1,42,111,106,144,176,195,144,214,155,58,183,55,227,62,192,142,75,210,191,84,104,115,211,52,100,52,20,0,123,
+198,35,245,240,239,5,8,166,97,228,30,89,214,83,5,61,61,242,228,131,160,108,45,26,187,71,202,170,205,181,32,37,178,88,96,92,60,234,133,54,131,240,187,55,120,240,137,25,123,44,244,155,209,179,158,153,143,
+70,68,7,97,109,199,10,189,208,218,247,104,157,102,210,118,80,248,158,5,125,162,243,181,192,195,76,162,9,202,207,108,40,158,14,10,95,189,34,131,197,176,38,115,161,205,100,24,71,218,115,90,31,73,126,95,
+22,89,180,104,131,71,193,96,36,198,155,101,69,121,71,22,238,9,133,101,7,228,145,107,24,153,153,98,42,166,245,89,40,186,150,210,138,166,50,31,196,145,69,39,240,144,200,239,137,68,6,201,32,247,142,185,151,
+148,200,2,123,221,79,102,140,1,100,223,146,40,99,34,227,143,70,189,8,196,139,211,13,56,24,116,197,18,29,117,76,90,209,161,251,11,220,143,225,122,74,48,50,121,126,20,12,70,98,248,74,133,72,14,235,64,50,
+232,85,171,240,220,84,214,226,58,66,231,88,208,191,174,198,41,175,141,44,102,226,125,181,54,11,227,173,23,230,217,34,140,191,21,91,198,197,222,104,186,209,92,37,158,23,195,248,51,211,111,82,214,129,235,
+55,9,17,84,32,27,173,70,118,107,101,189,24,100,198,233,204,36,240,201,69,36,146,222,46,138,204,53,61,181,208,58,25,120,94,42,245,100,235,190,92,189,31,190,221,112,35,90,24,200,125,238,193,147,237,81,94,
+136,115,51,122,110,252,42,120,118,237,8,54,231,199,217,218,62,41,158,81,59,58,205,244,90,55,75,14,231,107,149,0,43,161,116,4,118,42,20,174,36,47,102,161,251,17,201,57,243,156,42,215,122,89,169,71,115,
+193,123,150,20,60,27,245,167,112,61,178,205,81,228,81,160,109,38,30,246,65,8,235,123,198,40,181,27,101,143,245,100,46,240,221,64,45,98,103,208,125,42,39,238,200,117,1,185,84,191,67,180,245,232,180,81,
+194,243,86,9,161,36,107,206,121,56,237,101,150,210,49,80,50,90,209,182,176,224,53,71,162,165,208,177,45,252,110,11,125,199,240,255,23,171,180,249,48,253,81,152,59,27,136,136,250,44,10,173,161,146,55,107,
+191,88,41,215,150,240,216,84,232,42,190,175,165,63,146,188,99,165,188,45,105,149,196,115,41,149,145,228,175,29,253,214,190,100,183,58,178,24,66,249,205,185,30,188,245,40,120,242,156,175,15,132,185,7,168,
+37,224,80,238,77,137,44,164,99,210,61,242,198,147,96,44,242,241,154,118,116,90,99,129,233,209,169,36,187,131,80,236,204,71,198,167,112,45,248,102,89,206,66,1,112,44,212,19,102,84,123,24,201,124,71,82,
+244,122,9,215,35,76,141,214,80,201,155,165,48,154,10,5,78,78,174,3,90,191,220,230,35,92,95,64,163,186,58,10,5,78,233,8,113,88,65,235,108,208,1,124,188,106,229,121,44,164,137,220,154,190,160,90,212,12,
+122,180,132,186,215,18,54,27,139,14,89,41,169,144,37,29,129,38,180,9,240,241,90,62,218,220,129,160,78,196,240,212,210,183,67,66,237,149,244,35,160,141,178,21,180,192,121,42,20,161,184,163,211,196,68,94,
+179,98,204,44,197,65,92,24,253,32,243,225,98,24,45,62,74,180,90,10,108,93,133,145,77,136,166,55,225,57,87,52,220,49,122,120,82,116,53,41,5,206,207,27,209,106,41,112,226,200,98,23,248,66,187,229,24,94,
+218,115,121,238,79,148,206,214,240,120,211,52,100,32,94,171,212,134,134,64,11,99,225,38,82,244,137,27,248,154,10,222,129,62,27,194,109,48,27,230,29,136,151,162,247,39,244,108,65,87,18,194,210,18,15,210,
+49,93,111,72,209,44,71,161,18,111,131,18,62,39,178,145,166,66,31,28,25,78,43,121,160,17,226,100,208,97,77,183,122,3,173,150,163,83,11,207,67,229,190,228,100,154,35,162,246,111,27,139,100,168,39,36,38,
+111,187,88,185,103,80,152,71,98,233,46,76,253,0,1,93,82,145,247,13,155,54,26,115,231,146,87,254,138,121,83,33,199,143,104,113,127,160,34,221,179,80,132,171,57,118,140,2,29,205,141,106,16,73,248,77,163,
+185,103,184,232,209,164,133,135,118,37,15,52,199,143,6,29,214,214,184,246,37,56,169,222,208,110,24,71,91,175,136,34,230,239,96,44,159,131,237,27,164,155,26,11,11,74,199,163,214,254,91,209,252,133,57,66,
+5,175,203,141,198,183,142,39,29,59,126,229,154,91,163,47,74,215,188,65,174,91,244,98,185,33,175,95,245,10,192,223,94,167,155,213,44,232,23,113,28,122,166,112,52,51,41,7,23,126,197,141,130,150,222,39,224,
+218,229,170,243,175,194,152,150,111,67,240,145,216,62,240,199,177,11,88,123,26,254,206,2,223,249,235,198,6,188,50,253,78,229,49,92,95,13,150,120,200,223,75,140,130,92,102,67,58,103,89,143,30,173,223,67,
+224,191,180,204,47,208,225,180,224,30,120,216,25,120,224,82,9,237,93,137,89,104,51,133,235,119,74,53,155,199,66,107,62,254,215,190,215,153,148,122,95,166,239,62,92,191,123,250,165,140,245,2,227,204,202,
+122,189,193,124,9,246,108,238,103,78,193,190,250,171,83,202,128,229,120,176,171,152,195,66,95,218,200,71,45,207,165,99,214,38,240,39,44,73,153,39,111,244,150,41,100,45,228,153,68,251,104,76,135,106,219,
+112,180,46,138,28,34,99,40,241,155,150,154,220,232,49,102,18,82,12,75,26,130,211,190,26,61,176,200,59,22,106,60,81,88,75,206,208,149,230,106,4,221,105,5,186,177,44,170,210,239,181,145,197,71,40,255,183,
+0,38,193,59,47,65,254,186,48,231,88,181,95,157,114,133,158,136,230,12,138,7,104,43,198,44,97,12,215,163,187,146,178,113,124,183,5,47,151,199,158,42,215,164,23,238,101,227,54,40,253,98,161,160,87,43,135,
+69,137,82,52,30,184,117,252,68,17,131,228,33,63,195,159,223,28,113,186,56,173,208,177,183,74,90,169,17,248,8,215,47,125,75,120,41,232,233,9,173,81,83,208,215,161,160,23,34,238,252,255,117,234,112,56,190,
+50,13,113,56,28,110,44,28,14,135,195,141,133,195,225,112,99,225,112,56,220,88,56,28,14,55,22,14,135,195,141,133,195,225,112,99,225,112,56,220,88,56,28,14,135,27,11,135,195,177,22,255,9,48,0,161,113,32,
+206,246,120,75,86,0,0,0,0,73,69,78,68,174,66,96,130,0,0};
+
+const char* MainViewComponent::label_03_png = (const char*) resource_MainViewComponent_label_03_png;
+const int MainViewComponent::label_03_pngSize = 2324;
 
 
 //[EndFile] You can add extra defines here...

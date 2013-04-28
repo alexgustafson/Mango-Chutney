@@ -68,12 +68,18 @@ public:
             setContentOwned (new MainViewComponent(), true);
 
             centreWithSize (getWidth(), getHeight());
+            setSize(610, 410);
+            
+            
+            
+            #if JUCE_IOS || JUCE_ANDROID
+                setVisible (true);
+                setFullScreen (true);
+                setUsingNativeTitleBar(true);
+                setResizable(true, true);
+            #else
             setUsingNativeTitleBar(true);
-            
-            #if JUCE_IPHONE || JUCE_ANDROID
-
-                setFullScreen(true);
-            
+                setResizable(true, true);
             #endif
             
             setVisible (true);
