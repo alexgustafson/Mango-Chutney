@@ -23,7 +23,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
 #include "AudioEngine.h"
-#include "DrumController.h" 
+#include "DrumController.h"
 //[/Headers]
 
 #include "PadFieldComponent.h"

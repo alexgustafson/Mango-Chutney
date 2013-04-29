@@ -29,6 +29,7 @@ DrumController::~DrumController()
 
 void DrumController::buttonClicked(juce::Button *buttonClicked)
 {
+    synthAudioSource->setSampleForSoundSound(2, nil);
     
 }
 

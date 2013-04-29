@@ -12,6 +12,8 @@
 #define __AUDIOENGINE_H_BE6F93C2__
 
 #include "JuceHeader.h"
+#include "drumSamples.h"
+#include "SampleVoice.h"
 
 class SynthAudioSource  : public AudioSource
 {
@@ -33,14 +35,11 @@ public:
     SynthAudioSource (MidiKeyboardState& keyboardState);
     
     void setUsingSampledSound();
-        
-    
-    
     void prepareToPlay (int /*samplesPerBlockExpected*/, double sampleRate);
-    
     void releaseResources();
-    
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
+    void setSampleForSoundSound(int index, AudioFormatReader* newSampleReader);
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthAudioSource)
 };

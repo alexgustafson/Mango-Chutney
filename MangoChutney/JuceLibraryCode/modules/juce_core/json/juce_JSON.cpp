@@ -26,21 +26,6 @@
 class JSONParser
 {
 public:
-    static Result parseObjectOrArray (String::CharPointerType t, var& result)
-    {
-        t = t.findEndOfWhitespace();
-
-        switch (t.getAndAdvance())
-        {
-            case 0:      result = var::null; return Result::ok();
-            case '{':    return parseObject (t, result);
-            case '[':    return parseArray  (t, result);
-        }
-
-        return createFail ("Expected '{' or '['", &t);
-    }
-
-private:
     static Result parseAny (String::CharPointerType& t, var& result)
     {
         t = t.findEndOfWhitespace();
@@ -49,7 +34,7 @@ private:
         switch (t2.getAndAdvance())
         {
             case '{':    t = t2; return parseObject (t, result);
-            case '[':    t = t2; return parseArray  (t, result);
+            case '[':    t = t2; return parseArray (t, result);
             case '"':    t = t2; return parseString (t, result);
 
             case '-':
@@ -99,6 +84,7 @@ private:
         return createFail ("Syntax error", &t);
     }
 
+private:
     static Result createFail (const char* const message, const String::CharPointerType* location = nullptr)
     {
         String m (message);
@@ -497,8 +483,8 @@ private:
 var JSON::parse (const String& text)
 {
     var result;
-
-    if (! JSONParser::parseObjectOrArray (text.getCharPointer(), result))
+    String::CharPointerType t (text.getCharPointer());
+    if (! JSONParser::parseAny (t, result))
         result = var::null;
 
     return result;
@@ -516,7 +502,8 @@ var JSON::parse (const File& file)
 
 Result JSON::parse (const String& text, var& result)
 {
-    return JSONParser::parseObjectOrArray (text.getCharPointer(), result);
+    String::CharPointerType t (text.getCharPointer());
+    return JSONParser::parseAny (t, result);
 }
 
 String JSON::toString (const var& data, const bool allOnOneLine)
@@ -619,12 +606,12 @@ public:
         expect (JSON::parse (String::empty) == var::null);
         expect (JSON::parse ("{}").isObject());
         expect (JSON::parse ("[]").isArray());
-        expect (JSON::parse ("[ 1234 ]")[0].isInt());
-        expect (JSON::parse ("[ 12345678901234 ]")[0].isInt64());
-        expect (JSON::parse ("[ 1.123e3 ]")[0].isDouble());
-        expect (JSON::parse ("[ -1234]")[0].isInt());
-        expect (JSON::parse ("[-12345678901234]")[0].isInt64());
-        expect (JSON::parse ("[-1.123e3]")[0].isDouble());
+        expect (JSON::parse ("1234").isInt());
+        expect (JSON::parse ("12345678901234").isInt64());
+        expect (JSON::parse ("1.123e3").isDouble());
+        expect (JSON::parse ("-1234").isInt());
+        expect (JSON::parse ("-12345678901234").isInt64());
+        expect (JSON::parse ("-1.123e3").isDouble());
 
         for (int i = 100; --i >= 0;)
         {
@@ -635,7 +622,7 @@ public:
 
             const bool oneLine = r.nextBool();
             String asString (JSON::toString (v, oneLine));
-            var parsed = JSON::parse ("[" + asString + "]")[0];
+            var parsed = JSON::parse (asString);
             String parsedString (JSON::toString (parsed, oneLine));
             expect (asString.isNotEmpty() && parsedString == asString);
         }

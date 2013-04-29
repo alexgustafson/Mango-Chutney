@@ -71,7 +71,7 @@ MainViewComponent::MainViewComponent ()
     drumController = new DrumController();
     component->addDrumController(drumController);
     setSize (getParentWidth(), getParentHeight());
-    
+
 
     playButton->setClickingTogglesState(true);
     setupButton->setClickingTogglesState(true);
@@ -131,7 +131,7 @@ void MainViewComponent::resized()
     setupButton->setBounds (16, 40, 40, 64);
     stepButton->setBounds (56, 40, 40, 64);
     playButton->setBounds (96, 40, 40, 64);
-    component->setBounds (24, 152, 300, 300);
+    component->setBounds (24, 104, 290, 290);
     //[UserResized] Add your own custom resize handling here..
 
     //[/UserResized]
@@ -145,6 +145,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == setupButton)
     {
         //[UserButtonCode_setupButton] -- add your button handler code here..
+        drumController->buttonClicked(setupButton);
         //[/UserButtonCode_setupButton]
     }
     else if (buttonThatWasClicked == stepButton)
@@ -211,7 +212,7 @@ BEGIN_JUCER_METADATA
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pushbutton_on_png"
                opacityDown="1" colourDown="0"/>
   <JUCERCOMP name="" id="c33e7dac6962d4cf" memberName="component" virtualName=""
-             explicitFocusOrder="0" pos="24 152 300 300" sourceFile="PadFieldComponent.cpp"
+             explicitFocusOrder="0" pos="24 104 290 290" sourceFile="PadFieldComponent.cpp"
              constructorParams="keyboardState"/>
 </JUCER_COMPONENT>
 

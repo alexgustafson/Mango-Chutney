@@ -166,7 +166,7 @@ PadField::PadField ()
     pad15->setName("pad15");
     pad16->setName("pad16");
 
-    
+
     //[/Constructor]
 }
 
@@ -229,7 +229,7 @@ void PadField::resized()
     pad15->setBounds (192, 288, 96, 96);
     pad16->setBounds (288, 288, 96, 96);
     //[UserResized] Add your own custom resize handling here..
-    
+
     int padWidth = (int)getWidth() / 4;
     int padHeight = (int)getHeight() / 4;
     int i = 0;
@@ -250,7 +250,7 @@ void PadField::resized()
     pad14->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
     pad15->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
     pad16->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
-    
+
     //[/UserResized]
 }
 

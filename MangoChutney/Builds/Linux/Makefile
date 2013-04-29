@@ -49,6 +49,7 @@ endif
 DEPFLAGS := $(if $(word 2, $(TARGET_ARCH)), , -MMD)
 
 OBJECTS := \
+  $(OBJDIR)/SampleVoice_6799fc09.o \
   $(OBJDIR)/DrumController_7e6e26b.o \
   $(OBJDIR)/AudioEngine_12afc819.o \
   $(OBJDIR)/PadFieldComponent_b79582f7.o \
@@ -89,6 +90,11 @@ clean:
 strip:
 	@echo Stripping MangoChutney
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/SampleVoice_6799fc09.o: ../../Source/SampleVoice.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling SampleVoice.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/DrumController_7e6e26b.o: ../../Source/DrumController.cpp
 	-@mkdir -p $(OBJDIR)
