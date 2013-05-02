@@ -77,7 +77,16 @@ void SynthAudioSource::setUsingSampledSound()
                                                                                                      false),
                                                                               true));
     synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,5,0.01,0.3,10.0));
-    
+    notes.setRange (6, 1, true);
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,6,0.01,0.3,10.0));
+    notes.setRange (7, 1, true);
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,7,0.01,0.3,10.0));
+    notes.setRange (8, 1, true);
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,8,0.01,0.3,10.0));
+    notes.setRange (9, 1, true);
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,9,0.01,0.3,10.0));
+    notes.setRange (10, 1, true);
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,10,0.01,0.3,10.0));
     
 }
 
@@ -115,26 +124,20 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
 void SynthAudioSource::setSampleForSoundSound(int index, AudioFormatReader* audioFormatReadr)
 {
     DDSamplerSound*sound = (DDSamplerSound *)synth.getSound(index);
-    WavAudioFormat wavFormat;
+    juce::File soundFile = File::getSpecialLocation(File::currentApplicationFile).getChildFile("congaBell_snip8.wav");
+    sound->setSourceFile(soundFile);
     
-    ScopedPointer<AudioFormatReader> audioReader (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_cowbell_01_clean_wav,
-                                                                                                    drumSamples::wa_808tape_cowbell_01_clean_wavSize,
-                                                                                                    false),
-                                                                             true));
+    sound = (DDSamplerSound *)synth.getSound(9);
+    soundFile = File::getSpecialLocation(File::currentApplicationFile).getChildFile("MakeItHappen_beat_15.wav");
+    sound->setSourceFile(soundFile);
     
-    BigInteger notes;
-    notes.setRange (3, 1, true);
+    sound = (DDSamplerSound *)synth.getSound(8);
+    soundFile = File::getSpecialLocation(File::currentApplicationFile).getChildFile("congaBell_Region_3.wav");
+    sound->setSourceFile(soundFile);
     
-    
-    sound->setupSound("clap",
-                     *audioReader,
-                     notes,
-                     3,   // root midi note
-                     0.01,  // attack time
-                     0.3,  // release time
-                     10.0  // maximum sample length);
-                      );
-    
+    sound = (DDSamplerSound *)synth.getSound(7);
+    soundFile = File::getSpecialLocation(File::currentApplicationFile).getChildFile("congaBell_Region_1.wav");
+    sound->setSourceFile(soundFile);
     
 }
 

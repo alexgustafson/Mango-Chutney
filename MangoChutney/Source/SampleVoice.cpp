@@ -88,6 +88,30 @@ void DDSamplerSound::setupSound(const String& name_,
     }
 }
 
+void DDSamplerSound::setSourceFile(const juce::File file)
+{
+    sourceAudioFile = file;
+    WavAudioFormat wavFormat;
+    ScopedPointer<MemoryMappedAudioFormatReader> source ( wavFormat.createMemoryMappedReader(sourceAudioFile));
+    source->mapEntireFile();
+    sourceSampleRate = source->sampleRate;
+    
+    if (sourceSampleRate <= 0 || source->lengthInSamples <= 0)
+    {
+        length = 0;
+        attackSamples = 0;
+        releaseSamples = 0;
+    }
+    else
+    {
+        length = (int) source->lengthInSamples;
+        data = new AudioSampleBuffer (jmin (2, (int) source->numChannels), length + 4);
+        source->read (data, 0, length + 4, 0, true, true);
+        
+    }
+    
+}
+
 
 
 //==============================================================================

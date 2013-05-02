@@ -61,6 +61,7 @@ public:
                     double attackTimeSecs,
                     double releaseTimeSecs,
                     double maxSampleLengthSeconds);
+    void setSourceFile(const juce::File file);
     
     //==============================================================================
     bool appliesToNote (const int midiNoteNumber);
@@ -78,6 +79,7 @@ private:
     BigInteger midiNotes;
     int length, attackSamples, releaseSamples;
     int midiRootNote;
+    File sourceAudioFile;
     
     JUCE_LEAK_DETECTOR (SamplerSound)
 };
