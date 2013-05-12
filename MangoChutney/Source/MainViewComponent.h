@@ -38,7 +38,8 @@
                                                                     //[/Comments]
 */
 class MainViewComponent  : public Component,
-                           public ButtonListener
+                           public ButtonListener,
+                            public FileBrowserListener
 {
 public:
     //==============================================================================
@@ -48,6 +49,13 @@ public:
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
     void buttonStateChanged (Button* buttonThatChanged);
+    ScopedPointer<DrumController> drumController;
+    
+    void selectionChanged();
+    void fileClicked (const File& file, const MouseEvent& e);
+    void fileDoubleClicked (const File& file);
+    void browserRootChanged (const File& newRoot);
+    
     //[/UserMethods]
 
     void paint (Graphics& g);
@@ -71,7 +79,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    ScopedPointer<DrumController> drumController;
+    ScopedPointer<FileBrowserComponent> fileBrowser;
     //[/UserVariables]
 
     //==============================================================================

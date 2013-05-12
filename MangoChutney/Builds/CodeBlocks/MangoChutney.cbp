@@ -18,6 +18,8 @@
           <Add option="-O0"/>
           <Add option="-std=gnu++0x"/>
           <Add option="-march=pentium4"/>
+          <Add option="-mstackrealign"/>
+          <Add option="-g"/>
           <Add option="-D__MINGW__=1"/>
           <Add option="-D__MINGW_EXTENSION="/>
           <Add option="-DJUCER_CODEBLOCKS_20734A5D=1"/>
@@ -51,6 +53,7 @@
           <Add option="-Os"/>
           <Add option="-std=gnu++0x"/>
           <Add option="-march=pentium4"/>
+          <Add option="-mstackrealign"/>
           <Add option="-D__MINGW__=1"/>
           <Add option="-D__MINGW_EXTENSION="/>
           <Add option="-DJUCER_CODEBLOCKS_20734A5D=1"/>
@@ -1132,6 +1135,14 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_core/files/juce_TemporaryFile.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_core/network/juce_IPAddress.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_core/network/juce_IPAddress.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>

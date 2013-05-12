@@ -145,7 +145,17 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == setupButton)
     {
         //[UserButtonCode_setupButton] -- add your button handler code here..
-        drumController->buttonClicked(setupButton);
+        juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
+        int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
+        
+        fileBrowser = new FileBrowserComponent(flags, theDocumentDirectory ,nil, nil );
+        
+        addAndMakeVisible(fileBrowser);
+        fileBrowser->setTopLeftPosition(28, 153);
+        fileBrowser->setSize(307, 298);
+        fileBrowser->addListener(this);
+        
+        //drumController->buttonClicked(setupButton);
         //[/UserButtonCode_setupButton]
     }
     else if (buttonThatWasClicked == stepButton)
@@ -172,6 +182,28 @@ void MainViewComponent::buttonStateChanged(Button * buttonThatChanged)
 
 
 }
+
+// FileBrowserListener Implementation //
+void MainViewComponent::selectionChanged()
+{
+    
+}
+
+void MainViewComponent::fileClicked(const juce::File &file, const juce::MouseEvent &e)
+{
+    
+}
+
+void MainViewComponent::fileDoubleClicked (const File& file)
+{
+    
+}
+
+void MainViewComponent::browserRootChanged (const File& newRoot)
+{
+    
+}
+
 //[/MiscUserCode]
 
 

@@ -40,6 +40,7 @@ public:
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
     void setSampleForSoundSound(int index, AudioFormatReader* newSampleReader);
     
+    
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthAudioSource)
 };

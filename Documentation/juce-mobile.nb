@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     53947,       1133]
-NotebookOptionsPosition[     49631,        995]
-NotebookOutlinePosition[     50111,       1013]
-CellTagsIndexPosition[     50068,       1010]
+NotebookDataLength[     54875,       1152]
+NotebookOptionsPosition[     50518,       1013]
+NotebookOutlinePosition[     50998,       1031]
+CellTagsIndexPosition[     50955,       1028]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -556,7 +556,25 @@ transfered. \
   3.57450390346978*^9, 3.574504003946954*^9}, {3.574504569088925*^9, 
   3.574504602791286*^9}, {3.57450504252796*^9, 3.574505120493101*^9}, {
   3.5751118457200813`*^9, 3.5751119935809917`*^9}, {3.575112034926177*^9, 
-  3.575112034931645*^9}, {3.575116391629287*^9, 3.575116391634575*^9}}],
+  3.575112034931645*^9}, {3.575116391629287*^9, 3.575116391634575*^9}, {
+  3.5773601116320963`*^9, 3.577360111636269*^9}}],
+
+Cell["\<\
+The JUCE Introjucer will overwrite changes to the Info.plist file, so \
+unfortunately changes made in Xcode will be lost if the project is opened or \
+modified later with Introjucer. The Introjucer Application can specifically \
+enable file sharing though. It also has a checkbox for hiding the status bar \
+and a text field to enter other custom plist options. Using the Introjucer \
+will ensure that the settings are not lost.\
+\>", "Text",
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQ7df1b/upha8ct1gc3wGi67bsfwWiGw/M/ACie1Yv
+/AWiRR+Z/wbRUTe3M50G0gJLV0qAaKWjF3pA9Oynyn0g2tKCPeQMkOaLhdA1
+qssnXATS78NXgOkmnQy2S0C6P09cGkSnFpySB9EznEz0QHRRTZzuZSCdImxo
+BqILON5bg+gi3zoPEF15Q6kfRJsHRU4G0TxPA06B6Jrj/FdA9Auu7SJ/FgH5
+043UQbTd4lgdEM15AULLKX/x+QekC/wgtJLVl7uuy185eoR2PQDRHO2CL0C0
+Fo/sGxBdcmY1gxuIn7ZDAkQDANkypjw=
+  "]],
 
 Cell[TextData[StyleBox["Android",
  FontWeight->"Bold"]], "Text",
@@ -993,8 +1011,8 @@ from CompanyN\[LongDash]A CompanyN Web Resource. URL.\
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{720, 982},
-WindowMargins->{{Automatic, 81}, {Automatic, 11}},
+WindowSize->{691, 987},
+WindowMargins->{{Automatic, 326}, {4, Automatic}},
 FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
 2013)",
 StyleDefinitions->FrontEnd`FileName[{"Article"}, "JournalArticle.nb", 
@@ -1020,7 +1038,7 @@ Cell[836, 32, 95, 1, 12, "Institution"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[968, 38, 101, 1, 45, "AbstractSection"],
-Cell[1072, 41, 571, 9, 89, "Abstract"]
+Cell[1072, 41, 571, 9, 103, "Abstract"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[1680, 55, 108, 1, 47, "Section"],
@@ -1033,11 +1051,11 @@ Cell[3858, 98, 915, 14, 35, "Text"],
 Cell[4776, 114, 668, 9, 20, "Text"],
 Cell[5447, 125, 721, 10, 20, "Text"],
 Cell[6171, 137, 1380, 20, 65, "Text"],
-Cell[7554, 159, 1543, 23, 50, "Text"],
+Cell[7554, 159, 1543, 23, 65, "Text"],
 Cell[9100, 184, 701, 10, 20, "Text"],
 Cell[9804, 196, 248, 4, 20, "Text"],
 Cell[10055, 202, 766, 12, 50, "Text"],
-Cell[10824, 216, 1373, 20, 65, "Text"],
+Cell[10824, 216, 1373, 20, 80, "Text"],
 Cell[12200, 238, 1061, 16, 35, "Text"],
 Cell[13264, 256, 669, 11, 20, "Text"],
 Cell[13936, 269, 828, 13, 35, "Text"],
@@ -1068,70 +1086,71 @@ Cell[CellGroupData[{
 Cell[26309, 503, 366, 5, 33, "Subsection"],
 Cell[26678, 510, 791, 11, 20, "Text"],
 Cell[27472, 523, 953, 14, 35, "Text"],
-Cell[28428, 539, 1284, 19, 50, "Text"],
-Cell[29715, 560, 907, 13, 20, "Text"],
-Cell[30625, 575, 1334, 20, 50, "Text"]
+Cell[28428, 539, 1335, 20, 50, "Text"],
+Cell[29766, 561, 833, 15, 65, "Text"],
+Cell[30602, 578, 907, 13, 20, "Text"],
+Cell[31512, 593, 1334, 20, 50, "Text"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[32008, 601, 217, 3, 47, "Section"],
+Cell[32895, 619, 217, 3, 47, "Section"],
 Cell[CellGroupData[{
-Cell[32250, 608, 342, 5, 33, "Subsection"],
-Cell[32595, 615, 1744, 25, 110, "Text"],
-Cell[34342, 642, 1193, 18, 35, "Text"]
+Cell[33137, 626, 342, 5, 33, "Subsection"],
+Cell[33482, 633, 1744, 25, 110, "Text"],
+Cell[35229, 660, 1193, 18, 35, "Text"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[35572, 665, 396, 5, 33, "Subsection"],
-Cell[35971, 672, 1007, 14, 20, "Text"],
+Cell[36459, 683, 396, 5, 33, "Subsection"],
+Cell[36858, 690, 1007, 14, 20, "Text"],
 Cell[CellGroupData[{
-Cell[37003, 690, 1026, 16, 15, "Item1Numbered"],
-Cell[38032, 708, 1056, 16, 15, "Item1Numbered"],
-Cell[39091, 726, 999, 15, 15, "Item1Numbered"],
-Cell[40093, 743, 948, 14, 15, "Item1Numbered"]
+Cell[37890, 708, 1026, 16, 15, "Item1Numbered"],
+Cell[38919, 726, 1056, 16, 15, "Item1Numbered"],
+Cell[39978, 744, 999, 15, 15, "Item1Numbered"],
+Cell[40980, 761, 948, 14, 15, "Item1Numbered"]
 }, Open  ]],
-Cell[41056, 760, 1010, 14, 20, "Text"],
+Cell[41943, 778, 1010, 14, 20, "Text"],
 Cell[CellGroupData[{
-Cell[42091, 778, 1004, 15, 15, "Item1Numbered"],
-Cell[43098, 795, 984, 13, 15, "Item1Numbered"]
+Cell[42978, 796, 1004, 15, 15, "Item1Numbered"],
+Cell[43985, 813, 984, 13, 15, "Item1Numbered"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[44143, 815, 273, 5, 47, "Section"],
+Cell[45030, 833, 273, 5, 47, "Section"],
 Cell[CellGroupData[{
-Cell[44441, 824, 394, 5, 33, "Subsection"],
-Cell[44838, 831, 990, 15, 20, "Text"]
+Cell[45328, 842, 394, 5, 33, "Subsection"],
+Cell[45725, 849, 990, 15, 20, "Text"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[45877, 852, 52, 0, 47, "AppendixSection"],
+Cell[46764, 870, 52, 0, 47, "AppendixSection"],
 Cell[CellGroupData[{
-Cell[45954, 856, 117, 3, 20, "Appendix"],
-Cell[46074, 861, 187, 6, 43, "AppendixEquation"]
+Cell[46841, 874, 117, 3, 20, "Appendix"],
+Cell[46961, 879, 187, 6, 43, "AppendixEquation"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[46310, 873, 66, 0, 47, "AcknowledgmentsSection"],
-Cell[46379, 875, 58, 0, 20, "Acknowledgments"]
+Cell[47197, 891, 66, 0, 47, "AcknowledgmentsSection"],
+Cell[47266, 893, 58, 0, 20, "Acknowledgments"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[46474, 880, 50, 0, 47, "EndnoteSection"],
-Cell[46527, 882, 43, 0, 16, "Endnote"]
+Cell[47361, 898, 50, 0, 47, "EndnoteSection"],
+Cell[47414, 900, 43, 0, 16, "Endnote"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[46607, 887, 54, 0, 47, "ReferenceSection"],
+Cell[47494, 905, 54, 0, 47, "ReferenceSection"],
 Cell[CellGroupData[{
-Cell[46686, 891, 249, 9, 16, "Reference"],
-Cell[46938, 902, 269, 9, 16, "Reference"],
-Cell[47210, 913, 286, 9, 16, "Reference"],
-Cell[47499, 924, 199, 8, 16, "Reference"],
-Cell[47701, 934, 219, 8, 16, "Reference"],
-Cell[47923, 944, 236, 8, 16, "Reference"],
-Cell[48162, 954, 330, 7, 30, "Reference"],
-Cell[48495, 963, 367, 7, 30, "Reference"],
-Cell[48865, 972, 367, 7, 30, "Reference"],
-Cell[49235, 981, 192, 4, 16, "Reference"],
-Cell[49430, 987, 161, 3, 16, "Reference"]
+Cell[47573, 909, 249, 9, 16, "Reference"],
+Cell[47825, 920, 269, 9, 16, "Reference"],
+Cell[48097, 931, 286, 9, 16, "Reference"],
+Cell[48386, 942, 199, 8, 16, "Reference"],
+Cell[48588, 952, 219, 8, 16, "Reference"],
+Cell[48810, 962, 236, 8, 16, "Reference"],
+Cell[49049, 972, 330, 7, 30, "Reference"],
+Cell[49382, 981, 367, 7, 30, "Reference"],
+Cell[49752, 990, 367, 7, 30, "Reference"],
+Cell[50122, 999, 192, 4, 16, "Reference"],
+Cell[50317, 1005, 161, 3, 16, "Reference"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

@@ -22,6 +22,9 @@ public:
 
     void buttonClicked(juce::Button *buttonClicked);
     void buttonStateChanged(juce::Button *buttonWhichStateChanged);
+    
+
+    
 private:
     AudioDeviceManager deviceManager;
     MidiKeyboardState keyboardState;

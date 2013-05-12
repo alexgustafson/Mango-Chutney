@@ -25,5 +25,9 @@
     <string></string>
     <key>NSHighResolutionCapable</key>
     <true/>
+    <key>UIFileSharingEnabled</key>
+    <true/>
+    <key>UIStatusBarHidden</key>
+    <true/>
   </dict>
 </plist>
