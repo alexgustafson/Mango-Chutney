@@ -121,23 +121,22 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     synth.renderNextBlock (*bufferToFill.buffer, incomingMidi, 0, bufferToFill.numSamples);
 }
 
-void SynthAudioSource::setSampleForSoundSound(int index, AudioFormatReader* audioFormatReadr)
+void SynthAudioSource::setSampleForSound(int index, File soundFile)
 {
-    DDSamplerSound*sound = (DDSamplerSound *)synth.getSound(index);
-    juce::File soundFile = File::getSpecialLocation(File::currentApplicationFile).getChildFile("congaBell_snip8.wav");
-    sound->setSourceFile(soundFile);
     
-    sound = (DDSamplerSound *)synth.getSound(9);
-    soundFile = File::getSpecialLocation(File::currentApplicationFile).getChildFile("MakeItHappen_beat_15.wav");
-    sound->setSourceFile(soundFile);
+    DDSamplerSound *sound = (DDSamplerSound *)synth.getSound(index);
     
-    sound = (DDSamplerSound *)synth.getSound(8);
-    soundFile = File::getSpecialLocation(File::currentApplicationFile).getChildFile("congaBell_Region_3.wav");
-    sound->setSourceFile(soundFile);
+    if (!sound) {
+        BigInteger notes;
+        notes.setRange (index + 1, 1, true);
+        synth.addSound(new DDSamplerSound("name", soundFile, notes, index + 1, 0.01, 0.01, 10.0));
+        
+    }else
+    {
+        sound->setSourceFile(soundFile);
+
+    }
     
-    sound = (DDSamplerSound *)synth.getSound(7);
-    soundFile = File::getSpecialLocation(File::currentApplicationFile).getChildFile("congaBell_Region_1.wav");
-    sound->setSourceFile(soundFile);
     
 }
 

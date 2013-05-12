@@ -44,6 +44,43 @@ midiRootNote (midiNoteForNormalPitch)
     }
 }
 
+DDSamplerSound::DDSamplerSound (const String& name_,
+                                File& sourceAudioFile,
+                                const BigInteger& midiNotes_,
+                                const int midiNoteForNormalPitch,
+                                const double attackTimeSecs,
+                                const double releaseTimeSecs,
+                                const double maxSampleLengthSeconds)
+: name (name_),
+midiNotes (midiNotes_),
+midiRootNote (midiNoteForNormalPitch)
+{
+    WavAudioFormat wavFormat;
+    ScopedPointer<MemoryMappedAudioFormatReader> source ( wavFormat.createMemoryMappedReader(sourceAudioFile));
+    source->mapEntireFile();
+    sourceSampleRate = source->sampleRate;
+
+    
+    if (sourceSampleRate <= 0 || source->lengthInSamples <= 0)
+    {
+        length = 0;
+        attackSamples = 0;
+        releaseSamples = 0;
+    }
+    else
+    {
+        length = jmin ((int) source->lengthInSamples,
+                       (int) (maxSampleLengthSeconds * sourceSampleRate));
+        
+        data = new AudioSampleBuffer (jmin (2, (int) source->numChannels), length + 4);
+        
+        source->read (data, 0, length + 4, 0, true, true);
+        
+        attackSamples = roundToInt (attackTimeSecs * sourceSampleRate);
+        releaseSamples = roundToInt (releaseTimeSecs * sourceSampleRate);
+    }
+}
+
 DDSamplerSound::~DDSamplerSound()
 {
 }

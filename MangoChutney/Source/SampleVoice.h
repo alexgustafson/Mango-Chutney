@@ -43,6 +43,14 @@ public:
                   double releaseTimeSecs,
                   double maxSampleLengthSeconds);
     
+    DDSamplerSound (const String& name_,
+                    File& sourceAudioFile,
+                    const BigInteger& midiNotes_,
+                    const int midiNoteForNormalPitch,
+                    const double attackTimeSecs,
+                    const double releaseTimeSecs,
+                    const double maxSampleLengthSeconds);
+    
     /** Destructor. */
     ~DDSamplerSound();
     

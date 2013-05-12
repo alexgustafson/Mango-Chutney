@@ -22,7 +22,7 @@ public:
 
     void buttonClicked(juce::Button *buttonClicked);
     void buttonStateChanged(juce::Button *buttonWhichStateChanged);
-    
+    void setFileForActivePad(const File file );
 
     
 private:
@@ -30,6 +30,8 @@ private:
     MidiKeyboardState keyboardState;
     AudioSourcePlayer audioSourcePlayer;
     ScopedPointer<SynthAudioSource> synthAudioSource;
+    
+    int lastSelectedPad;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DrumController)
     

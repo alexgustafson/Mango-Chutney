@@ -230,26 +230,54 @@ void PadField::resized()
     pad16->setBounds (288, 288, 96, 96);
     //[UserResized] Add your own custom resize handling here..
 
-    int padWidth = (int)getWidth() / 4;
-    int padHeight = (int)getHeight() / 4;
+    
+    
     int i = 0;
     int j = 0;
-    pad1->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad2->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad3->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad4->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
-    pad5->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad6->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad7->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad8->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
-    pad9->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad10->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad11->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad12->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
-    pad13->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad14->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad15->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
-    pad16->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
+    
+    if(getHeight() >= getWidth())
+    {
+        int padWidth = (int)getWidth() / 4;
+        int padHeight = (int)getHeight() / 4;
+        
+        pad1->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad2->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad3->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad4->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
+        pad5->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad6->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad7->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad8->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
+        pad9->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad10->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad11->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad12->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
+        pad13->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad14->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad15->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
+        pad16->setBounds(padWidth * (i++ % 4), padHeight * j++, padWidth, padHeight);
+    }else
+    {
+        int padWidth = (int)getWidth() / 8;
+        int padHeight = (int)getHeight() / 2;
+        
+        pad1->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad2->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad3->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad4->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad5->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad6->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad7->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad8->setBounds(padWidth * (i++ % 8), padHeight * j++, padWidth, padHeight);
+        pad9->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad10->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad11->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad12->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad13->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad14->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad15->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
+        pad16->setBounds(padWidth * (i++ % 8), padHeight * j++, padWidth, padHeight);
+    }
 
     //[/UserResized]
 }

@@ -38,7 +38,8 @@ public:
     void prepareToPlay (int /*samplesPerBlockExpected*/, double sampleRate);
     void releaseResources();
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
-    void setSampleForSoundSound(int index, AudioFormatReader* newSampleReader);
+    void setSampleForSound(int index, File soundFile);
+
     
     
 private:

@@ -97,6 +97,7 @@ MainViewComponent::~MainViewComponent()
 
     //[Destructor]. You can add your own custom destruction code here..
     drumController = nullptr;
+    fileBrowser = nullptr;
     //[/Destructor]
 }
 
@@ -111,10 +112,7 @@ void MainViewComponent::paint (Graphics& g)
     g.setTiledImageFill (cachedImage_background_png_1,
                          0, 0,
                          1.0000f);
-    g.fillRoundedRectangle (4.0f, 4.0f, 665.0f, 577.0f, 2.000f);
-
-    g.setColour (Colour (0xff5e5e5e));
-    g.drawRoundedRectangle (4.0f, 4.0f, 665.0f, 577.0f, 2.000f, 5.000f);
+    g.fillRoundedRectangle (static_cast<float> (-4), static_cast<float> (-4), 665.0f, 577.0f, 1.000f);
 
     g.setColour (Colours::black);
     g.drawImageWithin (cachedImage_label_03_png,
@@ -134,6 +132,22 @@ void MainViewComponent::resized()
     component->setBounds (24, 104, 290, 290);
     //[UserResized] Add your own custom resize handling here..
 
+    if(getHeight() > getWidth())
+    {
+        //portrait 4 x 4
+        setupButton->setBounds (16, 40, 40, 64);
+        stepButton->setBounds (56, 40, 40, 64);
+        playButton->setBounds (96, 40, 40, 64);
+        component->setBounds (0, getHeight() - getWidth(), getWidth(), getWidth() );
+    }else
+    {
+        //landscape 2 x 8
+        setupButton->setBounds (16, 40, 40, 64);
+        stepButton->setBounds (56, 40, 40, 64);
+        playButton->setBounds (96, 40, 40, 64);
+        component->setBounds(0, getHeight() - (int)(getWidth() / 4),getWidth() , (int)getWidth() / 4);
+    }
+
     //[/UserResized]
 }
 
@@ -145,17 +159,19 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == setupButton)
     {
         //[UserButtonCode_setupButton] -- add your button handler code here..
-        juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
-        int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
-        
-        fileBrowser = new FileBrowserComponent(flags, theDocumentDirectory ,nil, nil );
-        
+        if(!fileBrowser)
+        {
+            juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
+            int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
+
+            fileBrowser = new FileBrowserComponent(flags, theDocumentDirectory ,nil, nil );
+        }
+
         addAndMakeVisible(fileBrowser);
-        fileBrowser->setTopLeftPosition(28, 153);
-        fileBrowser->setSize(307, 298);
+        fileBrowser->setTopLeftPosition(0, 0);
+        fileBrowser->setSize(getWidth(), getHeight());
         fileBrowser->addListener(this);
-        
-        //drumController->buttonClicked(setupButton);
+
         //[/UserButtonCode_setupButton]
     }
     else if (buttonThatWasClicked == stepButton)
@@ -186,22 +202,23 @@ void MainViewComponent::buttonStateChanged(Button * buttonThatChanged)
 // FileBrowserListener Implementation //
 void MainViewComponent::selectionChanged()
 {
-    
+
 }
 
 void MainViewComponent::fileClicked(const juce::File &file, const juce::MouseEvent &e)
 {
-    
+    removeChildComponent(fileBrowser);
+    drumController->setFileForActivePad(file);
 }
 
 void MainViewComponent::fileDoubleClicked (const File& file)
 {
-    
+
 }
 
 void MainViewComponent::browserRootChanged (const File& newRoot)
 {
-    
+
 }
 
 //[/MiscUserCode]
@@ -221,8 +238,8 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330000013"
                  fixedSize="0" initialWidth="600" initialHeight="300">
   <BACKGROUND backgroundColour="ff000000">
-    <ROUNDRECT pos="4 4 665 577" cornerSize="2" fill="image: background_png, 1, 0 0"
-               hasStroke="1" stroke="5, mitered, butt" strokeColour="solid: ff5e5e5e"/>
+    <ROUNDRECT pos="-4 -4 665 577" cornerSize="1" fill="image: background_png, 1, 0 0"
+               hasStroke="0"/>
     <IMAGE pos="4 4 252 36" resource="label_03_png" opacity="1" mode="1"/>
   </BACKGROUND>
   <IMAGEBUTTON name="new button" id="6fc8c6b2dd61df0d" memberName="setupButton"
