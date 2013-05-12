@@ -38,8 +38,8 @@
                                                                     //[/Comments]
 */
 class MainViewComponent  : public Component,
-                           public ButtonListener,
-                            public FileBrowserListener
+                           public FileBrowserListener,
+                           public ButtonListener
 {
 public:
     //==============================================================================

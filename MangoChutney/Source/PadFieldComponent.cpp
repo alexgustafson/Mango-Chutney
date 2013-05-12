@@ -230,16 +230,16 @@ void PadField::resized()
     pad16->setBounds (288, 288, 96, 96);
     //[UserResized] Add your own custom resize handling here..
 
-    
-    
+
+
     int i = 0;
     int j = 0;
-    
+
     if(getHeight() >= getWidth())
     {
         int padWidth = (int)getWidth() / 4;
         int padHeight = (int)getHeight() / 4;
-        
+
         pad1->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
         pad2->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
         pad3->setBounds(padWidth * (i++ % 4), padHeight * j, padWidth, padHeight);
@@ -260,7 +260,7 @@ void PadField::resized()
     {
         int padWidth = (int)getWidth() / 8;
         int padHeight = (int)getHeight() / 2;
-        
+
         pad1->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
         pad2->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
         pad3->setBounds(padWidth * (i++ % 8), padHeight * j, padWidth, padHeight);
