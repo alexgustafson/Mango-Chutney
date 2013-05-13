@@ -164,7 +164,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
             juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
             int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
 
-            fileBrowser = new FileBrowserComponent(flags, theDocumentDirectory ,nil, nil );
+            fileBrowser = new FileBrowserComponent(flags, theDocumentDirectory ,NULL, NULL );
         }
 
         addAndMakeVisible(fileBrowser);
