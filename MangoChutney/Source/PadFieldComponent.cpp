@@ -33,7 +33,7 @@ PadField::PadField ()
     pad1->addListener (this);
 
     pad1->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 1.000f, Colour (0x13ffffff),
+                     ImageCache::getFromMemory (pad_off_png, pad_off_pngSize), 0.932f, Colour (0x13ffffff),
                      Image(), 1.000f, Colour (0x00000000),
                      ImageCache::getFromMemory (pad_light_png, pad_light_pngSize), 1.000f, Colour (0x00000000));
     addAndMakeVisible (pad2 = new ImageButton ("new button"));
@@ -204,7 +204,7 @@ void PadField::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colours::burlywood);
+    g.fillAll (Colour (0xff666666));
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -400,11 +400,11 @@ BEGIN_JUCER_METADATA
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330000013"
                  fixedSize="0" initialWidth="600" initialHeight="400">
-  <BACKGROUND backgroundColour="ffdeb887"/>
+  <BACKGROUND backgroundColour="ff666666"/>
   <IMAGEBUTTON name="new button" id="7d32e006f32652e5" memberName="pad1" virtualName=""
                explicitFocusOrder="0" pos="0 0 96 96" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_off_png" opacityNormal="1" colourNormal="13ffffff"
+               resourceNormal="pad_off_png" opacityNormal="0.932031274" colourNormal="13ffffff"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_light_png"
                opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="new button" id="c33024e3ca1a0405" memberName="pad2" virtualName=""

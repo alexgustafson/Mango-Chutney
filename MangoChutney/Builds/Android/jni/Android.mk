@@ -8,12 +8,13 @@ include $(CLEAR_VARS)
 LOCAL_MODULE := juce_jni
 LOCAL_SRC_FILES := \
   ../res/drawable/icon.png\
+  ../../../Source/AudioFileSelector.cpp\
+  ../../../Source/PadFieldComponent.cpp\
+  ../../../Source/MainViewComponent.cpp\
   ../../../Source/SampleVoice.cpp\
   ../../../Source/DrumController.cpp\
   ../../../Source/AudioEngine.cpp\
-  ../../../Source/PadFieldComponent.cpp\
   ../../../../Media/sounds/binaryfiles/drumSamples.cpp\
-  ../../../Source/MainViewComponent.cpp\
   ../../../Source/MainComponent.cpp\
   ../../../Source/Main.cpp\
   ../../../JuceLibraryCode/BinaryData.cpp\

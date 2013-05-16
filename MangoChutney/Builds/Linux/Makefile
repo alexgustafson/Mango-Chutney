@@ -49,12 +49,13 @@ endif
 DEPFLAGS := $(if $(word 2, $(TARGET_ARCH)), , -MMD)
 
 OBJECTS := \
+  $(OBJDIR)/AudioFileSelector_bf4d7952.o \
+  $(OBJDIR)/PadFieldComponent_b79582f7.o \
+  $(OBJDIR)/MainViewComponent_250bec80.o \
   $(OBJDIR)/SampleVoice_6799fc09.o \
   $(OBJDIR)/DrumController_7e6e26b.o \
   $(OBJDIR)/AudioEngine_12afc819.o \
-  $(OBJDIR)/PadFieldComponent_b79582f7.o \
   $(OBJDIR)/drumSamples_e5b2eb6e.o \
-  $(OBJDIR)/MainViewComponent_250bec80.o \
   $(OBJDIR)/MainComponent_a6ffb4a5.o \
   $(OBJDIR)/Main_90ebc5c2.o \
   $(OBJDIR)/BinaryData_ce4232d4.o \
@@ -91,6 +92,21 @@ strip:
 	@echo Stripping MangoChutney
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
 
+$(OBJDIR)/AudioFileSelector_bf4d7952.o: ../../Source/AudioFileSelector.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling AudioFileSelector.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PadFieldComponent_b79582f7.o: ../../Source/PadFieldComponent.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PadFieldComponent.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/MainViewComponent_250bec80.o: ../../Source/MainViewComponent.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling MainViewComponent.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
 $(OBJDIR)/SampleVoice_6799fc09.o: ../../Source/SampleVoice.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling SampleVoice.cpp"
@@ -106,19 +122,9 @@ $(OBJDIR)/AudioEngine_12afc819.o: ../../Source/AudioEngine.cpp
 	@echo "Compiling AudioEngine.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
-$(OBJDIR)/PadFieldComponent_b79582f7.o: ../../Source/PadFieldComponent.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling PadFieldComponent.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
 $(OBJDIR)/drumSamples_e5b2eb6e.o: ../../../Media/sounds/binaryfiles/drumSamples.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling drumSamples.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/MainViewComponent_250bec80.o: ../../Source/MainViewComponent.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling MainViewComponent.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/MainComponent_a6ffb4a5.o: ../../Source/MainComponent.cpp

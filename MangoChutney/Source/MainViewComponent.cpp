@@ -131,7 +131,6 @@ void MainViewComponent::resized()
     playButton->setBounds (96, 40, 40, 64);
     component->setBounds (24, 104, 290, 290);
     //[UserResized] Add your own custom resize handling here..
-
     if(getHeight() > getWidth())
     {
         //portrait 4 x 4
@@ -146,6 +145,10 @@ void MainViewComponent::resized()
         stepButton->setBounds (56, 40, 40, 64);
         playButton->setBounds (96, 40, 40, 64);
         component->setBounds(0, getHeight() - (int)(getWidth() / 4),getWidth() , (int)getWidth() / 4);
+    }
+
+    if (fileBrowser) {
+        fileBrowser->setBounds(0, 0, getWidth(), getHeight());
     }
 
     //[/UserResized]
@@ -164,13 +167,13 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
             juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
             int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
 
-            fileBrowser = new FileBrowserComponent(flags, theDocumentDirectory ,nil, nil );
+            fileBrowser = new AudioFileSelector(flags, theDocumentDirectory ,NULL, NULL );
         }
 
         addAndMakeVisible(fileBrowser);
         fileBrowser->setTopLeftPosition(0, 0);
         fileBrowser->setSize(getWidth(), getHeight());
-        fileBrowser->addListener(this);
+        fileBrowser->setListener(this);
 
         //[/UserButtonCode_setupButton]
     }
@@ -221,6 +224,18 @@ void MainViewComponent::browserRootChanged (const File& newRoot)
 
 }
 
+void MainViewComponent::fileSelected(const juce::File &file)
+{
+
+    drumController->setFileForActivePad(file);
+    removeChildComponent(fileBrowser);
+}
+
+void MainViewComponent::selectionCanceled()
+{
+    removeChildComponent(fileBrowser);
+}
+
 //[/MiscUserCode]
 
 
@@ -234,7 +249,7 @@ void MainViewComponent::browserRootChanged (const File& newRoot)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="MainViewComponent" componentName=""
-                 parentClasses="public Component, public FileBrowserListener"
+                 parentClasses="public Component, public AudioFileSelectorListener"
                  constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
                  snapShown="1" overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
                  initialHeight="300">
