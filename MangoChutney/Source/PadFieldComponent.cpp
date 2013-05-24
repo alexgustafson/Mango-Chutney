@@ -147,8 +147,9 @@ PadField::PadField ()
 
     setSize (600, 400);
 
-
     //[Constructor] You can add your own custom stuff here..
+    pads = OwnedArray<ImageButton>();
+    
     pad1->setName("pad1");
     pad2->setName("pad2");
     pad3->setName("pad3");
@@ -165,16 +166,52 @@ PadField::PadField ()
     pad14->setName("pad14");
     pad15->setName("pad15");
     pad16->setName("pad16");
+    
+    pad1->setRadioGroupId (34567);
+    pad2->setRadioGroupId (34567);
+    pad3->setRadioGroupId (34567);
+    pad4->setRadioGroupId (34567);
+    pad5->setRadioGroupId (34567);
+    pad6->setRadioGroupId (34567);
+    pad7->setRadioGroupId (34567);
+    pad8->setRadioGroupId (34567);
+    pad9->setRadioGroupId (34567);
+    pad10->setRadioGroupId (34567);
+    pad11->setRadioGroupId (34567);
+    pad12->setRadioGroupId (34567);
+    pad13->setRadioGroupId (34567);
+    pad14->setRadioGroupId (34567);
+    pad15->setRadioGroupId (34567);
+    pad16->setRadioGroupId (34567);
 
-
+    padMode = Mode::Playmode;
+    
+    pads.add(pad1);
+    pads.add(pad2);
+    pads.add(pad3);
+    pads.add(pad4);
+    pads.add(pad5);
+    pads.add(pad6);
+    pads.add(pad7);
+    pads.add(pad8);
+    pads.add(pad9);
+    pads.add(pad10);
+    pads.add(pad11);
+    pads.add(pad12);
+    pads.add(pad13);
+    pads.add(pad14);
+    pads.add(pad15);
+    pads.add(pad16);
+    
     //[/Constructor]
 }
 
 PadField::~PadField()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+    pads.clear(false);
     //[/Destructor_pre]
-
+    
     pad1 = nullptr;
     pad2 = nullptr;
     pad3 = nullptr;
@@ -192,9 +229,9 @@ PadField::~PadField()
     pad15 = nullptr;
     pad16 = nullptr;
 
-
     //[Destructor]. You can add your own custom destruction code here..
     mainDrumController = nullptr;
+    
     //[/Destructor]
 }
 
@@ -370,6 +407,61 @@ void PadField::buttonClicked (Button* buttonThatWasClicked)
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
+}
+
+void PadField::setMode(PadField::Mode mode)
+{
+    
+    if (mode == PadField::Mode::Selectmode) {
+        
+        pad1->setClickingTogglesState(true);
+        pad2->setClickingTogglesState(true);
+        pad3->setClickingTogglesState(true);
+        pad4->setClickingTogglesState(true);
+        pad5->setClickingTogglesState(true);
+        pad6->setClickingTogglesState(true);
+        pad7->setClickingTogglesState(true);
+        pad8->setClickingTogglesState(true);
+        pad9->setClickingTogglesState(true);
+        pad10->setClickingTogglesState(true);
+        pad11->setClickingTogglesState(true);
+        pad12->setClickingTogglesState(true);
+        pad13->setClickingTogglesState(true);
+        pad14->setClickingTogglesState(true);
+        pad15->setClickingTogglesState(true);
+        pad16->setClickingTogglesState(true);
+        
+
+    }else
+    {
+        
+        pad1->setClickingTogglesState(false);
+        pad2->setClickingTogglesState(false);
+        pad3->setClickingTogglesState(false);
+        pad4->setClickingTogglesState(false);
+        pad5->setClickingTogglesState(false);
+        pad6->setClickingTogglesState(false);
+        pad7->setClickingTogglesState(false);
+        pad8->setClickingTogglesState(false);
+        pad9->setClickingTogglesState(false);
+        pad10->setClickingTogglesState(false);
+        pad11->setClickingTogglesState(false);
+        pad12->setClickingTogglesState(false);
+        pad13->setClickingTogglesState(false);
+        pad14->setClickingTogglesState(false);
+        pad15->setClickingTogglesState(false);
+        pad16->setClickingTogglesState(false);
+        
+        for (int i = 0; i < pads.size(); i++) {
+            
+            ImageButton *tempButton = pads[i];
+            tempButton->setToggleState(false, true);
+            
+        }
+        
+    }
+    
+
 }
 
 

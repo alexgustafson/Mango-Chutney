@@ -79,7 +79,7 @@ MainViewComponent::MainViewComponent ()
     playButton->setRadioGroupId (34567);
     setupButton->setRadioGroupId (34567);
     stepButton->setRadioGroupId (34567);
-
+    
     //[/Constructor]
 }
 
@@ -180,11 +180,14 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == stepButton)
     {
         //[UserButtonCode_stepButton] -- add your button handler code here..
+        component->setMode(PadField::Mode::Selectmode);
+        
         //[/UserButtonCode_stepButton]
     }
     else if (buttonThatWasClicked == playButton)
     {
         //[UserButtonCode_playButton] -- add your button handler code here..
+        component->setMode(PadField::Mode::Playmode);
         //[/UserButtonCode_playButton]
     }
 
