@@ -201,6 +201,7 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/misc/juce_Uuid.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/misc/../text/juce_String.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/misc/juce_WindowsRegistry.h \
+ jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/network/juce_IPAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/network/juce_MACAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/network/../containers/juce_Array.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/network/juce_NamedPipe.h \
@@ -447,11 +448,14 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/../../juce_core/zip/zlib/zlib.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/../../juce_core/zip/zlib/zconf.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/png.h \
- jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/../../../juce_core/zip/zlib/zlib.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngconf.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngconf.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/png.c \
+ jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngpriv.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/png.h \
+ jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngstruct.h \
+ jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/../../../juce_core/zip/zlib/zlib.h \
+ jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pnginfo.h \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngerror.c \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngget.c \
  jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngmem.c \
@@ -879,6 +883,8 @@ jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/misc/juce_Uuid.h
 jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/misc/../text/juce_String.h:
 
 jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/misc/juce_WindowsRegistry.h:
+
+jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/network/juce_IPAddress.h:
 
 jni/../../../JuceLibraryCode/modules/juce_graphics/../juce_core/network/juce_MACAddress.h:
 
@@ -1372,15 +1378,21 @@ jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/../../juce_core
 
 jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/png.h:
 
-jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/../../../juce_core/zip/zlib/zlib.h:
-
 jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngconf.h:
 
 jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngconf.h:
 
 jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/png.c:
 
+jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngpriv.h:
+
 jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/png.h:
+
+jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngstruct.h:
+
+jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/../../../juce_core/zip/zlib/zlib.h:
+
+jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pnginfo.h:
 
 jni/../../../JuceLibraryCode/modules/juce_graphics/image_formats/pnglib/pngerror.c:
 

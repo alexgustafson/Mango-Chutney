@@ -124,6 +124,7 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_cryp
  jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/misc/juce_Uuid.h \
  jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/misc/../text/juce_String.h \
  jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/misc/juce_WindowsRegistry.h \
+ jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/network/juce_IPAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/network/juce_MACAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/network/../containers/juce_Array.h \
  jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/network/juce_NamedPipe.h \
@@ -459,6 +460,8 @@ jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/misc/juce_Uu
 jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/misc/../text/juce_String.h:
 
 jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/misc/juce_WindowsRegistry.h:
+
+jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/network/juce_IPAddress.h:
 
 jni/../../../JuceLibraryCode/modules/juce_cryptography/../juce_core/network/juce_MACAddress.h:
 

@@ -7,23 +7,23 @@ obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_basi
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/juce_StandardHeader.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/juce_TargetPlatform.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/juce_PlatformDefs.h \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdlib \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdarg \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/climits \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/limits \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cmath \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cwchar \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/stdexcept \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/typeinfo \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdio \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream \
- /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/vector \
- /Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/atomics.h \
- /Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/byteswap.h \
- /Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/endian.h \
- /Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/endian.h \
- /Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/endian.h \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdlib \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdarg \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/climits \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/limits \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cmath \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cwchar \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/stdexcept \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/typeinfo \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdio \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream \
+ /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/vector \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/atomics.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/byteswap.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/endian.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/endian.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/endian.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/../memory/juce_Memory.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/../maths/juce_MathsFunctions.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/../memory/juce_ByteOrder.h \
@@ -124,6 +124,7 @@ obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_basi
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/juce_Uuid.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/../text/juce_String.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/juce_WindowsRegistry.h \
+ jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_IPAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_MACAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/../containers/juce_Array.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_NamedPipe.h \
@@ -263,39 +264,39 @@ jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/juce_
 
 jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/juce_PlatformDefs.h:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdlib:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdlib:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdarg:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdarg:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/climits:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/climits:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/limits:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/limits:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cmath:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cmath:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cwchar:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cwchar:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/stdexcept:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/stdexcept:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/typeinfo:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/typeinfo:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdio:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdio:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream:
 
-/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/vector:
+/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/vector:
 
-/Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/atomics.h:
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/atomics.h:
 
-/Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/byteswap.h:
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/byteswap.h:
 
-/Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/endian.h:
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/endian.h:
 
-/Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/endian.h:
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/endian.h:
 
-/Users/alexgustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/endian.h:
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/endian.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/../memory/juce_Memory.h:
 
@@ -496,6 +497,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/juce_Uu
 jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/../text/juce_String.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/juce_WindowsRegistry.h:
+
+jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_IPAddress.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_MACAddress.h:
 

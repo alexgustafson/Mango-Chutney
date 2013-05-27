@@ -125,6 +125,7 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/Main.o: \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/juce_Uuid.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/../text/juce_String.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/juce_WindowsRegistry.h \
+ jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_IPAddress.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_MACAddress.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/../containers/juce_Array.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_NamedPipe.h \
@@ -265,6 +266,7 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/Main.o: \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormat.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatReaderSource.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioSubsectionReader.h \
+ jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_BufferingAudioFormatReader.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_AiffAudioFormat.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_CoreAudioFormat.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_FlacAudioFormat.h \
@@ -280,6 +282,7 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/Main.o: \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/audio_io/juce_AudioIODevice.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/audio_io/../midi_io/juce_MidiInput.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/audio_io/../midi_io/juce_MidiOutput.h \
+ jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/audio_io/juce_SystemAudioVolume.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/midi_io/juce_MidiMessageCollector.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/midi_io/juce_MidiInput.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/sources/juce_AudioSourcePlayer.h \
@@ -596,7 +599,6 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/Main.o: \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/processors/juce_AudioProcessorEditor.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_AudioUnitPluginFormat.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/../format/juce_AudioPluginFormat.h \
- jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_DirectXPluginFormat.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_LADSPAPluginFormat.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTMidiEventList.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTPluginFormat.h \
@@ -666,7 +668,11 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/Main.o: \
  jni/../../../Source/../JuceLibraryCode/modules/juce_video/playback/juce_QuickTimeMovieComponent.h \
  jni/../../../Source/../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h \
  jni/../../../Source/../JuceLibraryCode/BinaryData.h \
- jni/../../../Source/MainComponent.h
+ jni/../../../Source/MainViewComponent.h \
+ ../../JuceLibraryCode/JuceHeader.h jni/../../../Source/AudioEngine.h \
+ jni/../../../Source/drumSamples.h jni/../../../Source/SampleVoice.h \
+ jni/../../../Source/DrumController.h \
+ jni/../../../Source/PadFieldComponent.h
 
 jni/../../../Source/../JuceLibraryCode/JuceHeader.h:
 
@@ -917,6 +923,8 @@ jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/mi
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/../text/juce_String.h:
 
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/misc/juce_WindowsRegistry.h:
+
+jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_IPAddress.h:
 
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_basics/../juce_core/network/juce_MACAddress.h:
 
@@ -1198,6 +1206,8 @@ jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_
 
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioSubsectionReader.h:
 
+jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_BufferingAudioFormatReader.h:
+
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_AiffAudioFormat.h:
 
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_CoreAudioFormat.h:
@@ -1227,6 +1237,8 @@ jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/audio_io/juce_
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/audio_io/../midi_io/juce_MidiInput.h:
 
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/audio_io/../midi_io/juce_MidiOutput.h:
+
+jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/audio_io/juce_SystemAudioVolume.h:
 
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_devices/midi_io/juce_MidiMessageCollector.h:
 
@@ -1860,8 +1872,6 @@ jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_type
 
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/../format/juce_AudioPluginFormat.h:
 
-jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_DirectXPluginFormat.h:
-
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_LADSPAPluginFormat.h:
 
 jni/../../../Source/../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTMidiEventList.h:
@@ -2000,4 +2010,16 @@ jni/../../../Source/../JuceLibraryCode/modules/juce_video/capture/juce_CameraDev
 
 jni/../../../Source/../JuceLibraryCode/BinaryData.h:
 
-jni/../../../Source/MainComponent.h:
+jni/../../../Source/MainViewComponent.h:
+
+../../JuceLibraryCode/JuceHeader.h:
+
+jni/../../../Source/AudioEngine.h:
+
+jni/../../../Source/drumSamples.h:
+
+jni/../../../Source/SampleVoice.h:
+
+jni/../../../Source/DrumController.h:
+
+jni/../../../Source/PadFieldComponent.h:

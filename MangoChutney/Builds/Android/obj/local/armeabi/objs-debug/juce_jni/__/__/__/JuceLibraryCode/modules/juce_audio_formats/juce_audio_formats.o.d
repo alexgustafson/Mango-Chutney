@@ -202,6 +202,7 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audi
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/misc/juce_Uuid.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/misc/../text/juce_String.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/misc/juce_WindowsRegistry.h \
+ jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/network/juce_IPAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/network/juce_MACAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/network/../containers/juce_Array.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/network/juce_NamedPipe.h \
@@ -316,6 +317,7 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audi
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioFormatReaderSource.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioSubsectionReader.h \
+ jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_BufferingAudioFormatReader.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_AiffAudioFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_CoreAudioFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_FlacAudioFormat.h \
@@ -333,6 +335,7 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audi
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioFormatReaderSource.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioFormatWriter.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioSubsectionReader.cpp \
+ jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_BufferingAudioFormatReader.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/sampler/juce_Sampler.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_AiffAudioFormat.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_CoreAudioFormat.cpp \
@@ -896,6 +899,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../
 
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/misc/juce_WindowsRegistry.h:
 
+jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/network/juce_IPAddress.h:
+
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/network/juce_MACAddress.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/../juce_audio_basics/../juce_core/network/../containers/juce_Array.h:
@@ -1124,6 +1129,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioFormatR
 
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioSubsectionReader.h:
 
+jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_BufferingAudioFormatReader.h:
+
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_AiffAudioFormat.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_CoreAudioFormat.h:
@@ -1157,6 +1164,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioFormatR
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioFormatWriter.cpp:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioSubsectionReader.cpp:
+
+jni/../../../JuceLibraryCode/modules/juce_audio_formats/format/juce_BufferingAudioFormatReader.cpp:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_formats/sampler/juce_Sampler.cpp:
 

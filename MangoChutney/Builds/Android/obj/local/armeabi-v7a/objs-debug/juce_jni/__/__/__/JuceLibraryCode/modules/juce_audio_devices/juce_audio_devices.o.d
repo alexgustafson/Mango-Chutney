@@ -202,6 +202,7 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/misc/juce_Uuid.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/misc/../text/juce_String.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/misc/juce_WindowsRegistry.h \
+ jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/network/juce_IPAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/network/juce_MACAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/network/../containers/juce_Array.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/network/juce_NamedPipe.h \
@@ -340,6 +341,7 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioFormatReaderSource.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioSubsectionReader.h \
+ jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_BufferingAudioFormatReader.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_AiffAudioFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_CoreAudioFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_FlacAudioFormat.h \
@@ -355,6 +357,7 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/audio_io/juce_AudioIODevice.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/audio_io/../midi_io/juce_MidiInput.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/audio_io/../midi_io/juce_MidiOutput.h \
+ jni/../../../JuceLibraryCode/modules/juce_audio_devices/audio_io/juce_SystemAudioVolume.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/midi_io/juce_MidiMessageCollector.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/midi_io/juce_MidiInput.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_devices/sources/juce_AudioSourcePlayer.h \
@@ -784,6 +787,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_c
 
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/misc/juce_WindowsRegistry.h:
 
+jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/network/juce_IPAddress.h:
+
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/network/juce_MACAddress.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_events/../juce_core/network/../containers/juce_Array.h:
@@ -1060,6 +1065,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/fo
 
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_AudioSubsectionReader.h:
 
+jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/format/juce_BufferingAudioFormatReader.h:
+
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_AiffAudioFormat.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/../juce_audio_formats/codecs/juce_CoreAudioFormat.h:
@@ -1089,6 +1096,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_devices/audio_io/juce_AudioIODev
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/audio_io/../midi_io/juce_MidiInput.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/audio_io/../midi_io/juce_MidiOutput.h:
+
+jni/../../../JuceLibraryCode/modules/juce_audio_devices/audio_io/juce_SystemAudioVolume.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_devices/midi_io/juce_MidiMessageCollector.h:
 

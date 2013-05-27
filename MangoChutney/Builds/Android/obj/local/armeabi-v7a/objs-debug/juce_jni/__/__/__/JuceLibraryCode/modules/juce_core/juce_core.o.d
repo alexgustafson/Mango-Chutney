@@ -200,6 +200,7 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_core/misc/juce_Uuid.h \
  jni/../../../JuceLibraryCode/modules/juce_core/misc/../text/juce_String.h \
  jni/../../../JuceLibraryCode/modules/juce_core/misc/juce_WindowsRegistry.h \
+ jni/../../../JuceLibraryCode/modules/juce_core/network/juce_IPAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_core/network/juce_MACAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_core/network/../containers/juce_Array.h \
  jni/../../../JuceLibraryCode/modules/juce_core/network/juce_NamedPipe.h \
@@ -299,6 +300,16 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/arpa/inet.h \
  /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netinet/tcp.h \
  /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/tcp.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/net/if.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/if.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/hdlc/ioctl.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ioctl.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/ioctl.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ioctl.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/ioctl.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ioctls.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/termbits.h \
+ /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ioctl_compat.h \
  /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/android/log.h \
  jni/../../../JuceLibraryCode/modules/juce_core/containers/juce_AbstractFifo.cpp \
  jni/../../../JuceLibraryCode/modules/juce_core/containers/juce_DynamicObject.cpp \
@@ -324,6 +335,7 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_core/network/juce_NamedPipe.cpp \
  jni/../../../JuceLibraryCode/modules/juce_core/network/juce_Socket.cpp \
  jni/../../../JuceLibraryCode/modules/juce_core/network/juce_URL.cpp \
+ jni/../../../JuceLibraryCode/modules/juce_core/network/juce_IPAddress.cpp \
  jni/../../../JuceLibraryCode/modules/juce_core/streams/juce_BufferedInputStream.cpp \
  jni/../../../JuceLibraryCode/modules/juce_core/streams/juce_FileInputSource.cpp \
  jni/../../../JuceLibraryCode/modules/juce_core/streams/juce_InputStream.cpp \
@@ -784,6 +796,8 @@ jni/../../../JuceLibraryCode/modules/juce_core/misc/../text/juce_String.h:
 
 jni/../../../JuceLibraryCode/modules/juce_core/misc/juce_WindowsRegistry.h:
 
+jni/../../../JuceLibraryCode/modules/juce_core/network/juce_IPAddress.h:
+
 jni/../../../JuceLibraryCode/modules/juce_core/network/juce_MACAddress.h:
 
 jni/../../../JuceLibraryCode/modules/juce_core/network/../containers/juce_Array.h:
@@ -982,6 +996,26 @@ jni/../../../JuceLibraryCode/modules/juce_core/zip/../containers/juce_OwnedArray
 
 /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/tcp.h:
 
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/net/if.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/if.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/hdlc/ioctl.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ioctl.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/ioctl.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ioctl.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/ioctl.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ioctls.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/termbits.h:
+
+/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ioctl_compat.h:
+
 /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/android/log.h:
 
 jni/../../../JuceLibraryCode/modules/juce_core/containers/juce_AbstractFifo.cpp:
@@ -1031,6 +1065,8 @@ jni/../../../JuceLibraryCode/modules/juce_core/network/juce_NamedPipe.cpp:
 jni/../../../JuceLibraryCode/modules/juce_core/network/juce_Socket.cpp:
 
 jni/../../../JuceLibraryCode/modules/juce_core/network/juce_URL.cpp:
+
+jni/../../../JuceLibraryCode/modules/juce_core/network/juce_IPAddress.cpp:
 
 jni/../../../JuceLibraryCode/modules/juce_core/streams/juce_BufferedInputStream.cpp:
 

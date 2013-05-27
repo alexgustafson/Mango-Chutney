@@ -203,6 +203,7 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/misc/juce_Uuid.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/misc/../text/juce_String.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/misc/juce_WindowsRegistry.h \
+ jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/network/juce_IPAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/network/juce_MACAddress.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/network/../containers/juce_Array.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/network/juce_NamedPipe.h \
@@ -636,7 +637,6 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/processors/juce_AudioProcessorEditor.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_AudioUnitPluginFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/../format/juce_AudioPluginFormat.h \
- jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_DirectXPluginFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_LADSPAPluginFormat.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTMidiEventList.h \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTPluginFormat.h \
@@ -676,6 +676,7 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/JuceLibraryCode/modules/juce_
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/processors/juce_AudioProcessorGraph.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/processors/juce_GenericAudioProcessorEditor.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/processors/juce_PluginDescription.cpp \
+ jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_LADSPAPluginFormat.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTPluginFormat.cpp \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_AudioUnitPluginFormat.mm \
  jni/../../../JuceLibraryCode/modules/juce_audio_processors/scanning/juce_KnownPluginList.cpp \
@@ -1087,6 +1088,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/..
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/misc/../text/juce_String.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/misc/juce_WindowsRegistry.h:
+
+jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/network/juce_IPAddress.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/../juce_gui_basics/../juce_graphics/../juce_core/network/juce_MACAddress.h:
 
@@ -1954,8 +1957,6 @@ jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_Aud
 
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/../format/juce_AudioPluginFormat.h:
 
-jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_DirectXPluginFormat.h:
-
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_LADSPAPluginFormat.h:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTMidiEventList.h:
@@ -2033,6 +2034,8 @@ jni/../../../JuceLibraryCode/modules/juce_audio_processors/processors/juce_Audio
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/processors/juce_GenericAudioProcessorEditor.cpp:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/processors/juce_PluginDescription.cpp:
+
+jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_LADSPAPluginFormat.cpp:
 
 jni/../../../JuceLibraryCode/modules/juce_audio_processors/format_types/juce_VSTPluginFormat.cpp:
 
