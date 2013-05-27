@@ -56,7 +56,7 @@ MainViewComponent::MainViewComponent ()
                            ImageCache::getFromMemory (pushbutton_off_png, pushbutton_off_pngSize), 1.000f, Colour (0x00000000),
                            Image(), 1.000f, Colour (0x00000000),
                            ImageCache::getFromMemory (pushbutton_on_png, pushbutton_on_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (component = new PadField ());
+    addAndMakeVisible (component = new PadField());
     cachedImage_background_png_1 = ImageCache::getFromMemory (background_png, background_pngSize);
     cachedImage_label_03_png = ImageCache::getFromMemory (label_03_png, label_03_pngSize);
 
@@ -79,7 +79,7 @@ MainViewComponent::MainViewComponent ()
     playButton->setRadioGroupId (34567);
     setupButton->setRadioGroupId (34567);
     stepButton->setRadioGroupId (34567);
-
+    
     //[/Constructor]
 }
 
@@ -131,7 +131,6 @@ void MainViewComponent::resized()
     playButton->setBounds (96, 40, 40, 64);
     component->setBounds (24, 104, 290, 290);
     //[UserResized] Add your own custom resize handling here..
-
     if(getHeight() > getWidth())
     {
         //portrait 4 x 4
@@ -146,6 +145,10 @@ void MainViewComponent::resized()
         stepButton->setBounds (56, 40, 40, 64);
         playButton->setBounds (96, 40, 40, 64);
         component->setBounds(0, getHeight() - (int)(getWidth() / 4),getWidth() , (int)getWidth() / 4);
+    }
+
+    if (fileBrowser) {
+        fileBrowser->setBounds(0, 0, getWidth(), getHeight());
     }
 
     //[/UserResized]
@@ -164,24 +167,27 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
             juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
             int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
 
-            fileBrowser = new FileBrowserComponent(flags, theDocumentDirectory ,NULL, NULL );
+            fileBrowser = new AudioFileSelector(flags, theDocumentDirectory ,NULL, NULL );
         }
 
         addAndMakeVisible(fileBrowser);
         fileBrowser->setTopLeftPosition(0, 0);
         fileBrowser->setSize(getWidth(), getHeight());
-        fileBrowser->addListener(this);
+        fileBrowser->setListener(this);
 
         //[/UserButtonCode_setupButton]
     }
     else if (buttonThatWasClicked == stepButton)
     {
         //[UserButtonCode_stepButton] -- add your button handler code here..
+        component->setMode(PadField::Mode::Selectmode);
+        
         //[/UserButtonCode_stepButton]
     }
     else if (buttonThatWasClicked == playButton)
     {
         //[UserButtonCode_playButton] -- add your button handler code here..
+        component->setMode(PadField::Mode::Playmode);
         //[/UserButtonCode_playButton]
     }
 
@@ -221,6 +227,18 @@ void MainViewComponent::browserRootChanged (const File& newRoot)
 
 }
 
+void MainViewComponent::fileSelected(const juce::File &file)
+{
+
+    drumController->setFileForActivePad(file);
+    removeChildComponent(fileBrowser);
+}
+
+void MainViewComponent::selectionCanceled()
+{
+    removeChildComponent(fileBrowser);
+}
+
 //[/MiscUserCode]
 
 
@@ -234,9 +252,10 @@ void MainViewComponent::browserRootChanged (const File& newRoot)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="MainViewComponent" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330000013"
-                 fixedSize="0" initialWidth="600" initialHeight="300">
+                 parentClasses="public Component, public AudioFileSelectorListener"
+                 constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
+                 snapShown="1" overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
+                 initialHeight="300">
   <BACKGROUND backgroundColour="ff000000">
     <ROUNDRECT pos="-4 -4 665 577" cornerSize="1" fill="image: background_png, 1, 0 0"
                hasStroke="0"/>
@@ -262,7 +281,7 @@ BEGIN_JUCER_METADATA
                opacityDown="1" colourDown="0"/>
   <JUCERCOMP name="" id="c33e7dac6962d4cf" memberName="component" virtualName=""
              explicitFocusOrder="0" pos="24 104 290 290" sourceFile="PadFieldComponent.cpp"
-             constructorParams="keyboardState"/>
+             constructorParams=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

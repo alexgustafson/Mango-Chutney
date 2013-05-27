@@ -45,7 +45,9 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    enum Mode { Playmode, Selectmode};
     void addDrumController(DrumController* drumcontroller);
+    void setMode(PadField::Mode mode);
     void buttonStateChanged(juce::Button *button);
     //[/UserMethods]
 
@@ -63,6 +65,7 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     DrumController* mainDrumController;
+    int padMode;
     //[/UserVariables]
 
     //==============================================================================
@@ -83,7 +86,7 @@ private:
     ScopedPointer<ImageButton> pad15;
     ScopedPointer<ImageButton> pad16;
 
-
+    OwnedArray<ImageButton> pads;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PadField)
 };

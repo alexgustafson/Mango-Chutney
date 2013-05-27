@@ -24,6 +24,7 @@
 #include "JuceHeader.h"
 #include "AudioEngine.h"
 #include "DrumController.h"
+#include "AudioFileSelector.h"
 //[/Headers]
 
 #include "PadFieldComponent.h"
@@ -38,8 +39,8 @@
                                                                     //[/Comments]
 */
 class MainViewComponent  : public Component,
-                           public ButtonListener,
-                            public FileBrowserListener
+                           public AudioFileSelectorListener,
+                           public ButtonListener
 {
 public:
     //==============================================================================
@@ -55,6 +56,9 @@ public:
     void fileClicked (const File& file, const MouseEvent& e);
     void fileDoubleClicked (const File& file);
     void browserRootChanged (const File& newRoot);
+
+    void fileSelected(const File& file);
+    void selectionCanceled();
 
     //[/UserMethods]
 
@@ -79,7 +83,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    ScopedPointer<FileBrowserComponent> fileBrowser;
+    ScopedPointer<AudioFileSelector> fileBrowser;
     //[/UserVariables]
 
     //==============================================================================

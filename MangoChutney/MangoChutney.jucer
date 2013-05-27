@@ -5,6 +5,20 @@
   <MAINGROUP id="XJU6G3" name="MangoChutney">
     <FILE id="g95Z3N" name="icon.png" compile="1" resource="1" file="Builds/Android/res/drawable/icon.png"/>
     <GROUP id="{759C40BD-AFAB-D3EE-6CE6-57B4C71CDEBB}" name="Source">
+      <GROUP id="{4F38993A-CBCE-C933-C8D5-858B5034963D}" name="GUI">
+        <FILE id="nfHjYC" name="AudioFileSelector.cpp" compile="1" resource="0"
+              file="Source/AudioFileSelector.cpp"/>
+        <FILE id="rtGgtN" name="AudioFileSelector.h" compile="0" resource="0"
+              file="Source/AudioFileSelector.h"/>
+        <FILE id="uwjCQr" name="PadFieldComponent.cpp" compile="1" resource="0"
+              file="Source/PadFieldComponent.cpp"/>
+        <FILE id="mO8yE2" name="PadFieldComponent.h" compile="0" resource="0"
+              file="Source/PadFieldComponent.h"/>
+        <FILE id="tGO162" name="MainViewComponent.cpp" compile="1" resource="0"
+              file="Source/MainViewComponent.cpp"/>
+        <FILE id="O9ssYW" name="MainViewComponent.h" compile="0" resource="0"
+              file="Source/MainViewComponent.h"/>
+      </GROUP>
       <FILE id="KDFdt9" name="SampleVoice.cpp" compile="1" resource="0" file="Source/SampleVoice.cpp"/>
       <FILE id="XxIgaH" name="SampleVoice.h" compile="0" resource="0" file="Source/SampleVoice.h"/>
       <FILE id="dKFeKe" name="DrumController.cpp" compile="1" resource="0"
@@ -13,16 +27,8 @@
             file="Source/DrumController.h"/>
       <FILE id="alq3T6" name="AudioEngine.cpp" compile="1" resource="0" file="Source/AudioEngine.cpp"/>
       <FILE id="BCu5DD" name="AudioEngine.h" compile="0" resource="0" file="Source/AudioEngine.h"/>
-      <FILE id="uwjCQr" name="PadFieldComponent.cpp" compile="1" resource="0"
-            file="Source/PadFieldComponent.cpp"/>
-      <FILE id="mO8yE2" name="PadFieldComponent.h" compile="0" resource="0"
-            file="Source/PadFieldComponent.h"/>
       <FILE id="VCO3Vs" name="drumSamples.cpp" compile="1" resource="0" file="../Media/sounds/binaryfiles/drumSamples.cpp"/>
       <FILE id="tbPNQh" name="drumSamples.h" compile="0" resource="0" file="../Media/sounds/binaryfiles/drumSamples.h"/>
-      <FILE id="tGO162" name="MainViewComponent.cpp" compile="1" resource="0"
-            file="Source/MainViewComponent.cpp"/>
-      <FILE id="O9ssYW" name="MainViewComponent.h" compile="0" resource="0"
-            file="Source/MainViewComponent.h"/>
       <FILE id="WDQHRd" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/MainComponent.cpp"/>
       <FILE id="RjumQg" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>
