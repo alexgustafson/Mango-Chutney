@@ -147,9 +147,10 @@ PadField::PadField ()
 
     setSize (600, 400);
 
+
     //[Constructor] You can add your own custom stuff here..
     pads = OwnedArray<ImageButton>();
-    
+
     pad1->setName("pad1");
     pad2->setName("pad2");
     pad3->setName("pad3");
@@ -166,7 +167,7 @@ PadField::PadField ()
     pad14->setName("pad14");
     pad15->setName("pad15");
     pad16->setName("pad16");
-    
+
     pad1->setRadioGroupId (34567);
     pad2->setRadioGroupId (34567);
     pad3->setRadioGroupId (34567);
@@ -185,7 +186,7 @@ PadField::PadField ()
     pad16->setRadioGroupId (34567);
 
     padMode = Mode::Playmode;
-    
+
     pads.add(pad1);
     pads.add(pad2);
     pads.add(pad3);
@@ -202,7 +203,9 @@ PadField::PadField ()
     pads.add(pad14);
     pads.add(pad15);
     pads.add(pad16);
-    
+
+    activepad = pad1;
+
     //[/Constructor]
 }
 
@@ -211,7 +214,7 @@ PadField::~PadField()
     //[Destructor_pre]. You can add your own custom destruction code here..
     pads.clear(false);
     //[/Destructor_pre]
-    
+
     pad1 = nullptr;
     pad2 = nullptr;
     pad3 = nullptr;
@@ -229,9 +232,10 @@ PadField::~PadField()
     pad15 = nullptr;
     pad16 = nullptr;
 
+
     //[Destructor]. You can add your own custom destruction code here..
     mainDrumController = nullptr;
-    
+
     //[/Destructor]
 }
 
@@ -322,6 +326,7 @@ void PadField::resized()
 void PadField::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
+    activepad = (ImageButton* )buttonThatWasClicked;
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == pad1)
@@ -409,6 +414,9 @@ void PadField::buttonClicked (Button* buttonThatWasClicked)
     //[/UserbuttonClicked_Post]
 }
 
+
+
+//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void PadField::setMode(PadField::Mode mode)
 {
     
@@ -431,7 +439,8 @@ void PadField::setMode(PadField::Mode mode)
         pad15->setClickingTogglesState(true);
         pad16->setClickingTogglesState(true);
         
-
+        activepad->setToggleState(true, true);
+        
     }else
     {
         
@@ -461,12 +470,13 @@ void PadField::setMode(PadField::Mode mode)
         
     }
     
-
+    
 }
 
 
 
-//[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+
+
 void PadField::buttonStateChanged(juce::Button *button)
 {
     mainDrumController->buttonStateChanged(button);

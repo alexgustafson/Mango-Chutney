@@ -5,6 +5,8 @@
   <MAINGROUP id="XJU6G3" name="MangoChutney">
     <FILE id="g95Z3N" name="icon.png" compile="1" resource="1" file="Builds/Android/res/drawable/icon.png"/>
     <GROUP id="{759C40BD-AFAB-D3EE-6CE6-57B4C71CDEBB}" name="Source">
+      <FILE id="aLv2zB" name="Sequencer.cpp" compile="1" resource="0" file="Source/Sequencer.cpp"/>
+      <FILE id="vDzLKw" name="Sequencer.h" compile="0" resource="0" file="Source/Sequencer.h"/>
       <GROUP id="{4F38993A-CBCE-C933-C8D5-858B5034963D}" name="GUI">
         <FILE id="nfHjYC" name="AudioFileSelector.cpp" compile="1" resource="0"
               file="Source/AudioFileSelector.cpp"/>

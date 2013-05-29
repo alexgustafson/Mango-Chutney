@@ -87,6 +87,11 @@
       <Add library="comctl32"/>
     </Linker>
     <Unit filename="../Android/res/drawable/icon.png"/>
+    <Unit filename="../../Source/Sequencer.cpp"/>
+    <Unit filename="../../Source/Sequencer.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../Source/AudioFileSelector.cpp"/>
     <Unit filename="../../Source/AudioFileSelector.h">
       <Option compile="0"/>

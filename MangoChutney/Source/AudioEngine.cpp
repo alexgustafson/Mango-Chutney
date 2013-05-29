@@ -23,6 +23,9 @@ SynthAudioSource::SynthAudioSource (MidiKeyboardState& keyboardState_)
     }
     
     setUsingSampledSound();
+    samplesPerBeat =  (1.0 / tempo) * 60.0 * 44100.0;
+    beatCounter = 0;
+    sampleCounter = 0;
     
 }
 
@@ -110,6 +113,31 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     // fill a midi buffer with incoming messages from the midi input.
     MidiBuffer incomingMidi;
     midiCollector.removeNextBlockOfMessages (incomingMidi, bufferToFill.numSamples);
+    
+    for (int i = 0; i < bufferToFill.numSamples; i++) {
+        sampleCounter++;
+        
+        if (sampleCounter > samplesPerBeat) {
+            sampleCounter = 0;
+            beatCounter++ ;
+            
+            if (beatCounter > 15) {
+                beatCounter = 0;
+                
+            }
+            MidiMessage metronome;
+            
+            if (beatCounter % 4 == 0) {
+                metronome = MidiMessage::noteOn(1, 8, 0.8f);
+            }else{
+                metronome = MidiMessage::noteOn(1, 8, 0.4f);
+
+            }            
+            
+            incomingMidi.addEvent(metronome, i);
+        }
+        
+    }
     
     // pass these messages to the keyboard state so that it can update the component
     // to show on-screen which keys are being pressed on the physical midi keyboard.

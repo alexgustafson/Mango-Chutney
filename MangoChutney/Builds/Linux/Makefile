@@ -49,6 +49,7 @@ endif
 DEPFLAGS := $(if $(word 2, $(TARGET_ARCH)), , -MMD)
 
 OBJECTS := \
+  $(OBJDIR)/Sequencer_5ffb45b2.o \
   $(OBJDIR)/AudioFileSelector_bf4d7952.o \
   $(OBJDIR)/PadFieldComponent_b79582f7.o \
   $(OBJDIR)/MainViewComponent_250bec80.o \
@@ -91,6 +92,11 @@ clean:
 strip:
 	@echo Stripping MangoChutney
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/Sequencer_5ffb45b2.o: ../../Source/Sequencer.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling Sequencer.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/AudioFileSelector_bf4d7952.o: ../../Source/AudioFileSelector.cpp
 	-@mkdir -p $(OBJDIR)

@@ -65,7 +65,9 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     DrumController* mainDrumController;
+    OwnedArray<ImageButton> pads;
     int padMode;
+    ImageButton* activepad;
     //[/UserVariables]
 
     //==============================================================================
@@ -86,7 +88,7 @@ private:
     ScopedPointer<ImageButton> pad15;
     ScopedPointer<ImageButton> pad16;
 
-    OwnedArray<ImageButton> pads;
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PadField)
 };
