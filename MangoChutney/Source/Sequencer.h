@@ -11,6 +11,14 @@
 #ifndef __SEQUENCER_H_3100F9F2__
 #define __SEQUENCER_H_3100F9F2__
 
+class Sequencer
+{
+public:
+    Sequencer();
+    
+    
+    
+};
 
 
 

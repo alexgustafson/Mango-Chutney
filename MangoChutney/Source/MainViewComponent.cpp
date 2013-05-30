@@ -72,7 +72,6 @@ MainViewComponent::MainViewComponent ()
     component->addDrumController(drumController);
     setSize (getParentWidth(), getParentHeight());
 
-
     playButton->setClickingTogglesState(true);
     setupButton->setClickingTogglesState(true);
     stepButton->setClickingTogglesState(true);
