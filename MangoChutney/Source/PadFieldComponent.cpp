@@ -205,6 +205,8 @@ PadField::PadField ()
     pads.add(pad16);
 
     activepad = pad1;
+    
+    MessageManager::getInstance()->registerBroadcastListener(this);
 
     //[/Constructor]
 }
@@ -485,6 +487,21 @@ void PadField::buttonStateChanged(juce::Button *button)
 void PadField::addDrumController(DrumController* drumController)
 {
     mainDrumController = drumController;
+}
+
+void PadField::actionListenerCallback	(	const String & 	message	)
+{
+    std::cout << " got message";
+    
+    ImageButton *tempButton = pads[beatCount];
+    tempButton->setToggleState(true, false);
+        
+    beatCount++;
+    if (beatCount > 15) {
+        beatCount = 0;
+    }
+    
+    
 }
 //[/MiscUserCode]
 

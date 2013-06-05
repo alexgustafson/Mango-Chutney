@@ -11,6 +11,8 @@
 #include "AudioEngine.h"
 
 
+
+
 // This is an audio source that streams the output of our demo synth.
 
 SynthAudioSource::SynthAudioSource (MidiKeyboardState& keyboardState_)
@@ -26,7 +28,8 @@ SynthAudioSource::SynthAudioSource (MidiKeyboardState& keyboardState_)
     samplesPerBeat =  (1.0 / tempo) * 60.0 * 44100.0;
     beatCounter = 0;
     sampleCounter = 0;
-    
+    sequencer = new Sequencer();
+
 }
 
 void SynthAudioSource::setUsingSampledSound()
@@ -114,6 +117,8 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     MidiBuffer incomingMidi;
     midiCollector.removeNextBlockOfMessages (incomingMidi, bufferToFill.numSamples);
     
+    if (sequencer->getState() == Sequencer::isPlaying) {
+    
     for (int i = 0; i < bufferToFill.numSamples; i++) {
         sampleCounter++;
         
@@ -133,10 +138,11 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
                 metronome = MidiMessage::noteOn(1, 8, 0.4f);
 
             }            
-            
+            MessageManager::broadcastMessage(tick);
             incomingMidi.addEvent(metronome, i);
         }
         
+    }
     }
     
     // pass these messages to the keyboard state so that it can update the component
@@ -166,5 +172,33 @@ void SynthAudioSource::setSampleForSound(int index, File soundFile)
     }
     
     
+}
+
+void SynthAudioSource::startSequencer()
+{
+    sequencer->setState(Sequencer::SequencerState::shouldPlay);
+}
+
+void SynthAudioSource::pauseSequencer()
+{
+    sequencer->setState(Sequencer::SequencerState::shouldPause);
+}
+
+void SynthAudioSource::stopSequencer()
+{
+    beatCounter = 0;
+    sampleCounter = 0;
+    sequencer->setState(Sequencer::SequencerState::shouldStop);
+}
+
+void SynthAudioSource::toggleStartStop()
+{
+    if (sequencer->getState() == Sequencer::SequencerState::isStopped) {
+        startSequencer();
+    }
+    else
+    {
+        stopSequencer();
+    }
 }
 

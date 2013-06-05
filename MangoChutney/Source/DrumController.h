@@ -23,7 +23,7 @@ public:
     void buttonClicked(juce::Button *buttonClicked);
     void buttonStateChanged(juce::Button *buttonWhichStateChanged);
     void setFileForActivePad(const File file );
-
+    void toggleSequencerPlayStop();
     
 private:
     AudioDeviceManager deviceManager;

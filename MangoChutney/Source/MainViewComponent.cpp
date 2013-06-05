@@ -187,6 +187,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_playButton] -- add your button handler code here..
         component->setMode(PadField::Mode::Playmode);
+        drumController->toggleSequencerPlayStop();
         //[/UserButtonCode_playButton]
     }
 

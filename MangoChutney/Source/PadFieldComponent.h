@@ -36,7 +36,8 @@
                                                                     //[/Comments]
 */
 class PadField  : public Component,
-                  public ButtonListener
+                  public ButtonListener,
+                  public ActionListener
 {
 public:
     //==============================================================================
@@ -49,6 +50,7 @@ public:
     void addDrumController(DrumController* drumcontroller);
     void setMode(PadField::Mode mode);
     void buttonStateChanged(juce::Button *button);
+    void actionListenerCallback	(	const String & 	message	);
     //[/UserMethods]
 
     void paint (Graphics& g);
@@ -68,6 +70,7 @@ private:
     OwnedArray<ImageButton> pads;
     int padMode;
     ImageButton* activepad;
+    int beatCount = 0;
     //[/UserVariables]
 
     //==============================================================================

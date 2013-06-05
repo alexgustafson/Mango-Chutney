@@ -11,13 +11,35 @@
 #ifndef __SEQUENCER_H_3100F9F2__
 #define __SEQUENCER_H_3100F9F2__
 
-class Sequencer
+#include "JuceHeader.h"
+
+class Sequencer 
 {
 public:
-    Sequencer();
+    Sequencer() { state = isStopped; };
     
+    enum SequencerState {
+      
+        isStopped,
+        shouldStop,
+        shouldPlay,
+        isPlaying,
+        shouldPause,
+        isPaused
+        
+    };
     
+    void setState(SequencerState newState);
+    SequencerState getState() { return state; };
     
+private:
+    SequencerState state;
+    
+    void stopping();
+    void starting();
+    void pausing();
+    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Sequencer)
 };
 
 

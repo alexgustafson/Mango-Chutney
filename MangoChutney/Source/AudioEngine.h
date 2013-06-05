@@ -14,6 +14,7 @@
 #include "JuceHeader.h"
 #include "drumSamples.h"
 #include "SampleVoice.h"
+#include "Sequencer.h"
 
 class SynthAudioSource  : public AudioSource
 {
@@ -31,6 +32,8 @@ public:
     // the synth itself!
     Synthesiser synth;
     
+    ScopedPointer<Sequencer> sequencer;
+    
     //==============================================================================
     SynthAudioSource (MidiKeyboardState& keyboardState);
     
@@ -39,14 +42,20 @@ public:
     void releaseResources();
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
     void setSampleForSound(int index, File soundFile);
-
     
+    void startSequencer();
+    void pauseSequencer();
+    void stopSequencer();
+    void toggleStartStop();
     
 private:
     float tempo = 112.0;
     float samplesPerBeat;
     int sampleCounter;
     int beatCounter;
+    
+    String tick = "tick";
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthAudioSource)
 };
 
