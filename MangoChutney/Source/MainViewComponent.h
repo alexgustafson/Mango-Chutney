@@ -73,14 +73,20 @@ public:
     static const int pad_off_pngSize;
     static const char* pad_light_png;
     static const int pad_light_pngSize;
-    static const char* background_png;
-    static const int background_pngSize;
     static const char* pushbutton_off_png;
     static const int pushbutton_off_pngSize;
     static const char* pushbutton_on_png;
     static const int pushbutton_on_pngSize;
     static const char* label_03_png;
     static const int label_03_pngSize;
+    static const char* backgrounpanel_png;
+    static const int backgrounpanel_pngSize;
+    static const char* buttonOff_png;
+    static const int buttonOff_pngSize;
+    static const char* buttonOn_png;
+    static const int buttonOn_pngSize;
+    static const char* woodpanel_png;
+    static const int woodpanel_pngSize;
 
 
 private:
@@ -96,7 +102,7 @@ private:
     ScopedPointer<PadField> component;
     ScopedPointer<ImageButton> stepButton;
     ScopedPointer<Slider> tempoSlider;
-    Image cachedImage_background_png_1;
+    Image cachedImage_backgrounpanel_png_1;
     Image cachedImage_label_03_png;
 
 

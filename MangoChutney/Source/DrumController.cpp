@@ -49,7 +49,7 @@ void DrumController::buttonClicked(juce::Button *buttonClicked)
 
 void DrumController::buttonStateChanged(juce::Button *buttonWhichStateChanged)
 {
-    if (buttonWhichStateChanged->isDown()) {
+
 
         if (buttonWhichStateChanged->getName() == "pad1") {
             lastSelectedPad = 1;
@@ -132,7 +132,6 @@ void DrumController::buttonStateChanged(juce::Button *buttonWhichStateChanged)
         }
         
 
-    }
     
     
 }

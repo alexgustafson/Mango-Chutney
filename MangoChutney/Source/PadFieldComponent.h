@@ -58,10 +58,10 @@ public:
     void buttonClicked (Button* buttonThatWasClicked);
 
     // Binary resources:
-    static const char* pad_off_png;
-    static const int pad_off_pngSize;
-    static const char* pad_light_png;
-    static const int pad_light_pngSize;
+    static const char* pad_notlit_png;
+    static const int pad_notlit_pngSize;
+    static const char* pad_lit_png;
+    static const int pad_lit_pngSize;
 
 
 private:

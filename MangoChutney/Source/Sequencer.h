@@ -49,7 +49,6 @@ public:
                 pattern.tracks[i].notes[j] = 0.0f;
                 
             }
-            pattern.tracks[i].notes[i] = 0.5f;
         }
     };
     
