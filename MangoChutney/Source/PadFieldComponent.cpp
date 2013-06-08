@@ -149,6 +149,7 @@ PadField::PadField ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    sequencer = Sequencer::getInstance();
     pads = OwnedArray<ImageButton>();
 
     pad1->setName("pad1");
@@ -185,7 +186,7 @@ PadField::PadField ()
     pad15->setRadioGroupId (34567);
     pad16->setRadioGroupId (34567);
 
-    padMode = Mode::Playmode;
+    padMode = Mode::Selectmode;
 
     pads.add(pad1);
     pads.add(pad2);
@@ -205,8 +206,7 @@ PadField::PadField ()
     pads.add(pad16);
 
     activepad = pad1;
-    
-    MessageManager::getInstance()->registerBroadcastListener(this);
+
 
     //[/Constructor]
 }
@@ -328,7 +328,11 @@ void PadField::resized()
 void PadField::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
-    activepad = (ImageButton* )buttonThatWasClicked;
+    if (padMode == Selectmode) {
+        activepad = (ImageButton* )buttonThatWasClicked;
+    }
+    
+    mainDrumController->buttonStateChanged(buttonThatWasClicked);
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == pad1)
@@ -413,6 +417,22 @@ void PadField::buttonClicked (Button* buttonThatWasClicked)
     }
 
     //[UserbuttonClicked_Post]
+    
+    if (padMode == Stepmode)
+    {
+        int activePadIndex = pads.indexOf(activepad);
+        int selectedPad = pads.indexOf((ImageButton* )buttonThatWasClicked);
+        
+        if (sequencer->pattern.tracks[activePadIndex].notes[selectedPad] == 0.0)
+        {
+            sequencer->pattern.tracks[activePadIndex].notes[selectedPad] = 1.0;
+        }else
+        {
+            sequencer->pattern.tracks[activePadIndex].notes[selectedPad] = 0.0;
+        }
+        
+    }
+    
     //[/UserbuttonClicked_Post]
 }
 
@@ -421,67 +441,53 @@ void PadField::buttonClicked (Button* buttonThatWasClicked)
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void PadField::setMode(PadField::Mode mode)
 {
-    
+    padMode = mode;
     if (mode == PadField::Mode::Selectmode) {
         
-        pad1->setClickingTogglesState(true);
-        pad2->setClickingTogglesState(true);
-        pad3->setClickingTogglesState(true);
-        pad4->setClickingTogglesState(true);
-        pad5->setClickingTogglesState(true);
-        pad6->setClickingTogglesState(true);
-        pad7->setClickingTogglesState(true);
-        pad8->setClickingTogglesState(true);
-        pad9->setClickingTogglesState(true);
-        pad10->setClickingTogglesState(true);
-        pad11->setClickingTogglesState(true);
-        pad12->setClickingTogglesState(true);
-        pad13->setClickingTogglesState(true);
-        pad14->setClickingTogglesState(true);
-        pad15->setClickingTogglesState(true);
-        pad16->setClickingTogglesState(true);
-        
-        activepad->setToggleState(true, true);
-        
-    }else
-    {
-        
-        pad1->setClickingTogglesState(false);
-        pad2->setClickingTogglesState(false);
-        pad3->setClickingTogglesState(false);
-        pad4->setClickingTogglesState(false);
-        pad5->setClickingTogglesState(false);
-        pad6->setClickingTogglesState(false);
-        pad7->setClickingTogglesState(false);
-        pad8->setClickingTogglesState(false);
-        pad9->setClickingTogglesState(false);
-        pad10->setClickingTogglesState(false);
-        pad11->setClickingTogglesState(false);
-        pad12->setClickingTogglesState(false);
-        pad13->setClickingTogglesState(false);
-        pad14->setClickingTogglesState(false);
-        pad15->setClickingTogglesState(false);
-        pad16->setClickingTogglesState(false);
-        
         for (int i = 0; i < pads.size(); i++) {
-            
+
             ImageButton *tempButton = pads[i];
-            tempButton->setToggleState(false, true);
-            
+            tempButton->setRadioGroupId(34567);
+            tempButton->setClickingTogglesState(true);
+            tempButton->setToggleState(false, false);
+
+        }
+
+        activepad->setToggleState(true, true);
+
+    }else if(mode == PadField::Mode::Playmode)
+    {
+
+        for (int i = 0; i < pads.size(); i++) {
+
+            ImageButton *tempButton = pads[i];
+            tempButton->setRadioGroupId(34567);
+            tempButton->setClickingTogglesState(false);
+            tempButton->setToggleState(false, false);
+
+        }
+
+
+    }else if(mode == PadField::Mode::Stepmode)
+    {
+
+        for (int i = 0; i < pads.size(); i++) {
+
+            ImageButton *tempButton = pads[i];
+            tempButton->setRadioGroupId(34566 - i);
+            tempButton->setClickingTogglesState(true);
+            tempButton->setToggleState(false, false);
+
         }
         
+
     }
-    
-    
+    startTimer(50);
 }
-
-
-
-
 
 void PadField::buttonStateChanged(juce::Button *button)
 {
-    mainDrumController->buttonStateChanged(button);
+    //mainDrumController->buttonStateChanged(button);
 }
 
 void PadField::addDrumController(DrumController* drumController)
@@ -489,19 +495,35 @@ void PadField::addDrumController(DrumController* drumController)
     mainDrumController = drumController;
 }
 
-void PadField::actionListenerCallback	(	const String & 	message	)
+void PadField::timerCallback()
 {
-    std::cout << " got message";
     
-    ImageButton *tempButton = pads[beatCount];
-    tempButton->setToggleState(true, false);
+    if (padMode == Mode::Stepmode) {
         
-    beatCount++;
-    if (beatCount > 15) {
-        beatCount = 0;
+        if(beatCount != sequencer->beatCount)
+        {
+            beatCount = sequencer->beatCount;
+            ImageButton *tempButton = pads[beatCount];
+            tempButton->setToggleState(true, false);
+        }
+        
+        int activePadIndex = pads.indexOf(activepad);
+        
+        for (int i = 0; i < 16; i++) {
+            
+            ImageButton *tempButton = pads[i];
+            
+            if (sequencer->pattern.tracks[activePadIndex].notes[i] > 0.0) {
+                
+                tempButton->setToggleState(true, false);
+                
+            }else{
+                
+                tempButton->setToggleState(false, false);
+
+            }
+        }
     }
-    
-    
 }
 //[/MiscUserCode]
 
@@ -516,9 +538,10 @@ void PadField::actionListenerCallback	(	const String & 	message	)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="PadField" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330000013"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 parentClasses="public Component, public Timer" constructorParams=""
+                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
+                 overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
+                 initialHeight="400">
   <BACKGROUND backgroundColour="ff666666"/>
   <IMAGEBUTTON name="new button" id="7d32e006f32652e5" memberName="pad1" virtualName=""
                explicitFocusOrder="0" pos="0 0 96 96" buttonText="new button"

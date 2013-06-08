@@ -32,7 +32,7 @@ public:
     // the synth itself!
     Synthesiser synth;
     
-    ScopedPointer<Sequencer> sequencer;
+    Sequencer* sequencer;
     
     //==============================================================================
     SynthAudioSource (MidiKeyboardState& keyboardState);

@@ -40,7 +40,8 @@
 */
 class MainViewComponent  : public Component,
                            public AudioFileSelectorListener,
-                           public ButtonListener
+                           public ButtonListener,
+                           public SliderListener
 {
 public:
     //==============================================================================
@@ -65,6 +66,7 @@ public:
     void paint (Graphics& g);
     void resized();
     void buttonClicked (Button* buttonThatWasClicked);
+    void sliderValueChanged (Slider* sliderThatWasMoved);
 
     // Binary resources:
     static const char* pad_off_png;
@@ -84,13 +86,16 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     ScopedPointer<AudioFileSelector> fileBrowser;
+    Sequencer *sequencer;
     //[/UserVariables]
 
     //==============================================================================
     ScopedPointer<ImageButton> setupButton;
-    ScopedPointer<ImageButton> stepButton;
+    ScopedPointer<ImageButton> selectButton;
     ScopedPointer<ImageButton> playButton;
     ScopedPointer<PadField> component;
+    ScopedPointer<ImageButton> stepButton;
+    ScopedPointer<Slider> tempoSlider;
     Image cachedImage_background_png_1;
     Image cachedImage_label_03_png;
 

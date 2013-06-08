@@ -10,6 +10,9 @@
 
 #include "Sequencer.h"
 
+
+juce_ImplementSingleton (Sequencer)
+
 void Sequencer::setState(Sequencer::SequencerState newState)
 {
     

@@ -36,20 +36,25 @@
 MainViewComponent::MainViewComponent ()
 {
     addAndMakeVisible (setupButton = new ImageButton ("new button"));
+    setupButton->setRadioGroupId (34566);
     setupButton->addListener (this);
 
     setupButton->setImages (false, true, true,
                             ImageCache::getFromMemory (pushbutton_off_png, pushbutton_off_pngSize), 1.000f, Colour (0x00000000),
                             Image(), 1.000f, Colour (0x00000000),
                             ImageCache::getFromMemory (pushbutton_on_png, pushbutton_on_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (stepButton = new ImageButton ("new button"));
-    stepButton->addListener (this);
+    addAndMakeVisible (selectButton = new ImageButton ("select button"));
+    selectButton->setButtonText ("new button");
+    selectButton->setRadioGroupId (34567);
+    selectButton->addListener (this);
 
-    stepButton->setImages (false, true, true,
-                           ImageCache::getFromMemory (pushbutton_off_png, pushbutton_off_pngSize), 1.000f, Colour (0x00000000),
-                           Image(), 1.000f, Colour (0x00000000),
-                           ImageCache::getFromMemory (pushbutton_on_png, pushbutton_on_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (playButton = new ImageButton ("new button"));
+    selectButton->setImages (false, true, true,
+                             ImageCache::getFromMemory (pushbutton_off_png, pushbutton_off_pngSize), 1.000f, Colour (0x00000000),
+                             Image(), 1.000f, Colour (0x00000000),
+                             ImageCache::getFromMemory (pushbutton_on_png, pushbutton_on_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (playButton = new ImageButton ("play button"));
+    playButton->setButtonText ("new button");
+    playButton->setRadioGroupId (34567);
     playButton->addListener (this);
 
     playButton->setImages (false, true, true,
@@ -57,6 +62,21 @@ MainViewComponent::MainViewComponent ()
                            Image(), 1.000f, Colour (0x00000000),
                            ImageCache::getFromMemory (pushbutton_on_png, pushbutton_on_pngSize), 1.000f, Colour (0x00000000));
     addAndMakeVisible (component = new PadField());
+    addAndMakeVisible (stepButton = new ImageButton ("step button"));
+    stepButton->setButtonText ("new button");
+    stepButton->setRadioGroupId (34567);
+    stepButton->addListener (this);
+
+    stepButton->setImages (false, true, true,
+                           ImageCache::getFromMemory (pushbutton_off_png, pushbutton_off_pngSize), 1.000f, Colour (0x00000000),
+                           Image(), 1.000f, Colour (0x00000000),
+                           ImageCache::getFromMemory (pushbutton_on_png, pushbutton_on_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (tempoSlider = new Slider ("tempo slider"));
+    tempoSlider->setRange (50, 220, 0.2);
+    tempoSlider->setSliderStyle (Slider::Rotary);
+    tempoSlider->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
+    tempoSlider->addListener (this);
+
     cachedImage_background_png_1 = ImageCache::getFromMemory (background_png, background_pngSize);
     cachedImage_label_03_png = ImageCache::getFromMemory (label_03_png, label_03_pngSize);
 
@@ -67,18 +87,18 @@ MainViewComponent::MainViewComponent ()
 
 
     //[Constructor] You can add your own custom stuff here..
-
+    sequencer = Sequencer::getInstance();
     drumController = new DrumController();
     component->addDrumController(drumController);
     setSize (getParentWidth(), getParentHeight());
 
+    selectButton->setClickingTogglesState(true);
     playButton->setClickingTogglesState(true);
-    setupButton->setClickingTogglesState(true);
+    setupButton->setClickingTogglesState(false);
     stepButton->setClickingTogglesState(true);
-    playButton->setRadioGroupId (34567);
-    setupButton->setRadioGroupId (34567);
-    stepButton->setRadioGroupId (34567);
-    
+
+    tempoSlider->setValue(114.0);
+
     //[/Constructor]
 }
 
@@ -89,9 +109,11 @@ MainViewComponent::~MainViewComponent()
     //[/Destructor_pre]
 
     setupButton = nullptr;
-    stepButton = nullptr;
+    selectButton = nullptr;
     playButton = nullptr;
     component = nullptr;
+    stepButton = nullptr;
+    tempoSlider = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -126,23 +148,27 @@ void MainViewComponent::paint (Graphics& g)
 void MainViewComponent::resized()
 {
     setupButton->setBounds (16, 40, 40, 64);
-    stepButton->setBounds (56, 40, 40, 64);
+    selectButton->setBounds (56, 40, 40, 64);
     playButton->setBounds (96, 40, 40, 64);
     component->setBounds (24, 104, 290, 290);
+    stepButton->setBounds (136, 40, 40, 64);
+    tempoSlider->setBounds (256, 40, 176, 56);
     //[UserResized] Add your own custom resize handling here..
     if(getHeight() > getWidth())
     {
         //portrait 4 x 4
         setupButton->setBounds (16, 40, 40, 64);
-        stepButton->setBounds (56, 40, 40, 64);
+        selectButton->setBounds (56, 40, 40, 64);
         playButton->setBounds (96, 40, 40, 64);
+        stepButton->setBounds (136, 40, 40, 64);
         component->setBounds (0, getHeight() - getWidth(), getWidth(), getWidth() );
     }else
     {
         //landscape 2 x 8
         setupButton->setBounds (16, 40, 40, 64);
-        stepButton->setBounds (56, 40, 40, 64);
+        selectButton->setBounds (56, 40, 40, 64);
         playButton->setBounds (96, 40, 40, 64);
+        stepButton->setBounds (136, 40, 40, 64);
         component->setBounds(0, getHeight() - (int)(getWidth() / 4),getWidth() , (int)getWidth() / 4);
     }
 
@@ -176,12 +202,11 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
 
         //[/UserButtonCode_setupButton]
     }
-    else if (buttonThatWasClicked == stepButton)
+    else if (buttonThatWasClicked == selectButton)
     {
-        //[UserButtonCode_stepButton] -- add your button handler code here..
+        //[UserButtonCode_selectButton] -- add your button handler code here..
         component->setMode(PadField::Mode::Selectmode);
-        
-        //[/UserButtonCode_stepButton]
+        //[/UserButtonCode_selectButton]
     }
     else if (buttonThatWasClicked == playButton)
     {
@@ -190,9 +215,31 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
         drumController->toggleSequencerPlayStop();
         //[/UserButtonCode_playButton]
     }
+    else if (buttonThatWasClicked == stepButton)
+    {
+        //[UserButtonCode_stepButton] -- add your button handler code here..
+        component->setMode(PadField::Mode::Stepmode);
+        //[/UserButtonCode_stepButton]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
+}
+
+void MainViewComponent::sliderValueChanged (Slider* sliderThatWasMoved)
+{
+    //[UsersliderValueChanged_Pre]
+    //[/UsersliderValueChanged_Pre]
+
+    if (sliderThatWasMoved == tempoSlider)
+    {
+        //[UserSliderCode_tempoSlider] -- add your slider handling code here..
+        sequencer->tempo = tempoSlider->getValue();
+        //[/UserSliderCode_tempoSlider]
+    }
+
+    //[UsersliderValueChanged_Post]
+    //[/UsersliderValueChanged_Post]
 }
 
 
@@ -263,25 +310,35 @@ BEGIN_JUCER_METADATA
   </BACKGROUND>
   <IMAGEBUTTON name="new button" id="6fc8c6b2dd61df0d" memberName="setupButton"
                virtualName="" explicitFocusOrder="0" pos="16 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
+               connectedEdges="0" needsCallback="1" radioGroupId="34566" keepProportions="1"
                resourceNormal="pushbutton_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pushbutton_on_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="2e13002f79a45ac3" memberName="stepButton"
+  <IMAGEBUTTON name="select button" id="2e13002f79a45ac3" memberName="selectButton"
                virtualName="" explicitFocusOrder="0" pos="56 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
+               connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
                resourceNormal="pushbutton_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pushbutton_on_png"
                opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="ccc5656cdd20daae" memberName="playButton"
+  <IMAGEBUTTON name="play button" id="ccc5656cdd20daae" memberName="playButton"
                virtualName="" explicitFocusOrder="0" pos="96 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
+               connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
                resourceNormal="pushbutton_off_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="pushbutton_on_png"
                opacityDown="1" colourDown="0"/>
   <JUCERCOMP name="" id="c33e7dac6962d4cf" memberName="component" virtualName=""
              explicitFocusOrder="0" pos="24 104 290 290" sourceFile="PadFieldComponent.cpp"
              constructorParams=""/>
+  <IMAGEBUTTON name="step button" id="3c48281046602f90" memberName="stepButton"
+               virtualName="" explicitFocusOrder="0" pos="136 40 40 64" buttonText="new button"
+               connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
+               resourceNormal="pushbutton_off_png" opacityNormal="1" colourNormal="0"
+               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pushbutton_on_png"
+               opacityDown="1" colourDown="0"/>
+  <SLIDER name="tempo slider" id="8974591e6706b422" memberName="tempoSlider"
+          virtualName="" explicitFocusOrder="0" pos="256 40 176 56" min="50"
+          max="220" int="0.2" style="Rotary" textBoxPos="TextBoxLeft" textBoxEditable="1"
+          textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

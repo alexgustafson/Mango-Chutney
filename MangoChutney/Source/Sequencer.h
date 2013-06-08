@@ -16,7 +16,17 @@
 class Sequencer 
 {
 public:
-    Sequencer() { state = isStopped; };
+    
+    struct Track
+    {
+        float notes[16];
+    };
+    
+    struct Pattern
+    {
+        Track tracks[16];
+    };
+    
     
     enum SequencerState {
       
@@ -29,17 +39,40 @@ public:
         
     };
     
+    Sequencer()
+    {
+        beatCount = 0;
+        for(int i = 0; i < 16; i++)
+        {
+            for(int j = 0; j < 16; j++)
+            {
+                pattern.tracks[i].notes[j] = 0.0f;
+                
+            }
+            pattern.tracks[i].notes[i] = 0.5f;
+        }
+    };
+    
     void setState(SequencerState newState);
     SequencerState getState() { return state; };
     
+    int beatCount = 0;
+    float tempo = 120;
+    
+    Pattern pattern;
+    
+    juce_DeclareSingleton (Sequencer, false)
+    
 private:
+    
+    
     SequencerState state;
     
     void stopping();
     void starting();
     void pausing();
+
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Sequencer)
 };
 
 

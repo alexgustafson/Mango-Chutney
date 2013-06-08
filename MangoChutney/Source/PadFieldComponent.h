@@ -30,14 +30,14 @@
 //==============================================================================
 /**
                                                                     //[Comments]
-    An auto-generated component, created by the Introjucer.
+ An auto-generated component, created by the Introjucer.
 
-    Describe your class and how it works here!
+ Describe your class and how it works here!
                                                                     //[/Comments]
 */
 class PadField  : public Component,
-                  public ButtonListener,
-                  public ActionListener
+                  public Timer,
+                  public ButtonListener
 {
 public:
     //==============================================================================
@@ -46,11 +46,11 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-    enum Mode { Playmode, Selectmode};
+    enum Mode { Playmode, Selectmode, Stepmode};
     void addDrumController(DrumController* drumcontroller);
     void setMode(PadField::Mode mode);
     void buttonStateChanged(juce::Button *button);
-    void actionListenerCallback	(	const String & 	message	);
+    void timerCallback();
     //[/UserMethods]
 
     void paint (Graphics& g);
@@ -68,9 +68,10 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     DrumController* mainDrumController;
     OwnedArray<ImageButton> pads;
-    int padMode;
+    Mode padMode;
     ImageButton* activepad;
     int beatCount = 0;
+    Sequencer* sequencer;
     //[/UserVariables]
 
     //==============================================================================

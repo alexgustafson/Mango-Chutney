@@ -29,10 +29,7 @@ DrumController::~DrumController()
     synthAudioSource = nullptr;
 }
 
-void DrumController::buttonClicked(juce::Button *buttonClicked)
-{
-    
-}
+
 
 void DrumController::toggleSequencerPlayStop()
 {
@@ -43,6 +40,12 @@ void DrumController::setFileForActivePad(const File file )
 {
     synthAudioSource->setSampleForSound(lastSelectedPad - 1, file);
 }
+
+void DrumController::buttonClicked(juce::Button *buttonClicked)
+{
+    
+}
+
 
 void DrumController::buttonStateChanged(juce::Button *buttonWhichStateChanged)
 {

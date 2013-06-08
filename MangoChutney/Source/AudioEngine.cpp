@@ -18,6 +18,7 @@
 SynthAudioSource::SynthAudioSource (MidiKeyboardState& keyboardState_)
 : keyboardState (keyboardState_)
 {
+    sequencer = Sequencer::getInstance();
     // add some voices to our synth, to play the sounds..
     for (int i = 16; --i >= 0;)
     {
@@ -25,11 +26,10 @@ SynthAudioSource::SynthAudioSource (MidiKeyboardState& keyboardState_)
     }
     
     setUsingSampledSound();
-    samplesPerBeat =  (1.0 / tempo) * 60.0 * 44100.0;
+    samplesPerBeat =  (1.0 / (sequencer->tempo * 4)) * 60.0 * 44100.0;
     beatCounter = 0;
     sampleCounter = 0;
-    sequencer = new Sequencer();
-
+    
 }
 
 void SynthAudioSource::setUsingSampledSound()
@@ -112,6 +112,7 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     // the synth always adds its output to the audio buffer, so we have to clear it
     // first..
     bufferToFill.clearActiveBufferRegion();
+    samplesPerBeat =  (1.0 / (sequencer->tempo * 4)) * 60.0 * 44100.0;
     
     // fill a midi buffer with incoming messages from the midi input.
     MidiBuffer incomingMidi;
@@ -124,22 +125,22 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
         
         if (sampleCounter > samplesPerBeat) {
             sampleCounter = 0;
-            beatCounter++ ;
+            
             
             if (beatCounter > 15) {
                 beatCounter = 0;
                 
             }
-            MidiMessage metronome;
             
-            if (beatCounter % 4 == 0) {
-                metronome = MidiMessage::noteOn(1, 8, 0.8f);
-            }else{
-                metronome = MidiMessage::noteOn(1, 8, 0.4f);
-
-            }            
+            for (int j = 0; j < 16; j++)
+            {
+                if (sequencer->pattern.tracks[j].notes[beatCounter] > 0.01f) {
+                    incomingMidi.addEvent( MidiMessage::noteOn(1, j + 1, 1.0f), i);
+                }
+            }
+            sequencer->beatCount = beatCounter;
             MessageManager::broadcastMessage(tick);
-            incomingMidi.addEvent(metronome, i);
+            beatCounter++ ;
         }
         
     }
