@@ -669,7 +669,9 @@ obj/local/armeabi-v7a/objs-debug/juce_jni/__/__/__/Source/MainViewComponent.o: \
  ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h \
  ../../JuceLibraryCode/BinaryData.h jni/../../../Source/AudioEngine.h \
  jni/../../../Source/drumSamples.h jni/../../../Source/SampleVoice.h \
- jni/../../../Source/DrumController.h \
+ jni/../../../Source/Sequencer.h jni/../../../Source/DrumController.h \
+ jni/../../../Source/AudioFileSelector.h \
+ jni/../../../Source/AudioFileSelectorListener.h \
  jni/../../../Source/PadFieldComponent.h
 
 jni/../../../Source/MainViewComponent.h:
@@ -2016,6 +2018,12 @@ jni/../../../Source/drumSamples.h:
 
 jni/../../../Source/SampleVoice.h:
 
+jni/../../../Source/Sequencer.h:
+
 jni/../../../Source/DrumController.h:
+
+jni/../../../Source/AudioFileSelector.h:
+
+jni/../../../Source/AudioFileSelectorListener.h:
 
 jni/../../../Source/PadFieldComponent.h:

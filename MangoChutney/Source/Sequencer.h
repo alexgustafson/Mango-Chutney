@@ -40,6 +40,7 @@ public:
     Sequencer()
     {
         beatCount = 0;
+        setTempo(120.0);
         for(int i = 0; i < 16; i++)
         {
             for(int j = 0; j < 16; j++)
@@ -52,8 +53,10 @@ public:
     
     void setState(SequencerState newState);
     SequencerState getState() { return state; };
+    void setTempo(int newTempo);
     
     int beatCount;
+    float samplesPerBeat;
     float tempo;
     
     Pattern pattern;

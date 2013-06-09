@@ -26,7 +26,6 @@ SynthAudioSource::SynthAudioSource (MidiKeyboardState& keyboardState_)
     }
     
     setUsingSampledSound();
-    samplesPerBeat =  (1.0 / (sequencer->tempo * 4)) * 60.0 * 44100.0;
     beatCounter = 0;
     sampleCounter = 0;
     
@@ -99,7 +98,6 @@ void SynthAudioSource::setUsingSampledSound()
 void SynthAudioSource::prepareToPlay (int /*samplesPerBlockExpected*/, double sampleRate)
 {
     midiCollector.reset (sampleRate);
-    
     synth.setCurrentPlaybackSampleRate (sampleRate);
 }
 
@@ -112,7 +110,6 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     // the synth always adds its output to the audio buffer, so we have to clear it
     // first..
     bufferToFill.clearActiveBufferRegion();
-    samplesPerBeat =  (1.0 / (sequencer->tempo * 4)) * 60.0 * 44100.0;
     
     // fill a midi buffer with incoming messages from the midi input.
     MidiBuffer incomingMidi;
@@ -123,7 +120,7 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     for (int i = 0; i < bufferToFill.numSamples; i++) {
         sampleCounter++;
         
-        if (sampleCounter > samplesPerBeat) {
+        if (sampleCounter > sequencer->samplesPerBeat) {
             sampleCounter = 0;
             
             

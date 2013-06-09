@@ -50,3 +50,10 @@ void Sequencer::pausing()
 {
     state = isPaused;
 }
+
+void Sequencer::setTempo(int newTempo)
+{
+    tempo = newTempo;
+    samplesPerBeat =  (1.0 / (tempo * 4)) * 60.0 * 44100.0;
+
+}

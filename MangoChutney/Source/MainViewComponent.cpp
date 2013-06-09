@@ -54,7 +54,7 @@ MainViewComponent::MainViewComponent ()
                              ImageCache::getFromMemory (buttonOn_png, buttonOn_pngSize), 1.000f, Colour (0x00000000));
     addAndMakeVisible (playButton = new ImageButton ("play button"));
     playButton->setButtonText ("new button");
-    playButton->setRadioGroupId (34567);
+    playButton->setRadioGroupId (33000);
     playButton->addListener (this);
 
     playButton->setImages (false, true, true,
@@ -133,7 +133,7 @@ void MainViewComponent::paint (Graphics& g)
     g.setTiledImageFill (cachedImage_backgrounpanel_png_1,
                          0, 0,
                          1.0000f);
-    g.fillRoundedRectangle (4.0f, 4.0f, 1020.0f, 724.0f, 1.000f);
+    g.fillRoundedRectangle (4.0f, 4.0f, static_cast<float> (proportionOfWidth (1.0000f)), static_cast<float> (proportionOfHeight (1.0000f)), 1.000f);
 
     g.setColour (Colours::black);
     g.drawImageWithin (cachedImage_label_03_png,
@@ -234,7 +234,7 @@ void MainViewComponent::sliderValueChanged (Slider* sliderThatWasMoved)
     if (sliderThatWasMoved == tempoSlider)
     {
         //[UserSliderCode_tempoSlider] -- add your slider handling code here..
-        sequencer->tempo = tempoSlider->getValue();
+        sequencer->setTempo(tempoSlider->getValue())  ;
         //[/UserSliderCode_tempoSlider]
     }
 
@@ -304,7 +304,7 @@ BEGIN_JUCER_METADATA
                  snapShown="1" overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
                  initialHeight="300">
   <BACKGROUND backgroundColour="ff000000">
-    <ROUNDRECT pos="4 4 1020 724" cornerSize="1" fill="image: backgrounpanel_png, 1, 0 0"
+    <ROUNDRECT pos="4 4 100% 100%" cornerSize="1" fill="image: backgrounpanel_png, 1, 0 0"
                hasStroke="0"/>
     <IMAGE pos="4 4 252 36" resource="label_03_png" opacity="1" mode="1"/>
   </BACKGROUND>
@@ -322,7 +322,7 @@ BEGIN_JUCER_METADATA
                opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="play button" id="ccc5656cdd20daae" memberName="playButton"
                virtualName="" explicitFocusOrder="0" pos="96 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
+               connectedEdges="0" needsCallback="1" radioGroupId="33000" keepProportions="1"
                resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
                opacityDown="1" colourDown="0"/>
