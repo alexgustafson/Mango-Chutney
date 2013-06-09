@@ -1,6 +1,5 @@
-obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/MainViewComponent.o: \
- jni/../../../Source/MainViewComponent.cpp \
- jni/../../../Source/MainViewComponent.h \
+obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/Sequencer.o: \
+ jni/../../../Source/Sequencer.cpp jni/../../../Source/Sequencer.h \
  ../../JuceLibraryCode/JuceHeader.h ../../JuceLibraryCode/AppConfig.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/juce_core.h \
@@ -667,14 +666,9 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/MainViewComponent.o: \
  ../../JuceLibraryCode/modules/juce_video/playback/juce_DirectShowComponent.h \
  ../../JuceLibraryCode/modules/juce_video/playback/juce_QuickTimeMovieComponent.h \
  ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h \
- ../../JuceLibraryCode/BinaryData.h jni/../../../Source/AudioEngine.h \
- jni/../../../Source/drumSamples.h jni/../../../Source/SampleVoice.h \
- jni/../../../Source/Sequencer.h jni/../../../Source/DrumController.h \
- jni/../../../Source/AudioFileSelector.h \
- jni/../../../Source/AudioFileSelectorListener.h \
- jni/../../../Source/PadFieldComponent.h
+ ../../JuceLibraryCode/BinaryData.h
 
-jni/../../../Source/MainViewComponent.h:
+jni/../../../Source/Sequencer.h:
 
 ../../JuceLibraryCode/JuceHeader.h:
 
@@ -2011,19 +2005,3 @@ jni/../../../Source/MainViewComponent.h:
 ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h:
 
 ../../JuceLibraryCode/BinaryData.h:
-
-jni/../../../Source/AudioEngine.h:
-
-jni/../../../Source/drumSamples.h:
-
-jni/../../../Source/SampleVoice.h:
-
-jni/../../../Source/Sequencer.h:
-
-jni/../../../Source/DrumController.h:
-
-jni/../../../Source/AudioFileSelector.h:
-
-jni/../../../Source/AudioFileSelectorListener.h:
-
-jni/../../../Source/PadFieldComponent.h:

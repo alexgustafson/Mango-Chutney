@@ -669,7 +669,7 @@ obj/local/armeabi/objs-debug/juce_jni/__/__/__/Source/PadFieldComponent.o: \
  ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h \
  ../../JuceLibraryCode/BinaryData.h jni/../../../Source/DrumController.h \
  jni/../../../Source/AudioEngine.h jni/../../../Source/drumSamples.h \
- jni/../../../Source/SampleVoice.h
+ jni/../../../Source/SampleVoice.h jni/../../../Source/Sequencer.h
 
 jni/../../../Source/PadFieldComponent.h:
 
@@ -2016,3 +2016,5 @@ jni/../../../Source/AudioEngine.h:
 jni/../../../Source/drumSamples.h:
 
 jni/../../../Source/SampleVoice.h:
+
+jni/../../../Source/Sequencer.h:

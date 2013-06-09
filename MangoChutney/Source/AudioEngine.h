@@ -54,8 +54,6 @@ private:
     int sampleCounter;
     int beatCounter;
     
-    String tick = "tick";
-
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthAudioSource)
 };
 

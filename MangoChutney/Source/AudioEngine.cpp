@@ -139,7 +139,6 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
                 }
             }
             sequencer->beatCount = beatCounter;
-            MessageManager::broadcastMessage(tick);
             beatCounter++ ;
         }
         
