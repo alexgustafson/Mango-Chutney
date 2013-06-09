@@ -205,20 +205,20 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == selectButton)
     {
         //[UserButtonCode_selectButton] -- add your button handler code here..
-        component->setMode(PadField::Mode::Selectmode);
+        component->setMode(Selectmode);
         //[/UserButtonCode_selectButton]
     }
     else if (buttonThatWasClicked == playButton)
     {
         //[UserButtonCode_playButton] -- add your button handler code here..
-        component->setMode(PadField::Mode::Playmode);
+        component->setMode(Playmode);
         drumController->toggleSequencerPlayStop();
         //[/UserButtonCode_playButton]
     }
     else if (buttonThatWasClicked == stepButton)
     {
         //[UserButtonCode_stepButton] -- add your button handler code here..
-        component->setMode(PadField::Mode::Stepmode);
+        component->setMode(Stepmode);
         //[/UserButtonCode_stepButton]
     }
 

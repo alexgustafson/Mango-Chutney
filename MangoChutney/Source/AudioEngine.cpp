@@ -118,7 +118,7 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     MidiBuffer incomingMidi;
     midiCollector.removeNextBlockOfMessages (incomingMidi, bufferToFill.numSamples);
     
-    if (sequencer->getState() == Sequencer::isPlaying) {
+    if (sequencer->getState() == isPlaying) {
     
     for (int i = 0; i < bufferToFill.numSamples; i++) {
         sampleCounter++;
@@ -177,24 +177,24 @@ void SynthAudioSource::setSampleForSound(int index, File soundFile)
 
 void SynthAudioSource::startSequencer()
 {
-    sequencer->setState(Sequencer::SequencerState::shouldPlay);
+    sequencer->setState(shouldPlay);
 }
 
 void SynthAudioSource::pauseSequencer()
 {
-    sequencer->setState(Sequencer::SequencerState::shouldPause);
+    sequencer->setState(shouldPause);
 }
 
 void SynthAudioSource::stopSequencer()
 {
     beatCounter = 0;
     sampleCounter = 0;
-    sequencer->setState(Sequencer::SequencerState::shouldStop);
+    sequencer->setState(shouldStop);
 }
 
 void SynthAudioSource::toggleStartStop()
 {
-    if (sequencer->getState() == Sequencer::SequencerState::isStopped) {
+    if (sequencer->getState() == isStopped) {
         startSequencer();
     }
     else

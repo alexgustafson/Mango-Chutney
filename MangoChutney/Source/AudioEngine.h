@@ -49,7 +49,7 @@ public:
     void toggleStartStop();
     
 private:
-    float tempo = 112.0;
+    float tempo;
     float samplesPerBeat;
     int sampleCounter;
     int beatCounter;

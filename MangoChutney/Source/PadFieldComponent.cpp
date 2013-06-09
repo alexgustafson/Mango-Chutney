@@ -150,8 +150,6 @@ PadField::PadField ()
 
     //[Constructor] You can add your own custom stuff here..
     sequencer = Sequencer::getInstance();
-    pads = OwnedArray<ImageButton>();
-
     pad1->setName("pad1");
     pad2->setName("pad2");
     pad3->setName("pad3");
@@ -186,7 +184,7 @@ PadField::PadField ()
     pad15->setRadioGroupId (34567);
     pad16->setRadioGroupId (34567);
 
-    padMode = Mode::Selectmode;
+    padMode = Selectmode;
 
     pads.add(pad1);
     pads.add(pad2);
@@ -326,10 +324,13 @@ void PadField::resized()
 void PadField::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
-    if (padMode == Selectmode) {
+    if (padMode == Selectmode)
+    {
         activepad = (ImageButton* )buttonThatWasClicked;
         mainDrumController->buttonStateChanged(buttonThatWasClicked);
-    }else if (padMode == Playmode)
+        
+    }
+    else if (padMode == Playmode)
     {
         mainDrumController->buttonStateChanged(buttonThatWasClicked);
     }
@@ -440,10 +441,10 @@ void PadField::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-void PadField::setMode(PadField::Mode mode)
+void PadField::setMode(PadMode mode)
 {
     padMode = mode;
-    if (mode == PadField::Mode::Selectmode) {
+    if (mode == Selectmode) {
 
         for (int i = 0; i < pads.size(); i++) {
 
@@ -456,7 +457,7 @@ void PadField::setMode(PadField::Mode mode)
 
         activepad->setToggleState(true, false);
 
-    }else if(mode == PadField::Mode::Playmode)
+    }else if(mode == Playmode)
     {
 
         for (int i = 0; i < pads.size(); i++) {
@@ -469,7 +470,7 @@ void PadField::setMode(PadField::Mode mode)
         }
 
 
-    }else if(mode == PadField::Mode::Stepmode)
+    }else if(mode == Stepmode)
     {
 
         for (int i = 0; i < pads.size(); i++) {
@@ -499,11 +500,15 @@ void PadField::addDrumController(DrumController* drumController)
 void PadField::timerCallback()
 {
 
-    if (padMode == Mode::Stepmode) {
+    if (padMode == Stepmode) {
 
         int activePadIndex = pads.indexOf(activepad);
 
         for (int i = 0; i < 16; i++) {
+            
+            if (activePadIndex == i) {
+                continue;
+            }
 
             ImageButton *tempButton = pads[i];
 

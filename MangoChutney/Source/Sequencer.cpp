@@ -13,7 +13,7 @@
 
 juce_ImplementSingleton (Sequencer)
 
-void Sequencer::setState(Sequencer::SequencerState newState)
+void Sequencer::setState(SequencerState newState)
 {
     
     switch (newState) {

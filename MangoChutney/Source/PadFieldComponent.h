@@ -35,6 +35,8 @@
  Describe your class and how it works here!
                                                                     //[/Comments]
 */
+enum PadMode { Playmode, Selectmode, Stepmode};
+
 class PadField  : public Component,
                   public Timer,
                   public ButtonListener
@@ -46,9 +48,8 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-    enum Mode { Playmode, Selectmode, Stepmode};
     void addDrumController(DrumController* drumcontroller);
-    void setMode(PadField::Mode mode);
+    void setMode(PadMode mode);
     void buttonStateChanged(juce::Button *button);
     void timerCallback();
     //[/UserMethods]
@@ -68,9 +69,9 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     DrumController* mainDrumController;
     OwnedArray<ImageButton> pads;
-    Mode padMode;
+    PadMode padMode;
     ImageButton* activepad;
-    int beatCount = 0;
+    int beatCount;
     Sequencer* sequencer;
     //[/UserVariables]
 

@@ -12,8 +12,18 @@
 #define __SEQUENCER_H_3100F9F2__
 
 #include "JuceHeader.h"
+enum SequencerState {
+    
+    isStopped,
+    shouldStop,
+    shouldPlay,
+    isPlaying,
+    shouldPause,
+    isPaused
+    
+};
 
-class Sequencer 
+class Sequencer
 {
 public:
     
@@ -25,18 +35,6 @@ public:
     struct Pattern
     {
         Track tracks[16];
-    };
-    
-    
-    enum SequencerState {
-      
-        isStopped,
-        shouldStop,
-        shouldPlay,
-        isPlaying,
-        shouldPause,
-        isPaused
-        
     };
     
     Sequencer()
@@ -55,8 +53,8 @@ public:
     void setState(SequencerState newState);
     SequencerState getState() { return state; };
     
-    int beatCount = 0;
-    float tempo = 120;
+    int beatCount;
+    float tempo;
     
     Pattern pattern;
     
