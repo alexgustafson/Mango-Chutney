@@ -74,8 +74,51 @@ MainViewComponent::MainViewComponent ()
     addAndMakeVisible (tempoSlider = new Slider ("tempo slider"));
     tempoSlider->setRange (50, 220, 0.2);
     tempoSlider->setSliderStyle (Slider::Rotary);
-    tempoSlider->setTextBoxStyle (Slider::TextBoxLeft, false, 80, 20);
+    tempoSlider->setTextBoxStyle (Slider::TextBoxBelow, true, 60, 20);
+    tempoSlider->setColour (Slider::backgroundColourId, Colour (0xff070000));
+    tempoSlider->setColour (Slider::thumbColourId, Colour (0xc700004f));
+    tempoSlider->setColour (Slider::trackColourId, Colour (0xff230000));
+    tempoSlider->setColour (Slider::rotarySliderFillColourId, Colours::burlywood);
+    tempoSlider->setColour (Slider::rotarySliderOutlineColourId, Colour (0x82fdfdfd));
+    tempoSlider->setColour (Slider::textBoxTextColourId, Colours::red);
+    tempoSlider->setColour (Slider::textBoxBackgroundColourId, Colour (0xff0a0707));
     tempoSlider->addListener (this);
+
+    addAndMakeVisible (label = new Label ("new label",
+                                          "load"));
+    label->setFont (Font (13.00f, Font::plain));
+    label->setJustificationType (Justification::centred);
+    label->setEditable (false, false, false);
+    label->setColour (Label::textColourId, Colour (0xffadadad));
+    label->setColour (TextEditor::textColourId, Colours::black);
+    label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (label2 = new Label ("new label",
+                                           "select"));
+    label2->setFont (Font (13.00f, Font::plain));
+    label2->setJustificationType (Justification::centred);
+    label2->setEditable (false, false, false);
+    label2->setColour (Label::textColourId, Colour (0xffadadad));
+    label2->setColour (TextEditor::textColourId, Colours::black);
+    label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (label3 = new Label ("new label",
+                                           "play"));
+    label3->setFont (Font (13.00f, Font::plain));
+    label3->setJustificationType (Justification::centred);
+    label3->setEditable (false, false, false);
+    label3->setColour (Label::textColourId, Colour (0xffadadad));
+    label3->setColour (TextEditor::textColourId, Colours::black);
+    label3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (label4 = new Label ("new label",
+                                           "step"));
+    label4->setFont (Font (13.00f, Font::plain));
+    label4->setJustificationType (Justification::centred);
+    label4->setEditable (false, false, false);
+    label4->setColour (Label::textColourId, Colour (0xffadadad));
+    label4->setColour (TextEditor::textColourId, Colours::black);
+    label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     cachedImage_backgrounpanel_png_1 = ImageCache::getFromMemory (backgrounpanel_png, backgrounpanel_pngSize);
     cachedImage_label_03_png = ImageCache::getFromMemory (label_03_png, label_03_pngSize);
@@ -114,6 +157,10 @@ MainViewComponent::~MainViewComponent()
     component = nullptr;
     stepButton = nullptr;
     tempoSlider = nullptr;
+    label = nullptr;
+    label2 = nullptr;
+    label3 = nullptr;
+    label4 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -133,7 +180,7 @@ void MainViewComponent::paint (Graphics& g)
     g.setTiledImageFill (cachedImage_backgrounpanel_png_1,
                          0, 0,
                          1.0000f);
-    g.fillRoundedRectangle (4.0f, 4.0f, static_cast<float> (proportionOfWidth (1.0000f)), static_cast<float> (proportionOfHeight (1.0000f)), 1.000f);
+    g.fillRoundedRectangle (4.0f, 4.0f, static_cast<float> (getWidth() - 8), static_cast<float> (getHeight() - 8), 1.000f);
 
     g.setColour (Colours::black);
     g.drawImageWithin (cachedImage_label_03_png,
@@ -150,9 +197,13 @@ void MainViewComponent::resized()
     setupButton->setBounds (16, 40, 40, 64);
     selectButton->setBounds (56, 40, 40, 64);
     playButton->setBounds (96, 40, 40, 64);
-    component->setBounds (24, 104, 290, 290);
+    component->setBounds (24, 152, 290, 290);
     stepButton->setBounds (136, 40, 40, 64);
-    tempoSlider->setBounds (256, 40, 176, 56);
+    tempoSlider->setBounds (getWidth() - 107, 40, 96, 80);
+    label->setBounds (16, 96, 40, 24);
+    label2->setBounds (56, 96, 40, 24);
+    label3->setBounds (96, 96, 40, 24);
+    label4->setBounds (136, 96, 40, 24);
     //[UserResized] Add your own custom resize handling here..
     if(getHeight() > getWidth())
     {
@@ -161,7 +212,7 @@ void MainViewComponent::resized()
         selectButton->setBounds (56, 40, 40, 64);
         playButton->setBounds (96, 40, 40, 64);
         stepButton->setBounds (136, 40, 40, 64);
-        component->setBounds (16, getHeight() - getWidth(), getWidth() - 32, getWidth()  );
+        component->setBounds (16, getHeight() - getWidth(), getWidth() - 32, getWidth() - 8 );
     }else
     {
         //landscape 2 x 8
@@ -169,7 +220,7 @@ void MainViewComponent::resized()
         selectButton->setBounds (56, 40, 40, 64);
         playButton->setBounds (96, 40, 40, 64);
         stepButton->setBounds (136, 40, 40, 64);
-        component->setBounds(16, getHeight() - (int)(getWidth() / 4),getWidth() - 32, ((int)getWidth() / 4)) ;
+        component->setBounds(16, getHeight() - (int)(getWidth() / 4),getWidth() - 32, ((int)getWidth() / 4) - 16) ;
     }
 
     if (fileBrowser) {
@@ -304,7 +355,7 @@ BEGIN_JUCER_METADATA
                  snapShown="1" overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
                  initialHeight="300">
   <BACKGROUND backgroundColour="ff000000">
-    <ROUNDRECT pos="4 4 100% 100%" cornerSize="1" fill="image: backgrounpanel_png, 1, 0 0"
+    <ROUNDRECT pos="4 4 8M 8M" cornerSize="1" fill="image: backgrounpanel_png, 1, 0 0"
                hasStroke="0"/>
     <IMAGE pos="4 4 252 36" resource="label_03_png" opacity="1" mode="1"/>
   </BACKGROUND>
@@ -327,7 +378,7 @@ BEGIN_JUCER_METADATA
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
                opacityDown="1" colourDown="0"/>
   <JUCERCOMP name="" id="c33e7dac6962d4cf" memberName="component" virtualName=""
-             explicitFocusOrder="0" pos="24 104 290 290" sourceFile="PadFieldComponent.cpp"
+             explicitFocusOrder="0" pos="24 152 290 290" sourceFile="PadFieldComponent.cpp"
              constructorParams=""/>
   <IMAGEBUTTON name="step button" id="3c48281046602f90" memberName="stepButton"
                virtualName="" explicitFocusOrder="0" pos="136 40 40 64" buttonText="new button"
@@ -336,9 +387,31 @@ BEGIN_JUCER_METADATA
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
                opacityDown="1" colourDown="0"/>
   <SLIDER name="tempo slider" id="8974591e6706b422" memberName="tempoSlider"
-          virtualName="" explicitFocusOrder="0" pos="256 40 176 56" min="50"
-          max="220" int="0.2" style="Rotary" textBoxPos="TextBoxLeft" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
+          virtualName="" explicitFocusOrder="0" pos="107R 40 96 80" bkgcol="ff070000"
+          thumbcol="c700004f" trackcol="ff230000" rotarysliderfill="ffdeb887"
+          rotaryslideroutline="82fdfdfd" textboxtext="ffff0000" textboxbkgd="ff0a0707"
+          min="50" max="220" int="0.2" style="Rotary" textBoxPos="TextBoxBelow"
+          textBoxEditable="0" textBoxWidth="60" textBoxHeight="20" skewFactor="1"/>
+  <LABEL name="new label" id="f43cdd915a3fe25e" memberName="label" virtualName=""
+         explicitFocusOrder="0" pos="16 96 40 24" textCol="ffadadad" edTextCol="ff000000"
+         edBkgCol="0" labelText="load" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="13"
+         bold="0" italic="0" justification="36"/>
+  <LABEL name="new label" id="66a0e64cb535d5ee" memberName="label2" virtualName=""
+         explicitFocusOrder="0" pos="56 96 40 24" textCol="ffadadad" edTextCol="ff000000"
+         edBkgCol="0" labelText="select" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="13"
+         bold="0" italic="0" justification="36"/>
+  <LABEL name="new label" id="353ff4e85ffc0097" memberName="label3" virtualName=""
+         explicitFocusOrder="0" pos="96 96 40 24" textCol="ffadadad" edTextCol="ff000000"
+         edBkgCol="0" labelText="play" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="13"
+         bold="0" italic="0" justification="36"/>
+  <LABEL name="new label" id="1441b889f15e6481" memberName="label4" virtualName=""
+         explicitFocusOrder="0" pos="136 96 40 24" textCol="ffadadad"
+         edTextCol="ff000000" edBkgCol="0" labelText="step" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="13" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

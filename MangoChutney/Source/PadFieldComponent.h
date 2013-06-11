@@ -23,6 +23,8 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
 #include "DrumController.h"
+
+enum PadMode { Selectmode, Playmode, Stepmode };
 //[/Headers]
 
 
@@ -35,8 +37,6 @@
  Describe your class and how it works here!
                                                                     //[/Comments]
 */
-enum PadMode { Playmode, Selectmode, Stepmode};
-
 class PadField  : public Component,
                   public Timer,
                   public ButtonListener

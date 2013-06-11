@@ -102,6 +102,10 @@ private:
     ScopedPointer<PadField> component;
     ScopedPointer<ImageButton> stepButton;
     ScopedPointer<Slider> tempoSlider;
+    ScopedPointer<Label> label;
+    ScopedPointer<Label> label2;
+    ScopedPointer<Label> label3;
+    ScopedPointer<Label> label4;
     Image cachedImage_backgrounpanel_png_1;
     Image cachedImage_label_03_png;
 
