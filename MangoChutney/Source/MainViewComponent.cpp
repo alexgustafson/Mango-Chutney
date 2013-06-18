@@ -157,7 +157,8 @@ MainViewComponent::MainViewComponent ()
     playButton->setClickingTogglesState(true);
     setupButton->setClickingTogglesState(false);
     stepButton->setClickingTogglesState(true);
-
+    patternButton->setClickingTogglesState(true);
+    
     tempoSlider->setValue(114.0);
 
     //[/Constructor]
@@ -215,33 +216,25 @@ void MainViewComponent::paint (Graphics& g)
 void MainViewComponent::resized()
 {
     setupButton->setBounds (16, 40, 40, 64);
-    selectButton->setBounds (56, 40, 40, 64);
-    playButton->setBounds (96, 40, 40, 64);
+    selectButton->setBounds (96, 40, 40, 64);
+    playButton->setBounds (56, 40, 40, 64);
     component->setBounds (24, 152, 290, 290);
     stepButton->setBounds (136, 40, 40, 64);
     tempoSlider->setBounds (getWidth() - 107, 40, 96, 80);
     label->setBounds (16, 96, 40, 24);
-    label2->setBounds (56, 96, 40, 24);
-    label3->setBounds (96, 96, 40, 24);
+    label2->setBounds (96, 96, 40, 24);
+    label3->setBounds (56, 96, 40, 24);
     label4->setBounds (136, 96, 40, 24);
     patternButton->setBounds (176, 40, 40, 64);
-    label5->setBounds (176, 96, 40, 24);
+    label5->setBounds (171, 96, 48, 24);
     //[UserResized] Add your own custom resize handling here..
     if(getHeight() > getWidth())
     {
         //portrait 4 x 4
-        setupButton->setBounds (16, 40, 40, 64);
-        selectButton->setBounds (56, 40, 40, 64);
-        playButton->setBounds (96, 40, 40, 64);
-        stepButton->setBounds (136, 40, 40, 64);
         component->setBounds (16, getHeight() - getWidth(), getWidth() - 32, getWidth() - 8 );
     }else
     {
         //landscape 2 x 8
-        setupButton->setBounds (16, 40, 40, 64);
-        selectButton->setBounds (56, 40, 40, 64);
-        playButton->setBounds (96, 40, 40, 64);
-        stepButton->setBounds (136, 40, 40, 64);
         component->setBounds(16, getHeight() - (int)(getWidth() / 4),getWidth() - 32, ((int)getWidth() / 4) - 16) ;
     }
 
@@ -297,6 +290,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == patternButton)
     {
         //[UserButtonCode_patternButton] -- add your button handler code here..
+        component->setMode(Patternmode);
         //[/UserButtonCode_patternButton]
     }
 
@@ -393,13 +387,13 @@ BEGIN_JUCER_METADATA
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
                opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="select button" id="2e13002f79a45ac3" memberName="selectButton"
-               virtualName="" explicitFocusOrder="0" pos="56 40 40 64" buttonText="new button"
+               virtualName="" explicitFocusOrder="0" pos="96 40 40 64" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
                resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
                opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="play button" id="ccc5656cdd20daae" memberName="playButton"
-               virtualName="" explicitFocusOrder="0" pos="96 40 40 64" buttonText="new button"
+               virtualName="" explicitFocusOrder="0" pos="56 40 40 64" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="33000" keepProportions="1"
                resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
@@ -425,12 +419,12 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="13"
          bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="66a0e64cb535d5ee" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="56 96 40 24" textCol="ffadadad" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="96 96 40 24" textCol="ffadadad" edTextCol="ff000000"
          edBkgCol="0" labelText="select" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="12.8"
          bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="353ff4e85ffc0097" memberName="label3" virtualName=""
-         explicitFocusOrder="0" pos="96 96 40 24" textCol="ffadadad" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="56 96 40 24" textCol="ffadadad" edTextCol="ff000000"
          edBkgCol="0" labelText="play" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="13"
          bold="0" italic="0" justification="36"/>
@@ -446,7 +440,7 @@ BEGIN_JUCER_METADATA
                resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
                opacityDown="1" colourDown="0"/>
   <LABEL name="new label" id="483e187f0e50de01" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="176 96 40 24" textCol="ffadadad"
+         explicitFocusOrder="0" pos="171 96 48 24" textCol="ffadadad"
          edTextCol="ff000000" edBkgCol="0" labelText="pattern" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="13" bold="0" italic="0" justification="36"/>

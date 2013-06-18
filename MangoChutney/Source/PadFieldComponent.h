@@ -24,7 +24,7 @@
 #include "JuceHeader.h"
 #include "DrumController.h"
 
-enum PadMode { Selectmode, Playmode, Stepmode };
+enum PadMode { Selectmode, Playmode, Stepmode, Patternmode };
 //[/Headers]
 
 

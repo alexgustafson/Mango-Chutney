@@ -57,3 +57,10 @@ void Sequencer::setTempo(int newTempo)
     samplesPerBeat =  (1.0 / (tempo * 4)) * 60.0 * 44100.0;
 
 }
+
+void Sequencer::setPattern(int patternNr)
+{
+    song.patterns[activePattern] = pattern;
+    pattern = song.patterns[patternNr];
+    activePattern = patternNr;
+}

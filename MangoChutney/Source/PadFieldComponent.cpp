@@ -436,6 +436,12 @@ void PadField::buttonClicked (Button* buttonThatWasClicked)
             sequencer->pattern.tracks[activePadIndex].notes[selectedPad] = 0.0;
         }
 
+    }else if (padMode == Patternmode)
+    {
+        int activePadIndex = pads.indexOf(activepad);
+        int selectedPad = pads.indexOf((ImageButton* )buttonThatWasClicked);
+        
+        sequencer->setPattern(selectedPad);
     }
 
     //[/UserbuttonClicked_Post]
@@ -487,6 +493,22 @@ void PadField::setMode(PadMode mode)
 
 
     }
+    else if(mode == Patternmode)
+    {
+        
+        for (int i = 0; i < pads.size(); i++) {
+            
+            ImageButton *tempButton = pads[i];
+            tempButton->setRadioGroupId(34567);
+            tempButton->setClickingTogglesState(true);
+            tempButton->setToggleState(false, false);
+            
+        }
+        
+        ImageButton *tempButton = pads[sequencer->activePattern];
+        tempButton->setToggleState(true, false);
+        
+    }
     startTimer(60);
 }
 
@@ -509,10 +531,6 @@ void PadField::timerCallback()
 
         for (int i = 0; i < 16; i++) {
 
-            if (activePadIndex == i) {
-                continue;
-            }
-
             ImageButton *tempButton = pads[i];
 
             if (sequencer->pattern.tracks[activePadIndex].notes[i] > 0.0) {
@@ -530,8 +548,13 @@ void PadField::timerCallback()
     if(beatCount != sequencer->beatCount)
     {
         beatCount = sequencer->beatCount;
-        ImageButton *tempButton = pads[beatCount];
-        tempButton->setToggleState(true, false);
+        
+        if(padMode == Stepmode)
+        {
+            ImageButton *tempButton = pads[beatCount];
+            tempButton->setToggleState(true, false);
+        }
+
     }
 
 }

@@ -206,7 +206,7 @@ void SynthAudioSource::stopSequencer()
 
 void SynthAudioSource::toggleStartStop()
 {
-    if (sequencer->getState() == isStopped) {
+    if (sequencer->getState() != isPlaying) {
         startSequencer();
     }
     else
