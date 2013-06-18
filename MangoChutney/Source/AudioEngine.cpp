@@ -79,19 +79,35 @@ void SynthAudioSource::setUsingSampledSound()
     notes.setRange (5, 1, true);
     ScopedPointer<AudioFormatReader> audioReader5 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_rim_01_sat_wav,
                                                                                                      drumSamples::wa_808tape_rim_01_sat_wavSize,
-                                                                                                     false),
-                                                                              true));
+                                                                                                     false),true));
+                                                                              
     synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,5,0.01,0.3,10.0));
     notes.setRange (6, 1, true);
-    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,6,0.01,0.3,10.0));
+    ScopedPointer<AudioFormatReader> audioReader6 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_rim_01_sat_wav,
+                                                                                                     drumSamples::wa_808tape_rim_01_sat_wavSize,
+                                                                                                     false),true));
+    
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader6, notes,6,0.01,0.3,10.0));
     notes.setRange (7, 1, true);
-    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,7,0.01,0.3,10.0));
+    ScopedPointer<AudioFormatReader> audioReader7 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_rim_01_sat_wav,
+                                                                                                     drumSamples::wa_808tape_rim_01_sat_wavSize,
+                                                                                                     false),true));
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader7, notes,7,0.01,0.3,10.0));
     notes.setRange (8, 1, true);
-    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,8,0.01,0.3,10.0));
+    ScopedPointer<AudioFormatReader> audioReader8 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_rim_01_sat_wav,
+                                                                                                     drumSamples::wa_808tape_rim_01_sat_wavSize,
+                                                                                                     false),true));
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader8, notes,8,0.01,0.3,10.0));
     notes.setRange (9, 1, true);
-    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,9,0.01,0.3,10.0));
+    ScopedPointer<AudioFormatReader> audioReader9 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_rim_01_sat_wav,
+                                                                                                     drumSamples::wa_808tape_rim_01_sat_wavSize,
+                                                                                                     false),true));
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader9, notes,9,0.01,0.3,10.0));
     notes.setRange (10, 1, true);
-    synth.addSound(new DDSamplerSound ("bass drum", *audioReader5, notes,10,0.01,0.3,10.0));
+    ScopedPointer<AudioFormatReader> audioReader10 (wavFormat.createReaderFor (new MemoryInputStream (drumSamples::wa_808tape_rim_01_sat_wav,
+                                                                                                     drumSamples::wa_808tape_rim_01_sat_wavSize,
+                                                                                                     false),true));
+    synth.addSound(new DDSamplerSound ("bass drum", *audioReader10, notes,10,0.01,0.3,10.0));
     
 }
 

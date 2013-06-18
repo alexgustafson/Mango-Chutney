@@ -95,7 +95,7 @@ MainViewComponent::MainViewComponent ()
 
     addAndMakeVisible (label2 = new Label ("new label",
                                            "select"));
-    label2->setFont (Font (13.00f, Font::plain));
+    label2->setFont (Font (12.80f, Font::plain));
     label2->setJustificationType (Justification::centred);
     label2->setEditable (false, false, false);
     label2->setColour (Label::textColourId, Colour (0xffadadad));
@@ -119,6 +119,24 @@ MainViewComponent::MainViewComponent ()
     label4->setColour (Label::textColourId, Colour (0xffadadad));
     label4->setColour (TextEditor::textColourId, Colours::black);
     label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    addAndMakeVisible (patternButton = new ImageButton ("patternbutton"));
+    patternButton->setButtonText ("new button");
+    patternButton->setRadioGroupId (34567);
+    patternButton->addListener (this);
+
+    patternButton->setImages (false, true, true,
+                              ImageCache::getFromMemory (buttonOff_png, buttonOff_pngSize), 1.000f, Colour (0x00000000),
+                              Image(), 1.000f, Colour (0x00000000),
+                              ImageCache::getFromMemory (buttonOn_png, buttonOn_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (label5 = new Label ("new label",
+                                           "pattern"));
+    label5->setFont (Font (13.00f, Font::plain));
+    label5->setJustificationType (Justification::centred);
+    label5->setEditable (false, false, false);
+    label5->setColour (Label::textColourId, Colour (0xffadadad));
+    label5->setColour (TextEditor::textColourId, Colours::black);
+    label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     cachedImage_backgrounpanel_png_1 = ImageCache::getFromMemory (backgrounpanel_png, backgrounpanel_pngSize);
     cachedImage_label_03_png = ImageCache::getFromMemory (label_03_png, label_03_pngSize);
@@ -161,6 +179,8 @@ MainViewComponent::~MainViewComponent()
     label2 = nullptr;
     label3 = nullptr;
     label4 = nullptr;
+    patternButton = nullptr;
+    label5 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -204,6 +224,8 @@ void MainViewComponent::resized()
     label2->setBounds (56, 96, 40, 24);
     label3->setBounds (96, 96, 40, 24);
     label4->setBounds (136, 96, 40, 24);
+    patternButton->setBounds (176, 40, 40, 64);
+    label5->setBounds (176, 96, 40, 24);
     //[UserResized] Add your own custom resize handling here..
     if(getHeight() > getWidth())
     {
@@ -271,6 +293,11 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_stepButton] -- add your button handler code here..
         component->setMode(Stepmode);
         //[/UserButtonCode_stepButton]
+    }
+    else if (buttonThatWasClicked == patternButton)
+    {
+        //[UserButtonCode_patternButton] -- add your button handler code here..
+        //[/UserButtonCode_patternButton]
     }
 
     //[UserbuttonClicked_Post]
@@ -400,7 +427,7 @@ BEGIN_JUCER_METADATA
   <LABEL name="new label" id="66a0e64cb535d5ee" memberName="label2" virtualName=""
          explicitFocusOrder="0" pos="56 96 40 24" textCol="ffadadad" edTextCol="ff000000"
          edBkgCol="0" labelText="select" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="13"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="12.8"
          bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="353ff4e85ffc0097" memberName="label3" virtualName=""
          explicitFocusOrder="0" pos="96 96 40 24" textCol="ffadadad" edTextCol="ff000000"
@@ -410,6 +437,17 @@ BEGIN_JUCER_METADATA
   <LABEL name="new label" id="1441b889f15e6481" memberName="label4" virtualName=""
          explicitFocusOrder="0" pos="136 96 40 24" textCol="ffadadad"
          edTextCol="ff000000" edBkgCol="0" labelText="step" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="13" bold="0" italic="0" justification="36"/>
+  <IMAGEBUTTON name="patternbutton" id="9a7688cc97b26649" memberName="patternButton"
+               virtualName="" explicitFocusOrder="0" pos="176 40 40 64" buttonText="new button"
+               connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
+               resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
+               resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
+               opacityDown="1" colourDown="0"/>
+  <LABEL name="new label" id="483e187f0e50de01" memberName="label5" virtualName=""
+         explicitFocusOrder="0" pos="176 96 40 24" textCol="ffadadad"
+         edTextCol="ff000000" edBkgCol="0" labelText="pattern" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="13" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>

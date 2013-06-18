@@ -89,7 +89,10 @@
       <Add library="kernel32"/>
       <Add library="comctl32"/>
     </Linker>
-    <Unit filename="../Android/res/drawable/icon.png"/>
+    <Unit filename="../../../../JUCE/JUCE/extras/JuceDemo/Binary Data/icon.png">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../Source/Sequencer.cpp"/>
     <Unit filename="../../Source/Sequencer.h">
       <Option compile="0"/>
@@ -127,11 +130,6 @@
     </Unit>
     <Unit filename="../../../Media/sounds/binaryfiles/drumSamples.cpp"/>
     <Unit filename="../../../Media/sounds/binaryfiles/drumSamples.h">
-      <Option compile="0"/>
-      <Option link="0"/>
-    </Unit>
-    <Unit filename="../../Source/MainComponent.cpp"/>
-    <Unit filename="../../Source/MainComponent.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
