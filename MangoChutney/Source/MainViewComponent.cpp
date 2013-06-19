@@ -255,7 +255,15 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_setupButton] -- add your button handler code here..
         if(!fileBrowser)
         {
-            juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
+            #if JUCE_IOS 
+
+                juce::File theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
+            #endif
+            
+            #if JUCE_ANDROID
+            juce::File theDocumentDirectory("/storage/sdcard0/DrumSounds");
+            #endif
+            
             int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
 
             fileBrowser = new AudioFileSelector(flags, theDocumentDirectory ,NULL, NULL );

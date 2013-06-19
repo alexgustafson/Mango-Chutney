@@ -3,103 +3,103 @@ obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_core/juce_
  ../../JuceLibraryCode/AppConfig.h \
  jni/../../../JuceLibraryCode/modules/juce_core/native/juce_BasicNativeHeaders.h \
  jni/../../../JuceLibraryCode/modules/juce_core/native/../system/juce_TargetPlatform.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/jni.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/pthread.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/time.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/cdefs.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/cdefs_elf.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/android/api-level.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/time.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/types.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/stdint.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/_types.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/_types.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/posix_types.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/stddef.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/compiler.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/posix_types.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/types.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/types.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/kernel.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/sysmacros.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/time.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/siginfo.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/signal.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/limits.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/limits.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/limits.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/internal_types.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/limits.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/syslimits.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/page.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/string.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/malloc.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/signal.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/signal.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/sigcontext.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sched.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/utime.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/utime.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/errno.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/errno.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/errno.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/errno.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/errno-base.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/fcntl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/fcntl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/fcntl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/fcntl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/unistd.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/select.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/sysconf.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/capability.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/pathconf.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/dlfcn.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/stat.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/stat.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/endian.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/endian.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/endian.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/statfs.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/vfs.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ptrace.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/ptrace.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ptrace.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/sysinfo.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/kernel.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/mman.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/mman.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/mman.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/mman-common.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/pwd.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/dirent.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/fnmatch.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/wait.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/resource.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/resource.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/resource.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/resource.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/wait.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/jni.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/pthread.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/time.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/android/api-level.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/time.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/types.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/stdint.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/_types.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/_types.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/posix_types.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/stddef.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/compiler.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/posix_types.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/types.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/types.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/kernel.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/time.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/siginfo.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/siginfo.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/signal.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/limits.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/limits.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/limits.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/internal_types.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/limits.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/syslimits.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/page.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/string.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/malloc.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/signal.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/signal.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/sigcontext.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sched.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/utime.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/utime.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/errno.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/errno.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/errno.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/errno.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/errno-base.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/fcntl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/fcntl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/fcntl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/fcntl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/unistd.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/select.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysconf.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/capability.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/pathconf.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/dlfcn.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/stat.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/stat.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/endian.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/endian.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/endian.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/statfs.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/vfs.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/ptrace.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/ptrace.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/ptrace.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysinfo.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/kernel.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/mman.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/mman.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/mman.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/mman-common.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/pwd.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/dirent.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/fnmatch.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/wait.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/resource.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/resource.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/resource.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/resource.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/wait.h \
  jni/../../../JuceLibraryCode/modules/juce_core/juce_core.h \
  jni/../../../JuceLibraryCode/modules/juce_core/system/juce_TargetPlatform.h \
  jni/../../../JuceLibraryCode/modules/juce_core/system/juce_StandardHeader.h \
  jni/../../../JuceLibraryCode/modules/juce_core/system/juce_TargetPlatform.h \
  jni/../../../JuceLibraryCode/modules/juce_core/system/juce_PlatformDefs.h \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdlib \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdarg \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/climits \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/limits \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cmath \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cwchar \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/stdexcept \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/typeinfo \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdio \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/vector \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/atomics.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/byteswap.h \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdlib \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdarg \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/climits \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/limits \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cmath \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cwchar \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/stdexcept \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/typeinfo \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdio \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/vector \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/atomics.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/byteswap.h \
  jni/../../../JuceLibraryCode/modules/juce_core/system/../memory/juce_Memory.h \
  jni/../../../JuceLibraryCode/modules/juce_core/system/../maths/juce_MathsFunctions.h \
  jni/../../../JuceLibraryCode/modules/juce_core/system/../memory/juce_ByteOrder.h \
@@ -278,39 +278,39 @@ obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_core/juce_
  jni/../../../JuceLibraryCode/modules/juce_core/zip/../streams/juce_InputSource.h \
  jni/../../../JuceLibraryCode/modules/juce_core/zip/../threads/juce_CriticalSection.h \
  jni/../../../JuceLibraryCode/modules/juce_core/zip/../containers/juce_OwnedArray.h \
- /Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/locale \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/timeb.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/socket.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/socket.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/socket.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/sockios.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/sockios.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/uio.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/errno.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netinet/in.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/in.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/byteorder.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/byteorder/little_endian.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/byteorder/swab.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/byteorder/generic.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/in6.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/ipv6.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netinet/in6.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netdb.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/arpa/inet.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netinet/tcp.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/tcp.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/net/if.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/if.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/hdlc/ioctl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ioctl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/ioctl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ioctl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/ioctl.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ioctls.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/termbits.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ioctl_compat.h \
- /Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/android/log.h \
+ /Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/locale \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/timeb.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/socket.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/socket.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/socket.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/sockios.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/sockios.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/uio.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/errno.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/netinet/in.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/in.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/byteorder.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/byteorder/little_endian.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/byteorder/swab.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/byteorder/generic.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/in6.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/ipv6.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/netinet/in6.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/netdb.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/arpa/inet.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/netinet/tcp.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/tcp.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/net/if.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/if.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/hdlc/ioctl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/ioctl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/ioctl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/ioctl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/ioctl.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/ioctls.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/termbits.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/ioctl_compat.h \
+ /Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/android/log.h \
  jni/../../../JuceLibraryCode/modules/juce_core/containers/juce_AbstractFifo.cpp \
  jni/../../../JuceLibraryCode/modules/juce_core/containers/juce_DynamicObject.cpp \
  jni/../../../JuceLibraryCode/modules/juce_core/containers/juce_NamedValueSet.cpp \
@@ -402,161 +402,161 @@ jni/../../../JuceLibraryCode/modules/juce_core/native/juce_BasicNativeHeaders.h:
 
 jni/../../../JuceLibraryCode/modules/juce_core/native/../system/juce_TargetPlatform.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/jni.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/jni.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/pthread.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/pthread.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/time.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/time.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/cdefs.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/cdefs_elf.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/cdefs_elf.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/android/api-level.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/android/api-level.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/time.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/time.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/types.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/types.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/stdint.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/stdint.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/_types.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/_types.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/_types.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/_types.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/posix_types.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/posix_types.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/stddef.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/stddef.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/compiler.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/compiler.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/posix_types.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/posix_types.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/types.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/types.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/types.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/types.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/kernel.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/kernel.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/sysmacros.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysmacros.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/time.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/time.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/siginfo.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/siginfo.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/siginfo.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/siginfo.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/signal.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/signal.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/limits.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/limits.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/limits.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/limits.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/limits.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/limits.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/internal_types.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/internal_types.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/limits.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/limits.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/syslimits.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/syslimits.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/page.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/page.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/string.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/string.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/malloc.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/malloc.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/signal.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/signal.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/signal.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/signal.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/sigcontext.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/sigcontext.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sched.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sched.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/utime.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/utime.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/utime.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/utime.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/errno.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/errno.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/errno.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/errno.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/errno.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/errno.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/errno.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/errno.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/errno-base.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/errno-base.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/fcntl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/fcntl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/fcntl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/fcntl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/fcntl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/fcntl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/fcntl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/fcntl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/unistd.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/unistd.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/select.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/select.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/sysconf.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysconf.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/capability.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/capability.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/pathconf.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/pathconf.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/dlfcn.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/dlfcn.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/stat.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/stat.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/stat.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/stat.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/endian.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/endian.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/endian.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/endian.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/machine/endian.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/machine/endian.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/statfs.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/statfs.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/vfs.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/vfs.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ptrace.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/ptrace.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/ptrace.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/ptrace.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ptrace.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/ptrace.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/sysinfo.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/sysinfo.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/kernel.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/kernel.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/mman.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/mman.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/mman.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/mman.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/mman.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/mman.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/mman-common.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/mman-common.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/pwd.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/pwd.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/dirent.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/dirent.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/fnmatch.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/fnmatch.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/wait.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/wait.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/resource.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/resource.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/resource.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/resource.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/resource.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/resource.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/resource.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/resource.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/wait.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/wait.h:
 
 jni/../../../JuceLibraryCode/modules/juce_core/juce_core.h:
 
@@ -568,33 +568,33 @@ jni/../../../JuceLibraryCode/modules/juce_core/system/juce_TargetPlatform.h:
 
 jni/../../../JuceLibraryCode/modules/juce_core/system/juce_PlatformDefs.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdlib:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdlib:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdarg:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdarg:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/climits:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/climits:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/limits:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/limits:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cmath:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cmath:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cwchar:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cwchar:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/stdexcept:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/stdexcept:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/typeinfo:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/typeinfo:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstring:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdio:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/cstdio:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/iostream:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/vector:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/vector:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/atomics.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/atomics.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/byteswap.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/byteswap.h:
 
 jni/../../../JuceLibraryCode/modules/juce_core/system/../memory/juce_Memory.h:
 
@@ -952,71 +952,71 @@ jni/../../../JuceLibraryCode/modules/juce_core/zip/../threads/juce_CriticalSecti
 
 jni/../../../JuceLibraryCode/modules/juce_core/zip/../containers/juce_OwnedArray.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/locale:
+/Users/alexgustafson/SDKs/android-ndk/sources/cxx-stl/gnu-libstdc++/4.6/include/locale:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/timeb.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/timeb.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/socket.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/socket.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/socket.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/socket.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/socket.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/socket.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/sockios.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/sockios.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/sockios.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/sockios.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/uio.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/uio.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/errno.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/errno.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netinet/in.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/netinet/in.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/in.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/in.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/byteorder.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/byteorder.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/byteorder/little_endian.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/byteorder/little_endian.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/byteorder/swab.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/byteorder/swab.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/byteorder/generic.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/byteorder/generic.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/in6.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/in6.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/ipv6.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/ipv6.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netinet/in6.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/netinet/in6.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netdb.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/netdb.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/arpa/inet.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/arpa/inet.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/netinet/tcp.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/netinet/tcp.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/tcp.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/tcp.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/net/if.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/net/if.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/if.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/if.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/hdlc/ioctl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/hdlc/ioctl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ioctl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/ioctl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/linux/ioctl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/linux/ioctl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ioctl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/ioctl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm-generic/ioctl.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm-generic/ioctl.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/ioctls.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/ioctls.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/asm/termbits.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/asm/termbits.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/sys/ioctl_compat.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/sys/ioctl_compat.h:
 
-/Users/alex_gustafson/SDKs/android-ndk/platforms/android-14/arch-arm/usr/include/android/log.h:
+/Users/alexgustafson/SDKs/android-ndk/platforms/android-8/arch-arm/usr/include/android/log.h:
 
 jni/../../../JuceLibraryCode/modules/juce_core/containers/juce_AbstractFifo.cpp:
 

@@ -80,7 +80,7 @@ public:
 private:
     //==============================================================================
     friend class DDSamplerVoice;
-    
+    AudioFormatManager formatManager;
     String name;
     ScopedPointer <AudioSampleBuffer> data;
     double sourceSampleRate;

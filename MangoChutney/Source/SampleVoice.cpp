@@ -55,8 +55,12 @@ DDSamplerSound::DDSamplerSound (const String& name_,
 midiNotes (midiNotes_),
 midiRootNote (midiNoteForNormalPitch)
 {
-    WavAudioFormat wavFormat;
-    ScopedPointer<MemoryMappedAudioFormatReader> source ( wavFormat.createMemoryMappedReader(sourceAudioFile));
+    AudioFormat *audioFormat;
+    formatManager.registerBasicFormats();
+    audioFormat = formatManager.findFormatForFileExtension(sourceAudioFile.getFileExtension());
+
+    
+    ScopedPointer<MemoryMappedAudioFormatReader> source ( audioFormat->createMemoryMappedReader(sourceAudioFile));
     source->mapEntireFile();
     sourceSampleRate = source->sampleRate;
 
@@ -127,9 +131,13 @@ void DDSamplerSound::setupSound(const String& name_,
 
 void DDSamplerSound::setSourceFile(const juce::File file)
 {
-    sourceAudioFile = file;
-    WavAudioFormat wavFormat;
-    ScopedPointer<MemoryMappedAudioFormatReader> source ( wavFormat.createMemoryMappedReader(sourceAudioFile));
+    AudioFormat *audioFormat;
+    formatManager.registerBasicFormats();
+    audioFormat = formatManager.findFormatForFileExtension(file.getFileExtension());
+
+    
+    
+    ScopedPointer<MemoryMappedAudioFormatReader> source ( audioFormat->createMemoryMappedReader(file));
     source->mapEntireFile();
     sourceSampleRate = source->sampleRate;
     

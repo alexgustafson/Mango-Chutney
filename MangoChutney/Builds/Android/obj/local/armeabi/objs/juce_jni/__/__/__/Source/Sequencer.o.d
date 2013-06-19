@@ -1,7 +1,6 @@
-obj/local/armeabi/objs/juce_jni/__/__/__/Source/DrumController.o: \
- jni/../../../Source/DrumController.cpp \
- jni/../../../Source/DrumController.h ../../JuceLibraryCode/JuceHeader.h \
- ../../JuceLibraryCode/AppConfig.h \
+obj/local/armeabi/objs/juce_jni/__/__/__/Source/Sequencer.o: \
+ jni/../../../Source/Sequencer.cpp jni/../../../Source/Sequencer.h \
+ ../../JuceLibraryCode/JuceHeader.h ../../JuceLibraryCode/AppConfig.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/juce_core.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/system/juce_TargetPlatform.h \
@@ -667,11 +666,9 @@ obj/local/armeabi/objs/juce_jni/__/__/__/Source/DrumController.o: \
  ../../JuceLibraryCode/modules/juce_video/playback/juce_DirectShowComponent.h \
  ../../JuceLibraryCode/modules/juce_video/playback/juce_QuickTimeMovieComponent.h \
  ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h \
- ../../JuceLibraryCode/BinaryData.h jni/../../../Source/AudioEngine.h \
- jni/../../../Source/drumSamples.h jni/../../../Source/SampleVoice.h \
- jni/../../../Source/Sequencer.h
+ ../../JuceLibraryCode/BinaryData.h
 
-jni/../../../Source/DrumController.h:
+jni/../../../Source/Sequencer.h:
 
 ../../JuceLibraryCode/JuceHeader.h:
 
@@ -2008,11 +2005,3 @@ jni/../../../Source/DrumController.h:
 ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h:
 
 ../../JuceLibraryCode/BinaryData.h:
-
-jni/../../../Source/AudioEngine.h:
-
-jni/../../../Source/drumSamples.h:
-
-jni/../../../Source/SampleVoice.h:
-
-jni/../../../Source/Sequencer.h:
