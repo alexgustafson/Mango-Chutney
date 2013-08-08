@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="IdProvider" IDEtalkID="E4414ABBBE64D7D3D34065B5152F5FF9" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/out" />
-  </component>
+  <component name="IdProvider" IDEtalkID="14B2CA01A855E499A578DBF74B5C9F1E" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" />
 </project>
 
