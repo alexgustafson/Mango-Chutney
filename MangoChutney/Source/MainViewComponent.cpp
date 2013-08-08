@@ -139,7 +139,6 @@ MainViewComponent::MainViewComponent ()
     label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
     cachedImage_backgrounpanel_png_1 = ImageCache::getFromMemory (backgrounpanel_png, backgrounpanel_pngSize);
-    cachedImage_label_03_png = ImageCache::getFromMemory (label_03_png, label_03_pngSize);
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -158,7 +157,7 @@ MainViewComponent::MainViewComponent ()
     setupButton->setClickingTogglesState(false);
     stepButton->setClickingTogglesState(true);
     patternButton->setClickingTogglesState(true);
-    
+
     tempoSlider->setValue(114.0);
 
     //[/Constructor]
@@ -203,30 +202,24 @@ void MainViewComponent::paint (Graphics& g)
                          1.0000f);
     g.fillRoundedRectangle (4.0f, 4.0f, static_cast<float> (getWidth() - 8), static_cast<float> (getHeight() - 8), 1.000f);
 
-    g.setColour (Colours::black);
-    g.drawImageWithin (cachedImage_label_03_png,
-                       4, 4, 252, 36,
-                       RectanglePlacement::centred,
-                       false);
-
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
 
 void MainViewComponent::resized()
 {
-    setupButton->setBounds (16, 40, 40, 64);
-    selectButton->setBounds (96, 40, 40, 64);
-    playButton->setBounds (56, 40, 40, 64);
+    setupButton->setBounds (16, 8, proportionOfWidth (0.1224f), proportionOfHeight (0.1385f));
+    selectButton->setBounds (((16) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f)), 8, proportionOfWidth (0.1224f), proportionOfHeight (0.1385f));
+    playButton->setBounds ((16) + (proportionOfWidth (0.1224f)), 8, proportionOfWidth (0.1224f), proportionOfHeight (0.1385f));
     component->setBounds (24, 152, 290, 290);
-    stepButton->setBounds (136, 40, 40, 64);
-    tempoSlider->setBounds (getWidth() - 107, 40, 96, 80);
-    label->setBounds (16, 96, 40, 24);
-    label2->setBounds (96, 96, 40, 24);
-    label3->setBounds (56, 96, 40, 24);
-    label4->setBounds (136, 96, 40, 24);
-    patternButton->setBounds (176, 40, 40, 64);
-    label5->setBounds (171, 96, 48, 24);
+    stepButton->setBounds ((((16) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f)), 8, proportionOfWidth (0.1224f), proportionOfHeight (0.1385f));
+    tempoSlider->setBounds (getWidth() - 107, 8, 96, 80);
+    label->setBounds ((16) + (proportionOfWidth (0.1224f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1385f)) - 8, 40, 24);
+    label2->setBounds ((((16) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1385f)) - 8, 40, 24);
+    label3->setBounds (((16) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1385f)) - 8, 40, 24);
+    label4->setBounds (((((16) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1385f)) - 8, 40, 24);
+    patternButton->setBounds (((((16) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f)), 8, proportionOfWidth (0.1224f), proportionOfHeight (0.1385f));
+    label5->setBounds ((((((16) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f))) + (proportionOfWidth (0.1224f)) / 2 - ((48) / 2), (8) + (proportionOfHeight (0.1385f)) - 8, 48, 24);
     //[UserResized] Add your own custom resize handling here..
     if(getHeight() > getWidth())
     {
@@ -256,15 +249,15 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
         if(!fileBrowser)
         {
             juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
-            
-            #if JUCE_IOS 
+
+            #if JUCE_IOS
                 theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
             #endif
-            
+
             #if JUCE_ANDROID
                 theDocumentDirectory("/storage/sdcard0/DrumSounds");
             #endif
-            
+
             int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
 
             fileBrowser = new AudioFileSelector(flags, theDocumentDirectory ,NULL, NULL );
@@ -387,72 +380,77 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="ff000000">
     <ROUNDRECT pos="4 4 8M 8M" cornerSize="1" fill="image: backgrounpanel_png, 1, 0 0"
                hasStroke="0"/>
-    <IMAGE pos="4 4 252 36" resource="label_03_png" opacity="1" mode="1"/>
   </BACKGROUND>
   <IMAGEBUTTON name="new button" id="6fc8c6b2dd61df0d" memberName="setupButton"
-               virtualName="" explicitFocusOrder="0" pos="16 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="34566" keepProportions="1"
-               resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
-               opacityDown="1" colourDown="0"/>
+               virtualName="" explicitFocusOrder="0" pos="16 8 12.24% 13.852%"
+               buttonText="new button" connectedEdges="0" needsCallback="1"
+               radioGroupId="34566" keepProportions="1" resourceNormal="buttonOff_png"
+               opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
+               colourOver="0" resourceDown="buttonOn_png" opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="select button" id="2e13002f79a45ac3" memberName="selectButton"
-               virtualName="" explicitFocusOrder="0" pos="96 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
-               resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
-               opacityDown="1" colourDown="0"/>
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
+               posRelativeX="ccc5656cdd20daae" buttonText="new button" connectedEdges="0"
+               needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
+               opacityNormal="0.999707043" colourNormal="0" resourceOver=""
+               opacityOver="1" colourOver="0" resourceDown="buttonOn_png" opacityDown="1"
+               colourDown="0"/>
   <IMAGEBUTTON name="play button" id="ccc5656cdd20daae" memberName="playButton"
-               virtualName="" explicitFocusOrder="0" pos="56 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="33000" keepProportions="1"
-               resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
-               opacityDown="1" colourDown="0"/>
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
+               posRelativeX="6fc8c6b2dd61df0d" buttonText="new button" connectedEdges="0"
+               needsCallback="1" radioGroupId="33000" keepProportions="1" resourceNormal="buttonOff_png"
+               opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
+               colourOver="0" resourceDown="buttonOn_png" opacityDown="1" colourDown="0"/>
   <JUCERCOMP name="" id="c33e7dac6962d4cf" memberName="component" virtualName=""
              explicitFocusOrder="0" pos="24 152 290 290" sourceFile="PadFieldComponent.cpp"
              constructorParams=""/>
   <IMAGEBUTTON name="step button" id="3c48281046602f90" memberName="stepButton"
-               virtualName="" explicitFocusOrder="0" pos="136 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
-               resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
-               opacityDown="1" colourDown="0"/>
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
+               posRelativeX="2e13002f79a45ac3" buttonText="new button" connectedEdges="0"
+               needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
+               opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
+               colourOver="0" resourceDown="buttonOn_png" opacityDown="1" colourDown="0"/>
   <SLIDER name="tempo slider" id="8974591e6706b422" memberName="tempoSlider"
-          virtualName="" explicitFocusOrder="0" pos="107R 40 96 80" bkgcol="ff070000"
+          virtualName="" explicitFocusOrder="0" pos="107R 8 96 80" bkgcol="ff070000"
           thumbcol="c700004f" trackcol="ff230000" rotarysliderfill="ffdeb887"
           rotaryslideroutline="82fdfdfd" textboxtext="ffff0000" textboxbkgd="ff0a0707"
           min="50" max="220" int="0.2" style="Rotary" textBoxPos="TextBoxBelow"
           textBoxEditable="0" textBoxWidth="60" textBoxHeight="20" skewFactor="1"/>
   <LABEL name="new label" id="f43cdd915a3fe25e" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="16 96 40 24" textCol="ffadadad" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="0Cc 8R 40 24" posRelativeX="6fc8c6b2dd61df0d"
+         posRelativeY="6fc8c6b2dd61df0d" textCol="ffadadad" edTextCol="ff000000"
          edBkgCol="0" labelText="load" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="13"
          bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="66a0e64cb535d5ee" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="96 96 40 24" textCol="ffadadad" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="0Cc 8R 40 24" posRelativeX="2e13002f79a45ac3"
+         posRelativeY="2e13002f79a45ac3" textCol="ffadadad" edTextCol="ff000000"
          edBkgCol="0" labelText="select" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="12.8"
          bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="353ff4e85ffc0097" memberName="label3" virtualName=""
-         explicitFocusOrder="0" pos="56 96 40 24" textCol="ffadadad" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="0Cc 8R 40 24" posRelativeX="ccc5656cdd20daae"
+         posRelativeY="ccc5656cdd20daae" textCol="ffadadad" edTextCol="ff000000"
          edBkgCol="0" labelText="play" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="13"
          bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="1441b889f15e6481" memberName="label4" virtualName=""
-         explicitFocusOrder="0" pos="136 96 40 24" textCol="ffadadad"
-         edTextCol="ff000000" edBkgCol="0" labelText="step" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="13" bold="0" italic="0" justification="36"/>
+         explicitFocusOrder="0" pos="0Cc 8R 40 24" posRelativeX="3c48281046602f90"
+         posRelativeY="3c48281046602f90" textCol="ffadadad" edTextCol="ff000000"
+         edBkgCol="0" labelText="step" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="13"
+         bold="0" italic="0" justification="36"/>
   <IMAGEBUTTON name="patternbutton" id="9a7688cc97b26649" memberName="patternButton"
-               virtualName="" explicitFocusOrder="0" pos="176 40 40 64" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="34567" keepProportions="1"
-               resourceNormal="buttonOff_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="buttonOn_png"
-               opacityDown="1" colourDown="0"/>
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
+               posRelativeX="3c48281046602f90" buttonText="new button" connectedEdges="0"
+               needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
+               opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
+               colourOver="0" resourceDown="buttonOn_png" opacityDown="1" colourDown="0"/>
   <LABEL name="new label" id="483e187f0e50de01" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="171 96 48 24" textCol="ffadadad"
-         edTextCol="ff000000" edBkgCol="0" labelText="pattern" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="13" bold="0" italic="0" justification="36"/>
+         explicitFocusOrder="0" pos="0Cc 8R 48 24" posRelativeX="9a7688cc97b26649"
+         posRelativeY="9a7688cc97b26649" textCol="ffadadad" edTextCol="ff000000"
+         edBkgCol="0" labelText="pattern" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="13"
+         bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

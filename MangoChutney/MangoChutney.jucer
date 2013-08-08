@@ -3,11 +3,19 @@
 <JUCERPROJECT id="konZIe" name="MangoChutney" projectType="guiapp" version="1.0.0"
               bundleIdentifier="com.alexgustafson.MangoChutney" jucerVersion="3.1.0">
   <MAINGROUP id="XJU6G3" name="MangoChutney">
-    <FILE id="KXV48G" name="icon.png" compile="0" resource="1" file="../../JUCE/JUCE/extras/JuceDemo/Binary Data/icon.png"/>
+    <FILE id="x0EW2Q" name="juce_icon.png" compile="0" resource="1" file="../../JUCE/JUCE/extras/JuceDemo/Binary Data/juce_icon.png"/>
     <GROUP id="{759C40BD-AFAB-D3EE-6CE6-57B4C71CDEBB}" name="Source">
       <FILE id="aLv2zB" name="Sequencer.cpp" compile="1" resource="0" file="Source/Sequencer.cpp"/>
       <FILE id="vDzLKw" name="Sequencer.h" compile="0" resource="0" file="Source/Sequencer.h"/>
       <GROUP id="{4F38993A-CBCE-C933-C8D5-858B5034963D}" name="GUI">
+        <FILE id="CWAsru" name="SampleSettingsComponent.cpp" compile="1" resource="0"
+              file="Source/SampleSettingsComponent.cpp"/>
+        <FILE id="fTPGTl" name="SampleSettingsComponent.h" compile="0" resource="0"
+              file="Source/SampleSettingsComponent.h"/>
+        <FILE id="yUGnrm" name="SettingsViewComponent.cpp" compile="1" resource="0"
+              file="Source/SettingsViewComponent.cpp"/>
+        <FILE id="GFov4C" name="SettingsViewComponent.h" compile="0" resource="0"
+              file="Source/SettingsViewComponent.h"/>
         <FILE id="nfHjYC" name="AudioFileSelector.cpp" compile="1" resource="0"
               file="Source/AudioFileSelector.cpp"/>
         <FILE id="rtGgtN" name="AudioFileSelector.h" compile="0" resource="0"
@@ -78,7 +86,7 @@
       </CONFIGURATIONS>
     </ANDROID>
     <XCODE_MAC targetFolder="Builds/MacOSX" juceFolder="../../../juce/modules"
-               smallIcon="g95Z3N" bigIcon="g95Z3N">
+               smallIcon="x0EW2Q" bigIcon="x0EW2Q">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" osxSDK="default" osxCompatibility="default" osxArchitecture="default"
                        isDebug="1" optimisation="1" targetName="MangoChutney"/>
@@ -87,7 +95,8 @@
       </CONFIGURATIONS>
     </XCODE_MAC>
     <XCODE_IPHONE targetFolder="Builds/iOS" juceFolder="../../../juce/modules"
-                  UIFileSharingEnabled="1" UIStatusBarHidden="1">
+                  UIFileSharingEnabled="1" UIStatusBarHidden="1" smallIcon="x0EW2Q"
+                  bigIcon="x0EW2Q">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" iosCompatibility="default" isDebug="1" optimisation="1"
                        targetName="MangoChutney"/>

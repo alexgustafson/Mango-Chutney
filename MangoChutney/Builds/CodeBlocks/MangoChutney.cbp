@@ -89,12 +89,22 @@
       <Add library="kernel32"/>
       <Add library="comctl32"/>
     </Linker>
-    <Unit filename="../../../../JUCE/JUCE/extras/JuceDemo/Binary Data/icon.png">
+    <Unit filename="../../../../JUCE/JUCE/extras/JuceDemo/Binary Data/juce_icon.png">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
     <Unit filename="../../Source/Sequencer.cpp"/>
     <Unit filename="../../Source/Sequencer.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../Source/SampleSettingsComponent.cpp"/>
+    <Unit filename="../../Source/SampleSettingsComponent.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../Source/SettingsViewComponent.cpp"/>
+    <Unit filename="../../Source/SettingsViewComponent.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
@@ -2114,6 +2124,14 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_gui_basics/mouse/juce_MouseInactivityDetector.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_gui_basics/mouse/juce_MouseInactivityDetector.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_gui_basics/mouse/juce_MouseInputSource.cpp">
       <Option compile="0"/>
       <Option link="0"/>
@@ -2399,6 +2417,14 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_gui_basics/menus/juce_PopupMenu.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_gui_basics/layout/juce_AnimatedPosition.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_gui_basics/layout/juce_AnimatedPositionBehaviours.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
@@ -3179,6 +3205,10 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_gui_extra/native/juce_mac_NSViewComponent.mm">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_gui_extra/native/juce_mac_SystemTrayIcon.cpp">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>

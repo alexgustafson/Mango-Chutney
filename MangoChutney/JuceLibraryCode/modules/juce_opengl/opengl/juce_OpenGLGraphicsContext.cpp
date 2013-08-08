@@ -1,24 +1,23 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE library - "Jules' Utility Class Extensions"
-   Copyright 2004-11 by Raw Material Software Ltd.
+   This file is part of the JUCE library.
+   Copyright (c) 2013 - Raw Material Software Ltd.
 
-  ------------------------------------------------------------------------------
+   Permission is granted to use this software under the terms of either:
+   a) the GPL v2 (or any later version)
+   b) the Affero GPL v3
 
-   JUCE can be redistributed and/or modified under the terms of the GNU General
-   Public License (Version 2), as published by the Free Software Foundation.
-   A copy of the license is included in the JUCE distribution, or can be found
-   online at www.gnu.org/licenses.
+   Details of these licenses can be found at: www.gnu.org/licenses
 
    JUCE is distributed in the hope that it will be useful, but WITHOUT ANY
    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
    A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-  ------------------------------------------------------------------------------
+   ------------------------------------------------------------------------------
 
    To release a closed-source product which uses JUCE, commercial licenses are
-   available: visit www.rawmaterialsoftware.com/juce for more information.
+   available: visit www.juce.com for more information.
 
   ==============================================================================
 */
@@ -32,7 +31,7 @@ struct Target
         : context (c), frameBufferID (frameBufferID_), bounds (width, height)
     {}
 
-    Target (OpenGLContext& c, OpenGLFrameBuffer& fb, const Point<int>& origin) noexcept
+    Target (OpenGLContext& c, OpenGLFrameBuffer& fb, Point<int> origin) noexcept
         : context (c), frameBufferID (fb.getFrameBufferID()),
           bounds (origin.x, origin.y, fb.getWidth(), fb.getHeight())
     {
@@ -298,7 +297,7 @@ public:
               matrix (program, "matrix")
         {}
 
-        void setMatrix (const Point<float>& p1, const Point<float>& p2, const Point<float>& p3)
+        void setMatrix (const Point<float> p1, const Point<float> p2, const Point<float> p3)
         {
             const AffineTransform t (AffineTransform::fromTargetPoints (p1.x, p1.y,  0.0f, 0.0f,
                                                                         p2.x, p2.y,  1.0f, 0.0f,
@@ -665,8 +664,8 @@ struct StateHelpers
     template <class QuadQueueType>
     struct EdgeTableRenderer
     {
-        EdgeTableRenderer (QuadQueueType& quadQueue_, const PixelARGB& colour_) noexcept
-            : quadQueue (quadQueue_), colour (colour_)
+        EdgeTableRenderer (QuadQueueType& q, const PixelARGB c) noexcept
+            : quadQueue (q), colour (c)
         {}
 
         void setEdgeTableYPos (const int y) noexcept
@@ -709,8 +708,8 @@ struct StateHelpers
     template <class QuadQueueType>
     struct FloatRectangleRenderer
     {
-        FloatRectangleRenderer (QuadQueueType& quadQueue_, const PixelARGB& colour_) noexcept
-            : quadQueue (quadQueue_), colour (colour_)
+        FloatRectangleRenderer (QuadQueueType& q, const PixelARGB c) noexcept
+            : quadQueue (q), colour (c)
         {}
 
         void operator() (const int x, const int y, const int w, const int h, const int alpha) noexcept
@@ -946,7 +945,7 @@ struct StateHelpers
             JUCE_CHECK_OPENGL_ERROR
         }
 
-        void add (const int x, const int y, const int w, const int h, const PixelARGB& colour) noexcept
+        void add (const int x, const int y, const int w, const int h, const PixelARGB colour) noexcept
         {
             jassert (w > 0 && h > 0);
 
@@ -968,24 +967,24 @@ struct StateHelpers
                 draw();
         }
 
-        void add (const Rectangle<int>& r, const PixelARGB& colour) noexcept
+        void add (const Rectangle<int>& r, const PixelARGB colour) noexcept
         {
             add (r.getX(), r.getY(), r.getWidth(), r.getHeight(), colour);
         }
 
-        void add (const Rectangle<float>& r, const PixelARGB& colour) noexcept
+        void add (const Rectangle<float>& r, const PixelARGB colour) noexcept
         {
             FloatRectangleRenderer<ShaderQuadQueue> frr (*this, colour);
             RenderingHelpers::FloatRectangleRasterisingInfo (r).iterate (frr);
         }
 
-        void add (const RectangleList& list, const PixelARGB& colour) noexcept
+        void add (const RectangleList& list, const PixelARGB colour) noexcept
         {
             for (const Rectangle<int>* i = list.begin(), * const e = list.end(); i != e; ++i)
                 add (*i, colour);
         }
 
-        void add (const RectangleList& list, const Rectangle<int>& clip, const PixelARGB& colour) noexcept
+        void add (const RectangleList& list, const Rectangle<int>& clip, const PixelARGB colour) noexcept
         {
             for (const Rectangle<int>* i = list.begin(), * const e = list.end(); i != e; ++i)
             {
@@ -996,7 +995,7 @@ struct StateHelpers
             }
         }
 
-        void add (const EdgeTable& et, const PixelARGB& colour)
+        void add (const EdgeTable& et, const PixelARGB colour)
         {
             EdgeTableRenderer<ShaderQuadQueue> etr (*this, colour);
             et.iterate (etr);

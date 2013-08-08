@@ -1,24 +1,23 @@
 /*
   ==============================================================================
 
-   This file is part of the JUCE library - "Jules' Utility Class Extensions"
-   Copyright 2004-11 by Raw Material Software Ltd.
+   This file is part of the JUCE library.
+   Copyright (c) 2013 - Raw Material Software Ltd.
 
-  ------------------------------------------------------------------------------
+   Permission is granted to use this software under the terms of either:
+   a) the GPL v2 (or any later version)
+   b) the Affero GPL v3
 
-   JUCE can be redistributed and/or modified under the terms of the GNU General
-   Public License (Version 2), as published by the Free Software Foundation.
-   A copy of the license is included in the JUCE distribution, or can be found
-   online at www.gnu.org/licenses.
+   Details of these licenses can be found at: www.gnu.org/licenses
 
    JUCE is distributed in the hope that it will be useful, but WITHOUT ANY
    WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
    A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-  ------------------------------------------------------------------------------
+   ------------------------------------------------------------------------------
 
    To release a closed-source product which uses JUCE, commercial licenses are
-   available: visit www.rawmaterialsoftware.com/juce for more information.
+   available: visit www.juce.com for more information.
 
   ==============================================================================
 */
@@ -1555,7 +1554,7 @@ private:
     }
 
     //==============================================================================
-    void doMouseEvent (const Point<int>& position)
+    void doMouseEvent (Point<int> position)
     {
         handleMouseEvent (0, position, currentModifiers, getMouseEventTime());
     }
@@ -1613,7 +1612,7 @@ private:
                 && (flags & 0x80) != 0; // (bit 7 = 0 for pen events, 1 for touch)
     }
 
-    void doMouseMove (const Point<int>& position)
+    void doMouseMove (Point<int> position)
     {
         if (! isCurrentEventFromTouchScreen())
         {
@@ -1652,7 +1651,7 @@ private:
         }
     }
 
-    void doMouseDown (const Point<int>& position, const WPARAM wParam)
+    void doMouseDown (Point<int> position, const WPARAM wParam)
     {
         if (! isCurrentEventFromTouchScreen())
         {
@@ -1668,7 +1667,7 @@ private:
         }
     }
 
-    void doMouseUp (const Point<int>& position, const WPARAM wParam)
+    void doMouseUp (Point<int> position, const WPARAM wParam)
     {
         if (! isCurrentEventFromTouchScreen())
         {
@@ -2357,7 +2356,8 @@ private:
                 if (doAppCommand (lParam))
                     return TRUE;
 
-                break;
+            case WM_MENUCHAR: // triggered when alt+something is pressed
+                return MNC_CLOSE << 16; // (avoids making the default system beep)
 
             //==============================================================================
             case WM_SETFOCUS:
@@ -3025,7 +3025,7 @@ Point<int> MouseInputSource::getCurrentMousePosition()
     return Point<int> (mousePos.x, mousePos.y);
 }
 
-void Desktop::setMousePosition (const Point<int>& newPosition)
+void Desktop::setMousePosition (Point<int> newPosition)
 {
     SetCursorPos (newPosition.x, newPosition.y);
 }

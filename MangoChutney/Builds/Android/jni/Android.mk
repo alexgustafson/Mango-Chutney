@@ -5,9 +5,12 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+LOCAL_ARM_MODE := arm
 LOCAL_MODULE := juce_jni
 LOCAL_SRC_FILES := \
   ../../../Source/Sequencer.cpp\
+  ../../../Source/SampleSettingsComponent.cpp\
+  ../../../Source/SettingsViewComponent.cpp\
   ../../../Source/AudioFileSelector.cpp\
   ../../../Source/PadFieldComponent.cpp\
   ../../../Source/MainViewComponent.cpp\
