@@ -138,11 +138,6 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../../Media/sounds/binaryfiles/drumSamples.cpp"/>
-    <Unit filename="../../../Media/sounds/binaryfiles/drumSamples.h">
-      <Option compile="0"/>
-      <Option link="0"/>
-    </Unit>
     <Unit filename="../../Source/Main.cpp"/>
     <Unit filename="../../JuceLibraryCode/modules/juce_audio_basics/buffers/juce_AudioDataConverters.cpp">
       <Option compile="0"/>

@@ -37,8 +37,6 @@
             file="Source/DrumController.h"/>
       <FILE id="alq3T6" name="AudioEngine.cpp" compile="1" resource="0" file="Source/AudioEngine.cpp"/>
       <FILE id="BCu5DD" name="AudioEngine.h" compile="0" resource="0" file="Source/AudioEngine.h"/>
-      <FILE id="VCO3Vs" name="drumSamples.cpp" compile="1" resource="0" file="../Media/sounds/binaryfiles/drumSamples.cpp"/>
-      <FILE id="tbPNQh" name="drumSamples.h" compile="0" resource="0" file="../Media/sounds/binaryfiles/drumSamples.h"/>
       <FILE id="YlSFub" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     </GROUP>
   </MAINGROUP>

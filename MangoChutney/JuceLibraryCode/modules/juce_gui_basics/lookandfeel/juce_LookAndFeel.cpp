@@ -264,7 +264,7 @@ void LookAndFeel::setDefaultLookAndFeel (LookAndFeel* newDefaultLookAndFeel) noe
 }
 
 //==============================================================================
-const Typeface::Ptr LookAndFeel::getTypefaceForFont (const Font& font)
+Typeface::Ptr LookAndFeel::getTypefaceForFont (const Font& font)
 {
     if (defaultSans.isNotEmpty() && font.getTypefaceName() == Font::getDefaultSansSerifFontName())
     {
@@ -300,7 +300,8 @@ MouseCursor LookAndFeel::getMouseCursorFor (Component& component)
     return m;
 }
 
-LowLevelGraphicsContext* LookAndFeel::createGraphicsContext (const Image& imageToRenderOn, const Point<int>& origin, const RectangleList& initialClip)
+LowLevelGraphicsContext* LookAndFeel::createGraphicsContext (const Image& imageToRenderOn, const Point<int>& origin,
+                                                             const RectangleList<int>& initialClip)
 {
     return new LowLevelGraphicsSoftwareRenderer (imageToRenderOn, origin, initialClip);
 }
@@ -1466,7 +1467,13 @@ void LookAndFeel::drawLinearSlider (Graphics& g,
                                                                  isMouseOver || slider.isMouseButtonDown()));
 
         drawShinyButtonShape (g,
-                              (float) x, (float) y, sliderPos - (float) x, (float) height, 0.0f,
+                              (float) x,
+                              style == Slider::LinearBarVertical ? sliderPos
+                                                                 : (float) y,
+                              style == Slider::LinearBarVertical ? (float) width
+                                                                 : (sliderPos - x),
+                              style == Slider::LinearBarVertical ? (height - sliderPos)
+                                                                 : (float) height, 0.0f,
                               baseColour,
                               slider.isEnabled() ? 0.9f : 0.3f,
                               true, true, true, true);
@@ -1600,6 +1607,19 @@ Label* LookAndFeel::createSliderTextBox (Slider& slider)
 ImageEffectFilter* LookAndFeel::getSliderEffect()
 {
     return nullptr;
+}
+
+Font LookAndFeel::getSliderPopupFont()
+{
+    return Font (15.0f, Font::bold);
+}
+
+int LookAndFeel::getSliderPopupPlacement()
+{
+    return BubbleComponent::above
+            | BubbleComponent::below
+            | BubbleComponent::left
+            | BubbleComponent::right;
 }
 
 //==============================================================================
@@ -1813,7 +1833,7 @@ public:
     }
 
     //==============================================================================
-    void paintButton (Graphics& g, bool isMouseOverButton, bool isButtonDown)
+    void paintButton (Graphics& g, bool isMouseOverButton, bool isButtonDown) override
     {
         float alpha = isMouseOverButton ? (isButtonDown ? 1.0f : 0.8f) : 0.55f;
 
@@ -2178,12 +2198,6 @@ void LookAndFeel::drawTabButtonText (TabBarButton& button, Graphics& g, bool isM
     Font font (depth * 0.6f);
     font.setUnderline (button.hasKeyboardFocus (false));
 
-    GlyphArrangement textLayout;
-    textLayout.addFittedText (font, button.getButtonText().trim(),
-                              0.0f, 0.0f, (float) length, (float) depth,
-                              Justification::centred,
-                              jmax (1, ((int) depth) / 12));
-
     AffineTransform t;
 
     switch (button.getTabbedButtonBar().getOrientation())
@@ -2209,7 +2223,13 @@ void LookAndFeel::drawTabButtonText (TabBarButton& button, Graphics& g, bool isM
     const float alpha = button.isEnabled() ? ((isMouseOver || isMouseDown) ? 1.0f : 0.8f) : 0.3f;
 
     g.setColour (col.withMultipliedAlpha (alpha));
-    textLayout.draw (g, t);
+    g.setFont (font);
+    g.addTransform (t);
+
+    g.drawFittedText (button.getButtonText().trim(),
+                      0, 0, (int) length, (int) depth,
+                      Justification::centred,
+                      jmax (1, ((int) depth) / 12));
 }
 
 void LookAndFeel::drawTabButton (TabBarButton& button, Graphics& g, bool isMouseOver, bool isMouseDown)
@@ -2490,20 +2510,17 @@ void LookAndFeel::drawCallOutBoxBackground (CallOutBox& box, Graphics& g,
 
 
 //==============================================================================
-void LookAndFeel::createFileChooserHeaderText (const String& title,
-                                               const String& instructions,
-                                               GlyphArrangement& text,
-                                               int width)
+AttributedString LookAndFeel::createFileChooserHeaderText (const String& title,
+                                                           const String& instructions)
 {
-    text.clear();
+    AttributedString s;
+    s.setJustification (Justification::centred);
 
-    text.addJustifiedText (Font (17.0f, Font::bold), title,
-                           8.0f, 22.0f, width - 16.0f,
-                           Justification::centred);
+    const Colour colour (findColour (FileChooserDialogBox::titleTextColourId));
+    s.append (title + "\n\n", Font (17.0f, Font::bold), colour);
+    s.append (instructions, Font (14.0f), colour);
 
-    text.addJustifiedText (Font (14.0f), instructions,
-                           8.0f, 24.0f + 16.0f, width - 16.0f,
-                           Justification::centred);
+    return s;
 }
 
 void LookAndFeel::drawFileBrowserRow (Graphics& g, int width, int height,
@@ -2513,10 +2530,13 @@ void LookAndFeel::drawFileBrowserRow (Graphics& g, int width, int height,
                                       const bool isDirectory,
                                       const bool isItemSelected,
                                       const int /*itemIndex*/,
-                                      DirectoryContentsDisplayComponent&)
+                                      DirectoryContentsDisplayComponent& dcc)
 {
+    Component* const fileListComp = dynamic_cast<Component*> (&dcc);
+
     if (isItemSelected)
-        g.fillAll (findColour (DirectoryContentsDisplayComponent::highlightColourId));
+        g.fillAll (fileListComp != nullptr ? fileListComp->findColour (DirectoryContentsDisplayComponent::highlightColourId)
+                                           : findColour (DirectoryContentsDisplayComponent::highlightColourId));
 
     const int x = 32;
     g.setColour (Colours::black);
@@ -2535,7 +2555,8 @@ void LookAndFeel::drawFileBrowserRow (Graphics& g, int width, int height,
                            RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize, 1.0f);
     }
 
-    g.setColour (findColour (DirectoryContentsDisplayComponent::textColourId));
+    g.setColour (fileListComp != nullptr ? fileListComp->findColour (DirectoryContentsDisplayComponent::textColourId)
+                                         : findColour (DirectoryContentsDisplayComponent::textColourId));
     g.setFont (height * 0.7f);
 
     if (width > 450 && ! isDirectory)
@@ -2615,10 +2636,12 @@ void LookAndFeel::layoutFileBrowserComponent (FileBrowserComponent& browserComp,
 
     y += controlsHeight + 4;
 
-    Component* const listAsComp = dynamic_cast <Component*> (fileListComponent);
-    listAsComp->setBounds (x, y, w, browserComp.getHeight() - y - bottomSectionHeight);
+    if (Component* const listAsComp = dynamic_cast <Component*> (fileListComponent))
+    {
+        listAsComp->setBounds (x, y, w, browserComp.getHeight() - y - bottomSectionHeight);
+        y = listAsComp->getBottom() + 4;
+    }
 
-    y = listAsComp->getBottom() + 4;
     filenameBox->setBounds (x + 50, y, w - 50, controlsHeight);
 }
 

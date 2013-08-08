@@ -12,7 +12,6 @@
 #define __AUDIOENGINE_H_BE6F93C2__
 
 #include "JuceHeader.h"
-#include "drumSamples.h"
 #include "SampleVoice.h"
 #include "Sequencer.h"
 

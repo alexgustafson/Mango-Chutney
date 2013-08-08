@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_LOOKANDFEEL_JUCEHEADER__
-#define __JUCE_LOOKANDFEEL_JUCEHEADER__
+#ifndef JUCE_LOOKANDFEEL_H_INCLUDED
+#define JUCE_LOOKANDFEEL_H_INCLUDED
 
 #include "../widgets/juce_Slider.h"
 #include "../layout/juce_TabbedComponent.h"
@@ -128,7 +128,7 @@ public:
 
 
     //==============================================================================
-    virtual const Typeface::Ptr getTypefaceForFont (const Font& font);
+    virtual Typeface::Ptr getTypefaceForFont (const Font& font);
 
     /** Allows you to change the default sans-serif font.
 
@@ -148,7 +148,7 @@ public:
     // Creates a new graphics context object.
     virtual LowLevelGraphicsContext* createGraphicsContext (const Image& imageToRenderOn,
                                                             const Point<int>& origin,
-                                                            const RectangleList& initialClip);
+                                                            const RectangleList<int>& initialClip);
 
     //==============================================================================
     /** Draws the lozenge-shaped background for a standard button. */
@@ -259,7 +259,7 @@ public:
         @param width                the width of the thumb area to draw in
         @param height               the height of the thumb area to draw in
         @param isScrollbarVertical  true if it's a vertical bar, false if horizontal
-        @param thumbStartPosition   for vertical bars, the y co-ordinate of the top of the
+        @param thumbStartPosition   for vertical bars, the y coordinate of the top of the
                                     thumb, or its x position for horizontal bars
         @param thumbSize            for vertical bars, the height of the thumb, or its width for
                                     horizontal bars. This may be 0 if the thumb shouldn't be drawn.
@@ -311,10 +311,8 @@ public:
     virtual const Drawable* getDefaultFolderImage();
     virtual const Drawable* getDefaultDocumentFileImage();
 
-    virtual void createFileChooserHeaderText (const String& title,
-                                              const String& instructions,
-                                              GlyphArrangement& destArrangement,
-                                              int width);
+    virtual AttributedString createFileChooserHeaderText (const String& title,
+                                                          const String& instructions);
 
     virtual void drawFileBrowserRow (Graphics& g, int width, int height,
                                      const String& filename, Image* icon,
@@ -451,6 +449,9 @@ public:
     virtual Label* createSliderTextBox (Slider& slider);
 
     virtual ImageEffectFilter* getSliderEffect();
+
+    virtual Font getSliderPopupFont();
+    virtual int getSliderPopupPlacement();
 
     //==============================================================================
     virtual void getTooltipSize (const String& tipText, int& width, int& height);
@@ -673,6 +674,7 @@ private:
     virtual int getTabButtonBestWidth (int, const String&, int, Button&) { return 0; }
     virtual int drawBubble (Graphics&, float, float, float, float, float, float) { return 0; }
     virtual int getFontForTextButton (TextButton&) { return 0; }
+    virtual int createFileChooserHeaderText (const String&, const String&, GlyphArrangement&, int) { return 0; }
    #endif
 
     class GlassWindowButton;
@@ -682,4 +684,4 @@ private:
 };
 
 
-#endif   // __JUCE_LOOKANDFEEL_JUCEHEADER__
+#endif   // JUCE_LOOKANDFEEL_H_INCLUDED

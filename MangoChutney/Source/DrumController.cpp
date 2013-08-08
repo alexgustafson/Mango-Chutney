@@ -14,6 +14,7 @@ DrumController::DrumController()
 {
     deviceManager.initialise (2, 2, 0, true, String::empty, 0);
     synthAudioSource = new SynthAudioSource (keyboardState);
+    drumSettings = new ValueTree("drumSettings");
     audioSourcePlayer.setSource (synthAudioSource);
     deviceManager.addAudioCallback (&audioSourcePlayer);
     deviceManager.addMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
@@ -39,6 +40,10 @@ void DrumController::toggleSequencerPlayStop()
 void DrumController::setFileForActivePad(const File file )
 {
     synthAudioSource->setSampleForSound(lastSelectedPad - 1, file);
+    ValueTree padSetting = drumSettings->getOrCreateChildWithName(juce::String::formatted("pad%d",lastSelectedPad), NULL);
+    File tempFile( padSetting.getProperty("audiofile"));
+    std::cout << tempFile.getFileName();
+    padSetting.setProperty("audiofile", &file.getFullPathName(), NULL);
 }
 
 void DrumController::buttonClicked(juce::Button *buttonClicked)

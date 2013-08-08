@@ -17,7 +17,6 @@ LOCAL_SRC_FILES := \
   ../../../Source/SampleVoice.cpp\
   ../../../Source/DrumController.cpp\
   ../../../Source/AudioEngine.cpp\
-  ../../../../Media/sounds/binaryfiles/drumSamples.cpp\
   ../../../Source/Main.cpp\
   ../../../JuceLibraryCode/BinaryData.cpp\
   ../../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.cpp\

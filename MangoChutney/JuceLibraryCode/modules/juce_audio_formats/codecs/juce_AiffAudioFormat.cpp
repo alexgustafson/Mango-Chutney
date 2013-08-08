@@ -195,6 +195,50 @@ namespace AiffFileHelpers
    #endif
 
     //==============================================================================
+    static String readCATEChunk (InputStream& input, const uint32 length)
+    {
+        MemoryBlock mb;
+        input.skipNextBytes (4);
+        input.readIntoMemoryBlock (mb, length - 4);
+
+        static const char* appleGenres[] =
+        {
+            "Rock/Blues",
+            "Electronic/Dance",
+            "Jazz",
+            "Urban",
+            "World/Ethnic",
+            "Cinematic/New Age",
+            "Orchestral",
+            "Country/Folk",
+            "Experimental",
+            "Other Genre",
+            nullptr
+        };
+
+        const StringArray genres (appleGenres);
+        StringArray tagsArray;
+
+        int bytesLeft = (int) mb.getSize();
+        const char* data = static_cast <const char*> (mb.getData());
+
+        while (bytesLeft > 0)
+        {
+            const String tag (CharPointer_UTF8 (data),
+                              CharPointer_UTF8 (data + bytesLeft));
+
+            if (tag.isNotEmpty())
+                tagsArray.add (data);
+
+            const int numBytesInTag = genres.contains (tag) ? 118 : 50;
+            data += numBytesInTag;
+            bytesLeft -= numBytesInTag;
+        }
+
+        return tagsArray.joinIntoString (";");
+    }
+
+    //==============================================================================
     namespace MarkChunk
     {
         static bool metaDataContainsZeroIdentifiers (const StringPairArray& values)
@@ -473,6 +517,11 @@ public:
                     {
                         AiffFileHelpers::BASCChunk (*input).addToMetadata (metadataValues);
                     }
+                    else if (type == chunkName ("cate"))
+                    {
+                        metadataValues.set (AiffAudioFormat::appleTag,
+                                            AiffFileHelpers::readCATEChunk (*input, length));;
+                    }
                     else if ((hasGotVer && hasGotData && hasGotType)
                               || chunkEnd < input->getPosition()
                               || input->isExhausted())
@@ -491,7 +540,7 @@ public:
 
     //==============================================================================
     bool readSamples (int** destSamples, int numDestChannels, int startOffsetInDestBuffer,
-                      int64 startSampleInFile, int numSamples)
+                      int64 startSampleInFile, int numSamples) override
     {
         clearSamplesBeyondAvailableLength (destSamples, numDestChannels, startOffsetInDestBuffer,
                                            startSampleInFile, numSamples, lengthInSamples);
@@ -594,7 +643,7 @@ public:
     }
 
     //==============================================================================
-    bool write (const int** data, int numSamples)
+    bool write (const int** data, int numSamples) override
     {
         jassert (data != nullptr && *data != nullptr); // the input must contain at least one channel!
 
@@ -743,15 +792,15 @@ private:
 class MemoryMappedAiffReader   : public MemoryMappedAudioFormatReader
 {
 public:
-    MemoryMappedAiffReader (const File& file, const AiffAudioFormatReader& reader)
-        : MemoryMappedAudioFormatReader (file, reader, reader.dataChunkStart,
+    MemoryMappedAiffReader (const File& f, const AiffAudioFormatReader& reader)
+        : MemoryMappedAudioFormatReader (f, reader, reader.dataChunkStart,
                                          reader.bytesPerFrame * reader.lengthInSamples, reader.bytesPerFrame),
           littleEndian (reader.littleEndian)
     {
     }
 
     bool readSamples (int** destSamples, int numDestChannels, int startOffsetInDestBuffer,
-                      int64 startSampleInFile, int numSamples)
+                      int64 startSampleInFile, int numSamples) override
     {
         clearSamplesBeyondAvailableLength (destSamples, numDestChannels, startOffsetInDestBuffer,
                                            startSampleInFile, numSamples, lengthInSamples);

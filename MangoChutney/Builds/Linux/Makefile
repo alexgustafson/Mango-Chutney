@@ -58,7 +58,6 @@ OBJECTS := \
   $(OBJDIR)/SampleVoice_6799fc09.o \
   $(OBJDIR)/DrumController_7e6e26b.o \
   $(OBJDIR)/AudioEngine_12afc819.o \
-  $(OBJDIR)/drumSamples_e5b2eb6e.o \
   $(OBJDIR)/Main_90ebc5c2.o \
   $(OBJDIR)/BinaryData_ce4232d4.o \
   $(OBJDIR)/juce_audio_basics_2442e4ea.o \
@@ -137,11 +136,6 @@ $(OBJDIR)/DrumController_7e6e26b.o: ../../Source/DrumController.cpp
 $(OBJDIR)/AudioEngine_12afc819.o: ../../Source/AudioEngine.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling AudioEngine.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/drumSamples_e5b2eb6e.o: ../../../Media/sounds/binaryfiles/drumSamples.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling drumSamples.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/Main_90ebc5c2.o: ../../Source/Main.cpp
