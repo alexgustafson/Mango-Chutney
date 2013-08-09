@@ -79,14 +79,10 @@ public:
     static const int pushbutton_on_pngSize;
     static const char* label_03_png;
     static const int label_03_pngSize;
-    static const char* backgrounpanel_png;
-    static const int backgrounpanel_pngSize;
     static const char* buttonOff_png;
     static const int buttonOff_pngSize;
     static const char* buttonOn_png;
     static const int buttonOn_pngSize;
-    static const char* woodpanel_png;
-    static const int woodpanel_pngSize;
 
 
 private:
@@ -108,7 +104,6 @@ private:
     ScopedPointer<Label> label4;
     ScopedPointer<ImageButton> patternButton;
     ScopedPointer<Label> label5;
-    Image cachedImage_backgrounpanel_png_1;
 
 
     //==============================================================================

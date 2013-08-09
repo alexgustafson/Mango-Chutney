@@ -132,7 +132,6 @@ void DDSamplerSound::setupSound(const String& name_,
 void DDSamplerSound::setSourceFile(const juce::File file)
 {
     AudioFormat *audioFormat;
-    formatManager.registerBasicFormats();
     audioFormat = formatManager.findFormatForFileExtension(file.getFileExtension());
 
     

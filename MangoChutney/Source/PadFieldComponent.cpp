@@ -438,7 +438,6 @@ void PadField::buttonClicked (Button* buttonThatWasClicked)
 
     }else if (padMode == Patternmode)
     {
-        int activePadIndex = pads.indexOf(activepad);
         int selectedPad = pads.indexOf((ImageButton* )buttonThatWasClicked);
 
         sequencer->setPattern(selectedPad);
@@ -460,7 +459,7 @@ void PadField::setMode(PadMode mode)
             ImageButton *tempButton = pads[i];
             tempButton->setRadioGroupId(34567);
             tempButton->setClickingTogglesState(true);
-            tempButton->setToggleState(false, false);
+            tempButton->setToggleState(false, NULL);
 
         }
 
@@ -474,7 +473,7 @@ void PadField::setMode(PadMode mode)
             ImageButton *tempButton = pads[i];
             tempButton->setRadioGroupId(34567);
             tempButton->setClickingTogglesState(false);
-            tempButton->setToggleState(false, false);
+            tempButton->setToggleState(false, NULL);
 
         }
 
@@ -487,7 +486,7 @@ void PadField::setMode(PadMode mode)
             ImageButton *tempButton = pads[i];
             tempButton->setRadioGroupId(34566 - i);
             tempButton->setClickingTogglesState(true);
-            tempButton->setToggleState(false, false);
+            tempButton->setToggleState(false, NULL);
 
         }
 
@@ -501,7 +500,7 @@ void PadField::setMode(PadMode mode)
             ImageButton *tempButton = pads[i];
             tempButton->setRadioGroupId(34567);
             tempButton->setClickingTogglesState(true);
-            tempButton->setToggleState(false, false);
+            tempButton->setToggleState(false, NULL);
 
         }
 

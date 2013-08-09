@@ -24,6 +24,10 @@ public:
     void buttonStateChanged(juce::Button *buttonWhichStateChanged);
     void setFileForActivePad(const File file );
     void toggleSequencerPlayStop();
+    void saveDefaultSettings();
+    void loadDefaultSettings();
+    void loadSettings(File &settingsFile);
+    void saveSettings(File &settingsFile);
     
 private:
     AudioDeviceManager deviceManager;

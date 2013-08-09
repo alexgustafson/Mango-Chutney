@@ -1887,10 +1887,6 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../JuceLibraryCode/modules/juce_graphics/geometry/juce_RectangleList.cpp">
-      <Option compile="0"/>
-      <Option link="0"/>
-    </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_graphics/geometry/juce_RectangleList.h">
       <Option compile="0"/>
       <Option link="0"/>

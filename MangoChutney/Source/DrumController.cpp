@@ -15,6 +15,7 @@ DrumController::DrumController()
     deviceManager.initialise (2, 2, 0, true, String::empty, 0);
     synthAudioSource = new SynthAudioSource (keyboardState);
     drumSettings = new ValueTree("drumSettings");
+    loadDefaultSettings();
     audioSourcePlayer.setSource (synthAudioSource);
     deviceManager.addAudioCallback (&audioSourcePlayer);
     deviceManager.addMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
@@ -46,8 +47,9 @@ void DrumController::setFileForActivePad(const File file )
     
     ValueTree padParameters = drumSettings->getOrCreateChildWithName(parameter, nullptr);
     padParameters.setProperty("audioFilePath", file.getFullPathName(), nullptr);
-
-    std::cout << drumSettings->toXmlString();
+    ValueTree dummy("dummy");
+    padParameters.addChild(dummy, 0, nullptr);
+    saveDefaultSettings();
 }
 
 void DrumController::buttonClicked(juce::Button *buttonClicked)
@@ -139,10 +141,55 @@ void DrumController::buttonStateChanged(juce::Button *buttonWhichStateChanged)
             keyboardState.noteOn(1, 16, 1.0);
             
         }
-        
+}
 
+void DrumController::saveDefaultSettings()
+{
+    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/programSettings.data"));
+    saveSettings(dataFile);
+}
+
+void DrumController::loadDefaultSettings()
+{
+    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/programSettings.data"));
+    loadSettings(dataFile);
+}
+
+void DrumController::loadSettings(File &settingsFile)
+{
+    if (!settingsFile.exists()) {
+        return;
+    }
     
+    FileInputStream is(settingsFile);
+    *drumSettings = ValueTree::readFromStream(is);
+    std::cout << drumSettings->toXmlString();
     
+    for (int i = 1; i < 17; i++) {
+        
+        String parameter;
+        parameter << "pad" << i;
+        
+        ValueTree padParameters = drumSettings->getChildWithName(parameter);
+        
+        if (padParameters.hasProperty("audioFilePath"))
+        {
+            File audioFile(padParameters.getProperty("audioFilePath"));
+            synthAudioSource->setSampleForSound(i - 1, audioFile);
+        }
+    }
+    
+    std::cout << drumSettings->toXmlString();
+    
+}
+
+void DrumController::saveSettings(File &settingsFile)
+{
+    std::cout << drumSettings->toXmlString();
+    FileOutputStream os(settingsFile);
+    drumSettings->writeToStream(os);
+    os.flush();
+
 }
 
 
