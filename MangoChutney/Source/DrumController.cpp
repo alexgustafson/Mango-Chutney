@@ -40,10 +40,15 @@ void DrumController::toggleSequencerPlayStop()
 void DrumController::setFileForActivePad(const File file )
 {
     synthAudioSource->setSampleForSound(lastSelectedPad - 1, file);
-    ValueTree padSetting = drumSettings->getOrCreateChildWithName(juce::String::formatted("pad%d",lastSelectedPad), NULL);
-    File tempFile( padSetting.getProperty("audiofile"));
+    Identifier parameterIdentifyer ("audiofile");
+    String parameter;
+    parameter << "pad" << lastSelectedPad;
+    ValueTree padSetting = drumSettings->getOrCreateChildWithName(parameter, nullptr);
+    String path = padSetting[parameterIdentifyer];
+    File tempFile( path );
     std::cout << tempFile.getFileName();
-    padSetting.setProperty("audiofile", &file.getFullPathName(), NULL);
+    String filepath = file.getFullPathName();
+    padSetting.setProperty(parameterIdentifyer, filepath, nullptr);
 }
 
 void DrumController::buttonClicked(juce::Button *buttonClicked)
