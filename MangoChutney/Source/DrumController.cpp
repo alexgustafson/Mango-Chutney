@@ -14,7 +14,7 @@ DrumController::DrumController()
 {
     deviceManager.initialise (2, 2, 0, true, String::empty, 0);
     synthAudioSource = new SynthAudioSource (keyboardState);
-    drumSettings = new ValueTree("drumSettings");
+    drumSettings = ValueTree("drumSettins");
     loadDefaultSettings();
     audioSourcePlayer.setSource (synthAudioSource);
     deviceManager.addAudioCallback (&audioSourcePlayer);
@@ -42,14 +42,14 @@ void DrumController::setFileForActivePad(const File file )
 {
     synthAudioSource->setSampleForSound(lastSelectedPad - 1, file);
 
-    String parameter;
-    parameter << "pad" << lastSelectedPad;
+    String nodeName;
+    nodeName << "pad" << lastSelectedPad;
+    Identifier nodeIdentifier(nodeName);
     
-    ValueTree padParameters = drumSettings->getOrCreateChildWithName(parameter, nullptr);
+    ValueTree padParameters = drumSettings.getOrCreateChildWithName(nodeIdentifier, nullptr);
     padParameters.setProperty("audioFilePath", file.getFullPathName(), nullptr);
-    ValueTree dummy("dummy");
-    padParameters.addChild(dummy, 0, nullptr);
     saveDefaultSettings();
+    
 }
 
 void DrumController::buttonClicked(juce::Button *buttonClicked)
@@ -162,15 +162,14 @@ void DrumController::loadSettings(File &settingsFile)
     }
     
     FileInputStream is(settingsFile);
-    *drumSettings = ValueTree::readFromStream(is);
-    std::cout << drumSettings->toXmlString();
+    drumSettings =   ValueTree::readFromStream(is);
     
     for (int i = 1; i < 17; i++) {
         
         String parameter;
         parameter << "pad" << i;
         
-        ValueTree padParameters = drumSettings->getChildWithName(parameter);
+        ValueTree padParameters = drumSettings.getChildWithName(parameter);
         
         if (padParameters.hasProperty("audioFilePath"))
         {
@@ -178,17 +177,14 @@ void DrumController::loadSettings(File &settingsFile)
             synthAudioSource->setSampleForSound(i - 1, audioFile);
         }
     }
-    
-    std::cout << drumSettings->toXmlString();
-    
+        
 }
 
 void DrumController::saveSettings(File &settingsFile)
 {
-    std::cout << drumSettings->toXmlString();
+    settingsFile.deleteFile();
     FileOutputStream os(settingsFile);
-    drumSettings->writeToStream(os);
-    os.flush();
+    drumSettings.writeToStream(os);
 
 }
 

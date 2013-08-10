@@ -34,7 +34,7 @@ private:
     MidiKeyboardState keyboardState;
     AudioSourcePlayer audioSourcePlayer;
     ScopedPointer<SynthAudioSource> synthAudioSource;
-    ScopedPointer<ValueTree> drumSettings;
+    ValueTree drumSettings;
     
     int lastSelectedPad;
     
