@@ -373,19 +373,19 @@ BEGIN_JUCER_METADATA
                  initialHeight="300">
   <BACKGROUND backgroundColour="ff373940"/>
   <IMAGEBUTTON name="new button" id="6fc8c6b2dd61df0d" memberName="setupButton"
-               virtualName="" explicitFocusOrder="0" pos="16 8 12.147% 13.9%"
+               virtualName="" explicitFocusOrder="0" pos="16 8 12.24% 13.852%"
                buttonText="new button" connectedEdges="0" needsCallback="1"
                radioGroupId="34566" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
                colourOver="0" resourceDown="buttonOn_png" opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="select button" id="2e13002f79a45ac3" memberName="selectButton"
-               virtualName="" explicitFocusOrder="0" pos="0R 8 12.147% 13.9%"
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
                posRelativeX="ccc5656cdd20daae" buttonText="new button" connectedEdges="0"
                needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
                colourOver="0" resourceDown="buttonOn_png" opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="play button" id="ccc5656cdd20daae" memberName="playButton"
-               virtualName="" explicitFocusOrder="0" pos="0R 8 12.147% 13.9%"
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
                posRelativeX="6fc8c6b2dd61df0d" buttonText="new button" connectedEdges="0"
                needsCallback="1" radioGroupId="33000" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
@@ -394,7 +394,7 @@ BEGIN_JUCER_METADATA
              explicitFocusOrder="0" pos="24 152 290 290" sourceFile="PadFieldComponent.cpp"
              constructorParams=""/>
   <IMAGEBUTTON name="step button" id="3c48281046602f90" memberName="stepButton"
-               virtualName="" explicitFocusOrder="0" pos="0R 8 12.147% 13.9%"
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
                posRelativeX="2e13002f79a45ac3" buttonText="new button" connectedEdges="0"
                needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
@@ -430,7 +430,7 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="13"
          bold="0" italic="0" justification="36"/>
   <IMAGEBUTTON name="patternbutton" id="9a7688cc97b26649" memberName="patternButton"
-               virtualName="" explicitFocusOrder="0" pos="0R 8 12.147% 13.9%"
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
                posRelativeX="3c48281046602f90" buttonText="new button" connectedEdges="0"
                needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"

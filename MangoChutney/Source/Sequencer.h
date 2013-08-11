@@ -44,6 +44,7 @@ public:
     
     Sequencer()
     {
+        sequecerSettings = ValueTree("sequencerData");
         beatCount = 0;
         setTempo(120.0);
         for(int s = 0; s < 16; s++)
@@ -59,13 +60,20 @@ public:
         }
         activePattern = 0;
         pattern = song.patterns[activePattern];
+        loadDefaultSettings();
         
     };
+    
     
     void setState(SequencerState newState);
     SequencerState getState() { return state; };
     void setTempo(int newTempo);
     void setPattern(int patternNr);
+    
+    void saveDefaultSettings();
+    void loadDefaultSettings();
+    void loadSettings(File &settingsFile);
+    void saveSettings(File &settingsFile);
     
     int beatCount;
     int activePattern;
@@ -85,6 +93,8 @@ private:
     void stopping();
     void starting();
     void pausing();
+    
+    ValueTree sequecerSettings;
     
     
 };

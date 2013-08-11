@@ -14,7 +14,7 @@ DrumController::DrumController()
 {
     deviceManager.initialise (2, 2, 0, true, String::empty, 0);
     synthAudioSource = new SynthAudioSource (keyboardState);
-    drumSettings = ValueTree("drumSettins");
+    drumSettings = ValueTree("drumSettings");
     loadDefaultSettings();
     audioSourcePlayer.setSource (synthAudioSource);
     deviceManager.addAudioCallback (&audioSourcePlayer);
@@ -25,6 +25,7 @@ DrumController::DrumController()
 
 DrumController::~DrumController()
 {
+    drumSettings.removeAllChildren(nullptr);
     audioSourcePlayer.setSource (0);
     deviceManager.removeMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
     deviceManager.removeAudioCallback (&audioSourcePlayer);
@@ -145,13 +146,13 @@ void DrumController::buttonStateChanged(juce::Button *buttonWhichStateChanged)
 
 void DrumController::saveDefaultSettings()
 {
-    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/programSettings.data"));
+    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/padSettings.data"));
     saveSettings(dataFile);
 }
 
 void DrumController::loadDefaultSettings()
 {
-    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/programSettings.data"));
+    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/padSettings.data"));
     loadSettings(dataFile);
 }
 
