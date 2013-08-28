@@ -95,7 +95,7 @@ private:
     void pausing();
     
     ValueTree sequecerSettings;
-    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Sequencer)
     
 };
 

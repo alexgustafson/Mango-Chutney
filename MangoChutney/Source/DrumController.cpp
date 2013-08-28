@@ -25,7 +25,6 @@ DrumController::DrumController()
 
 DrumController::~DrumController()
 {
-    drumSettings.removeAllChildren(nullptr);
     audioSourcePlayer.setSource (0);
     deviceManager.removeMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
     deviceManager.removeAudioCallback (&audioSourcePlayer);
@@ -163,6 +162,7 @@ void DrumController::loadSettings(File &settingsFile)
     }
     
     FileInputStream is(settingsFile);
+    drumSettings.removeAllChildren(nullptr);
     drumSettings =   ValueTree::readFromStream(is);
     
     for (int i = 1; i < 17; i++) {
@@ -178,7 +178,6 @@ void DrumController::loadSettings(File &settingsFile)
             synthAudioSource->setSampleForSound(i - 1, audioFile);
         }
     }
-        
 }
 
 void DrumController::saveSettings(File &settingsFile)

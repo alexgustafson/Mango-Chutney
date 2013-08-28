@@ -119,7 +119,6 @@ void Sequencer::loadSettings(File &settingsFile)
 void Sequencer::saveSettings(File &settingsFile)
 {
     song.patterns[activePattern] = pattern;
-
     
     settingsFile.deleteFile();
     

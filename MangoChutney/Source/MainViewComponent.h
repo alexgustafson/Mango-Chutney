@@ -25,9 +25,11 @@
 #include "AudioEngine.h"
 #include "DrumController.h"
 #include "AudioFileSelector.h"
+#include "SettingsViewComponent.h"
 //[/Headers]
 
 #include "PadFieldComponent.h"
+
 
 
 //==============================================================================
@@ -88,6 +90,7 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     ScopedPointer<AudioFileSelector> fileBrowser;
+    ScopedPointer<SettingsViewComponent> settingsComponent;
     Sequencer *sequencer;
     //[/UserVariables]
 

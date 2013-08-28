@@ -185,6 +185,7 @@ MainViewComponent::~MainViewComponent()
     //[Destructor]. You can add your own custom destruction code here..
     drumController = nullptr;
     fileBrowser = nullptr;
+    delete sequencer;
     //[/Destructor]
 }
 
@@ -240,6 +241,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == setupButton)
     {
         //[UserButtonCode_setupButton] -- add your button handler code here..
+        /*
         if(!fileBrowser)
         {
             juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
@@ -261,6 +263,16 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
         fileBrowser->setTopLeftPosition(0, 0);
         fileBrowser->setSize(getWidth(), getHeight());
         fileBrowser->setListener(this);
+        */
+        if(!settingsComponent)
+        {
+            settingsComponent = new SettingsViewComponent();
+            addAndMakeVisible(settingsComponent);
+            settingsComponent->setTopLeftPosition(0, 0);
+            settingsComponent->setSize(getWidth(), getHeight());
+            //settingsComponent->setListener(this);
+        }
+        
 
         //[/UserButtonCode_setupButton]
     }

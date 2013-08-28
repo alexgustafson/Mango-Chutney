@@ -154,8 +154,8 @@ void SampleSettingsComponent::resized()
 {
     textEditor->setBounds ((8) + 96, 8, 264, 24);
     loadSampleButton->setBounds (8, 8, 87, 24);
-    WaveComponent->setBounds (8, 40, proportionOfWidth (0.9375f), 152);
-    component2->setBounds (8, 200, proportionOfWidth (0.9375f), 152);
+    WaveComponent->setBounds (8, 40, proportionOfWidth (0.9381f), 152);
+    component2->setBounds (8, 200, proportionOfWidth (0.9381f), 152);
     attackSlider->setBounds (8, 360, 56, 48);
     decaySlider->setBounds (64, 360, 56, 48);
     sustainSlider->setBounds (120, 360, 56, 48);
@@ -242,10 +242,10 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="8 8 87 24" buttonText="load sample"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="43c696956c040673" memberName="WaveComponent"
-                    virtualName="" explicitFocusOrder="0" pos="8 40 93.75% 152" class="Component"
-                    params=""/>
+                    virtualName="" explicitFocusOrder="0" pos="8 40 93.867% 152"
+                    class="Component" params=""/>
   <GENERICCOMPONENT name="new component" id="c8a20ff7bccda56" memberName="component2"
-                    virtualName="" explicitFocusOrder="0" pos="8 200 93.75% 152"
+                    virtualName="" explicitFocusOrder="0" pos="8 200 93.867% 152"
                     class="Component" params=""/>
   <SLIDER name="Attack Slider" id="742b63db24f445f5" memberName="attackSlider"
           virtualName="" explicitFocusOrder="0" pos="8 360 56 48" min="0"
