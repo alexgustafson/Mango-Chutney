@@ -146,7 +146,9 @@ MainViewComponent::MainViewComponent ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    
     sequencer = Sequencer::getInstance();
+    tempoSlider->setValue(sequencer->tempo);
     drumController = new DrumController();
     component->addDrumController(drumController);
     setSize (getParentWidth(), getParentHeight());
@@ -157,7 +159,7 @@ MainViewComponent::MainViewComponent ()
     stepButton->setClickingTogglesState(true);
     patternButton->setClickingTogglesState(true);
 
-    tempoSlider->setValue(114.0);
+    
 
     //[/Constructor]
 }
@@ -165,7 +167,7 @@ MainViewComponent::MainViewComponent ()
 MainViewComponent::~MainViewComponent()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
-
+    sequencer->saveDefaultSettings();
     //[/Destructor_pre]
 
     setupButton = nullptr;
