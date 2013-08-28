@@ -924,9 +924,7 @@ void AudioProcessorGraph::Node::setParentGraph (AudioProcessorGraph* const graph
 AudioProcessorGraph::AudioProcessorGraph()
     : lastNodeId (0),
       renderingBuffers (1, 1),
-      currentAudioInputBuffer (nullptr),
-      currentAudioOutputBuffer (1, 1),
-      currentMidiInputBuffer (nullptr)
+      currentAudioOutputBuffer (1, 1)
 {
 }
 
@@ -1180,7 +1178,7 @@ void AudioProcessorGraph::clearRenderingSequence()
 
     {
         const ScopedLock sl (getCallbackLock());
-        renderingOps.swapWith (oldOps);
+        renderingOps.swapWithArray (oldOps);
     }
 
     deleteRenderOpArray (oldOps);
@@ -1254,7 +1252,7 @@ void AudioProcessorGraph::buildRenderingSequence()
         while (midiBuffers.size() < numMidiBuffersNeeded)
             midiBuffers.add (new MidiBuffer());
 
-        renderingOps.swapWith (newRenderingOps);
+        renderingOps.swapWithArray (newRenderingOps);
     }
 
     // delete the old ones..

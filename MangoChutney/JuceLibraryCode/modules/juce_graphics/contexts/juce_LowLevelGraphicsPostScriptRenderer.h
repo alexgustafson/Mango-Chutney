@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_LOWLEVELGRAPHICSPOSTSCRIPTRENDERER_H_INCLUDED
-#define JUCE_LOWLEVELGRAPHICSPOSTSCRIPTRENDERER_H_INCLUDED
+#ifndef __JUCE_LOWLEVELGRAPHICSPOSTSCRIPTRENDERER_JUCEHEADER__
+#define __JUCE_LOWLEVELGRAPHICSPOSTSCRIPTRENDERER_JUCEHEADER__
 
 #include "juce_LowLevelGraphicsContext.h"
 
@@ -46,47 +46,47 @@ public:
     ~LowLevelGraphicsPostScriptRenderer();
 
     //==============================================================================
-    bool isVectorDevice() const override;
-    void setOrigin (int x, int y) override;
-    void addTransform (const AffineTransform&) override;
-    float getScaleFactor() override;
+    bool isVectorDevice() const;
+    void setOrigin (int x, int y);
+    void addTransform (const AffineTransform& transform);
+    float getScaleFactor();
 
-    bool clipToRectangle (const Rectangle<int>&) override;
-    bool clipToRectangleList (const RectangleList<int>&) override;
-    void excludeClipRectangle (const Rectangle<int>&) override;
-    void clipToPath (const Path&, const AffineTransform&) override;
-    void clipToImageAlpha (const Image&, const AffineTransform&) override;
+    bool clipToRectangle (const Rectangle<int>& r);
+    bool clipToRectangleList (const RectangleList& clipRegion);
+    void excludeClipRectangle (const Rectangle<int>& r);
+    void clipToPath (const Path& path, const AffineTransform& transform);
+    void clipToImageAlpha (const Image& sourceImage, const AffineTransform& transform);
 
-    void saveState() override;
-    void restoreState() override;
+    void saveState();
+    void restoreState();
 
-    void beginTransparencyLayer (float) override;
-    void endTransparencyLayer() override;
+    void beginTransparencyLayer (float opacity);
+    void endTransparencyLayer();
 
-    bool clipRegionIntersects (const Rectangle<int>&) override;
-    Rectangle<int> getClipBounds() const override;
-    bool isClipEmpty() const override;
-
-    //==============================================================================
-    void setFill (const FillType&) override;
-    void setOpacity (float) override;
-    void setInterpolationQuality (Graphics::ResamplingQuality) override;
+    bool clipRegionIntersects (const Rectangle<int>& r);
+    Rectangle<int> getClipBounds() const;
+    bool isClipEmpty() const;
 
     //==============================================================================
-    void fillRect (const Rectangle<int>&, bool replaceExistingContents) override;
-    void fillPath (const Path&, const AffineTransform&) override;
-
-    void drawImage (const Image&, const AffineTransform&) override;
-
-    void drawLine (const Line <float>&) override;
-
-    void drawVerticalLine (int x, float top, float bottom) override;
-    void drawHorizontalLine (int x, float top, float bottom) override;
+    void setFill (const FillType& fillType);
+    void setOpacity (float opacity);
+    void setInterpolationQuality (Graphics::ResamplingQuality quality);
 
     //==============================================================================
-    const Font& getFont() override;
-    void setFont (const Font&) override;
-    void drawGlyph (int glyphNumber, const AffineTransform&) override;
+    void fillRect (const Rectangle<int>& r, bool replaceExistingContents);
+    void fillPath (const Path& path, const AffineTransform& transform);
+
+    void drawImage (const Image& sourceImage, const AffineTransform& transform);
+
+    void drawLine (const Line <float>& line);
+
+    void drawVerticalLine (int x, float top, float bottom);
+    void drawHorizontalLine (int x, float top, float bottom);
+
+    //==============================================================================
+    const Font& getFont();
+    void setFont (const Font& newFont);
+    void drawGlyph (int glyphNumber, const AffineTransform& transform);
 
 protected:
     //==============================================================================
@@ -100,7 +100,7 @@ protected:
         SavedState();
         ~SavedState();
 
-        RectangleList<int> clip;
+        RectangleList clip;
         int xOffset, yOffset;
         FillType fillType;
         Font font;
@@ -123,4 +123,4 @@ protected:
 
 
 
-#endif   // JUCE_LOWLEVELGRAPHICSPOSTSCRIPTRENDERER_H_INCLUDED
+#endif   // __JUCE_LOWLEVELGRAPHICSPOSTSCRIPTRENDERER_JUCEHEADER__

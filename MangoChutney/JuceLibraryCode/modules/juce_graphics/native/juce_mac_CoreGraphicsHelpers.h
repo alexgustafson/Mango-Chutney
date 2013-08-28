@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MAC_COREGRAPHICSHELPERS_H_INCLUDED
-#define JUCE_MAC_COREGRAPHICSHELPERS_H_INCLUDED
+#ifndef __JUCE_MAC_COREGRAPHICSHELPERS_JUCEHEADER__
+#define __JUCE_MAC_COREGRAPHICSHELPERS_JUCEHEADER__
 
 
 //==============================================================================
@@ -57,4 +57,4 @@ namespace
 extern CGImageRef juce_createCoreGraphicsImage (const Image&, CGColorSpaceRef, bool mustOutliveSource);
 extern CGContextRef juce_getImageContext (const Image&);
 
-#endif   // JUCE_MAC_COREGRAPHICSHELPERS_H_INCLUDED
+#endif   // __JUCE_MAC_COREGRAPHICSHELPERS_JUCEHEADER__

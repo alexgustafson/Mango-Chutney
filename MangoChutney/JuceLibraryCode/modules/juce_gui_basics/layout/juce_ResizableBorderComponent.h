@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RESIZABLEBORDERCOMPONENT_H_INCLUDED
-#define JUCE_RESIZABLEBORDERCOMPONENT_H_INCLUDED
+#ifndef __JUCE_RESIZABLEBORDERCOMPONENT_JUCEHEADER__
+#define __JUCE_RESIZABLEBORDERCOMPONENT_JUCEHEADER__
 
 #include "juce_ComponentBoundsConstrainer.h"
 
@@ -167,19 +167,19 @@ public:
 
 protected:
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics&);
     /** @internal */
-    void mouseEnter (const MouseEvent&) override;
+    void mouseEnter (const MouseEvent&);
     /** @internal */
-    void mouseMove (const MouseEvent&) override;
+    void mouseMove (const MouseEvent&);
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent&);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent&);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent&);
     /** @internal */
-    bool hitTest (int x, int y) override;
+    bool hitTest (int x, int y);
 
 private:
     WeakReference<Component> component;
@@ -194,4 +194,4 @@ private:
 };
 
 
-#endif   // JUCE_RESIZABLEBORDERCOMPONENT_H_INCLUDED
+#endif   // __JUCE_RESIZABLEBORDERCOMPONENT_JUCEHEADER__

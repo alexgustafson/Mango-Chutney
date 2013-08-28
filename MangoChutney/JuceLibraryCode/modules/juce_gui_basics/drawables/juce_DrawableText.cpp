@@ -83,7 +83,7 @@ void DrawableText::setFont (const Font& newFont, bool applySizeAndScale)
     }
 }
 
-void DrawableText::setJustification (Justification newJustification)
+void DrawableText::setJustification (const Justification& newJustification)
 {
     justification = newJustification;
     repaint();
@@ -158,21 +158,28 @@ void DrawableText::recalculateCoordinates (Expression::Scope* scope)
     repaint();
 }
 
+const AffineTransform DrawableText::getArrangementAndTransform (GlyphArrangement& glyphs) const
+{
+    const float w = Line<float> (resolvedPoints[0], resolvedPoints[1]).getLength();
+    const float h = Line<float> (resolvedPoints[0], resolvedPoints[2]).getLength();
+
+    glyphs.addFittedText (scaledFont, text, 0, 0, w, h, justification, 0x100000);
+
+    return AffineTransform::fromTargetPoints (0, 0, resolvedPoints[0].x, resolvedPoints[0].y,
+                                              w, 0, resolvedPoints[1].x, resolvedPoints[1].y,
+                                              0, h, resolvedPoints[2].x, resolvedPoints[2].y);
+}
+
 //==============================================================================
 void DrawableText::paint (Graphics& g)
 {
     transformContextToCorrectOrigin (g);
 
-    const float w = Line<float> (resolvedPoints[0], resolvedPoints[1]).getLength();
-    const float h = Line<float> (resolvedPoints[0], resolvedPoints[2]).getLength();
-
-    g.addTransform (AffineTransform::fromTargetPoints (0, 0, resolvedPoints[0].x, resolvedPoints[0].y,
-                                                       w, 0, resolvedPoints[1].x, resolvedPoints[1].y,
-                                                       0, h, resolvedPoints[2].x, resolvedPoints[2].y));
-    g.setFont (scaledFont);
     g.setColour (colour);
 
-    g.drawFittedText (text, Rectangle<float> (w, h).getSmallestIntegerContainer(), justification, 0x100000);
+    GlyphArrangement ga;
+    const AffineTransform transform (getArrangementAndTransform (ga));
+    ga.draw (g, transform);
 }
 
 Rectangle<float> DrawableText::getDrawableBounds() const
@@ -235,7 +242,7 @@ Justification DrawableText::ValueTreeWrapper::getJustification() const
     return Justification ((int) state [justification]);
 }
 
-void DrawableText::ValueTreeWrapper::setJustification (Justification newJustification, UndoManager* undoManager)
+void DrawableText::ValueTreeWrapper::setJustification (const Justification& newJustification, UndoManager* undoManager)
 {
     state.setProperty (justification, newJustification.getFlags(), undoManager);
 }

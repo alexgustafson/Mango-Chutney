@@ -22,7 +22,7 @@
   ==============================================================================
 */
 
-MultiDocumentPanelWindow::MultiDocumentPanelWindow (Colour backgroundColour)
+MultiDocumentPanelWindow::MultiDocumentPanelWindow (const Colour& backgroundColour)
     : DocumentWindow (String::empty, backgroundColour,
                       DocumentWindow::maximiseButton | DocumentWindow::closeButton, false)
 {
@@ -156,7 +156,7 @@ void MultiDocumentPanel::addWindow (Component* component)
 }
 
 bool MultiDocumentPanel::addDocument (Component* const component,
-                                      Colour docColour,
+                                      const Colour& docColour,
                                       const bool deleteWhenRemoved)
 {
     // If you try passing a full DocumentWindow or ResizableWindow in here, you'll end up
@@ -295,11 +295,6 @@ bool MultiDocumentPanel::closeDocument (Component* component,
         }
 
         resized();
-
-        // This ensures that the active tab is painted properly when a tab is closed!
-        if (Component* activeComponent = getActiveDocument())
-            setActiveDocument (activeComponent);
-
         activeDocumentChanged();
     }
     else
@@ -335,8 +330,6 @@ Component* MultiDocumentPanel::getActiveDocument() const noexcept
 
 void MultiDocumentPanel::setActiveDocument (Component* component)
 {
-    jassert (component != nullptr);
-
     if (mode == FloatingWindows)
     {
         component = getContainerComp (component);
@@ -422,7 +415,7 @@ void MultiDocumentPanel::setLayoutMode (const LayoutMode newLayoutMode)
     }
 }
 
-void MultiDocumentPanel::setBackgroundColour (Colour newBackgroundColour)
+void MultiDocumentPanel::setBackgroundColour (const Colour& newBackgroundColour)
 {
     if (backgroundColour != newBackgroundColour)
     {

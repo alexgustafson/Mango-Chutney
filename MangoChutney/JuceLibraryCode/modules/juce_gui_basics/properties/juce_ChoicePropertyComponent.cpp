@@ -136,7 +136,7 @@ void ChoicePropertyComponent::refresh()
             comboBox.addListener (this);
         }
 
-        comboBox.setSelectedId (getIndex() + 1, dontSendNotification);
+        comboBox.setSelectedId (getIndex() + 1, true);
     }
 }
 

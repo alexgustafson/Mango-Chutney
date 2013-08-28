@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_UUID_H_INCLUDED
-#define JUCE_UUID_H_INCLUDED
+#ifndef __JUCE_UUID_JUCEHEADER__
+#define __JUCE_UUID_JUCEHEADER__
 
 #include "../text/juce_String.h"
 
@@ -111,4 +111,4 @@ private:
 };
 
 
-#endif   // JUCE_UUID_H_INCLUDED
+#endif   // __JUCE_UUID_JUCEHEADER__

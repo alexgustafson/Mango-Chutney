@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MIDIMESSAGE_H_INCLUDED
-#define JUCE_MIDIMESSAGE_H_INCLUDED
+#ifndef __JUCE_MIDIMESSAGE_JUCEHEADER__
+#define __JUCE_MIDIMESSAGE_JUCEHEADER__
 
 
 //==============================================================================
@@ -936,4 +936,4 @@ private:
     bool usesAllocatedData() const noexcept;
 };
 
-#endif   // JUCE_MIDIMESSAGE_H_INCLUDED
+#endif   // __JUCE_MIDIMESSAGE_JUCEHEADER__

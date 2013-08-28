@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FONT_H_INCLUDED
-#define JUCE_FONT_H_INCLUDED
+#ifndef __JUCE_FONT_JUCEHEADER__
+#define __JUCE_FONT_JUCEHEADER__
 
 #include "juce_Typeface.h"
 class LowLevelGraphicsContext;
@@ -203,6 +203,14 @@ public:
     static Typeface::Ptr getDefaultTypefaceForFont (const Font& font);
 
     //==============================================================================
+    /** Returns the total height of this font.
+        This is the maximum height, from the top of the ascent to the bottom of the
+        descenders.
+
+        @see withHeight, setHeightWithoutChangingWidth, getAscent
+    */
+    float getHeight() const noexcept;
+
     /** Returns a copy of this font with a new height. */
     Font withHeight (float height) const;
 
@@ -219,45 +227,17 @@ public:
     */
     void setHeightWithoutChangingWidth (float newHeight);
 
-    /** Returns the total height of this font, in pixels.
-        This is the maximum height, from the top of the ascent to the bottom of the
-        descenders.
-
-        @see withHeight, setHeightWithoutChangingWidth, getAscent
-    */
-    float getHeight() const noexcept;
-
-    /** Returns the total height of this font, in points.
-        This is the maximum height, from the top of the ascent to the bottom of the
-        descenders.
-
-        @see withPointHeight, getHeight
-    */
-    float getHeightInPoints() const;
-
-    /** Returns the height of the font above its baseline, in pixels.
+    /** Returns the height of the font above its baseline.
         This is the maximum height from the baseline to the top.
         @see getHeight, getDescent
     */
     float getAscent() const;
 
-    /** Returns the height of the font above its baseline, in points.
-        This is the maximum height from the baseline to the top.
-        @see getHeight, getDescent
-    */
-    float getAscentInPoints() const;
-
-    /** Returns the amount that the font descends below its baseline, in pixels.
+    /** Returns the amount that the font descends below its baseline.
         This is calculated as (getHeight() - getAscent()).
         @see getAscent, getHeight
     */
     float getDescent() const;
-
-    /** Returns the amount that the font descends below its baseline, in points.
-        This is calculated as (getHeight() - getAscent()).
-        @see getAscent, getHeight
-    */
-    float getDescentInPoints() const;
 
     //==============================================================================
     /** Returns the font's style flags.
@@ -455,9 +435,8 @@ private:
     ReferenceCountedObjectPtr <SharedFontInternal> font;
     void dupeInternalIfShared();
     void checkTypefaceSuitability();
-    float getHeightToPointsFactor() const;
 
     JUCE_LEAK_DETECTOR (Font)
 };
 
-#endif   // JUCE_FONT_H_INCLUDED
+#endif   // __JUCE_FONT_JUCEHEADER__

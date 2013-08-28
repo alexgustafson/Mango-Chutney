@@ -57,38 +57,10 @@ struct FontStyleHelpers
             || family == Font::getDefaultMonospacedFontName();
     }
 
-    struct ConcreteFamilyNames
+    static String getConcreteFamilyNameFromPlaceholder (const String& family)
     {
-        ConcreteFamilyNames()
-            : sans  (findName (Font::getDefaultSansSerifFontName())),
-              serif (findName (Font::getDefaultSerifFontName())),
-              mono  (findName (Font::getDefaultMonospacedFontName()))
-        {
-        }
-
-        String lookUp (const String& placeholder)
-        {
-            if (placeholder == Font::getDefaultSansSerifFontName())  return sans;
-            if (placeholder == Font::getDefaultSerifFontName())      return serif;
-            if (placeholder == Font::getDefaultMonospacedFontName()) return mono;
-
-            return findName (placeholder);
-        }
-
-    private:
-        static String findName (const String& placeholder)
-        {
-            const Font f (placeholder, Font::getDefaultStyle(), 15.0f);
-            return Font::getDefaultTypefaceForFont (f)->getName();
-        }
-
-        String sans, serif, mono;
-    };
-
-    static String getConcreteFamilyNameFromPlaceholder (const String& placeholder)
-    {
-        static ConcreteFamilyNames names;
-        return names.lookUp (placeholder);
+        const Font f (family, Font::getDefaultStyle(), 15.0f);
+        return Font::getDefaultTypefaceForFont (f)->getName();
     }
 
     static String getConcreteFamilyName (const Font& font)

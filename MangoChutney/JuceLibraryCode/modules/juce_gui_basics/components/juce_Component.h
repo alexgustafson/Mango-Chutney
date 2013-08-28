@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_COMPONENT_H_INCLUDED
-#define JUCE_COMPONENT_H_INCLUDED
+#ifndef __JUCE_COMPONENT_JUCEHEADER__
+#define __JUCE_COMPONENT_JUCEHEADER__
 
 #include "../mouse/juce_MouseCursor.h"
 #include "../mouse/juce_MouseListener.h"
@@ -135,7 +135,7 @@ public:
     */
     bool isVisible() const noexcept                         { return flags.visibleFlag; }
 
-    /** Called when this component's visibility changes.
+    /** Called when this component's visiblility changes.
         @see setVisible, isVisible
     */
     virtual void visibilityChanged();
@@ -330,7 +330,7 @@ public:
         If includeSiblings is true, it will also take into account any siblings
         that may be overlapping the component.
     */
-    void getVisibleArea (RectangleList<int>& result, bool includeSiblings) const;
+    void getVisibleArea (RectangleList& result, bool includeSiblings) const;
 
     //==============================================================================
     /** Returns this component's x coordinate relative the the screen's top-left origin.
@@ -565,7 +565,7 @@ public:
         @see setBounds
     */
     void setBoundsToFit (int x, int y, int width, int height,
-                         Justification justification,
+                         const Justification& justification,
                          bool onlyReduceInSize);
 
     /** Changes the position of the component's centre.
@@ -1453,7 +1453,7 @@ public:
                      the source component in which it occurred
         @see mouseEnter, mouseExit, mouseDrag, contains
     */
-    virtual void mouseMove (const MouseEvent& event) override;
+    virtual void mouseMove (const MouseEvent& event);
 
     /** Called when the mouse first enters a component.
 
@@ -1469,7 +1469,7 @@ public:
                      the source component in which it occurred
         @see mouseExit, mouseDrag, mouseMove, contains
     */
-    virtual void mouseEnter (const MouseEvent& event) override;
+    virtual void mouseEnter (const MouseEvent& event);
 
     /** Called when the mouse moves out of a component.
 
@@ -1484,7 +1484,7 @@ public:
                       the source component in which it occurred
         @see mouseEnter, mouseDrag, mouseMove, contains
     */
-    virtual void mouseExit (const MouseEvent& event) override;
+    virtual void mouseExit (const MouseEvent& event);
 
     /** Called when a mouse button is pressed.
 
@@ -1499,7 +1499,7 @@ public:
                       the source component in which it occurred
         @see mouseUp, mouseDrag, mouseDoubleClick, contains
     */
-    virtual void mouseDown (const MouseEvent& event) override;
+    virtual void mouseDown (const MouseEvent& event);
 
     /** Called when the mouse is moved while a button is held down.
 
@@ -1511,7 +1511,7 @@ public:
                       the source component in which it occurred
         @see mouseDown, mouseUp, mouseMove, contains, setDragRepeatInterval
     */
-    virtual void mouseDrag (const MouseEvent& event) override;
+    virtual void mouseDrag (const MouseEvent& event);
 
     /** Called when a mouse button is released.
 
@@ -1526,7 +1526,7 @@ public:
                       the source component in which it occurred
         @see mouseDown, mouseDrag, mouseDoubleClick, contains
     */
-    virtual void mouseUp (const MouseEvent& event) override;
+    virtual void mouseUp (const MouseEvent& event);
 
     /** Called when a mouse button has been double-clicked on a component.
 
@@ -1538,7 +1538,7 @@ public:
                       the source component in which it occurred
         @see mouseDown, mouseUp
     */
-    virtual void mouseDoubleClick (const MouseEvent& event) override;
+    virtual void mouseDoubleClick (const MouseEvent& event);
 
     /** Called when the mouse-wheel is moved.
 
@@ -1556,7 +1556,7 @@ public:
         @param wheel   details about the mouse wheel movement
     */
     virtual void mouseWheelMove (const MouseEvent& event,
-                                 const MouseWheelDetails& wheel) override;
+                                 const MouseWheelDetails& wheel);
 
     /** Called when a pinch-to-zoom mouse-gesture is used.
 
@@ -2214,10 +2214,12 @@ public:
     CachedComponentImage* getCachedComponentImage() const noexcept  { return cachedImage; }
 
     //==============================================================================
+   #ifndef DOXYGEN
     // These methods are deprecated - use localPointToGlobal, getLocalPoint, getLocalPoint, etc instead.
     JUCE_DEPRECATED (Point<int> relativePositionToGlobal (Point<int>) const);
     JUCE_DEPRECATED (Point<int> globalPositionToRelative (Point<int>) const);
     JUCE_DEPRECATED (Point<int> relativePositionToOtherComponent (const Component*, Point<int>) const);
+   #endif
 
 private:
     //==============================================================================
@@ -2345,4 +2347,4 @@ protected:
 };
 
 
-#endif   // JUCE_COMPONENT_H_INCLUDED
+#endif   // __JUCE_COMPONENT_JUCEHEADER__

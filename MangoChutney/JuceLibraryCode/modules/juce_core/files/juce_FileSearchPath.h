@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILESEARCHPATH_H_INCLUDED
-#define JUCE_FILESEARCHPATH_H_INCLUDED
+#ifndef __JUCE_FILESEARCHPATH_JUCEHEADER__
+#define __JUCE_FILESEARCHPATH_JUCEHEADER__
 
 #include "juce_File.h"
 #include "../text/juce_StringArray.h"
@@ -166,4 +166,4 @@ private:
     JUCE_LEAK_DETECTOR (FileSearchPath)
 };
 
-#endif   // JUCE_FILESEARCHPATH_H_INCLUDED
+#endif   // __JUCE_FILESEARCHPATH_JUCEHEADER__

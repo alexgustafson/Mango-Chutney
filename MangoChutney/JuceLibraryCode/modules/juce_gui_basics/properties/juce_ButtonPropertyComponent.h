@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_BUTTONPROPERTYCOMPONENT_H_INCLUDED
-#define JUCE_BUTTONPROPERTYCOMPONENT_H_INCLUDED
+#ifndef __JUCE_BUTTONPROPERTYCOMPONENT_JUCEHEADER__
+#define __JUCE_BUTTONPROPERTYCOMPONENT_JUCEHEADER__
 
 #include "juce_PropertyComponent.h"
 #include "../buttons/juce_TextButton.h"
@@ -78,4 +78,4 @@ private:
 };
 
 
-#endif   // JUCE_BUTTONPROPERTYCOMPONENT_H_INCLUDED
+#endif   // __JUCE_BUTTONPROPERTYCOMPONENT_JUCEHEADER__

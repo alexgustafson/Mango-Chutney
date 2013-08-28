@@ -28,9 +28,9 @@ class Slider::Pimpl   : public AsyncUpdater,
                         public ValueListener
 {
 public:
-    Pimpl (Slider& s, SliderStyle sliderStyle, TextEntryBoxPosition textBoxPosition)
-      : owner (s),
-        style (sliderStyle),
+    Pimpl (Slider& owner_, SliderStyle style_, TextEntryBoxPosition textBoxPosition)
+      : owner (owner_),
+        style (style_),
         lastCurrentValue (0), lastValueMin (0), lastValueMax (0),
         minimum (0), maximum (10), interval (0), doubleClickReturnValue (0),
         skewFactor (1.0), velocityModeSensitivity (1.0),
@@ -329,7 +329,7 @@ public:
         }
     }
 
-    void handleAsyncUpdate() override
+    void handleAsyncUpdate()
     {
         cancelPendingUpdate();
 
@@ -368,7 +368,7 @@ public:
         JUCE_DECLARE_NON_COPYABLE (DragInProgress)
     };
 
-    void buttonClicked (Button* button) override
+    void buttonClicked (Button* button)
     {
         if (style == IncDecButtons)
         {
@@ -379,7 +379,7 @@ public:
         }
     }
 
-    void valueChanged (Value& value) override
+    void valueChanged (Value& value)
     {
         if (value.refersToSameSourceAs (currentValue))
         {
@@ -392,7 +392,7 @@ public:
             setMaxValue (valueMax.getValue(), dontSendNotification, true);
     }
 
-    void labelTextChanged (Label* label) override
+    void labelTextChanged (Label* label)
     {
         const double newValue = owner.snapValue (owner.getValueFromText (label->getText()), false);
 
@@ -1146,7 +1146,7 @@ public:
 
         const int indent = lf.getSliderThumbRadius (owner);
 
-        if (style == LinearBar)
+        if (style == LinearBar || style == LinearBarVertical)
         {
             const int barIndent = 1;
             sliderRegionStart = barIndent;
@@ -1154,15 +1154,6 @@ public:
 
             sliderRect.setBounds (sliderRegionStart, barIndent,
                                   sliderRegionSize, localBounds.getHeight() - barIndent * 2);
-        }
-        else if (style == LinearBarVertical)
-        {
-            const int barIndent = 1;
-            sliderRegionStart = barIndent;
-            sliderRegionSize = localBounds.getHeight() - barIndent * 2;
-
-            sliderRect.setBounds (barIndent, sliderRegionStart,
-                                  localBounds.getWidth() - barIndent * 2, sliderRegionSize);
         }
         else if (isHorizontal())
         {
@@ -1265,12 +1256,11 @@ public:
                                    public Timer
     {
     public:
-        PopupDisplayComponent (Slider& s)
-            : owner (s),
-              font (s.getLookAndFeel().getSliderPopupFont())
+        PopupDisplayComponent (Slider& owner_)
+            : owner (owner_),
+              font (15.0f, Font::bold)
         {
             setAlwaysOnTop (true);
-            setAllowedPlacement (owner.getLookAndFeel().getSliderPopupPlacement());
         }
 
         void paintContent (Graphics& g, int w, int h)
@@ -1293,7 +1283,7 @@ public:
             repaint();
         }
 
-        void timerCallback() override
+        void timerCallback()
         {
             owner.pimpl->popupDisplay = nullptr;
         }
@@ -1480,9 +1470,9 @@ void Slider::setDoubleClickReturnValue (bool isDoubleClickEnabled,  double value
     pimpl->doubleClickReturnValue = valueToSetOnDoubleClick;
 }
 
-double Slider::getDoubleClickReturnValue (bool& isEnabledResult) const
+double Slider::getDoubleClickReturnValue (bool& isEnabled_) const
 {
-    isEnabledResult = pimpl->doubleClickToValue;
+    isEnabled_ = pimpl->doubleClickToValue;
     return pimpl->doubleClickReturnValue;
 }
 
@@ -1556,7 +1546,7 @@ void Slider::stoppedDragging() {}
 void Slider::valueChanged() {}
 
 //==============================================================================
-void Slider::setPopupMenuEnabled (const bool menuEnabled)   { pimpl->menuEnabled = menuEnabled; }
+void Slider::setPopupMenuEnabled (const bool menuEnabled_)  { pimpl->menuEnabled = menuEnabled_; }
 void Slider::setScrollWheelEnabled (const bool enabled)     { pimpl->scrollWheelEnabled = enabled; }
 
 bool Slider::isHorizontal() const noexcept   { return pimpl->isHorizontal(); }

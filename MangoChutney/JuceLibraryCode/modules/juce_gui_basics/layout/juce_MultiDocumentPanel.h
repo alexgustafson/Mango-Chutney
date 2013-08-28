@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MULTIDOCUMENTPANEL_H_INCLUDED
-#define JUCE_MULTIDOCUMENTPANEL_H_INCLUDED
+#ifndef __JUCE_MULTIDOCUMENTPANEL_JUCEHEADER__
+#define __JUCE_MULTIDOCUMENTPANEL_JUCEHEADER__
 
 #include "juce_TabbedComponent.h"
 #include "../windows/juce_DocumentWindow.h"
@@ -46,20 +46,20 @@ public:
     //==============================================================================
     /**
     */
-    MultiDocumentPanelWindow (Colour backgroundColour);
+    MultiDocumentPanelWindow (const Colour& backgroundColour);
 
     /** Destructor. */
     ~MultiDocumentPanelWindow();
 
     //==============================================================================
     /** @internal */
-    void maximiseButtonPressed() override;
+    void maximiseButtonPressed();
     /** @internal */
-    void closeButtonPressed() override;
+    void closeButtonPressed();
     /** @internal */
-    void activeWindowStatusChanged() override;
+    void activeWindowStatusChanged();
     /** @internal */
-    void broughtToFront() override;
+    void broughtToFront();
 
 private:
     //==============================================================================
@@ -136,7 +136,7 @@ public:
                                     the caller must handle the component's deletion
     */
     bool addDocument (Component* component,
-                      Colour backgroundColour,
+                      const Colour& backgroundColour,
                       bool deleteWhenRemoved);
 
     /** Closes one of the documents.
@@ -233,13 +233,13 @@ public:
         Each document has its own background colour, but this is the one used to fill the areas
         behind them.
     */
-    void setBackgroundColour (Colour newBackgroundColour);
+    void setBackgroundColour (const Colour& newBackgroundColour);
 
     /** Returns the current background colour.
 
         @see setBackgroundColour
     */
-    Colour getBackgroundColour() const noexcept                         { return backgroundColour; }
+    const Colour& getBackgroundColour() const noexcept                  { return backgroundColour; }
 
     /** If the panel is being used in tabbed mode, this returns the TabbedComponent that's involved. */
     TabbedComponent* getCurrentTabbedComponent() const noexcept         { return tabComponent; }
@@ -277,11 +277,11 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void componentNameChanged (Component&) override;
+    void componentNameChanged (Component&);
 
 private:
     //==============================================================================
@@ -295,12 +295,13 @@ private:
     friend class MultiDocumentPanelWindow;
     friend class TabbedComponentInternal;
 
-    Component* getContainerComp (Component*) const;
+    Component* getContainerComp (Component* c) const;
     void updateOrder();
-    void addWindow (Component*);
+
+    void addWindow (Component* component);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultiDocumentPanel)
 };
 
 
-#endif   // JUCE_MULTIDOCUMENTPANEL_H_INCLUDED
+#endif   // __JUCE_MULTIDOCUMENTPANEL_JUCEHEADER__

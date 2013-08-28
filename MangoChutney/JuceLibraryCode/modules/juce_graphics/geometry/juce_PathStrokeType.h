@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PATHSTROKETYPE_H_INCLUDED
-#define JUCE_PATHSTROKETYPE_H_INCLUDED
+#ifndef __JUCE_PATHSTROKETYPE_JUCEHEADER__
+#define __JUCE_PATHSTROKETYPE_JUCEHEADER__
 
 #include "juce_Path.h"
 
@@ -200,4 +200,4 @@ private:
     JUCE_LEAK_DETECTOR (PathStrokeType)
 };
 
-#endif   // JUCE_PATHSTROKETYPE_H_INCLUDED
+#endif   // __JUCE_PATHSTROKETYPE_JUCEHEADER__

@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SLIDER_H_INCLUDED
-#define JUCE_SLIDER_H_INCLUDED
+#ifndef __JUCE_SLIDER_JUCEHEADER__
+#define __JUCE_SLIDER_JUCEHEADER__
 
 #include "juce_Label.h"
 #include "../buttons/juce_Button.h"
@@ -772,29 +772,29 @@ public:
 protected:
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics&);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent&);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent&);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent&);
     /** @internal */
-    void mouseDoubleClick (const MouseEvent&) override;
+    void mouseDoubleClick (const MouseEvent&);
     /** @internal */
-    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&) override;
+    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&);
     /** @internal */
-    void modifierKeysChanged (const ModifierKeys&) override;
+    void modifierKeysChanged (const ModifierKeys&);
     /** @internal */
-    void lookAndFeelChanged() override;
+    void lookAndFeelChanged();
     /** @internal */
-    void enablementChanged() override;
+    void enablementChanged();
     /** @internal */
-    void focusOfChildComponentChanged (FocusChangeType) override;
+    void focusOfChildComponentChanged (FocusChangeType);
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
 
     /** Returns the best number of decimal places to use when displaying numbers.
         This is calculated from the slider's interval setting.
@@ -830,4 +830,4 @@ private:
 /** This typedef is just for compatibility with old code - newer code should use the Slider::Listener class directly. */
 typedef Slider::Listener SliderListener;
 
-#endif   // JUCE_SLIDER_H_INCLUDED
+#endif   // __JUCE_SLIDER_JUCEHEADER__

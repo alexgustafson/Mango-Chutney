@@ -129,7 +129,7 @@ public:
             {
                 ViewDeleter (const GlobalRef& view_) : view (view_) {}
 
-                void messageCallback() override
+                void messageCallback()
                 {
                     android.activity.callVoidMethod (JuceAppActivity.deleteView, view.get());
                 }
@@ -144,12 +144,12 @@ public:
         view.clear();
     }
 
-    void* getNativeHandle() const override
+    void* getNativeHandle() const
     {
         return (void*) view.get();
     }
 
-    void setVisible (bool shouldBeVisible) override
+    void setVisible (bool shouldBeVisible)
     {
         if (MessageManager::getInstance()->isThisTheMessageThread())
         {
@@ -163,7 +163,7 @@ public:
                     : view (view_), shouldBeVisible (shouldBeVisible_)
                 {}
 
-                void messageCallback() override
+                void messageCallback()
                 {
                     view.callVoidMethod (ComponentPeerView.setVisible, shouldBeVisible);
                 }
@@ -177,12 +177,12 @@ public:
         }
     }
 
-    void setTitle (const String& title) override
+    void setTitle (const String& title)
     {
         view.callVoidMethod (ComponentPeerView.setViewName, javaString (title).get());
     }
 
-    void setBounds (const Rectangle<int>& r, bool isNowFullScreen) override
+    void setBounds (const Rectangle<int>& r, bool isNowFullScreen)
     {
         if (MessageManager::getInstance()->isThisTheMessageThread())
         {
@@ -197,7 +197,7 @@ public:
             public:
                 ViewMover (const GlobalRef& v, const Rectangle<int>& r)  : view (v), bounds (r) {}
 
-                void messageCallback() override
+                void messageCallback()
                 {
                     view.callVoidMethod (ComponentPeerView.layout,
                                          bounds.getX(), bounds.getY(), bounds.getRight(), bounds.getBottom());
@@ -212,7 +212,7 @@ public:
         }
     }
 
-    Rectangle<int> getBounds() const override
+    Rectangle<int> getBounds() const
     {
         return Rectangle<int> (view.callIntMethod (ComponentPeerView.getLeft),
                                view.callIntMethod (ComponentPeerView.getTop),
@@ -234,27 +234,27 @@ public:
                            view.callIntMethod (ComponentPeerView.getTop));
     }
 
-    Point<int> localToGlobal (Point<int> relativePosition) override
+    Point<int> localToGlobal (const Point<int>& relativePosition)
     {
         return relativePosition + getScreenPosition();
     }
 
-    Point<int> globalToLocal (Point<int> screenPosition) override
+    Point<int> globalToLocal (const Point<int>& screenPosition)
     {
         return screenPosition - getScreenPosition();
     }
 
-    void setMinimised (bool shouldBeMinimised) override
+    void setMinimised (bool shouldBeMinimised)
     {
         // n/a
     }
 
-    bool isMinimised() const override
+    bool isMinimised() const
     {
         return false;
     }
 
-    void setFullScreen (bool shouldBeFullScreen) override
+    void setFullScreen (bool shouldBeFullScreen)
     {
         Rectangle<int> r (shouldBeFullScreen ? Desktop::getInstance().getDisplays().getMainDisplay().userArea
                                              : lastNonFullscreenBounds);
@@ -269,37 +269,37 @@ public:
         component.repaint();
     }
 
-    bool isFullScreen() const override
+    bool isFullScreen() const
     {
         return fullScreen;
     }
 
-    void setIcon (const Image& newIcon) override
+    void setIcon (const Image& newIcon)
     {
         // n/a
     }
 
-    bool contains (Point<int> localPos, bool trueIfInAChildWindow) const override
+    bool contains (const Point<int>& position, bool trueIfInAChildWindow) const
     {
-        return isPositiveAndBelow (localPos.x, component.getWidth())
-            && isPositiveAndBelow (localPos.y, component.getHeight())
+        return isPositiveAndBelow (position.x, component.getWidth())
+            && isPositiveAndBelow (position.y, component.getHeight())
             && ((! trueIfInAChildWindow) || view.callBooleanMethod (ComponentPeerView.containsPoint,
-                                                                    localPos.x, localPos.y));
+                                                                    position.x, position.y));
     }
 
-    BorderSize<int> getFrameSize() const override
+    BorderSize<int> getFrameSize() const
     {
         // TODO
         return BorderSize<int>();
     }
 
-    bool setAlwaysOnTop (bool alwaysOnTop) override
+    bool setAlwaysOnTop (bool alwaysOnTop)
     {
         // TODO
         return false;
     }
 
-    void toFront (bool makeActive) override
+    void toFront (bool makeActive)
     {
         view.callVoidMethod (ComponentPeerView.bringToFront);
 
@@ -309,7 +309,7 @@ public:
         handleBroughtToFront();
     }
 
-    void toBehind (ComponentPeer* other) override
+    void toBehind (ComponentPeer* other)
     {
         // TODO
     }
@@ -347,12 +347,12 @@ public:
     }
 
     //==============================================================================
-    bool isFocused() const override
+    bool isFocused() const
     {
         return view.callBooleanMethod (ComponentPeerView.hasFocus);
     }
 
-    void grabFocus() override
+    void grabFocus()
     {
         view.callBooleanMethod (ComponentPeerView.requestFocus);
     }
@@ -365,12 +365,12 @@ public:
             handleFocusLoss();
     }
 
-    void textInputRequired (const Point<int>&) override
+    void textInputRequired (const Point<int>&)
     {
         view.callVoidMethod (ComponentPeerView.showKeyboard, true);
     }
 
-    void dismissPendingTextInput() override
+    void dismissPendingTextInput()
     {
         view.callVoidMethod (ComponentPeerView.showKeyboard, false);
      }
@@ -416,7 +416,7 @@ public:
         }
     }
 
-    void repaint (const Rectangle<int>& area) override
+    void repaint (const Rectangle<int>& area)
     {
         if (MessageManager::getInstance()->isThisTheMessageThread())
         {
@@ -429,7 +429,7 @@ public:
                 ViewRepainter (const GlobalRef& view_, const Rectangle<int>& area_)
                     : view (view_), area (area_) {}
 
-                void messageCallback() override
+                void messageCallback()
                 {
                     view.callVoidMethod (ComponentPeerView.invalidate, area.getX(), area.getY(),
                                          area.getRight(), area.getBottom());
@@ -444,12 +444,12 @@ public:
         }
     }
 
-    void performAnyPendingRepaintsNow() override
+    void performAnyPendingRepaintsNow()
     {
         // TODO
     }
 
-    void setAlpha (float newAlpha) override
+    void setAlpha (float newAlpha)
     {
         // TODO
     }
@@ -503,8 +503,8 @@ private:
             }
         }
 
-        ImageType* createType() const override                      { return new SoftwareImageType(); }
-        LowLevelGraphicsContext* createLowLevelContext() override   { return new LowLevelGraphicsSoftwareRenderer (Image (this)); }
+        ImageType* createType() const                       { return new SoftwareImageType(); }
+        LowLevelGraphicsContext* createLowLevelContext()    { return new LowLevelGraphicsSoftwareRenderer (Image (this)); }
 
         void initialiseBitmapData (Image::BitmapData& bm, int x, int y, Image::BitmapData::ReadWriteMode mode)
         {
@@ -572,11 +572,6 @@ bool Desktop::canUseSemiTransparentWindows() noexcept
     return true;
 }
 
-double Desktop::getDefaultMasterScale()
-{
-    return 1.0;
-}
-
 Desktop::DisplayOrientation Desktop::getCurrentOrientation() const
 {
     // TODO
@@ -589,12 +584,12 @@ bool Desktop::addMouseInputSource()
     return true;
 }
 
-Point<int> MouseInputSource::getCurrentRawMousePosition()
+Point<int> MouseInputSource::getCurrentMousePosition()
 {
     return AndroidComponentPeer::lastMousePos;
 }
 
-void MouseInputSource::setRawMousePosition (Point<int>)
+void Desktop::setMousePosition (Point<int> newPosition)
 {
     // not needed
 }
@@ -617,10 +612,14 @@ ModifierKeys ModifierKeys::getCurrentModifiersRealtime() noexcept
 }
 
 //==============================================================================
-// TODO
-bool Process::isForegroundProcess() { return true; }
-void Process::makeForegroundProcess() {}
-void Process::hide() {}
+bool Process::isForegroundProcess()
+{
+    return true;      // TODO
+}
+
+void Process::makeForegroundProcess()
+{
+}
 
 //==============================================================================
 void JUCE_CALLTYPE NativeMessageBox::showMessageBoxAsync (AlertWindow::AlertIconType iconType,
@@ -687,24 +686,22 @@ bool juce_areThereAnyAlwaysOnTopWindows()
 }
 
 //==============================================================================
-void Desktop::Displays::findDisplays (float masterScale)
+void Desktop::Displays::findDisplays()
 {
     Display d;
-    d.userArea = d.totalArea = Rectangle<int> (android.screenWidth,
-                                               android.screenHeight) / masterScale;
+    d.userArea = d.totalArea = Rectangle<int> (android.screenWidth, android.screenHeight);
     d.isMain = true;
-    d.scale = masterScale;
+    d.scale = 1.0;
 
     displays.add (d);
 }
 
 JUCE_JNI_CALLBACK (JUCE_ANDROID_ACTIVITY_CLASSNAME, setScreenSize, void, (JNIEnv* env, jobject activity,
-                                                                          jint screenWidth, jint screenHeight,
-                                                                          jint dpi))
+                                                                          jint screenWidth, jint screenHeight))
 {
+    const bool isSystemInitialised = android.screenWidth != 0;
     android.screenWidth = screenWidth;
     android.screenHeight = screenHeight;
-    android.dpi = dpi;
 
     const_cast <Desktop::Displays&> (Desktop::getInstance().getDisplays()).refresh();
 }

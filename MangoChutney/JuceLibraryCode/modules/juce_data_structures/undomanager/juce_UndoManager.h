@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_UNDOMANAGER_H_INCLUDED
-#define JUCE_UNDOMANAGER_H_INCLUDED
+#ifndef __JUCE_UNDOMANAGER_JUCEHEADER__
+#define __JUCE_UNDOMANAGER_JUCEHEADER__
 
 #include "juce_UndoableAction.h"
 
@@ -229,4 +229,4 @@ private:
 };
 
 
-#endif   // JUCE_UNDOMANAGER_H_INCLUDED
+#endif   // __JUCE_UNDOMANAGER_JUCEHEADER__

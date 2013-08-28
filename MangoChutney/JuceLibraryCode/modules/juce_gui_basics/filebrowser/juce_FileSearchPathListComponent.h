@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILESEARCHPATHLISTCOMPONENT_H_INCLUDED
-#define JUCE_FILESEARCHPATHLISTCOMPONENT_H_INCLUDED
+#ifndef __JUCE_FILESEARCHPATHLISTCOMPONENT_JUCEHEADER__
+#define __JUCE_FILESEARCHPATHLISTCOMPONENT_JUCEHEADER__
 
 #include "../widgets/juce_ListBox.h"
 #include "../buttons/juce_DrawableButton.h"
@@ -80,27 +80,28 @@ public:
 
     //==============================================================================
     /** @internal */
-    int getNumRows() override;
+    int getNumRows();
     /** @internal */
-    void paintListBoxItem (int rowNumber, Graphics& g, int width, int height, bool rowIsSelected) override;
+    void paintListBoxItem (int rowNumber, Graphics& g, int width, int height, bool rowIsSelected);
     /** @internal */
-    void deleteKeyPressed (int lastRowSelected) override;
+    void deleteKeyPressed (int lastRowSelected);
     /** @internal */
-    void returnKeyPressed (int lastRowSelected) override;
+    void returnKeyPressed (int lastRowSelected);
     /** @internal */
-    void listBoxItemDoubleClicked (int row, const MouseEvent&) override;
+    void listBoxItemDoubleClicked (int row, const MouseEvent&);
     /** @internal */
-    void selectedRowsChanged (int lastRowSelected) override;
+    void selectedRowsChanged (int lastRowSelected);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    bool isInterestedInFileDrag (const StringArray&) override;
+    bool isInterestedInFileDrag (const StringArray& files);
     /** @internal */
-    void filesDropped (const StringArray& files, int, int) override;
+    void filesDropped (const StringArray& files, int, int);
     /** @internal */
-    void buttonClicked (Button*) override;
+    void buttonClicked (Button* button);
+
 
 private:
     //==============================================================================
@@ -118,4 +119,4 @@ private:
 };
 
 
-#endif   // JUCE_FILESEARCHPATHLISTCOMPONENT_H_INCLUDED
+#endif   // __JUCE_FILESEARCHPATHLISTCOMPONENT_JUCEHEADER__

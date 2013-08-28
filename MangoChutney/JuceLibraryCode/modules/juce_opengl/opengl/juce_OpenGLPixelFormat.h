@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OPENGLPIXELFORMAT_H_INCLUDED
-#define JUCE_OPENGLPIXELFORMAT_H_INCLUDED
+#ifndef __JUCE_OPENGLPIXELFORMAT_JUCEHEADER__
+#define __JUCE_OPENGLPIXELFORMAT_JUCEHEADER__
 
 
 //==============================================================================
@@ -67,4 +67,4 @@ public:
 };
 
 
-#endif   // JUCE_OPENGLPIXELFORMAT_H_INCLUDED
+#endif   // __JUCE_OPENGLPIXELFORMAT_JUCEHEADER__

@@ -29,18 +29,12 @@
 XmlDocument::XmlDocument (const String& documentText)
     : originalText (documentText),
       input (nullptr),
-      outOfData (false),
-      errorOccurred (false),
-      needToLoadDTD (false),
       ignoreEmptyTextElements (true)
 {
 }
 
 XmlDocument::XmlDocument (const File& file)
     : input (nullptr),
-      outOfData (false),
-      errorOccurred (false),
-      needToLoadDTD (false),
       ignoreEmptyTextElements (true),
       inputSource (new FileInputSource (file))
 {

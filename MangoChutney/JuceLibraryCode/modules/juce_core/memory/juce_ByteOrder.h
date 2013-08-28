@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_BYTEORDER_H_INCLUDED
-#define JUCE_BYTEORDER_H_INCLUDED
+#ifndef __JUCE_BYTEORDER_JUCEHEADER__
+#define __JUCE_BYTEORDER_JUCEHEADER__
 
 
 //==============================================================================
@@ -183,4 +183,4 @@ inline void ByteOrder::littleEndian24BitToChars (const int value, char* const de
 inline void ByteOrder::bigEndian24BitToChars (const int value, char* const destBytes)       { destBytes[0] = (char)((value >> 16) & 0xff); destBytes[1] = (char)((value >> 8) & 0xff); destBytes[2] = (char)(value & 0xff); }
 
 
-#endif   // JUCE_BYTEORDER_H_INCLUDED
+#endif   // __JUCE_BYTEORDER_JUCEHEADER__

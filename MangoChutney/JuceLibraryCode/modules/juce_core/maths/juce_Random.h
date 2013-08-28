@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RANDOM_H_INCLUDED
-#define JUCE_RANDOM_H_INCLUDED
+#ifndef __JUCE_RANDOM_JUCEHEADER__
+#define __JUCE_RANDOM_JUCEHEADER__
 
 #include "juce_BigInteger.h"
 
@@ -100,9 +100,6 @@ public:
     */
     BigInteger nextLargeNumber (const BigInteger& maximumValue);
 
-    /** Fills a block of memory with random values. */
-    void fillBitsRandomly (void* bufferToFill, size_t sizeInBytes);
-
     /** Sets a range of bits in a BigInteger to random values. */
     void fillBitsRandomly (BigInteger& arrayToChange, int startBit, int numBits);
 
@@ -140,4 +137,4 @@ private:
 };
 
 
-#endif   // JUCE_RANDOM_H_INCLUDED
+#endif   // __JUCE_RANDOM_JUCEHEADER__

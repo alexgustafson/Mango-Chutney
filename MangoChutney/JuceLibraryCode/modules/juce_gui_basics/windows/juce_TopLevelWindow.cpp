@@ -106,7 +106,7 @@ public:
 private:
     TopLevelWindow* currentActive;
 
-    void timerCallback() override
+    void timerCallback()
     {
         checkFocus();
     }

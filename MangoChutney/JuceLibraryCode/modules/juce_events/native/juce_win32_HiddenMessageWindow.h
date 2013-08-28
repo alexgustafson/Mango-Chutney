@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_WIN32_HIDDENMESSAGEWINDOW_H_INCLUDED
-#define JUCE_WIN32_HIDDENMESSAGEWINDOW_H_INCLUDED
+#ifndef __JUCE_WIN32_HIDDENMESSAGEWINDOW_JUCEHEADER__
+#define __JUCE_WIN32_HIDDENMESSAGEWINDOW_JUCEHEADER__
 
 //==============================================================================
 class HiddenMessageWindow
@@ -128,11 +128,11 @@ private:
         return DefWindowProc (h, message, wParam, lParam);
     }
 
-    void timerCallback() override
+    void timerCallback()
     {
         stopTimer();
         systemDeviceChanged();
     }
 };
 
-#endif   // JUCE_WIN32_HIDDENMESSAGEWINDOW_H_INCLUDED
+#endif   // __JUCE_WIN32_HIDDENMESSAGEWINDOW_JUCEHEADER__

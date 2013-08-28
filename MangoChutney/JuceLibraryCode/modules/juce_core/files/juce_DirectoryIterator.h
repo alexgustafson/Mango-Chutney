@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DIRECTORYITERATOR_H_INCLUDED
-#define JUCE_DIRECTORYITERATOR_H_INCLUDED
+#ifndef __JUCE_DIRECTORYITERATOR_JUCEHEADER__
+#define __JUCE_DIRECTORYITERATOR_JUCEHEADER__
 
 #include "juce_File.h"
 #include "../memory/juce_ScopedPointer.h"
@@ -153,10 +153,7 @@ private:
     ScopedPointer <DirectoryIterator> subIterator;
     File currentFile;
 
-    static StringArray parseWildcards (const String& pattern);
-    static bool fileMatches (const StringArray& wildCards, const String& filename);
-
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DirectoryIterator)
 };
 
-#endif   // JUCE_DIRECTORYITERATOR_H_INCLUDED
+#endif   // __JUCE_DIRECTORYITERATOR_JUCEHEADER__

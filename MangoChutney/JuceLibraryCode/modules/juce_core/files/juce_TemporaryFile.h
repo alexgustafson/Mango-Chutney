@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TEMPORARYFILE_H_INCLUDED
-#define JUCE_TEMPORARYFILE_H_INCLUDED
+#ifndef __JUCE_TEMPORARYFILE_JUCEHEADER__
+#define __JUCE_TEMPORARYFILE_JUCEHEADER__
 
 #include "juce_File.h"
 
@@ -168,4 +168,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TemporaryFile)
 };
 
-#endif   // JUCE_TEMPORARYFILE_H_INCLUDED
+#endif   // __JUCE_TEMPORARYFILE_JUCEHEADER__

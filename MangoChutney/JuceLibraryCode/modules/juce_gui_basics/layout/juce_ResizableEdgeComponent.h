@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RESIZABLEEDGECOMPONENT_H_INCLUDED
-#define JUCE_RESIZABLEEDGECOMPONENT_H_INCLUDED
+#ifndef __JUCE_RESIZABLEEDGECOMPONENT_JUCEHEADER__
+#define __JUCE_RESIZABLEEDGECOMPONENT_JUCEHEADER__
 
 #include "juce_ComponentBoundsConstrainer.h"
 
@@ -80,13 +80,13 @@ public:
 protected:
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent& e);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent& e);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent& e);
 
 private:
     WeakReference<Component> component;
@@ -98,4 +98,4 @@ private:
 };
 
 
-#endif   // JUCE_RESIZABLEEDGECOMPONENT_H_INCLUDED
+#endif   // __JUCE_RESIZABLEEDGECOMPONENT_JUCEHEADER__

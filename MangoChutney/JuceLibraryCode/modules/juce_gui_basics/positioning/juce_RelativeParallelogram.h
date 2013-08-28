@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RELATIVEPARALLELOGRAM_H_INCLUDED
-#define JUCE_RELATIVEPARALLELOGRAM_H_INCLUDED
+#ifndef __JUCE_RELATIVEPARALLELOGRAM_JUCEHEADER__
+#define __JUCE_RELATIVEPARALLELOGRAM_JUCEHEADER__
 
 #include "juce_RelativePoint.h"
 
@@ -64,4 +64,4 @@ public:
 };
 
 
-#endif   // JUCE_RELATIVEPARALLELOGRAM_H_INCLUDED
+#endif   // __JUCE_RELATIVEPARALLELOGRAM_JUCEHEADER__

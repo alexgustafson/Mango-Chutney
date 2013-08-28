@@ -29,15 +29,17 @@
 //==============================================================================
 SettingsViewComponent::SettingsViewComponent ()
 {
-    addAndMakeVisible (textButton = new TextButton ("sample"));
-    textButton->addListener (this);
+    addAndMakeVisible (sampleEditButton = new TextButton ("sample"));
+    sampleEditButton->addListener (this);
 
-    addAndMakeVisible (textButton2 = new TextButton ("sample"));
-    textButton2->setButtonText ("synth");
-    textButton2->addListener (this);
+    addAndMakeVisible (synthEditButton = new TextButton ("synth"));
+    synthEditButton->addListener (this);
 
     addAndMakeVisible (settingsPanel = new Component());
     settingsPanel->setName ("settings Panel");
+
+    addAndMakeVisible (closeButton = new TextButton ("close"));
+    closeButton->addListener (this);
 
 
     //[UserPreSize]
@@ -47,6 +49,7 @@ SettingsViewComponent::SettingsViewComponent ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    settingsPanel->addAndMakeVisible(sampleSettingsPanel = new SampleSettingsComponent());
     //[/Constructor]
 }
 
@@ -55,9 +58,10 @@ SettingsViewComponent::~SettingsViewComponent()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
-    textButton = nullptr;
-    textButton2 = nullptr;
+    sampleEditButton = nullptr;
+    synthEditButton = nullptr;
     settingsPanel = nullptr;
+    closeButton = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -78,9 +82,10 @@ void SettingsViewComponent::paint (Graphics& g)
 
 void SettingsViewComponent::resized()
 {
-    textButton->setBounds (8, 8, 168, 24);
-    textButton2->setBounds (184, 8, 184, 24);
-    settingsPanel->setBounds (8, 40, 360, 472);
+    sampleEditButton->setBounds (8, 8, proportionOfWidth (0.2989f), 24);
+    synthEditButton->setBounds (getWidth() - 131 - proportionOfWidth (0.2989f), 8, proportionOfWidth (0.2989f), 24);
+    settingsPanel->setBounds (8, 40, proportionOfWidth (0.9553f), getHeight() - 48);
+    closeButton->setBounds (getWidth() - 11 - proportionOfWidth (0.1648f), 8, proportionOfWidth (0.1648f), 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -90,15 +95,21 @@ void SettingsViewComponent::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == textButton)
+    if (buttonThatWasClicked == sampleEditButton)
     {
-        //[UserButtonCode_textButton] -- add your button handler code here..
-        //[/UserButtonCode_textButton]
+        //[UserButtonCode_sampleEditButton] -- add your button handler code here..
+        //[/UserButtonCode_sampleEditButton]
     }
-    else if (buttonThatWasClicked == textButton2)
+    else if (buttonThatWasClicked == synthEditButton)
     {
-        //[UserButtonCode_textButton2] -- add your button handler code here..
-        //[/UserButtonCode_textButton2]
+        //[UserButtonCode_synthEditButton] -- add your button handler code here..
+        //[/UserButtonCode_synthEditButton]
+    }
+    else if (buttonThatWasClicked == closeButton)
+    {
+        //[UserButtonCode_closeButton] -- add your button handler code here..
+    
+        //[/UserButtonCode_closeButton]
     }
 
     //[UserbuttonClicked_Post]
@@ -125,15 +136,18 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330000013"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffffff"/>
-  <TEXTBUTTON name="sample" id="642cbf5145044ea2" memberName="textButton" virtualName=""
-              explicitFocusOrder="0" pos="8 8 168 24" buttonText="sample" connectedEdges="0"
-              needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="sample" id="31074264ebafac06" memberName="textButton2"
-              virtualName="" explicitFocusOrder="0" pos="184 8 184 24" buttonText="synth"
+  <TEXTBUTTON name="sample" id="642cbf5145044ea2" memberName="sampleEditButton"
+              virtualName="" explicitFocusOrder="0" pos="8 8 29.888% 24" buttonText="sample"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="synth" id="31074264ebafac06" memberName="synthEditButton"
+              virtualName="" explicitFocusOrder="0" pos="131Rr 8 29.888% 24"
+              buttonText="synth" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="settings Panel" id="3a7bd44a7282c59a" memberName="settingsPanel"
-                    virtualName="" explicitFocusOrder="0" pos="8 40 360 472" class="Component"
-                    params=""/>
+                    virtualName="" explicitFocusOrder="0" pos="8 40 95.531% 48M"
+                    class="Component" params=""/>
+  <TEXTBUTTON name="close" id="53d871920df8b5f8" memberName="closeButton" virtualName=""
+              explicitFocusOrder="0" pos="11Rr 8 16.48% 24" buttonText="close"
+              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

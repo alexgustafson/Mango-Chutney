@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TABBEDBUTTONBAR_H_INCLUDED
-#define JUCE_TABBEDBUTTONBAR_H_INCLUDED
+#ifndef __JUCE_TABBEDBUTTONBAR_JUCEHEADER__
+#define __JUCE_TABBEDBUTTONBAR_JUCEHEADER__
 
 #include "../buttons/juce_Button.h"
 class TabbedButtonBar;
@@ -106,15 +106,15 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paintButton (Graphics&, bool isMouseOverButton, bool isButtonDown) override;
+    void paintButton (Graphics&, bool isMouseOverButton, bool isButtonDown);
     /** @internal */
-    void clicked (const ModifierKeys&) override;
+    void clicked (const ModifierKeys&);
     /** @internal */
-    bool hitTest (int x, int y) override;
+    bool hitTest (int x, int y);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void childBoundsChanged (Component*) override;
+    void childBoundsChanged (Component*);
 
 protected:
     friend class TabbedButtonBar;
@@ -206,7 +206,7 @@ public:
         If this is the first tab added, it'll also be automatically selected.
     */
     void addTab (const String& tabName,
-                 Colour tabBackgroundColour,
+                 const Colour& tabBackgroundColour,
                  int insertIndex);
 
     /** Changes the name of one of the tabs. */
@@ -273,7 +273,7 @@ public:
     /** Changes the background colour of a tab.
         @see addTab, getTabBackgroundColour
     */
-    void setTabBackgroundColour (int tabIndex, Colour newColour);
+    void setTabBackgroundColour (int tabIndex, const Colour& newColour);
 
     //==============================================================================
     /** A set of colour IDs to use to change the colour of various aspects of the component.
@@ -296,9 +296,9 @@ public:
 
     //==============================================================================
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void lookAndFeelChanged() override;
+    void lookAndFeelChanged();
 
 protected:
     //==============================================================================
@@ -337,4 +337,4 @@ private:
 };
 
 
-#endif   // JUCE_TABBEDBUTTONBAR_H_INCLUDED
+#endif   // __JUCE_TABBEDBUTTONBAR_JUCEHEADER__

@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MESSAGE_H_INCLUDED
-#define JUCE_MESSAGE_H_INCLUDED
+#ifndef __JUCE_MESSAGE_JUCEHEADER__
+#define __JUCE_MESSAGE_JUCEHEADER__
 
 class MessageListener;
 
@@ -54,7 +54,7 @@ public:
 private:
     friend class MessageListener;
     WeakReference<MessageListener> recipient;
-    void messageCallback() override;
+    void messageCallback();
 
     // Avoid the leak-detector because for plugins, the host can unload our DLL with undelivered
     // messages still in the system event queue. These aren't harmful, but can cause annoying assertions.
@@ -62,4 +62,4 @@ private:
 };
 
 
-#endif   // JUCE_MESSAGE_H_INCLUDED
+#endif   // __JUCE_MESSAGE_JUCEHEADER__

@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_HYPERLINKBUTTON_H_INCLUDED
-#define JUCE_HYPERLINKBUTTON_H_INCLUDED
+#ifndef __JUCE_HYPERLINKBUTTON_JUCEHEADER__
+#define __JUCE_HYPERLINKBUTTON_JUCEHEADER__
 
 #include "juce_Button.h"
 
@@ -63,7 +63,7 @@ public:
     */
     void setFont (const Font& newFont,
                   bool resizeToMatchComponentHeight,
-                  Justification justificationType = Justification::horizontallyCentred);
+                  const Justification& justificationType = Justification::horizontallyCentred);
 
     //==============================================================================
     /** A set of colour IDs to use to change the colour of various aspects of the link.
@@ -95,11 +95,13 @@ public:
 protected:
     //==============================================================================
     /** @internal */
-    void clicked() override;
+    void clicked();
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
     /** @internal */
-    void paintButton (Graphics&, bool isMouseOver, bool isButtonDown) override;
+    void paintButton (Graphics& g,
+                      bool isMouseOverButton,
+                      bool isButtonDown);
 
 private:
     //==============================================================================
@@ -113,4 +115,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (HyperlinkButton)
 };
 
-#endif   // JUCE_HYPERLINKBUTTON_H_INCLUDED
+#endif   // __JUCE_HYPERLINKBUTTON_JUCEHEADER__

@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_IMAGEPREVIEWCOMPONENT_H_INCLUDED
-#define JUCE_IMAGEPREVIEWCOMPONENT_H_INCLUDED
+#ifndef __JUCE_IMAGEPREVIEWCOMPONENT_JUCEHEADER__
+#define __JUCE_IMAGEPREVIEWCOMPONENT_JUCEHEADER__
 
 #include "juce_FilePreviewComponent.h"
 
@@ -48,11 +48,11 @@ public:
 
     //==============================================================================
     /** @internal */
-    void selectedFileChanged (const File& newSelectedFile) override;
+    void selectedFileChanged (const File& newSelectedFile);
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void timerCallback() override;
+    void timerCallback();
 
 private:
     File fileToLoad;
@@ -65,4 +65,4 @@ private:
 };
 
 
-#endif   // JUCE_IMAGEPREVIEWCOMPONENT_H_INCLUDED
+#endif   // __JUCE_IMAGEPREVIEWCOMPONENT_JUCEHEADER__

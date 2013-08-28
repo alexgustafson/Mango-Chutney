@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_THREADPOOL_H_INCLUDED
-#define JUCE_THREADPOOL_H_INCLUDED
+#ifndef __JUCE_THREADPOOL_JUCEHEADER__
+#define __JUCE_THREADPOOL_JUCEHEADER__
 
 #include "juce_Thread.h"
 #include "../text/juce_StringArray.h"
@@ -315,4 +315,4 @@ private:
 };
 
 
-#endif   // JUCE_THREADPOOL_H_INCLUDED
+#endif   // __JUCE_THREADPOOL_JUCEHEADER__

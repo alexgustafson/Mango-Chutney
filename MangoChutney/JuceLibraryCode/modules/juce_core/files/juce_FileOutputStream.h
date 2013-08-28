@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILEOUTPUTSTREAM_H_INCLUDED
-#define JUCE_FILEOUTPUTSTREAM_H_INCLUDED
+#ifndef __JUCE_FILEOUTPUTSTREAM_JUCEHEADER__
+#define __JUCE_FILEOUTPUTSTREAM_JUCEHEADER__
 
 #include "juce_File.h"
 #include "../streams/juce_OutputStream.h"
@@ -90,11 +90,11 @@ public:
     Result truncate();
 
     //==============================================================================
-    void flush() override;
-    int64 getPosition() override;
-    bool setPosition (int64) override;
-    bool write (const void*, size_t) override;
-    bool writeRepeatedByte (uint8 byte, size_t numTimesToRepeat) override;
+    void flush();
+    int64 getPosition();
+    bool setPosition (int64 pos);
+    bool write (const void* data, size_t numBytes);
+    void writeRepeatedByte (uint8 byte, size_t numTimesToRepeat);
 
 
 private:
@@ -116,4 +116,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FileOutputStream)
 };
 
-#endif   // JUCE_FILEOUTPUTSTREAM_H_INCLUDED
+#endif   // __JUCE_FILEOUTPUTSTREAM_JUCEHEADER__

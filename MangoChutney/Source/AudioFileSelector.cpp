@@ -103,6 +103,7 @@ void AudioFileSelector::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_selectButton] -- add your button handler code here..
         if (fileIsSelected) {
             listener->fileSelected(selectedFile);
+            
         }
         //[/UserButtonCode_selectButton]
     }

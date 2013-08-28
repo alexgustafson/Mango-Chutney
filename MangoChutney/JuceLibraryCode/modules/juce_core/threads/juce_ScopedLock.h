@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SCOPEDLOCK_H_INCLUDED
-#define JUCE_SCOPEDLOCK_H_INCLUDED
+#ifndef __JUCE_SCOPEDLOCK_JUCEHEADER__
+#define __JUCE_SCOPEDLOCK_JUCEHEADER__
 
 
 //==============================================================================
@@ -234,4 +234,4 @@ private:
 };
 
 
-#endif   // JUCE_SCOPEDLOCK_H_INCLUDED
+#endif   // __JUCE_SCOPEDLOCK_JUCEHEADER__

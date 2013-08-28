@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CARETCOMPONENT_H_INCLUDED
-#define JUCE_CARETCOMPONENT_H_INCLUDED
+#ifndef __JUCE_CARETCOMPONENT_JUCEHEADER__
+#define __JUCE_CARETCOMPONENT_JUCEHEADER__
 
 #include "../components/juce_Component.h"
 
@@ -67,16 +67,16 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
 
 private:
     Component* owner;
 
     bool shouldBeShown() const;
-    void timerCallback() override;
+    void timerCallback();
 
     JUCE_DECLARE_NON_COPYABLE (CaretComponent)
 };
 
 
-#endif   // JUCE_CARETCOMPONENT_H_INCLUDED
+#endif   // __JUCE_CARETCOMPONENT_JUCEHEADER__

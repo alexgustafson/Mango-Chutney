@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_IMAGECONVOLUTIONKERNEL_H_INCLUDED
-#define JUCE_IMAGECONVOLUTIONKERNEL_H_INCLUDED
+#ifndef __JUCE_IMAGECONVOLUTIONKERNEL_JUCEHEADER__
+#define __JUCE_IMAGECONVOLUTIONKERNEL_JUCEHEADER__
 
 #include "juce_Image.h"
 
@@ -110,4 +110,4 @@ private:
 };
 
 
-#endif   // JUCE_IMAGECONVOLUTIONKERNEL_H_INCLUDED
+#endif   // __JUCE_IMAGECONVOLUTIONKERNEL_JUCEHEADER__

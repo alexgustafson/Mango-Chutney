@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OPENGLGRAPHICSCONTEXT_H_INCLUDED
-#define JUCE_OPENGLGRAPHICSCONTEXT_H_INCLUDED
+#ifndef __JUCE_OPENGLGRAPHICSCONTEXT_JUCEHEADER__
+#define __JUCE_OPENGLGRAPHICSCONTEXT_JUCEHEADER__
 
 
 /** Creates a graphics context object that will render into the given OpenGL target.
@@ -46,4 +46,4 @@ LowLevelGraphicsContext* createOpenGLGraphicsContext (OpenGLContext& context,
                                                       int width, int height);
 
 
-#endif   // JUCE_OPENGLGRAPHICSCONTEXT_H_INCLUDED
+#endif   // __JUCE_OPENGLGRAPHICSCONTEXT_JUCEHEADER__

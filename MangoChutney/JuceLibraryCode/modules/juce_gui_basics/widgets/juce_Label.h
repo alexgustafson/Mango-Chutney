@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_LABEL_H_INCLUDED
-#define JUCE_LABEL_H_INCLUDED
+#ifndef __JUCE_LABEL_JUCEHEADER__
+#define __JUCE_LABEL_JUCEHEADER__
 
 #include "juce_TextEditor.h"
 
@@ -114,7 +114,7 @@ public:
 
         (The default is Justification::centredLeft)
     */
-    void setJustificationType (Justification justification);
+    void setJustificationType (const Justification& justification);
 
     /** Returns the type of justification, as set in setJustificationType(). */
     Justification getJustificationType() const noexcept                         { return justification; }
@@ -274,39 +274,39 @@ protected:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics&);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent&);
     /** @internal */
-    void mouseDoubleClick (const MouseEvent&) override;
+    void mouseDoubleClick (const MouseEvent&);
     /** @internal */
-    void componentMovedOrResized (Component&, bool wasMoved, bool wasResized) override;
+    void componentMovedOrResized (Component&, bool wasMoved, bool wasResized);
     /** @internal */
-    void componentParentHierarchyChanged (Component&) override;
+    void componentParentHierarchyChanged (Component&);
     /** @internal */
-    void componentVisibilityChanged (Component&) override;
+    void componentVisibilityChanged (Component&);
     /** @internal */
-    void inputAttemptWhenModal() override;
+    void inputAttemptWhenModal();
     /** @internal */
-    void focusGained (FocusChangeType) override;
+    void focusGained (FocusChangeType);
     /** @internal */
-    void enablementChanged() override;
+    void enablementChanged();
     /** @internal */
-    KeyboardFocusTraverser* createFocusTraverser() override;
+    KeyboardFocusTraverser* createFocusTraverser();
     /** @internal */
-    void textEditorTextChanged (TextEditor&) override;
+    void textEditorTextChanged (TextEditor&);
     /** @internal */
-    void textEditorReturnKeyPressed (TextEditor&) override;
+    void textEditorReturnKeyPressed (TextEditor&);
     /** @internal */
-    void textEditorEscapeKeyPressed (TextEditor&) override;
+    void textEditorEscapeKeyPressed (TextEditor&);
     /** @internal */
-    void textEditorFocusLost (TextEditor&) override;
+    void textEditorFocusLost (TextEditor&);
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
     /** @internal */
-    void valueChanged (Value&) override;
+    void valueChanged (Value&);
     /** @internal */
     void callChangeListeners();
 
@@ -334,4 +334,4 @@ private:
 /** This typedef is just for compatibility with old code - newer code should use the Label::Listener class directly. */
 typedef Label::Listener LabelListener;
 
-#endif   // JUCE_LABEL_H_INCLUDED
+#endif   // __JUCE_LABEL_JUCEHEADER__

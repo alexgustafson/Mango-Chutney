@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TABLEHEADERCOMPONENT_H_INCLUDED
-#define JUCE_TABLEHEADERCOMPONENT_H_INCLUDED
+#ifndef __JUCE_TABLEHEADERCOMPONENT_JUCEHEADER__
+#define __JUCE_TABLEHEADERCOMPONENT_JUCEHEADER__
 
 #include "../menus/juce_PopupMenu.h"
 
@@ -372,23 +372,23 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void mouseMove (const MouseEvent&) override;
+    void mouseMove (const MouseEvent&);
     /** @internal */
-    void mouseEnter (const MouseEvent&) override;
+    void mouseEnter (const MouseEvent&);
     /** @internal */
-    void mouseExit (const MouseEvent&) override;
+    void mouseExit (const MouseEvent&);
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent&);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent&);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent&);
     /** @internal */
-    MouseCursor getMouseCursor() override;
+    MouseCursor getMouseCursor();
 
     /** Can be overridden for more control over the pop-up menu behaviour. */
     virtual void showColumnChooserMenu (int columnIdClicked);
@@ -415,7 +415,7 @@ private:
     ColumnInfo* getInfoForId (int columnId) const;
     int visibleIndexToTotalIndex (int visibleIndex) const;
     void sendColumnsChanged();
-    void handleAsyncUpdate() override;
+    void handleAsyncUpdate();
     void beginDrag (const MouseEvent&);
     void endDrag (int finalIndex);
     int getResizeDraggerAt (int mouseX) const;
@@ -430,4 +430,4 @@ private:
 typedef TableHeaderComponent::Listener TableHeaderListener;
 
 
-#endif   // JUCE_TABLEHEADERCOMPONENT_H_INCLUDED
+#endif   // __JUCE_TABLEHEADERCOMPONENT_JUCEHEADER__

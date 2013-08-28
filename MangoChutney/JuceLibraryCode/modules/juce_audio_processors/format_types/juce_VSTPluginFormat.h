@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_VSTPLUGINFORMAT_H_INCLUDED
-#define JUCE_VSTPLUGINFORMAT_H_INCLUDED
+#ifndef __JUCE_VSTPLUGINFORMAT_JUCEHEADER__
+#define __JUCE_VSTPLUGINFORMAT_JUCEHEADER__
 
 #include "../format/juce_AudioPluginFormat.h"
 
@@ -80,16 +80,16 @@ public:
     static void setExtraFunctions (AudioPluginInstance* plugin, ExtraFunctions* functions);
 
     //==============================================================================
-    String getName() const override                { return "VST"; }
-    void findAllTypesForFile (OwnedArray <PluginDescription>&, const String& fileOrIdentifier) override;
-    AudioPluginInstance* createInstanceFromDescription (const PluginDescription&) override;
-    bool fileMightContainThisPluginType (const String& fileOrIdentifier) override;
-    String getNameOfPluginFromIdentifier (const String& fileOrIdentifier) override;
-    bool pluginNeedsRescanning (const PluginDescription&) override;
-    StringArray searchPathsForPlugins (const FileSearchPath&, bool recursive) override;
-    bool doesPluginStillExist (const PluginDescription&) override;
-    FileSearchPath getDefaultLocationsToSearch() override;
-    bool canScanForPlugins() const override        { return true; }
+    String getName() const                { return "VST"; }
+    void findAllTypesForFile (OwnedArray <PluginDescription>&, const String& fileOrIdentifier);
+    AudioPluginInstance* createInstanceFromDescription (const PluginDescription&);
+    bool fileMightContainThisPluginType (const String& fileOrIdentifier);
+    String getNameOfPluginFromIdentifier (const String& fileOrIdentifier);
+    bool pluginNeedsRescanning (const PluginDescription&);
+    StringArray searchPathsForPlugins (const FileSearchPath&, bool recursive);
+    bool doesPluginStillExist (const PluginDescription&);
+    FileSearchPath getDefaultLocationsToSearch();
+    bool canScanForPlugins() const        { return true; }
 
 private:
     void recursiveFileSearch (StringArray&, const File&, bool recursive);
@@ -99,4 +99,4 @@ private:
 
 
 #endif
-#endif   // JUCE_VSTPLUGINFORMAT_H_INCLUDED
+#endif   // __JUCE_VSTPLUGINFORMAT_JUCEHEADER__

@@ -33,7 +33,7 @@ public:
         setAlwaysOnTop (true);
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         g.drawImageAt (image, 0, 0);
     }

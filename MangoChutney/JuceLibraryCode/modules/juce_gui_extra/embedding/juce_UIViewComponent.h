@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_UIVIEWCOMPONENT_H_INCLUDED
-#define JUCE_UIVIEWCOMPONENT_H_INCLUDED
+#ifndef __JUCE_UIVIEWCOMPONENT_JUCEHEADER__
+#define __JUCE_UIVIEWCOMPONENT_JUCEHEADER__
 
 #if JUCE_IOS || DOXYGEN
 
@@ -71,7 +71,7 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
 
 
 private:
@@ -83,4 +83,4 @@ private:
 };
 
 #endif
-#endif   // JUCE_UIVIEWCOMPONENT_H_INCLUDED
+#endif   // __JUCE_UIVIEWCOMPONENT_JUCEHEADER__

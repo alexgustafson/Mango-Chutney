@@ -306,7 +306,7 @@ void QuickTimeMovieComponent::goToStart()
 }
 
 void QuickTimeMovieComponent::setBoundsWithCorrectAspectRatio (const Rectangle<int>& spaceToFitWithin,
-                                                               RectanglePlacement placement)
+                                                               const RectanglePlacement& placement)
 {
     int normalWidth, normalHeight;
     getMovieNormalSize (normalWidth, normalHeight);

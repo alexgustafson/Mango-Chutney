@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OPENGLCONTEXT_H_INCLUDED
-#define JUCE_OPENGLCONTEXT_H_INCLUDED
+#ifndef __JUCE_OPENGLCONTEXT_JUCEHEADER__
+#define __JUCE_OPENGLCONTEXT_JUCEHEADER__
 
 #include "juce_OpenGLPixelFormat.h"
 #include "../native/juce_OpenGLExtensions.h"
@@ -91,11 +91,6 @@ public:
         Note: This must be called BEFORE attaching your context to a target component!
     */
     void setNativeSharedContext (void* nativeContextToShareWith) noexcept;
-
-    /** Enables multisampling on platforms where this is implemented.
-        If enabling this, you must call this method before attachTo().
-    */
-    void setMultisamplingEnabled (bool) noexcept;
 
     //==============================================================================
     /** Attaches the context to a target component.
@@ -247,7 +242,7 @@ private:
     ScopedPointer<Attachment> attachment;
     OpenGLPixelFormat pixelFormat;
     void* contextToShareWith;
-    bool renderComponents, useMultisampling;
+    bool renderComponents;
 
     CachedImage* getCachedImage() const noexcept;
 
@@ -255,4 +250,4 @@ private:
 };
 
 
-#endif   // JUCE_OPENGLCONTEXT_H_INCLUDED
+#endif   // __JUCE_OPENGLCONTEXT_JUCEHEADER__

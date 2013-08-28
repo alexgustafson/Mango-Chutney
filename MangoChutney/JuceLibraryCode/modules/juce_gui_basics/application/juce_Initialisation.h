@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_INITIALISATION_H_INCLUDED
-#define JUCE_INITIALISATION_H_INCLUDED
+#ifndef __JUCE_INITIALISATION_JUCEHEADER__
+#define __JUCE_INITIALISATION_JUCEHEADER__
 
 
 //==============================================================================
@@ -110,4 +110,4 @@ public:
     }
 #endif
 
-#endif   // JUCE_INITIALISATION_H_INCLUDED
+#endif   // __JUCE_INITIALISATION_JUCEHEADER__

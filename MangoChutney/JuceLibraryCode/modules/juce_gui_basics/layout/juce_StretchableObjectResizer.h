@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_STRETCHABLEOBJECTRESIZER_H_INCLUDED
-#define JUCE_STRETCHABLEOBJECTRESIZER_H_INCLUDED
+#ifndef __JUCE_STRETCHABLEOBJECTRESIZER_JUCEHEADER__
+#define __JUCE_STRETCHABLEOBJECTRESIZER_JUCEHEADER__
 
 
 //==============================================================================
@@ -98,4 +98,4 @@ private:
 };
 
 
-#endif   // JUCE_STRETCHABLEOBJECTRESIZER_H_INCLUDED
+#endif   // __JUCE_STRETCHABLEOBJECTRESIZER_JUCEHEADER__

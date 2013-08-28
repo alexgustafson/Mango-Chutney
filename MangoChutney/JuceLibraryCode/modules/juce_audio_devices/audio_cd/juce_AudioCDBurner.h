@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOCDBURNER_H_INCLUDED
-#define JUCE_AUDIOCDBURNER_H_INCLUDED
+#ifndef __JUCE_AUDIOCDBURNER_JUCEHEADER__
+#define __JUCE_AUDIOCDBURNER_JUCEHEADER__
 
 #if JUCE_USE_CDBURNER || DOXYGEN
 
@@ -166,4 +166,4 @@ private:
 
 
 #endif
-#endif   // JUCE_AUDIOCDBURNER_H_INCLUDED
+#endif   // __JUCE_AUDIOCDBURNER_JUCEHEADER__

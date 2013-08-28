@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILENAMECOMPONENT_H_INCLUDED
-#define JUCE_FILENAMECOMPONENT_H_INCLUDED
+#ifndef __JUCE_FILENAMECOMPONENT_JUCEHEADER__
+#define __JUCE_FILENAMECOMPONENT_JUCEHEADER__
 
 #include "../widgets/juce_ComboBox.h"
 #include "../buttons/juce_TextButton.h"
@@ -180,19 +180,19 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paintOverChildren (Graphics&) override;
+    void paintOverChildren (Graphics& g);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void lookAndFeelChanged() override;
+    void lookAndFeelChanged();
     /** @internal */
-    bool isInterestedInFileDrag (const StringArray&) override;
+    bool isInterestedInFileDrag (const StringArray& files);
     /** @internal */
-    void filesDropped (const StringArray&, int, int) override;
+    void filesDropped (const StringArray& files, int, int);
     /** @internal */
-    void fileDragEnter (const StringArray&, int, int) override;
+    void fileDragEnter (const StringArray& files, int, int);
     /** @internal */
-    void fileDragExit (const StringArray&) override;
+    void fileDragExit (const StringArray& files);
 
 private:
     //==============================================================================
@@ -205,13 +205,13 @@ private:
     ListenerList <FilenameComponentListener> listeners;
     File defaultBrowseFile;
 
-    void comboBoxChanged (ComboBox*) override;
-    void buttonClicked (Button* button) override;
-    void handleAsyncUpdate() override;
+    void comboBoxChanged (ComboBox*);
+    void buttonClicked (Button* button);
+    void handleAsyncUpdate();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FilenameComponent)
 };
 
 
 
-#endif   // JUCE_FILENAMECOMPONENT_H_INCLUDED
+#endif   // __JUCE_FILENAMECOMPONENT_JUCEHEADER__

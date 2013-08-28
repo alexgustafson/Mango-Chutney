@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_APPLICATIONBASE_H_INCLUDED
-#define JUCE_APPLICATIONBASE_H_INCLUDED
+#ifndef __JUCE_APPLICATIONBASE_JUCEHEADER__
+#define __JUCE_APPLICATIONBASE_JUCEHEADER__
 
 
 //==============================================================================
@@ -171,4 +171,4 @@ private:
 };
 
 
-#endif   // JUCE_APPLICATIONBASE_H_INCLUDED
+#endif   // __JUCE_APPLICATIONBASE_JUCEHEADER__

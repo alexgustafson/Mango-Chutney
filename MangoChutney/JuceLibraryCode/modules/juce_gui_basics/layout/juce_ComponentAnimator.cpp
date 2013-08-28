@@ -154,7 +154,7 @@ public:
             toBehind (&c);
         }
 
-        void paint (Graphics& g) override
+        void paint (Graphics& g)
         {
             g.setOpacity (1.0f);
             g.drawImage (image, 0, 0, getWidth(), getHeight(),

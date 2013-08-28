@@ -202,9 +202,9 @@ namespace ActiveXHelpers
 class ActiveXControlComponent::Pimpl  : public ComponentMovementWatcher
 {
 public:
-    Pimpl (HWND hwnd, ActiveXControlComponent& activeXComp)
-        : ComponentMovementWatcher (&activeXComp),
-          owner (activeXComp),
+    Pimpl (HWND hwnd, ActiveXControlComponent& owner_)
+        : ComponentMovementWatcher (&owner_),
+          owner (owner_),
           controlHWND (0),
           storage (new ActiveXHelpers::JuceIStorage()),
           clientSite (new ActiveXHelpers::JuceIOleClientSite (hwnd)),
@@ -238,18 +238,20 @@ public:
     }
 
     //==============================================================================
-    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/) override
+    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/)
     {
-        if (ComponentPeer* const peer = owner.getTopLevelComponent()->getPeer())
-            setControlBounds (peer->getAreaCoveredBy (owner));
+        Component* const topComp = owner.getTopLevelComponent();
+
+        if (topComp->getPeer() != nullptr)
+            setControlBounds (topComp->getLocalArea (&owner, owner.getLocalBounds()));
     }
 
-    void componentPeerChanged() override
+    void componentPeerChanged()
     {
         componentMovedOrResized (true, true);
     }
 
-    void componentVisibilityChanged() override
+    void componentVisibilityChanged()
     {
         setControlVisible (owner.isShowing());
         componentPeerChanged();
@@ -299,12 +301,16 @@ public:
         return DefWindowProc (hwnd, message, wParam, lParam);
     }
 
+private:
     ActiveXControlComponent& owner;
+
+public:
     HWND controlHWND;
     IStorage* storage;
     IOleClientSite* clientSite;
     IOleObject* control;
     WNDPROC originalWndProc;
+
 };
 
 //==============================================================================
@@ -332,8 +338,7 @@ bool ActiveXControlComponent::createControl (const void* controlIID)
 
     if (ComponentPeer* const peer = getPeer())
     {
-        const Rectangle<int> bounds (peer->getAreaCoveredBy (*this));
-
+        const Rectangle<int> bounds (getTopLevelComponent()->getLocalArea (this, getLocalBounds()));
         HWND hwnd = (HWND) peer->getNativeHandle();
 
         ScopedPointer<Pimpl> newControl (new Pimpl (hwnd, *this));
@@ -343,7 +348,7 @@ bool ActiveXControlComponent::createControl (const void* controlIID)
                              newControl->clientSite, newControl->storage,
                              (void**) &(newControl->control))) == S_OK)
         {
-            newControl->control->SetHostNames (L"JUCE", 0);
+            newControl->control->SetHostNames (L"Juce", 0);
 
             if (OleSetContainedObject (newControl->control, TRUE) == S_OK)
             {

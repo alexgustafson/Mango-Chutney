@@ -1054,7 +1054,7 @@ public:
         }
     }
 
-    void run() override
+    void run()
     {
         setMMThreadPriority();
 
@@ -1178,7 +1178,7 @@ private:
     }
 
     //==============================================================================
-    void handleAsyncUpdate() override
+    void handleAsyncUpdate()
     {
         stop();
 

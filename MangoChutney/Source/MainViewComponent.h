@@ -62,6 +62,8 @@ public:
 
     void fileSelected(const File& file);
     void selectionCanceled();
+    
+    void closeSettingsView();
 
     //[/UserMethods]
 

@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_STRETCHABLELAYOUTMANAGER_H_INCLUDED
-#define JUCE_STRETCHABLELAYOUTMANAGER_H_INCLUDED
+#ifndef __JUCE_STRETCHABLELAYOUTMANAGER_JUCEHEADER__
+#define __JUCE_STRETCHABLELAYOUTMANAGER_JUCEHEADER__
 
 #include "../components/juce_Component.h"
 
@@ -259,4 +259,4 @@ private:
 };
 
 
-#endif   // JUCE_STRETCHABLELAYOUTMANAGER_H_INCLUDED
+#endif   // __JUCE_STRETCHABLELAYOUTMANAGER_JUCEHEADER__

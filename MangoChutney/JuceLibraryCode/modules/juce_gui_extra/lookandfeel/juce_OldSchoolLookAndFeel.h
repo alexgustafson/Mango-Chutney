@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OLDSCHOOLLOOKANDFEEL_H_INCLUDED
-#define JUCE_OLDSCHOOLLOOKANDFEEL_H_INCLUDED
+#ifndef __JUCE_OLDSCHOOLLOOKANDFEEL_JUCEHEADER__
+#define __JUCE_OLDSCHOOLLOOKANDFEEL_JUCEHEADER__
 
 
 //==============================================================================
@@ -153,4 +153,4 @@ private:
 };
 
 
-#endif   // JUCE_OLDSCHOOLLOOKANDFEEL_H_INCLUDED
+#endif   // __JUCE_OLDSCHOOLLOOKANDFEEL_JUCEHEADER__

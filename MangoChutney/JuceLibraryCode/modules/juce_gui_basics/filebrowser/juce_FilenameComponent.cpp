@@ -174,7 +174,7 @@ void FilenameComponent::setCurrentFile (File newFile,
         if (addToRecentlyUsedList)
             addRecentlyUsedFile (newFile);
 
-        filenameBox.setText (lastFilename, dontSendNotification);
+        filenameBox.setText (lastFilename, true);
 
         if (notification != dontSendNotification)
         {

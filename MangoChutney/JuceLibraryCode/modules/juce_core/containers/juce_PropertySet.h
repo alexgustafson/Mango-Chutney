@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PROPERTYSET_H_INCLUDED
-#define JUCE_PROPERTYSET_H_INCLUDED
+#ifndef __JUCE_PROPERTYSET_JUCEHEADER__
+#define __JUCE_PROPERTYSET_JUCEHEADER__
 
 #include "../text/juce_StringPairArray.h"
 #include "../xml/juce_XmlElement.h"
@@ -216,4 +216,4 @@ private:
 };
 
 
-#endif   // JUCE_PROPERTYSET_H_INCLUDED
+#endif   // __JUCE_PROPERTYSET_JUCEHEADER__

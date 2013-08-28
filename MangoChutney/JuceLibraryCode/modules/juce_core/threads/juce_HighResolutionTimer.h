@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_HIGHRESOLUTIONTIMER_H_INCLUDED
-#define JUCE_HIGHRESOLUTIONTIMER_H_INCLUDED
+#ifndef __JUCE_HIGHRESOLUTIONTIMER_JUCEHEADER__
+#define __JUCE_HIGHRESOLUTIONTIMER_JUCEHEADER__
 
 /**
     A high-resolution periodic timer.
@@ -106,4 +106,4 @@ private:
 };
 
 
-#endif   // JUCE_HIGHRESOLUTIONTIMER_H_INCLUDED
+#endif   // __JUCE_HIGHRESOLUTIONTIMER_JUCEHEADER__

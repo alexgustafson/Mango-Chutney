@@ -61,8 +61,8 @@ private:
     //==============================================================================
     ScopedPointer<TextEditor> textEditor;
     ScopedPointer<TextButton> loadSampleButton;
-    ScopedPointer<Component> WaveComponent;
-    ScopedPointer<Component> component2;
+    ScopedPointer<Component> waveComponent;
+    ScopedPointer<Component> envelopeComponent;
     ScopedPointer<Slider> attackSlider;
     ScopedPointer<Slider> decaySlider;
     ScopedPointer<Slider> sustainSlider;

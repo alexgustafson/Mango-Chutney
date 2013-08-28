@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_STRINGPOOL_H_INCLUDED
-#define JUCE_STRINGPOOL_H_INCLUDED
+#ifndef __JUCE_STRINGPOOL_JUCEHEADER__
+#define __JUCE_STRINGPOOL_JUCEHEADER__
 
 #include "juce_String.h"
 #include "../containers/juce_Array.h"
@@ -92,4 +92,4 @@ private:
 };
 
 
-#endif   // JUCE_STRINGPOOL_H_INCLUDED
+#endif   // __JUCE_STRINGPOOL_JUCEHEADER__

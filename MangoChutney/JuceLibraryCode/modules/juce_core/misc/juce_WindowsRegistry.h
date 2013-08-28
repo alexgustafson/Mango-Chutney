@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_WINDOWSREGISTRY_H_INCLUDED
-#define JUCE_WINDOWSREGISTRY_H_INCLUDED
+#ifndef __JUCE_WINDOWSREGISTRY_JUCEHEADER__
+#define __JUCE_WINDOWSREGISTRY_JUCEHEADER__
 
 #if JUCE_WINDOWS || DOXYGEN
 
@@ -86,12 +86,6 @@ public:
     /** Returns true if the given value exists in the registry. */
     static bool valueExistsWow64 (const String& regValuePath);
 
-    /** Returns true if the given key exists in the registry. */
-    static bool keyExists (const String& regValuePath);
-
-    /** Returns true if the given key exists in the registry. */
-    static bool keyExistsWow64 (const String& regValuePath);
-
     /** Deletes a registry value. */
     static void deleteValue (const String& regValuePath);
 
@@ -127,4 +121,4 @@ private:
 };
 
 #endif
-#endif   // JUCE_WINDOWSREGISTRY_H_INCLUDED
+#endif   // __JUCE_WINDOWSREGISTRY_JUCEHEADER__

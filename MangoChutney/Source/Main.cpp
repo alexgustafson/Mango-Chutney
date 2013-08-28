@@ -10,7 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MainViewComponent.h"
-
+#include "LAF.h"
 
 //==============================================================================
 class MangoChutneyApplication  : public JUCEApplication
@@ -27,7 +27,8 @@ public:
     void initialise (const String& commandLine)
     {
         // This method is where you should put your application's initialisation code..
-
+        lookAndFeel = new LAF();
+        LookAndFeel::setDefaultLookAndFeel(lookAndFeel);
         mainWindow = new MainWindow();
     }
 
@@ -36,6 +37,7 @@ public:
         // Add your application's shutdown code here..
 
         mainWindow = nullptr; // (deletes our window)
+        lookAndFeel = nullptr;
     }
 
     //==============================================================================
@@ -106,6 +108,8 @@ public:
 
 private:
     ScopedPointer<MainWindow> mainWindow;
+    ScopedPointer<LAF> lookAndFeel;
+
 };
 
 //==============================================================================

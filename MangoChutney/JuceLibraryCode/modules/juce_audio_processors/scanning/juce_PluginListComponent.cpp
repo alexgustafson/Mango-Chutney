@@ -25,12 +25,12 @@
 PluginListComponent::PluginListComponent (AudioPluginFormatManager& manager,
                                           KnownPluginList& listToEdit,
                                           const File& deadMansPedal,
-                                          PropertiesFile* const props)
+                                          PropertiesFile* const properties)
     : formatManager (manager),
       list (listToEdit),
       deadMansPedalFile (deadMansPedal),
       optionsButton ("Options..."),
-      propertiesToUse (props),
+      propertiesToUse (properties),
       numThreads (0)
 {
     listBox.setModel (this);
@@ -351,7 +351,7 @@ private:
                                                : StringArray());
     }
 
-    void timerCallback() override
+    void timerCallback()
     {
         if (pool == nullptr)
         {
@@ -365,12 +365,14 @@ private:
         if (finished)
             finishedScan();
         else
-            progressWindow.setMessage (TRANS("Testing") + ":\n\n" + pluginBeingScanned);
+            progressWindow.setMessage (progressMessage);
     }
 
     bool doNextScan()
     {
-        if (scanner->scanNextFile (true, pluginBeingScanned))
+        progressMessage = TRANS("Testing") + ":\n\n" + scanner->getNextPluginFileThatWillBeScanned();
+
+        if (scanner->scanNextFile (true))
         {
             progress = scanner->getProgress();
             return true;
@@ -386,7 +388,7 @@ private:
     ScopedPointer<PluginDirectoryScanner> scanner;
     AlertWindow pathChooserWindow, progressWindow;
     FileSearchPathListComponent pathList;
-    String pluginBeingScanned;
+    String progressMessage;
     double progress;
     int numThreads;
     bool finished;
@@ -417,11 +419,6 @@ private:
 void PluginListComponent::scanFor (AudioPluginFormat& format)
 {
     currentScanner = new Scanner (*this, format, propertiesToUse, numThreads);
-}
-
-bool PluginListComponent::isScanning() const noexcept
-{
-    return currentScanner != nullptr;
 }
 
 void PluginListComponent::scanFinished (const StringArray& failedFiles)

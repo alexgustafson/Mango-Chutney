@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_THREADLOCALVALUE_H_INCLUDED
-#define JUCE_THREADLOCALVALUE_H_INCLUDED
+#ifndef __JUCE_THREADLOCALVALUE_JUCEHEADER__
+#define __JUCE_THREADLOCALVALUE_JUCEHEADER__
 
 // (NB: on win32, native thread-locals aren't possible in a dynamically loaded DLL in XP).
 #if ! ((JUCE_MSVC && (JUCE_64BIT || ! defined (JucePlugin_PluginCode))) \
@@ -178,7 +178,7 @@ private:
     struct ObjectHolder
     {
         ObjectHolder (const Thread::ThreadID& tid)
-            : threadId (tid), next (nullptr), object()
+            : threadId (tid), object()
         {}
 
         Thread::ThreadID threadId;
@@ -196,4 +196,4 @@ private:
 };
 
 
-#endif   // JUCE_THREADLOCALVALUE_H_INCLUDED
+#endif   // __JUCE_THREADLOCALVALUE_JUCEHEADER__

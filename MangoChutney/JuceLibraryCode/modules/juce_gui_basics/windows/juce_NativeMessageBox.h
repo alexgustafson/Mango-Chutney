@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_NATIVEMESSAGEBOX_H_INCLUDED
-#define JUCE_NATIVEMESSAGEBOX_H_INCLUDED
+#ifndef __JUCE_NATIVEMESSAGEBOX_JUCEHEADER__
+#define __JUCE_NATIVEMESSAGEBOX_JUCEHEADER__
 
 /**
     This class contains some static methods for showing native alert windows.
@@ -156,4 +156,4 @@ public:
                                                #endif
 };
 
-#endif   // JUCE_NATIVEMESSAGEBOX_H_INCLUDED
+#endif   // __JUCE_NATIVEMESSAGEBOX_JUCEHEADER__

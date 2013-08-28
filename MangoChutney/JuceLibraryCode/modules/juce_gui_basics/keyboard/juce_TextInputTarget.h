@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TEXTINPUTTARGET_H_INCLUDED
-#define JUCE_TEXTINPUTTARGET_H_INCLUDED
+#ifndef __JUCE_TEXTINPUTTARGET_JUCEHEADER__
+#define __JUCE_TEXTINPUTTARGET_JUCEHEADER__
 
 
 //==============================================================================
@@ -74,4 +74,4 @@ public:
 };
 
 
-#endif   // JUCE_TEXTINPUTTARGET_H_INCLUDED
+#endif   // __JUCE_TEXTINPUTTARGET_JUCEHEADER__

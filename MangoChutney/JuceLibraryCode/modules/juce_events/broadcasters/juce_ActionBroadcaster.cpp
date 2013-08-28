@@ -33,7 +33,7 @@ public:
           listener (listener_)
     {}
 
-    void messageCallback() override
+    void messageCallback()
     {
         if (const ActionBroadcaster* const b = broadcaster)
             if (b->actionListeners.contains (listener))

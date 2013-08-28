@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OSX_OBJCHELPERS_H_INCLUDED
-#define JUCE_OSX_OBJCHELPERS_H_INCLUDED
+#ifndef __JUCE_OSX_OBJCHELPERS_JUCEHEADER__
+#define __JUCE_OSX_OBJCHELPERS_JUCEHEADER__
 
 
 /* This file contains a few helper functions that are used internally but which
@@ -55,17 +55,6 @@ namespace
     {
         return [NSString string];
     }
-
-   #if JUCE_MAC
-    template <typename RectangleType>
-    static NSRect makeNSRect (const RectangleType& r) noexcept
-    {
-        return NSMakeRect (static_cast <CGFloat> (r.getX()),
-                           static_cast <CGFloat> (r.getY()),
-                           static_cast <CGFloat> (r.getWidth()),
-                           static_cast <CGFloat> (r.getHeight()));
-    }
-   #endif
 }
 
 //==============================================================================
@@ -166,4 +155,4 @@ private:
 };
 
 
-#endif   // JUCE_OSX_OBJCHELPERS_H_INCLUDED
+#endif   // __JUCE_OSX_OBJCHELPERS_JUCEHEADER__

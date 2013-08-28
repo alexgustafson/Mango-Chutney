@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SPINLOCK_H_INCLUDED
-#define JUCE_SPINLOCK_H_INCLUDED
+#ifndef __JUCE_SPINLOCK_JUCEHEADER__
+#define __JUCE_SPINLOCK_JUCEHEADER__
 
 #include "juce_ScopedLock.h"
 
@@ -90,4 +90,4 @@ private:
 };
 
 
-#endif   // JUCE_SPINLOCK_H_INCLUDED
+#endif   // __JUCE_SPINLOCK_JUCEHEADER__

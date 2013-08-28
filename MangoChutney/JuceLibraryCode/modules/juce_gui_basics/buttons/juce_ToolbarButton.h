@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TOOLBARBUTTON_H_INCLUDED
-#define JUCE_TOOLBARBUTTON_H_INCLUDED
+#ifndef __JUCE_TOOLBARBUTTON_JUCEHEADER__
+#define __JUCE_TOOLBARBUTTON_JUCEHEADER__
 
 #include "../widgets/juce_ToolbarItemComponent.h"
 
@@ -54,10 +54,10 @@ public:
                             deleted when no longer needed or when this button is deleted.
         @param toggledOnImage  a drawable object that the button can use as its icon if the button
                             is in a toggled-on state (see the Button::getToggleState() method). If
-                            nullptr is passed-in here, then the normal image will be used instead,
-                            regardless of the toggle state. The object that is passed-in here will be
-                            owned by this object and will be deleted when no longer needed or when
-                            this button is deleted.
+                            0 is passed-in here, then the normal image will be used instead, regardless
+                            of the toggle state. The object that is passed-in here will be kept by
+                            this object and will be deleted when no longer needed or when this button
+                            is deleted.
     */
     ToolbarButton (int itemId,
                    const String& labelText,
@@ -71,17 +71,17 @@ public:
     //==============================================================================
     /** @internal */
     bool getToolbarItemSizes (int toolbarDepth, bool isToolbarVertical, int& preferredSize,
-                              int& minSize, int& maxSize) override;
+                              int& minSize, int& maxSize);
     /** @internal */
-    void paintButtonArea (Graphics&, int width, int height, bool isMouseOver, bool isMouseDown) override;
+    void paintButtonArea (Graphics&, int width, int height, bool isMouseOver, bool isMouseDown);
     /** @internal */
-    void contentAreaChanged (const Rectangle<int>&) override;
+    void contentAreaChanged (const Rectangle<int>&);
     /** @internal */
-    void buttonStateChanged() override;
+    void buttonStateChanged();
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void enablementChanged() override;
+    void enablementChanged();
 
 private:
     //==============================================================================
@@ -96,4 +96,4 @@ private:
 };
 
 
-#endif   // JUCE_TOOLBARBUTTON_H_INCLUDED
+#endif   // __JUCE_TOOLBARBUTTON_JUCEHEADER__

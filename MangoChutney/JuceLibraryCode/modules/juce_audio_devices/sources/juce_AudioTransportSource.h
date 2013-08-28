@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOTRANSPORTSOURCE_H_INCLUDED
-#define JUCE_AUDIOTRANSPORTSOURCE_H_INCLUDED
+#ifndef __JUCE_AUDIOTRANSPORTSOURCE_JUCEHEADER__
+#define __JUCE_AUDIOTRANSPORTSOURCE_JUCEHEADER__
 
 
 //==============================================================================
@@ -141,26 +141,26 @@ public:
 
     //==============================================================================
     /** Implementation of the AudioSource method. */
-    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
 
     /** Implementation of the AudioSource method. */
-    void releaseResources() override;
+    void releaseResources();
 
     /** Implementation of the AudioSource method. */
-    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override;
+    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
 
     //==============================================================================
     /** Implements the PositionableAudioSource method. */
-    void setNextReadPosition (int64 newPosition) override;
+    void setNextReadPosition (int64 newPosition);
 
     /** Implements the PositionableAudioSource method. */
-    int64 getNextReadPosition() const override;
+    int64 getNextReadPosition() const;
 
     /** Implements the PositionableAudioSource method. */
-    int64 getTotalLength() const override;
+    int64 getTotalLength() const;
 
     /** Implements the PositionableAudioSource method. */
-    bool isLooping() const override;
+    bool isLooping() const;
 
 private:
     //==============================================================================
@@ -183,4 +183,4 @@ private:
 };
 
 
-#endif   // JUCE_AUDIOTRANSPORTSOURCE_H_INCLUDED
+#endif   // __JUCE_AUDIOTRANSPORTSOURCE_JUCEHEADER__

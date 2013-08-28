@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOSOURCE_H_INCLUDED
-#define JUCE_AUDIOSOURCE_H_INCLUDED
+#ifndef __JUCE_AUDIOSOURCE_JUCEHEADER__
+#define __JUCE_AUDIOSOURCE_JUCEHEADER__
 
 #include "../buffers/juce_AudioSampleBuffer.h"
 
@@ -180,4 +180,4 @@ public:
 };
 
 
-#endif   // JUCE_AUDIOSOURCE_H_INCLUDED
+#endif   // __JUCE_AUDIOSOURCE_JUCEHEADER__

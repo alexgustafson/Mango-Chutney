@@ -22,13 +22,6 @@
 
 //==============================================================================
 
-
-
-//[/Headers]
-
-#include "MainViewComponent.h"
-
-
 //[MiscUserDefs] You can add your own user definitions and misc code here...
 //[/MiscUserDefs]
 
@@ -272,7 +265,6 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
             addAndMakeVisible(settingsComponent);
             settingsComponent->setTopLeftPosition(0, 0);
             settingsComponent->setSize(getWidth(), getHeight());
-            //settingsComponent->setListener(this);
         }
         
 
@@ -366,6 +358,11 @@ void MainViewComponent::fileSelected(const juce::File &file)
 void MainViewComponent::selectionCanceled()
 {
     removeChildComponent(fileBrowser);
+}
+
+void MainViewComponent::closeSettingsView()
+{
+    removeChildComponent(settingsComponent);
 }
 
 //[/MiscUserCode]

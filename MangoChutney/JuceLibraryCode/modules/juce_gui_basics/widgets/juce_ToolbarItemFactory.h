@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TOOLBARITEMFACTORY_H_INCLUDED
-#define JUCE_TOOLBARITEMFACTORY_H_INCLUDED
+#ifndef __JUCE_TOOLBARITEMFACTORY_JUCEHEADER__
+#define __JUCE_TOOLBARITEMFACTORY_JUCEHEADER__
 
 #include "juce_ToolbarItemComponent.h"
 
@@ -107,4 +107,4 @@ public:
 };
 
 
-#endif   // JUCE_TOOLBARITEMFACTORY_H_INCLUDED
+#endif   // __JUCE_TOOLBARITEMFACTORY_JUCEHEADER__

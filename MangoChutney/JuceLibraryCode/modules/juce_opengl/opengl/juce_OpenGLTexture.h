@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OPENGLTEXTURE_H_INCLUDED
-#define JUCE_OPENGLTEXTURE_H_INCLUDED
+#ifndef __JUCE_OPENGLTEXTURE_JUCEHEADER__
+#define __JUCE_OPENGLTEXTURE_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -115,4 +115,4 @@ private:
 };
 
 
-#endif   // JUCE_OPENGLTEXTURE_H_INCLUDED
+#endif   // __JUCE_OPENGLTEXTURE_JUCEHEADER__

@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CHANGEBROADCASTER_H_INCLUDED
-#define JUCE_CHANGEBROADCASTER_H_INCLUDED
+#ifndef __JUCE_CHANGEBROADCASTER_JUCEHEADER__
+#define __JUCE_CHANGEBROADCASTER_JUCEHEADER__
 
 #include "juce_ChangeListener.h"
 #include "juce_ListenerList.h"
@@ -91,7 +91,7 @@ private:
     {
     public:
         ChangeBroadcasterCallback();
-        void handleAsyncUpdate() override;
+        void handleAsyncUpdate();
 
         ChangeBroadcaster* owner;
     };
@@ -106,4 +106,4 @@ private:
 };
 
 
-#endif   // JUCE_CHANGEBROADCASTER_H_INCLUDED
+#endif   // __JUCE_CHANGEBROADCASTER_JUCEHEADER__

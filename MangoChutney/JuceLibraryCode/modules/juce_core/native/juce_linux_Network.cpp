@@ -98,17 +98,17 @@ public:
     }
 
     //==============================================================================
-    bool isError() const                 { return socketHandle < 0; }
-    bool isExhausted() override          { return finished; }
-    int64 getPosition() override         { return position; }
+    bool isError() const        { return socketHandle < 0; }
+    bool isExhausted()          { return finished; }
+    int64 getPosition()         { return position; }
 
-    int64 getTotalLength() override
+    int64 getTotalLength()
     {
         //xxx to do
         return -1;
     }
 
-    int read (void* buffer, int bytesToRead) override
+    int read (void* buffer, int bytesToRead)
     {
         if (finished || isError())
             return 0;
@@ -131,7 +131,7 @@ public:
         return bytesRead;
     }
 
-    bool setPosition (int64 wantedPos) override
+    bool setPosition (int64 wantedPos)
     {
         if (isError())
             return false;

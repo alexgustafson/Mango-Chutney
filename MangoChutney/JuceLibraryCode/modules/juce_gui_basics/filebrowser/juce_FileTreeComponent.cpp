@@ -22,7 +22,7 @@
   ==============================================================================
 */
 
-Image juce_createIconForFile (const File&);
+Image juce_createIconForFile (const File& file);
 
 //==============================================================================
 class FileListTreeItem   : public TreeViewItem,
@@ -66,13 +66,13 @@ public:
     }
 
     //==============================================================================
-    bool mightContainSubItems() override                 { return isDirectory; }
-    String getUniqueName() const override                { return file.getFullPathName(); }
-    int getItemHeight() const override                   { return owner.getItemHeight(); }
+    bool mightContainSubItems()                 { return isDirectory; }
+    String getUniqueName() const                { return file.getFullPathName(); }
+    int getItemHeight() const                   { return 22; }
 
-    var getDragSourceDescription() override              { return owner.getDragAndDropDescription(); }
+    var getDragSourceDescription()              { return owner.getDragAndDropDescription(); }
 
-    void itemOpennessChanged (bool isNowOpen) override
+    void itemOpennessChanged (bool isNowOpen)
     {
         if (isNowOpen)
         {
@@ -150,7 +150,7 @@ public:
         return false;
     }
 
-    void changeListenerCallback (ChangeBroadcaster*) override
+    void changeListenerCallback (ChangeBroadcaster*)
     {
         rebuildItemsFromContentList();
     }
@@ -167,7 +167,7 @@ public:
         }
     }
 
-    void paintItem (Graphics& g, int width, int height) override
+    void paintItem (Graphics& g, int width, int height)
     {
         if (file != File::nonexistent)
         {
@@ -184,30 +184,30 @@ public:
                                                    indexInContentsList, owner);
     }
 
-    void itemClicked (const MouseEvent& e) override
+    void itemClicked (const MouseEvent& e)
     {
         owner.sendMouseClickMessage (file, e);
     }
 
-    void itemDoubleClicked (const MouseEvent& e) override
+    void itemDoubleClicked (const MouseEvent& e)
     {
         TreeViewItem::itemDoubleClicked (e);
 
         owner.sendDoubleClickMessage (file);
     }
 
-    void itemSelectionChanged (bool) override
+    void itemSelectionChanged (bool)
     {
         owner.sendSelectionChangeMessage();
     }
 
-    int useTimeSlice() override
+    int useTimeSlice()
     {
         updateIcon (false);
         return -1;
     }
 
-    void handleAsyncUpdate() override
+    void handleAsyncUpdate()
     {
         owner.repaint();
     }
@@ -252,8 +252,7 @@ private:
 
 //==============================================================================
 FileTreeComponent::FileTreeComponent (DirectoryContentsList& listToShow)
-    : DirectoryContentsDisplayComponent (listToShow),
-      itemHeight (22)
+    : DirectoryContentsDisplayComponent (listToShow)
 {
     setRootItemVisible (false);
     refresh();
@@ -305,15 +304,4 @@ void FileTreeComponent::setSelectedFile (const File& target)
     if (FileListTreeItem* t = dynamic_cast <FileListTreeItem*> (getRootItem()))
         if (! t->selectFile (target))
             clearSelectedItems();
-}
-
-void FileTreeComponent::setItemHeight (int newHeight)
-{
-    if (itemHeight != newHeight)
-    {
-        itemHeight = newHeight;
-
-        if (TreeViewItem* root = getRootItem())
-            root->treeHasChanged();
-    }
 }

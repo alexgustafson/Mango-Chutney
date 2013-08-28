@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_IIRFILTERAUDIOSOURCE_H_INCLUDED
-#define JUCE_IIRFILTERAUDIOSOURCE_H_INCLUDED
+#ifndef __JUCE_IIRFILTERAUDIOSOURCE_JUCEHEADER__
+#define __JUCE_IIRFILTERAUDIOSOURCE_JUCEHEADER__
 
 #include "juce_AudioSource.h"
 #include "../effects/juce_IIRFilter.h"
@@ -51,10 +51,7 @@ public:
 
     //==============================================================================
     /** Changes the filter to use the same parameters as the one being passed in. */
-    void setCoefficients (const IIRCoefficients& newCoefficients);
-
-    /** Calls IIRFilter::makeInactive() on all the filters being used internally. */
-    void makeInactive();
+    void setFilterParameters (const IIRFilter& newSettings);
 
     //==============================================================================
     void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
@@ -70,4 +67,4 @@ private:
 };
 
 
-#endif   // JUCE_IIRFILTERAUDIOSOURCE_H_INCLUDED
+#endif   // __JUCE_IIRFILTERAUDIOSOURCE_JUCEHEADER__

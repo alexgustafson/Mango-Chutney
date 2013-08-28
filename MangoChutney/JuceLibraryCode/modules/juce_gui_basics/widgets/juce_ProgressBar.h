@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PROGRESSBAR_H_INCLUDED
-#define JUCE_PROGRESSBAR_H_INCLUDED
+#ifndef __JUCE_PROGRESSBAR_JUCEHEADER__
+#define __JUCE_PROGRESSBAR_JUCEHEADER__
 
 #include "../components/juce_Component.h"
 #include "../mouse/juce_TooltipClient.h"
@@ -95,13 +95,13 @@ public:
 protected:
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void lookAndFeelChanged() override;
+    void lookAndFeelChanged();
     /** @internal */
-    void visibilityChanged() override;
+    void visibilityChanged();
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
 
 private:
     double& progress;
@@ -110,10 +110,10 @@ private:
     String displayedMessage, currentMessage;
     uint32 lastCallbackTime;
 
-    void timerCallback() override;
+    void timerCallback();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ProgressBar)
 };
 
 
-#endif   // JUCE_PROGRESSBAR_H_INCLUDED
+#endif   // __JUCE_PROGRESSBAR_JUCEHEADER__

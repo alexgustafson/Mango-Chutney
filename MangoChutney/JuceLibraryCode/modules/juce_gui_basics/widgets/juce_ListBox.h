@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_LISTBOX_H_INCLUDED
-#define JUCE_LISTBOX_H_INCLUDED
+#ifndef __JUCE_LISTBOX_JUCEHEADER__
+#define __JUCE_LISTBOX_JUCEHEADER__
 
 #include "../layout/juce_Viewport.h"
 
@@ -526,23 +526,23 @@ public:
 
     //==============================================================================
     /** @internal */
-    bool keyPressed (const KeyPress&) override;
+    bool keyPressed (const KeyPress&);
     /** @internal */
-    bool keyStateChanged (bool isKeyDown) override;
+    bool keyStateChanged (bool isKeyDown);
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics&);
     /** @internal */
-    void paintOverChildren (Graphics&) override;
+    void paintOverChildren (Graphics&);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void visibilityChanged() override;
+    void visibilityChanged();
     /** @internal */
-    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&) override;
+    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent&);
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
     /** @internal */
     void startDragAndDrop (const MouseEvent&, const var& dragDescription, bool allowDraggingToOtherWindows);
 
@@ -574,4 +574,4 @@ private:
 };
 
 
-#endif   // JUCE_LISTBOX_H_INCLUDED
+#endif   // __JUCE_LISTBOX_JUCEHEADER__

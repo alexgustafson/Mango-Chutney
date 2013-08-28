@@ -35,7 +35,6 @@ BufferingAudioSource::BufferingAudioSource (PositionableAudioSource* source_,
       bufferValidStart (0),
       bufferValidEnd (0),
       nextPlayPos (0),
-      sampleRate (0),
       wasSourceLooping (false),
       isPrepared (false)
 {
@@ -209,40 +208,42 @@ bool BufferingAudioSource::readNextBufferChunk()
         }
     }
 
-    if (sectionToReadStart == sectionToReadEnd)
-        return false;
-
-    jassert (buffer.getNumSamples() > 0);
-    const int bufferIndexStart = (int) (sectionToReadStart % buffer.getNumSamples());
-    const int bufferIndexEnd   = (int) (sectionToReadEnd   % buffer.getNumSamples());
-
-    if (bufferIndexStart < bufferIndexEnd)
+    if (sectionToReadStart != sectionToReadEnd)
     {
-        readBufferSection (sectionToReadStart,
-                           (int) (sectionToReadEnd - sectionToReadStart),
-                           bufferIndexStart);
-    }
-    else
-    {
-        const int initialSize = buffer.getNumSamples() - bufferIndexStart;
+        jassert (buffer.getNumSamples() > 0);
+        const int bufferIndexStart = (int) (sectionToReadStart % buffer.getNumSamples());
+        const int bufferIndexEnd   = (int) (sectionToReadEnd   % buffer.getNumSamples());
 
-        readBufferSection (sectionToReadStart,
-                           initialSize,
-                           bufferIndexStart);
+        if (bufferIndexStart < bufferIndexEnd)
+        {
+            readBufferSection (sectionToReadStart,
+                               (int) (sectionToReadEnd - sectionToReadStart),
+                               bufferIndexStart);
+        }
+        else
+        {
+            const int initialSize = buffer.getNumSamples() - bufferIndexStart;
 
-        readBufferSection (sectionToReadStart + initialSize,
-                           (int) (sectionToReadEnd - sectionToReadStart) - initialSize,
-                           0);
-    }
+            readBufferSection (sectionToReadStart,
+                               initialSize,
+                               bufferIndexStart);
 
-    {
+            readBufferSection (sectionToReadStart + initialSize,
+                               (int) (sectionToReadEnd - sectionToReadStart) - initialSize,
+                               0);
+        }
+
         const ScopedLock sl2 (bufferStartPosLock);
 
         bufferValidStart = newBVS;
         bufferValidEnd = newBVE;
-    }
 
-    return true;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void BufferingAudioSource::readBufferSection (const int64 start, const int length, const int bufferOffset)

@@ -22,8 +22,13 @@
   ==============================================================================
 */
 
-ToolbarItemFactory::ToolbarItemFactory() {}
-ToolbarItemFactory::~ToolbarItemFactory() {}
+ToolbarItemFactory::ToolbarItemFactory()
+{
+}
+
+ToolbarItemFactory::~ToolbarItemFactory()
+{
+}
 
 //==============================================================================
 class ToolbarItemComponent::ItemDragAndDropOverlayComponent    : public Component
@@ -37,7 +42,7 @@ public:
         setMouseCursor (MouseCursor::DraggingHandCursor);
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         if (ToolbarItemComponent* const tc = getToolbarItemComponent())
         {
@@ -51,7 +56,7 @@ public:
         }
     }
 
-    void mouseDown (const MouseEvent& e) override
+    void mouseDown (const MouseEvent& e)
     {
         isDragging = false;
 
@@ -62,7 +67,7 @@ public:
         }
     }
 
-    void mouseDrag (const MouseEvent& e) override
+    void mouseDrag (const MouseEvent& e)
     {
         if (! (isDragging || e.mouseWasClicked()))
         {
@@ -83,7 +88,7 @@ public:
         }
     }
 
-    void mouseUp (const MouseEvent&) override
+    void mouseUp (const MouseEvent&)
     {
         isDragging = false;
 
@@ -98,7 +103,7 @@ public:
         }
     }
 
-    void parentSizeChanged() override
+    void parentSizeChanged()
     {
         setBounds (0, 0, getParentWidth(), getParentHeight());
     }

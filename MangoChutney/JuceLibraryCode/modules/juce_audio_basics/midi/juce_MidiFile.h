@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MIDIFILE_H_INCLUDED
-#define JUCE_MIDIFILE_H_INCLUDED
+#ifndef __JUCE_MIDIFILE_JUCEHEADER__
+#define __JUCE_MIDIFILE_JUCEHEADER__
 
 #include "juce_MidiMessageSequence.h"
 
@@ -183,4 +183,4 @@ private:
 };
 
 
-#endif   // JUCE_MIDIFILE_H_INCLUDED
+#endif   // __JUCE_MIDIFILE_JUCEHEADER__

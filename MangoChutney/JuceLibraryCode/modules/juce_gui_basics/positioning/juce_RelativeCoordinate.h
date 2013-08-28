@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RELATIVECOORDINATE_H_INCLUDED
-#define JUCE_RELATIVECOORDINATE_H_INCLUDED
+#ifndef __JUCE_RELATIVECOORDINATE_JUCEHEADER__
+#define __JUCE_RELATIVECOORDINATE_JUCEHEADER__
 
 
 //==============================================================================
@@ -144,4 +144,4 @@ private:
 };
 
 
-#endif   // JUCE_RELATIVECOORDINATE_H_INCLUDED
+#endif   // __JUCE_RELATIVECOORDINATE_JUCEHEADER__

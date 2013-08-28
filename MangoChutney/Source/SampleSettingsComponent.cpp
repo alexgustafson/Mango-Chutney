@@ -42,11 +42,11 @@ SampleSettingsComponent::SampleSettingsComponent ()
     loadSampleButton->setButtonText ("load sample");
     loadSampleButton->addListener (this);
 
-    addAndMakeVisible (WaveComponent = new Component());
-    WaveComponent->setName ("new component");
+    addAndMakeVisible (waveComponent = new Component());
+    waveComponent->setName ("waveform viewer");
 
-    addAndMakeVisible (component2 = new Component());
-    component2->setName ("new component");
+    addAndMakeVisible (envelopeComponent = new Component());
+    envelopeComponent->setName ("envelope viewer");
 
     addAndMakeVisible (attackSlider = new Slider ("Attack Slider"));
     attackSlider->setRange (0, 10, 0);
@@ -122,8 +122,8 @@ SampleSettingsComponent::~SampleSettingsComponent()
 
     textEditor = nullptr;
     loadSampleButton = nullptr;
-    WaveComponent = nullptr;
-    component2 = nullptr;
+    waveComponent = nullptr;
+    envelopeComponent = nullptr;
     attackSlider = nullptr;
     decaySlider = nullptr;
     sustainSlider = nullptr;
@@ -144,7 +144,7 @@ void SampleSettingsComponent::paint (Graphics& g)
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
 
-    g.fillAll (Colours::white);
+    g.fillAll (Colour (0xffaeaeae));
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -152,18 +152,18 @@ void SampleSettingsComponent::paint (Graphics& g)
 
 void SampleSettingsComponent::resized()
 {
-    textEditor->setBounds ((8) + 96, 8, 264, 24);
+    textEditor->setBounds ((8) + 96, 8, getWidth() - 116, 24);
     loadSampleButton->setBounds (8, 8, 87, 24);
-    WaveComponent->setBounds (8, 40, proportionOfWidth (0.9381f), 152);
-    component2->setBounds (8, 200, proportionOfWidth (0.9381f), 152);
-    attackSlider->setBounds (8, 360, 56, 48);
-    decaySlider->setBounds (64, 360, 56, 48);
-    sustainSlider->setBounds (120, 360, 56, 48);
-    releaseSlider->setBounds (176, 360, 56, 48);
-    label->setBounds ((8) + (56) / 2 - ((48) / 2), (360) + (48), 48, 24);
-    label2->setBounds ((64) + (56) / 2 - ((48) / 2), (360) + (48), 48, 24);
-    label3->setBounds ((120) + (56) / 2 - ((56) / 2), (360) + (48), 56, 24);
-    label4->setBounds ((176) + (56) / 2 - ((56) / 2), (360) + (48), 56, 24);
+    waveComponent->setBounds (8, 40, proportionOfWidth (0.9441f), proportionOfHeight (0.3002f));
+    envelopeComponent->setBounds (8, (40) + (proportionOfHeight (0.3002f)) - -6, proportionOfWidth (0.9441f), proportionOfHeight (0.3002f));
+    attackSlider->setBounds (8, ((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10, 56, 48);
+    decaySlider->setBounds (64, ((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10, 56, 48);
+    sustainSlider->setBounds (120, ((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10, 56, 48);
+    releaseSlider->setBounds (176, ((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10, 56, 48);
+    label->setBounds ((8) + (56) / 2 - ((48) / 2), (((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10) + (48), 48, 24);
+    label2->setBounds ((64) + (56) / 2 - ((48) / 2), (((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10) + (48), 48, 24);
+    label3->setBounds ((120) + (56) / 2 - ((56) / 2), (((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10) + (48), 56, 24);
+    label4->setBounds ((176) + (56) / 2 - ((56) / 2), (((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10) + (48), 56, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -233,36 +233,36 @@ BEGIN_JUCER_METADATA
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
                  overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
                  initialHeight="400">
-  <BACKGROUND backgroundColour="ffffffff"/>
+  <BACKGROUND backgroundColour="ffaeaeae"/>
   <TEXTEDITOR name="new text editor" id="cd908df7e69b2437" memberName="textEditor"
-              virtualName="" explicitFocusOrder="0" pos="96 8 264 24" posRelativeX="52b45f0363840a9a"
+              virtualName="" explicitFocusOrder="0" pos="96 8 116M 24" posRelativeX="52b45f0363840a9a"
               initialText="" multiline="0" retKeyStartsLine="0" readonly="0"
               scrollbars="1" caret="1" popupmenu="1"/>
   <TEXTBUTTON name="load sample Button" id="52b45f0363840a9a" memberName="loadSampleButton"
               virtualName="" explicitFocusOrder="0" pos="8 8 87 24" buttonText="load sample"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <GENERICCOMPONENT name="new component" id="43c696956c040673" memberName="WaveComponent"
-                    virtualName="" explicitFocusOrder="0" pos="8 40 93.867% 152"
+  <GENERICCOMPONENT name="waveform viewer" id="43c696956c040673" memberName="waveComponent"
+                    virtualName="" explicitFocusOrder="0" pos="8 40 94.413% 30.021%"
                     class="Component" params=""/>
-  <GENERICCOMPONENT name="new component" id="c8a20ff7bccda56" memberName="component2"
-                    virtualName="" explicitFocusOrder="0" pos="8 200 93.867% 152"
-                    class="Component" params=""/>
+  <GENERICCOMPONENT name="envelope viewer" id="c8a20ff7bccda56" memberName="envelopeComponent"
+                    virtualName="" explicitFocusOrder="0" pos="8 -6R 94.413% 30.021%"
+                    posRelativeY="43c696956c040673" class="Component" params=""/>
   <SLIDER name="Attack Slider" id="742b63db24f445f5" memberName="attackSlider"
-          virtualName="" explicitFocusOrder="0" pos="8 360 56 48" min="0"
-          max="10" int="0" style="Rotary" textBoxPos="NoTextBox" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
+          virtualName="" explicitFocusOrder="0" pos="8 -10R 56 48" posRelativeY="c8a20ff7bccda56"
+          min="0" max="10" int="0" style="Rotary" textBoxPos="NoTextBox"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
   <SLIDER name="decay slider" id="659f83a93e7988ba" memberName="decaySlider"
-          virtualName="" explicitFocusOrder="0" pos="64 360 56 48" min="0"
-          max="10" int="0" style="Rotary" textBoxPos="NoTextBox" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
+          virtualName="" explicitFocusOrder="0" pos="64 -10R 56 48" posRelativeY="c8a20ff7bccda56"
+          min="0" max="10" int="0" style="Rotary" textBoxPos="NoTextBox"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
   <SLIDER name="sustain slider" id="43e696184d7ab5eb" memberName="sustainSlider"
-          virtualName="" explicitFocusOrder="0" pos="120 360 56 48" min="0"
-          max="10" int="0" style="Rotary" textBoxPos="NoTextBox" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
+          virtualName="" explicitFocusOrder="0" pos="120 -10R 56 48" posRelativeY="c8a20ff7bccda56"
+          min="0" max="10" int="0" style="Rotary" textBoxPos="NoTextBox"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
   <SLIDER name="release slider" id="fe11ba517376fa5c" memberName="releaseSlider"
-          virtualName="" explicitFocusOrder="0" pos="176 360 56 48" min="0"
-          max="10" int="0" style="Rotary" textBoxPos="NoTextBox" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
+          virtualName="" explicitFocusOrder="0" pos="176 -10R 56 48" posRelativeY="c8a20ff7bccda56"
+          min="0" max="10" int="0" style="Rotary" textBoxPos="NoTextBox"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1"/>
   <LABEL name="new label" id="a4e71c7ff8507a3a" memberName="label" virtualName=""
          explicitFocusOrder="0" pos="0Cc 0R 48 24" posRelativeX="742b63db24f445f5"
          posRelativeY="742b63db24f445f5" edTextCol="ff000000" edBkgCol="0"

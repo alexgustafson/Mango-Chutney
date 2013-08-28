@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_WIN32_COMSMARTPTR_H_INCLUDED
-#define JUCE_WIN32_COMSMARTPTR_H_INCLUDED
+#ifndef __JUCE_WIN32_COMSMARTPTR_JUCEHEADER__
+#define __JUCE_WIN32_COMSMARTPTR_JUCEHEADER__
 
 #ifndef _MSC_VER
 template<typename Type> struct UUIDGetter { static CLSID get() { jassertfalse; return CLSID(); } };
@@ -167,4 +167,4 @@ public:
     }
 };
 
-#endif   // JUCE_WIN32_COMSMARTPTR_H_INCLUDED
+#endif   // __JUCE_WIN32_COMSMARTPTR_JUCEHEADER__

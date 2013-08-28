@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MODALCOMPONENTMANAGER_H_INCLUDED
-#define JUCE_MODALCOMPONENTMANAGER_H_INCLUDED
+#ifndef __JUCE_MODALCOMPONENTMANAGER_JUCEHEADER__
+#define __JUCE_MODALCOMPONENTMANAGER_JUCEHEADER__
 
 
 //==============================================================================
@@ -127,7 +127,7 @@ protected:
     ~ModalComponentManager();
 
     /** @internal */
-    void handleAsyncUpdate() override;
+    void handleAsyncUpdate();
 
 private:
     //==============================================================================
@@ -361,4 +361,4 @@ private:
 };
 
 
-#endif   // JUCE_MODALCOMPONENTMANAGER_H_INCLUDED
+#endif   // __JUCE_MODALCOMPONENTMANAGER_JUCEHEADER__

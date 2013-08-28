@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_GZIPCOMPRESSOROUTPUTSTREAM_H_INCLUDED
-#define JUCE_GZIPCOMPRESSOROUTPUTSTREAM_H_INCLUDED
+#ifndef __JUCE_GZIPCOMPRESSOROUTPUTSTREAM_JUCEHEADER__
+#define __JUCE_GZIPCOMPRESSOROUTPUTSTREAM_JUCEHEADER__
 
 #include "../streams/juce_OutputStream.h"
 #include "../memory/juce_OptionalScopedPointer.h"
@@ -78,9 +78,9 @@ public:
     */
     void flush();
 
-    int64 getPosition() override;
-    bool setPosition (int64) override;
-    bool write (const void*, size_t) override;
+    int64 getPosition();
+    bool setPosition (int64 newPosition);
+    bool write (const void* destBuffer, size_t howMany);
 
     /** These are preset values that can be used for the constructor's windowBits paramter.
         For more info about this, see the zlib documentation for its windowBits parameter.
@@ -102,4 +102,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GZIPCompressorOutputStream)
 };
 
-#endif   // JUCE_GZIPCOMPRESSOROUTPUTSTREAM_H_INCLUDED
+#endif   // __JUCE_GZIPCOMPRESSOROUTPUTSTREAM_JUCEHEADER__

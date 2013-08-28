@@ -66,51 +66,48 @@ OutputStream::~OutputStream()
 }
 
 //==============================================================================
-bool OutputStream::writeBool (const bool b)
+void OutputStream::writeBool (const bool b)
 {
-    return writeByte (b ? (char) 1
-                        : (char) 0);
+    writeByte (b ? (char) 1
+                 : (char) 0);
 }
 
-bool OutputStream::writeByte (char byte)
+void OutputStream::writeByte (char byte)
 {
-    return write (&byte, 1);
+    write (&byte, 1);
 }
 
-bool OutputStream::writeRepeatedByte (uint8 byte, size_t numTimesToRepeat)
+void OutputStream::writeRepeatedByte (uint8 byte, size_t numTimesToRepeat)
 {
     for (size_t i = 0; i < numTimesToRepeat; ++i)
-        if (! writeByte ((char) byte))
-            return false;
-
-    return true;
+        writeByte ((char) byte);
 }
 
-bool OutputStream::writeShort (short value)
+void OutputStream::writeShort (short value)
 {
     const unsigned short v = ByteOrder::swapIfBigEndian ((unsigned short) value);
-    return write (&v, 2);
+    write (&v, 2);
 }
 
-bool OutputStream::writeShortBigEndian (short value)
+void OutputStream::writeShortBigEndian (short value)
 {
     const unsigned short v = ByteOrder::swapIfLittleEndian ((unsigned short) value);
-    return write (&v, 2);
+    write (&v, 2);
 }
 
-bool OutputStream::writeInt (int value)
+void OutputStream::writeInt (int value)
 {
     const unsigned int v = ByteOrder::swapIfBigEndian ((unsigned int) value);
-    return write (&v, 4);
+    write (&v, 4);
 }
 
-bool OutputStream::writeIntBigEndian (int value)
+void OutputStream::writeIntBigEndian (int value)
 {
     const unsigned int v = ByteOrder::swapIfLittleEndian ((unsigned int) value);
-    return write (&v, 4);
+    write (&v, 4);
 }
 
-bool OutputStream::writeCompressedInt (int value)
+void OutputStream::writeCompressedInt (int value)
 {
     unsigned int un = (value < 0) ? (unsigned int) -value
                                   : (unsigned int) value;
@@ -129,60 +126,60 @@ bool OutputStream::writeCompressedInt (int value)
     if (value < 0)
         data[0] |= 0x80;
 
-    return write (data, num + 1);
+    write (data, num + 1);
 }
 
-bool OutputStream::writeInt64 (int64 value)
+void OutputStream::writeInt64 (int64 value)
 {
     const uint64 v = ByteOrder::swapIfBigEndian ((uint64) value);
-    return write (&v, 8);
+    write (&v, 8);
 }
 
-bool OutputStream::writeInt64BigEndian (int64 value)
+void OutputStream::writeInt64BigEndian (int64 value)
 {
     const uint64 v = ByteOrder::swapIfLittleEndian ((uint64) value);
-    return write (&v, 8);
+    write (&v, 8);
 }
 
-bool OutputStream::writeFloat (float value)
+void OutputStream::writeFloat (float value)
 {
     union { int asInt; float asFloat; } n;
     n.asFloat = value;
-    return writeInt (n.asInt);
+    writeInt (n.asInt);
 }
 
-bool OutputStream::writeFloatBigEndian (float value)
+void OutputStream::writeFloatBigEndian (float value)
 {
     union { int asInt; float asFloat; } n;
     n.asFloat = value;
-    return writeIntBigEndian (n.asInt);
+    writeIntBigEndian (n.asInt);
 }
 
-bool OutputStream::writeDouble (double value)
+void OutputStream::writeDouble (double value)
 {
     union { int64 asInt; double asDouble; } n;
     n.asDouble = value;
-    return writeInt64 (n.asInt);
+    writeInt64 (n.asInt);
 }
 
-bool OutputStream::writeDoubleBigEndian (double value)
+void OutputStream::writeDoubleBigEndian (double value)
 {
     union { int64 asInt; double asDouble; } n;
     n.asDouble = value;
-    return writeInt64BigEndian (n.asInt);
+    writeInt64BigEndian (n.asInt);
 }
 
-bool OutputStream::writeString (const String& text)
+void OutputStream::writeString (const String& text)
 {
     // (This avoids using toUTF8() to prevent the memory bloat that it would leave behind
     // if lots of large, persistent strings were to be written to streams).
     const size_t numBytes = text.getNumBytesAsUTF8() + 1;
     HeapBlock<char> temp (numBytes);
     text.copyToUTF8 (temp, numBytes);
-    return write (temp, numBytes);
+    write (temp, numBytes);
 }
 
-bool OutputStream::writeText (const String& text, const bool asUTF16,
+void OutputStream::writeText (const String& text, const bool asUTF16,
                               const bool writeUTF16ByteOrderMark)
 {
     if (asUTF16)
@@ -204,9 +201,7 @@ bool OutputStream::writeText (const String& text, const bool asUTF16,
                 writeShort ((short) '\r');
 
             lastCharWasReturn = (c == L'\r');
-
-            if (! writeShort ((short) c))
-                return false;
+            writeShort ((short) c);
         }
     }
     else
@@ -219,12 +214,9 @@ bool OutputStream::writeText (const String& text, const bool asUTF16,
             if (*t == '\n')
             {
                 if (t > src)
-                    if (! write (src, (int) (t - src)))
-                        return false;
+                    write (src, (int) (t - src));
 
-                if (! write ("\r\n", 2))
-                    return false;
-
+                write ("\r\n", 2);
                 src = t + 1;
             }
             else if (*t == '\r')
@@ -235,8 +227,7 @@ bool OutputStream::writeText (const String& text, const bool asUTF16,
             else if (*t == 0)
             {
                 if (t > src)
-                    if (! write (src, (int) (t - src)))
-                        return false;
+                    write (src, (int) (t - src));
 
                 break;
             }
@@ -244,8 +235,6 @@ bool OutputStream::writeText (const String& text, const bool asUTF16,
             ++t;
         }
     }
-
-    return true;
 }
 
 int OutputStream::writeFromInputStream (InputStream& source, int64 numBytesToWrite)

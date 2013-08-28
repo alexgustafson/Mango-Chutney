@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_POPUPMENU_H_INCLUDED
-#define JUCE_POPUPMENU_H_INCLUDED
+#ifndef __JUCE_POPUPMENU_JUCEHEADER__
+#define __JUCE_POPUPMENU_JUCEHEADER__
 
 
 //==============================================================================
@@ -287,7 +287,7 @@ public:
     /** Displays the menu at a specific location.
 
         This is the same as show(), but uses a specific location (in global screen
-        coordinates) rather than the current mouse position.
+        co-ordinates) rather than the current mouse position.
 
         The screenAreaToAttachTo parameter indicates a screen area to which the menu
         will be adjacent. Depending on where this is, the menu will decide which edge to
@@ -505,4 +505,4 @@ private:
     JUCE_LEAK_DETECTOR (PopupMenu)
 };
 
-#endif   // JUCE_POPUPMENU_H_INCLUDED
+#endif   // __JUCE_POPUPMENU_JUCEHEADER__

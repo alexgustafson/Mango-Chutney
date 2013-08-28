@@ -51,32 +51,32 @@ public:
     CallbackHandler (AudioDeviceManager& adm) noexcept  : owner (adm) {}
 
 private:
-    void audioDeviceIOCallback (const float** ins, int numIns, float** outs, int numOuts, int numSamples) override
+    void audioDeviceIOCallback (const float** ins, int numIns, float** outs, int numOuts, int numSamples)
     {
         owner.audioDeviceIOCallbackInt (ins, numIns, outs, numOuts, numSamples);
     }
 
-    void audioDeviceAboutToStart (AudioIODevice* device) override
+    void audioDeviceAboutToStart (AudioIODevice* device)
     {
         owner.audioDeviceAboutToStartInt (device);
     }
 
-    void audioDeviceStopped() override
+    void audioDeviceStopped()
     {
         owner.audioDeviceStoppedInt();
     }
 
-    void audioDeviceError (const String& message) override
+    void audioDeviceError (const String& message)
     {
         owner.audioDeviceErrorInt (message);
     }
 
-    void handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message) override
+    void handleIncomingMidiMessage (MidiInput* source, const MidiMessage& message)
     {
         owner.handleIncomingMidiMessageInt (source, message);
     }
 
-    void audioDeviceListChanged() override
+    void audioDeviceListChanged()
     {
         owner.audioDeviceListChanged();
     }
@@ -94,7 +94,6 @@ AudioDeviceManager::AudioDeviceManager()
       listNeedsScanning (true),
       useInputNames (false),
       inputLevel (0),
-      testSoundPosition (0),
       tempBuffer (2, 2),
       cpuUsageMs (0),
       timeToCpuScale (0)
@@ -886,7 +885,8 @@ void AudioDeviceManager::setDefaultMidiOutput (const String& deviceName)
 
         {
             const ScopedLock sl (audioCallbackLock);
-            oldCallbacks.swapWith (callbacks);
+            oldCallbacks = callbacks;
+            callbacks.clear();
         }
 
         if (currentAudioDevice != nullptr)
@@ -905,7 +905,7 @@ void AudioDeviceManager::setDefaultMidiOutput (const String& deviceName)
 
         {
             const ScopedLock sl (audioCallbackLock);
-            oldCallbacks.swapWith (callbacks);
+            callbacks = oldCallbacks;
         }
 
         updateXml();

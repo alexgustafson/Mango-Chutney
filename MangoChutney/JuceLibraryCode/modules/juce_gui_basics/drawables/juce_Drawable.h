@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DRAWABLE_H_INCLUDED
-#define JUCE_DRAWABLE_H_INCLUDED
+#ifndef __JUCE_DRAWABLE_JUCEHEADER__
+#define __JUCE_DRAWABLE_JUCEHEADER__
 
 #include "../components/juce_Component.h"
 #include "../positioning/juce_RelativeCoordinate.h"
@@ -73,7 +73,7 @@ public:
 
     /** Renders the Drawable at a given offset within the Graphics context.
 
-        The coordinates passed-in are used to translate the object relative to its own
+        The co-ordinates passed-in are used to translate the object relative to its own
         origin before drawing it - this is basically a quick way of saying:
 
         @code
@@ -104,7 +104,7 @@ public:
     */
     void drawWithin (Graphics& g,
                      const Rectangle<float>& destArea,
-                     RectanglePlacement placement,
+                     const RectanglePlacement& placement,
                      float opacity) const;
 
 
@@ -117,7 +117,7 @@ public:
     /** Sets a transform for this drawable that will position it within the specified
         area of its parent component.
     */
-    void setTransformToFit (const Rectangle<float>& areaInParent, RectanglePlacement placement);
+    void setTransformToFit (const Rectangle<float>& areaInParent, const RectanglePlacement& placement);
 
     /** Returns the DrawableComposite that contains this object, if there is one. */
     DrawableComposite* getParent() const;
@@ -211,7 +211,7 @@ protected:
     /** @internal */
     void transformContextToCorrectOrigin (Graphics&);
     /** @internal */
-    void parentHierarchyChanged() override;
+    void parentHierarchyChanged();
     /** @internal */
     void setBoundsToEnclose (const Rectangle<float>&);
 
@@ -250,11 +250,11 @@ protected:
   #endif
 
 private:
-    void nonConstDraw (Graphics&, float opacity, const AffineTransform&);
+    void nonConstDraw (Graphics& g, float opacity, const AffineTransform& transform);
 
     Drawable& operator= (const Drawable&);
     JUCE_LEAK_DETECTOR (Drawable)
 };
 
 
-#endif   // JUCE_DRAWABLE_H_INCLUDED
+#endif   // __JUCE_DRAWABLE_JUCEHEADER__

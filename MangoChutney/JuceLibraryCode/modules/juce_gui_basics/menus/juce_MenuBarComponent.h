@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MENUBARCOMPONENT_H_INCLUDED
-#define JUCE_MENUBARCOMPONENT_H_INCLUDED
+#ifndef __JUCE_MENUBARCOMPONENT_JUCEHEADER__
+#define __JUCE_MENUBARCOMPONENT_JUCEHEADER__
 
 #include "juce_MenuBarModel.h"
 
@@ -73,29 +73,30 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void mouseEnter (const MouseEvent&) override;
+    void mouseEnter (const MouseEvent& e);
     /** @internal */
-    void mouseExit (const MouseEvent&) override;
+    void mouseExit (const MouseEvent& e);
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent& e);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent& e);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent& e);
     /** @internal */
-    void mouseMove (const MouseEvent&) override;
+    void mouseMove (const MouseEvent& e);
     /** @internal */
-    void handleCommandMessage (int commandId) override;
+    void handleCommandMessage (int commandId);
     /** @internal */
-    bool keyPressed (const KeyPress&) override;
+    bool keyPressed (const KeyPress& key);
     /** @internal */
-    void menuBarItemsChanged (MenuBarModel*) override;
+    void menuBarItemsChanged (MenuBarModel* menuBarModel);
     /** @internal */
-    void menuCommandInvoked (MenuBarModel*, const ApplicationCommandTarget::InvocationInfo&) override;
+    void menuCommandInvoked (MenuBarModel* menuBarModel,
+                             const ApplicationCommandTarget::InvocationInfo& info);
 
 private:
     //==============================================================================
@@ -110,7 +111,7 @@ private:
     void setItemUnderMouse (int index);
     void setOpenItem (int index);
     void updateItemUnderMouse (Point<int>);
-    void timerCallback() override;
+    void timerCallback();
     void repaintMenuItem (int index);
     void menuDismissed (int topLevelIndex, int itemId);
     static void menuBarMenuDismissedCallback (int, MenuBarComponent*, int);
@@ -118,4 +119,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MenuBarComponent)
 };
 
-#endif   // JUCE_MENUBARCOMPONENT_H_INCLUDED
+#endif   // __JUCE_MENUBARCOMPONENT_JUCEHEADER__

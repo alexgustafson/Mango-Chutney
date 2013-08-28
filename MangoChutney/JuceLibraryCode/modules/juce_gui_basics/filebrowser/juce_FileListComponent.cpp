@@ -102,7 +102,7 @@ public:
     }
 
     //==============================================================================
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         getLookAndFeel().drawFileBrowserRow (g, getWidth(), getHeight(),
                                              file.getFileName(),
@@ -111,13 +111,13 @@ public:
                                              index, owner);
     }
 
-    void mouseDown (const MouseEvent& e) override
+    void mouseDown (const MouseEvent& e)
     {
         owner.selectRowsBasedOnModifierKeys (index, e.mods, false);
         owner.sendMouseClickMessage (file, e);
     }
 
-    void mouseDoubleClick (const MouseEvent&) override
+    void mouseDoubleClick (const MouseEvent&)
     {
         owner.sendDoubleClickMessage (file);
     }
@@ -168,13 +168,13 @@ public:
         }
     }
 
-    int useTimeSlice() override
+    int useTimeSlice()
     {
         updateIcon (false);
         return -1;
     }
 
-    void handleAsyncUpdate() override
+    void handleAsyncUpdate()
     {
         repaint();
     }

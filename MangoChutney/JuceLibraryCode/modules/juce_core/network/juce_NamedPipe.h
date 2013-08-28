@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_NAMEDPIPE_H_INCLUDED
-#define JUCE_NAMEDPIPE_H_INCLUDED
+#ifndef __JUCE_NAMEDPIPE_JUCEHEADER__
+#define __JUCE_NAMEDPIPE_JUCEHEADER__
 
 #include "../threads/juce_ReadWriteLock.h"
 
@@ -102,4 +102,4 @@ private:
 };
 
 
-#endif   // JUCE_NAMEDPIPE_H_INCLUDED
+#endif   // __JUCE_NAMEDPIPE_JUCEHEADER__

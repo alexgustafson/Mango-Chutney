@@ -12,8 +12,8 @@
 class AudioFileSelectorListener
 {
 public:
-    virtual void fileSelected(const File& file)= 0;
-    virtual void selectionCanceled() =  0;
+    void fileSelected(const File& file) {};
+    void selectionCanceled() {};
 };
 
 #endif

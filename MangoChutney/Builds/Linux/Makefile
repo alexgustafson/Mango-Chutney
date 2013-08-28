@@ -49,6 +49,8 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(OBJDIR)/LAF_fc1694d5.o \
+  $(OBJDIR)/MangoEventDispatch_af51e11b.o \
   $(OBJDIR)/Sequencer_5ffb45b2.o \
   $(OBJDIR)/SampleSettingsComponent_c9173bf1.o \
   $(OBJDIR)/SettingsViewComponent_2f2f6156.o \
@@ -92,6 +94,16 @@ clean:
 strip:
 	@echo Stripping MangoChutney
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/LAF_fc1694d5.o: ../../../../juce_lookandfeel/Source/LAF.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling LAF.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/MangoEventDispatch_af51e11b.o: ../../Source/MangoEventDispatch.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling MangoEventDispatch.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/Sequencer_5ffb45b2.o: ../../Source/Sequencer.cpp
 	-@mkdir -p $(OBJDIR)

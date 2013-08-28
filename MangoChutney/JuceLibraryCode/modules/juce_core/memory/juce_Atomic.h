@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_ATOMIC_H_INCLUDED
-#define JUCE_ATOMIC_H_INCLUDED
+#ifndef __JUCE_ATOMIC_JUCEHEADER__
+#define __JUCE_ATOMIC_JUCEHEADER__
 
 
 //==============================================================================
@@ -48,7 +48,7 @@ public:
     }
 
     /** Creates a new value, with a given initial value. */
-    inline explicit Atomic (const Type initialValue) noexcept
+    inline Atomic (const Type initialValue) noexcept
         : value (initialValue)
     {
     }
@@ -153,13 +153,10 @@ public:
     volatile Type value;
 
 private:
-    template <typename Dest, typename Source>
-    static inline Dest castTo (Source value) noexcept         { union { Dest d; Source s; } u; u.s = value; return u.d; }
-
-    static inline Type castFrom32Bit (int32 value) noexcept   { return castTo <Type, int32> (value); }
-    static inline Type castFrom64Bit (int64 value) noexcept   { return castTo <Type, int64> (value); }
-    static inline int32 castTo32Bit (Type value) noexcept     { return castTo <int32, Type> (value); }
-    static inline int64 castTo64Bit (Type value) noexcept     { return castTo <int64, Type> (value); }
+    static inline Type castFrom32Bit (int32 value) noexcept   { return *(Type*) &value; }
+    static inline Type castFrom64Bit (int64 value) noexcept   { return *(Type*) &value; }
+    static inline int32 castTo32Bit (Type value) noexcept     { return *(int32*) &value; }
+    static inline int64 castTo64Bit (Type value) noexcept     { return *(int64*) &value; }
 
     Type operator++ (int); // better to just use pre-increment with atomics..
     Type operator-- (int);
@@ -393,4 +390,4 @@ inline void Atomic<Type>::memoryBarrier() noexcept
   #pragma warning (pop)
 #endif
 
-#endif   // JUCE_ATOMIC_H_INCLUDED
+#endif   // __JUCE_ATOMIC_JUCEHEADER__

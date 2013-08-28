@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DRAWABLETEXT_H_INCLUDED
-#define JUCE_DRAWABLETEXT_H_INCLUDED
+#ifndef __JUCE_DRAWABLETEXT_JUCEHEADER__
+#define __JUCE_DRAWABLETEXT_JUCEHEADER__
 
 #include "juce_Drawable.h"
 #include "../positioning/juce_RelativeParallelogram.h"
@@ -71,10 +71,10 @@ public:
     const Font& getFont() const noexcept                                { return font; }
 
     /** Changes the justification of the text within the bounding box. */
-    void setJustification (Justification newJustification);
+    void setJustification (const Justification& newJustification);
 
     /** Returns the current justification. */
-    Justification getJustification() const noexcept                     { return justification; }
+    const Justification& getJustification() const noexcept              { return justification; }
 
     /** Returns the parallelogram that defines the text bounding box. */
     const RelativeParallelogram& getBoundingBox() const noexcept        { return bounds; }
@@ -90,17 +90,17 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    Drawable* createCopy() const override;
+    Drawable* createCopy() const;
     /** @internal */
     void refreshFromValueTree (const ValueTree& tree, ComponentBuilder& builder);
     /** @internal */
-    ValueTree createValueTree (ComponentBuilder::ImageProvider* imageProvider) const override;
+    ValueTree createValueTree (ComponentBuilder::ImageProvider* imageProvider) const;
     /** @internal */
     static const Identifier valueTreeType;
     /** @internal */
-    Rectangle<float> getDrawableBounds() const override;
+    Rectangle<float> getDrawableBounds() const;
 
     //==============================================================================
     /** Internally-used class for wrapping a DrawableText's state into a ValueTree. */
@@ -117,7 +117,7 @@ public:
         void setColour (Colour newColour, UndoManager* undoManager);
 
         Justification getJustification() const;
-        void setJustification (Justification newJustification, UndoManager* undoManager);
+        void setJustification (const Justification& newJustification, UndoManager* undoManager);
 
         Font getFont() const;
         void setFont (const Font& newFont, UndoManager* undoManager);
@@ -149,10 +149,11 @@ private:
     bool registerCoordinates (RelativeCoordinatePositionerBase&);
     void recalculateCoordinates (Expression::Scope*);
     void refreshBounds();
+    const AffineTransform getArrangementAndTransform (GlyphArrangement& glyphs) const;
 
     DrawableText& operator= (const DrawableText&);
     JUCE_LEAK_DETECTOR (DrawableText)
 };
 
 
-#endif   // JUCE_DRAWABLETEXT_H_INCLUDED
+#endif   // __JUCE_DRAWABLETEXT_JUCEHEADER__

@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SYSTEMCLIPBOARD_H_INCLUDED
-#define JUCE_SYSTEMCLIPBOARD_H_INCLUDED
+#ifndef __JUCE_SYSTEMCLIPBOARD_JUCEHEADER__
+#define __JUCE_SYSTEMCLIPBOARD_JUCEHEADER__
 
 
 //==============================================================================
@@ -44,4 +44,4 @@ public:
     static String getTextFromClipboard();
 };
 
-#endif   // JUCE_SYSTEMCLIPBOARD_H_INCLUDED
+#endif   // __JUCE_SYSTEMCLIPBOARD_JUCEHEADER__

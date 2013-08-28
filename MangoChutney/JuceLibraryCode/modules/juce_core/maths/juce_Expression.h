@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_EXPRESSION_H_INCLUDED
-#define JUCE_EXPRESSION_H_INCLUDED
+#ifndef __JUCE_EXPRESSION_JUCEHEADER__
+#define __JUCE_EXPRESSION_JUCEHEADER__
 
 #include "../memory/juce_ReferenceCountedObject.h"
 #include "../containers/juce_Array.h"
@@ -271,4 +271,4 @@ private:
     explicit Expression (Term*);
 };
 
-#endif   // JUCE_EXPRESSION_H_INCLUDED
+#endif   // __JUCE_EXPRESSION_JUCEHEADER__

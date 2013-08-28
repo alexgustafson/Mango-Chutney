@@ -150,7 +150,7 @@ void Thread::killThread()
     }
 }
 
-void JUCE_CALLTYPE Thread::setCurrentThreadName (const String& name)
+void Thread::setCurrentThreadName (const String& name)
 {
    #if JUCE_DEBUG && JUCE_MSVC
     struct
@@ -177,7 +177,7 @@ void JUCE_CALLTYPE Thread::setCurrentThreadName (const String& name)
    #endif
 }
 
-Thread::ThreadID JUCE_CALLTYPE Thread::getCurrentThreadId()
+Thread::ThreadID Thread::getCurrentThreadId()
 {
     return (ThreadID) (pointer_sized_int) GetCurrentThreadId();
 }
@@ -199,7 +199,7 @@ bool Thread::setThreadPriority (void* handle, int priority)
     return SetThreadPriority (handle, pri) != FALSE;
 }
 
-void JUCE_CALLTYPE Thread::setCurrentThreadAffinityMask (const uint32 affinityMask)
+void Thread::setCurrentThreadAffinityMask (const uint32 affinityMask)
 {
     SetThreadAffinityMask (GetCurrentThread(), affinityMask);
 }
@@ -322,7 +322,7 @@ void Process::terminate()
    #endif
 
     // bullet in the head in case there's a problem shutting down..
-    ExitProcess (1);
+    ExitProcess (0);
 }
 
 bool juce_isRunningInWine()

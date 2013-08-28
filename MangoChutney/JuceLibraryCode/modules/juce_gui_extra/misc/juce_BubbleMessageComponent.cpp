@@ -23,8 +23,8 @@
 */
 
 BubbleMessageComponent::BubbleMessageComponent (int fadeOutLengthMs)
-    : fadeOutLength (fadeOutLengthMs), mouseClickCounter (0),
-      expiryTime (0), deleteAfterUse (false)
+    : fadeOutLength (fadeOutLengthMs),
+      deleteAfterUse (false)
 {
 }
 

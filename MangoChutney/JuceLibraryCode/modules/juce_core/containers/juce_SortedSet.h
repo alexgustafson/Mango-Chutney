@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SORTEDSET_H_INCLUDED
-#define JUCE_SORTEDSET_H_INCLUDED
+#ifndef __JUCE_SORTEDSET_JUCEHEADER__
+#define __JUCE_SORTEDSET_JUCEHEADER__
 
 #include "juce_ArrayAllocationBase.h"
 #include "../threads/juce_CriticalSection.h"
@@ -135,7 +135,8 @@ public:
     }
 
     //==============================================================================
-    /** Returns the current number of elements in the set. */
+    /** Returns the current number of elements in the set.
+    */
     inline int size() const noexcept
     {
         return data.size();
@@ -184,6 +185,7 @@ public:
     }
 
     /** Returns the first element in the set, or 0 if the set is empty.
+
         @see operator[], getUnchecked, getLast
     */
     inline ElementType getFirst() const noexcept
@@ -192,6 +194,7 @@ public:
     }
 
     /** Returns the last element in the set, or 0 if the set is empty.
+
         @see operator[], getUnchecked, getFirst
     */
     inline ElementType getLast() const noexcept
@@ -445,10 +448,9 @@ public:
         If you need to exchange two arrays, this is vastly quicker than using copy-by-value
         because it just swaps their internal pointers.
     */
-    template <class OtherSetType>
-    void swapWith (OtherSetType& otherSet) noexcept
+    void swapWith (SortedSet& otherSet) noexcept
     {
-        data.swapWith (otherSet.data);
+        data.swapWithArray (otherSet.data);
     }
 
     //==============================================================================
@@ -494,4 +496,4 @@ private:
   #pragma warning (pop)
 #endif
 
-#endif   // JUCE_SORTEDSET_H_INCLUDED
+#endif   // __JUCE_SORTEDSET_JUCEHEADER__

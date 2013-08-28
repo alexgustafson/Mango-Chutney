@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_VARIANT_H_INCLUDED
-#define JUCE_VARIANT_H_INCLUDED
+#ifndef __JUCE_VARIANT_JUCEHEADER__
+#define __JUCE_VARIANT_JUCEHEADER__
 
 #include "../text/juce_Identifier.h"
 #include "../streams/juce_OutputStream.h"
@@ -304,4 +304,4 @@ bool operator== (const var& v1, const char* v2);
 bool operator!= (const var& v1, const char* v2);
 
 
-#endif   // JUCE_VARIANT_H_INCLUDED
+#endif   // __JUCE_VARIANT_JUCEHEADER__

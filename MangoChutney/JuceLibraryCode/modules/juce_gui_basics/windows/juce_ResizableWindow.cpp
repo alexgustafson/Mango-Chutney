@@ -37,7 +37,7 @@ ResizableWindow::ResizableWindow (const String& name,
 }
 
 ResizableWindow::ResizableWindow (const String& name,
-                                  Colour backgroundColour_,
+                                  const Colour& backgroundColour_,
                                   const bool addToDesktop_)
     : TopLevelWindow (name, addToDesktop_),
       ownsContentComponent (false),
@@ -358,14 +358,14 @@ void ResizableWindow::setBoundsConstrained (const Rectangle<int>& newBounds)
 //==============================================================================
 void ResizableWindow::paint (Graphics& g)
 {
-    LookAndFeel& lf = getLookAndFeel();
-
-    lf.fillResizableWindowBackground (g, getWidth(), getHeight(),
-                                      getBorderThickness(), *this);
+    getLookAndFeel().fillResizableWindowBackground (g, getWidth(), getHeight(),
+                                                    getBorderThickness(), *this);
 
     if (! isFullScreen())
-        lf.drawResizableWindowBorder (g, getWidth(), getHeight(),
-                                      getBorderThickness(), *this);
+    {
+        getLookAndFeel().drawResizableWindowBorder (g, getWidth(), getHeight(),
+                                                    getBorderThickness(), *this);
+    }
 
    #if JUCE_DEBUG
     /* If this fails, then you've probably written a subclass with a resized()
@@ -401,7 +401,7 @@ Colour ResizableWindow::getBackgroundColour() const noexcept
     return findColour (backgroundColourId, false);
 }
 
-void ResizableWindow::setBackgroundColour (Colour newColour)
+void ResizableWindow::setBackgroundColour (const Colour& newColour)
 {
     Colour backgroundColour (newColour);
 
@@ -464,10 +464,9 @@ void ResizableWindow::setFullScreen (const bool shouldBeFullScreen)
 
 bool ResizableWindow::isMinimised() const
 {
-    if (ComponentPeer* const peer = getPeer())
-        return peer->isMinimised();
+    ComponentPeer* const peer = getPeer();
 
-    return false;
+    return (peer != nullptr) && peer->isMinimised();
 }
 
 void ResizableWindow::setMinimised (const bool shouldMinimise)
@@ -532,7 +531,7 @@ bool ResizableWindow::restoreWindowStateFromString (const String& s)
 
     {
         Desktop& desktop = Desktop::getInstance();
-        RectangleList<int> allMonitors (desktop.getDisplays().getRectangleList (true));
+        RectangleList allMonitors (desktop.getDisplays().getRectangleList (true));
         allMonitors.clipTo (newPos);
         const Rectangle<int> onScreenArea (allMonitors.getBounds());
 

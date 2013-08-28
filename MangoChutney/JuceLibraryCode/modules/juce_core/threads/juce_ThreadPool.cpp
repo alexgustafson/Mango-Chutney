@@ -67,7 +67,7 @@ public:
     {
     }
 
-    void run() override
+    void run()
     {
         while (! threadShouldExit())
         {

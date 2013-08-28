@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_STANDARDHEADER_H_INCLUDED
-#define JUCE_STANDARDHEADER_H_INCLUDED
+#ifndef __JUCE_STANDARDHEADER_JUCEHEADER__
+#define __JUCE_STANDARDHEADER_JUCEHEADER__
 
 //==============================================================================
 /** Current JUCE version number.
@@ -36,7 +36,7 @@
 */
 #define JUCE_MAJOR_VERSION      2
 #define JUCE_MINOR_VERSION      1
-#define JUCE_BUILDNUMBER        2
+#define JUCE_BUILDNUMBER        1
 
 /** Current Juce version number.
 
@@ -168,4 +168,4 @@ namespace juce
     #include "../memory/juce_LeakedObjectDetector.h"
 }
 
-#endif   // JUCE_STANDARDHEADER_H_INCLUDED
+#endif   // __JUCE_STANDARDHEADER_JUCEHEADER__

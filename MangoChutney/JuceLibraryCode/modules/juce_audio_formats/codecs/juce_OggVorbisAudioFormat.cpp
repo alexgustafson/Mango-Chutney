@@ -142,7 +142,7 @@ public:
 
     //==============================================================================
     bool readSamples (int** destSamples, int numDestChannels, int startOffsetInDestBuffer,
-                      int64 startSampleInFile, int numSamples) override
+                      int64 startSampleInFile, int numSamples)
     {
         while (numSamples > 0)
         {
@@ -341,7 +341,7 @@ public:
     }
 
     //==============================================================================
-    bool write (const int** samplesToWrite, int numSamples) override
+    bool write (const int** samplesToWrite, int numSamples)
     {
         if (ok)
         {

@@ -22,11 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_GRAPHICSCONTEXT_H_INCLUDED
-#define JUCE_GRAPHICSCONTEXT_H_INCLUDED
+#ifndef __JUCE_GRAPHICSCONTEXT_JUCEHEADER__
+#define __JUCE_GRAPHICSCONTEXT_JUCEHEADER__
 
 #include "../fonts/juce_Font.h"
-#include "../geometry/juce_RectangleList.h"
+#include "../geometry/juce_Rectangle.h"
 #include "../geometry/juce_PathStrokeType.h"
 #include "../geometry/juce_Line.h"
 #include "../colour/juce_Colours.h"
@@ -35,6 +35,7 @@
 class LowLevelGraphicsContext;
 class Image;
 class FillType;
+class RectangleList;
 
 
 //==============================================================================
@@ -115,7 +116,7 @@ public:
         Note there's also a setFont (float, int) method to quickly change the size and
         style of the current font.
 
-        @see drawSingleLineText, drawMultiLineText, drawText, drawFittedText
+        @see drawSingleLineText, drawMultiLineText, drawTextAsPath, drawText, drawFittedText
     */
     void setFont (const Font& newFont);
 
@@ -143,7 +144,7 @@ public:
     */
     void drawSingleLineText (const String& text,
                              int startX, int baselineY,
-                             Justification justification = Justification::left) const;
+                             const Justification& justification = Justification::left) const;
 
     /** Draws text across multiple lines.
 
@@ -157,6 +158,17 @@ public:
                             int startX, int baselineY,
                             int maximumLineWidth) const;
 
+    /** Renders a string of text as a vector path.
+
+        This allows a string to be transformed with an arbitrary AffineTransform and
+        rendered using the current colour/brush. It's much slower than the normal text methods
+        but more accurate.
+
+        @see setFont
+    */
+    void drawTextAsPath (const String& text,
+                         const AffineTransform& transform) const;
+
     /** Draws a line of text within a specified rectangle.
 
         The text will be positioned within the rectangle based on the justification
@@ -168,7 +180,7 @@ public:
     */
     void drawText (const String& text,
                    int x, int y, int width, int height,
-                   Justification justificationType,
+                   const Justification& justificationType,
                    bool useEllipsesIfTooBig) const;
 
     /** Draws a line of text within a specified rectangle.
@@ -182,7 +194,7 @@ public:
     */
     void drawText (const String& text,
                    const Rectangle<int>& area,
-                   Justification justificationType,
+                   const Justification& justificationType,
                    bool useEllipsesIfTooBig) const;
 
     /** Tries to draw a text string inside a given space.
@@ -206,7 +218,7 @@ public:
     */
     void drawFittedText (const String& text,
                          int x, int y, int width, int height,
-                         Justification justificationFlags,
+                         const Justification& justificationFlags,
                          int maximumNumberOfLines,
                          float minimumHorizontalScale = 0.7f) const;
 
@@ -231,7 +243,7 @@ public:
     */
     void drawFittedText (const String& text,
                          const Rectangle<int>& area,
-                         Justification justificationFlags,
+                         const Justification& justificationFlags,
                          int maximumNumberOfLines,
                          float minimumHorizontalScale = 0.7f) const;
 
@@ -266,7 +278,7 @@ public:
     /** Fills a rectangle with the current colour or brush.
 
         This uses sub-pixel positioning so is slower than the fillRect method which
-        takes integer coordinates.
+        takes integer co-ordinates.
     */
     void fillRect (float x, float y, float width, float height) const;
 
@@ -473,7 +485,7 @@ public:
     /** Draws an image.
 
         This will draw the whole of an image, positioning its top-left corner at the
-        given coordinates, and keeping its size the same. This is the simplest image
+        given co-ordinates, and keeping its size the same. This is the simplest image
         drawing method - the others give more control over the scaling and clipping
         of the images.
 
@@ -558,7 +570,7 @@ public:
     */
     void drawImageWithin (const Image& imageToDraw,
                           int destX, int destY, int destWidth, int destHeight,
-                          RectanglePlacement placementWithinTarget,
+                          const RectanglePlacement& placementWithinTarget,
                           bool fillAlphaChannelWithCurrentBrush = false) const;
 
 
@@ -596,7 +608,7 @@ public:
         @returns true if the resulting clipping region is non-zero in size
         @see setOrigin, clipRegionIntersects
     */
-    bool reduceClipRegion (const RectangleList<int>& clipRegion);
+    bool reduceClipRegion (const RectangleList& clipRegion);
 
     /** Intersects the current clipping region with a path.
 
@@ -720,4 +732,4 @@ private:
 };
 
 
-#endif   // JUCE_GRAPHICSCONTEXT_H_INCLUDED
+#endif   // __JUCE_GRAPHICSCONTEXT_JUCEHEADER__

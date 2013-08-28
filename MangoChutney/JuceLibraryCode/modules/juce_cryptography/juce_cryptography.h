@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CRYPTOGRAPHY_H_INCLUDED
-#define JUCE_CRYPTOGRAPHY_H_INCLUDED
+#ifndef __JUCE_CRYPTOGRAPHY_JUCEHEADER__
+#define __JUCE_CRYPTOGRAPHY_JUCEHEADER__
 
 //=============================================================================
 #include "../juce_core/juce_core.h"
@@ -32,13 +32,23 @@ namespace juce
 {
 
 // START_AUTOINCLUDE encryption, hashing
-#include "encryption/juce_BlowFish.h"
-#include "encryption/juce_Primes.h"
-#include "encryption/juce_RSAKey.h"
-#include "hashing/juce_MD5.h"
-#include "hashing/juce_SHA256.h"
+#ifndef __JUCE_BLOWFISH_JUCEHEADER__
+ #include "encryption/juce_BlowFish.h"
+#endif
+#ifndef __JUCE_PRIMES_JUCEHEADER__
+ #include "encryption/juce_Primes.h"
+#endif
+#ifndef __JUCE_RSAKEY_JUCEHEADER__
+ #include "encryption/juce_RSAKey.h"
+#endif
+#ifndef __JUCE_MD5_JUCEHEADER__
+ #include "hashing/juce_MD5.h"
+#endif
+#ifndef __JUCE_SHA256_JUCEHEADER__
+ #include "hashing/juce_SHA256.h"
+#endif
 // END_AUTOINCLUDE
 
 }
 
-#endif   // JUCE_CRYPTOGRAPHY_H_INCLUDED
+#endif   // __JUCE_CRYPTOGRAPHY_JUCEHEADER__

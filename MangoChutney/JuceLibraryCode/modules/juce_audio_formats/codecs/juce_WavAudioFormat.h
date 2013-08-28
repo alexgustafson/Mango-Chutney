@@ -132,23 +132,23 @@ public:
     static const char* const acidTempo;
 
     //==============================================================================
-    Array<int> getPossibleSampleRates() override;
-    Array<int> getPossibleBitDepths() override;
-    bool canDoStereo() override;
-    bool canDoMono() override;
+    Array<int> getPossibleSampleRates();
+    Array<int> getPossibleBitDepths();
+    bool canDoStereo();
+    bool canDoMono();
 
     //==============================================================================
     AudioFormatReader* createReaderFor (InputStream* sourceStream,
-                                        bool deleteStreamIfOpeningFails) override;
+                                        bool deleteStreamIfOpeningFails);
 
-    MemoryMappedAudioFormatReader* createMemoryMappedReader (const File& file) override;
+    MemoryMappedAudioFormatReader* createMemoryMappedReader (const File& file);
 
     AudioFormatWriter* createWriterFor (OutputStream* streamToWriteTo,
                                         double sampleRateToUse,
                                         unsigned int numberOfChannels,
                                         int bitsPerSample,
                                         const StringPairArray& metadataValues,
-                                        int qualityOptionIndex) override;
+                                        int qualityOptionIndex);
 
     //==============================================================================
     /** Utility function to replace the metadata in a wav file with a new set of values.

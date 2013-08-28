@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SCROLLBAR_H_INCLUDED
-#define JUCE_SCROLLBAR_H_INCLUDED
+#ifndef __JUCE_SCROLLBAR_JUCEHEADER__
+#define __JUCE_SCROLLBAR_JUCEHEADER__
 
 #include "../buttons/juce_Button.h"
 class Viewport;
@@ -296,21 +296,21 @@ public:
 
     //==============================================================================
     /** @internal */
-    bool keyPressed (const KeyPress&) override;
+    bool keyPressed (const KeyPress&);
     /** @internal */
-    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&) override;
+    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&);
     /** @internal */
-    void lookAndFeelChanged() override;
+    void lookAndFeelChanged();
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent&);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent&);
     /** @internal */
-    void mouseUp   (const MouseEvent&) override;
+    void mouseUp   (const MouseEvent&);
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics&);
     /** @internal */
-    void resized() override;
+    void resized();
 
 private:
     //==============================================================================
@@ -325,9 +325,9 @@ private:
     ScopedPointer<ScrollbarButton> upButton, downButton;
     ListenerList <Listener> listeners;
 
-    void handleAsyncUpdate() override;
+    void handleAsyncUpdate();
     void updateThumbPosition();
-    void timerCallback() override;
+    void timerCallback();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ScrollBar)
 };
@@ -336,4 +336,4 @@ private:
 typedef ScrollBar::Listener ScrollBarListener;
 
 
-#endif   // JUCE_SCROLLBAR_H_INCLUDED
+#endif   // __JUCE_SCROLLBAR_JUCEHEADER__

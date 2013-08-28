@@ -119,7 +119,7 @@ bool FileOutputStream::write (const void* const src, const size_t numBytes)
     return true;
 }
 
-bool FileOutputStream::writeRepeatedByte (uint8 byte, size_t numBytes)
+void FileOutputStream::writeRepeatedByte (uint8 byte, size_t numBytes)
 {
     jassert (((ssize_t) numBytes) >= 0);
 
@@ -128,8 +128,9 @@ bool FileOutputStream::writeRepeatedByte (uint8 byte, size_t numBytes)
         memset (buffer + bytesInBuffer, byte, numBytes);
         bytesInBuffer += numBytes;
         currentPosition += numBytes;
-        return true;
     }
-
-    return OutputStream::writeRepeatedByte (byte, numBytes);
+    else
+    {
+        OutputStream::writeRepeatedByte (byte, numBytes);
+    }
 }

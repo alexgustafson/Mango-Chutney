@@ -22,7 +22,7 @@
   ==============================================================================
 */
 
-#if defined (JUCE_GUI_BASICS_H_INCLUDED) && ! JUCE_AMALGAMATED_INCLUDE
+#if defined (__JUCE_GUI_BASICS_JUCEHEADER__) && ! JUCE_AMALGAMATED_INCLUDE
  /* When you add this cpp file to your project, you mustn't include it in a file where you've
     already included any other headers - just put it inside a file on its own, possibly with your config
     flags preceding it, but don't include anything else. That also includes avoiding any automatic prefix
@@ -147,7 +147,6 @@ namespace juce
 #include "mouse/juce_DragAndDropContainer.cpp"
 #include "mouse/juce_MouseCursor.cpp"
 #include "mouse/juce_MouseEvent.cpp"
-#include "mouse/juce_MouseInactivityDetector.cpp"
 #include "mouse/juce_MouseInputSource.cpp"
 #include "mouse/juce_MouseListener.cpp"
 #include "keyboard/juce_CaretComponent.cpp"
@@ -228,8 +227,8 @@ namespace juce
 #include "widgets/juce_TableHeaderComponent.cpp"
 #include "widgets/juce_TableListBox.cpp"
 #include "widgets/juce_TextEditor.cpp"
-#include "widgets/juce_ToolbarItemComponent.cpp"
 #include "widgets/juce_Toolbar.cpp"
+#include "widgets/juce_ToolbarItemComponent.cpp"
 #include "widgets/juce_ToolbarItemPalette.cpp"
 #include "widgets/juce_TreeView.cpp"
 #include "windows/juce_AlertWindow.cpp"

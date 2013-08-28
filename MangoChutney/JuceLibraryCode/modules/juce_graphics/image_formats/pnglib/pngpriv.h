@@ -720,6 +720,11 @@ PNG_INTERNAL_DATA(const png_byte, png_sRGB_delta, [512]);
 #endif /* PNG_SIMPLIFIED_READ/WRITE */
 
 
+/* Inhibit C++ name-mangling for libpng functions but not for system calls. */
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 /* Internal functions; these are not exported from a DLL however because they
  * are used within several of the C source files they have to be C extern.
  *
@@ -1899,6 +1904,10 @@ PNG_INTERNAL_FUNCTION(void, PNG_FILTER_OPTIMIZATIONS, (png_structp png_ptr,
 /* Maintainer: Put new private prototypes here ^ */
 
 //#include "pngdebug.h"
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* PNG_VERSION_INFO_ONLY */
 #endif /* PNGPRIV_H */

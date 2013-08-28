@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_GENERICAUDIOPROCESSOREDITOR_H_INCLUDED
-#define JUCE_GENERICAUDIOPROCESSOREDITOR_H_INCLUDED
+#ifndef __JUCE_GENERICAUDIOPROCESSOREDITOR_JUCEHEADER__
+#define __JUCE_GENERICAUDIOPROCESSOREDITOR_JUCEHEADER__
 
 #include "juce_AudioProcessorEditor.h"
 
@@ -46,8 +46,8 @@ public:
     ~GenericAudioProcessorEditor();
 
     //==============================================================================
-    void paint (Graphics&) override;
-    void resized() override;
+    void paint (Graphics& g);
+    void resized();
 
 private:
     //==============================================================================
@@ -57,4 +57,4 @@ private:
 };
 
 
-#endif   // JUCE_GENERICAUDIOPROCESSOREDITOR_H_INCLUDED
+#endif   // __JUCE_GENERICAUDIOPROCESSOREDITOR_JUCEHEADER__

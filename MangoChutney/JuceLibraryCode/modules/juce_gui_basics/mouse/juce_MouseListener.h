@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MOUSELISTENER_H_INCLUDED
-#define JUCE_MOUSELISTENER_H_INCLUDED
+#ifndef __JUCE_MOUSELISTENER_JUCEHEADER__
+#define __JUCE_MOUSELISTENER_JUCEHEADER__
 
 class MouseEvent;
 struct MouseWheelDetails;
@@ -164,4 +164,4 @@ private:
 };
 
 
-#endif   // JUCE_MOUSELISTENER_H_INCLUDED
+#endif   // __JUCE_MOUSELISTENER_JUCEHEADER__

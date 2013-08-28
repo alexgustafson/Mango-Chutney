@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PROCESS_H_INCLUDED
-#define JUCE_PROCESS_H_INCLUDED
+#ifndef __JUCE_PROCESS_JUCEHEADER__
+#define __JUCE_PROCESS_JUCEHEADER__
 
 #include "../text/juce_String.h"
 
@@ -79,9 +79,6 @@ public:
         (This is not possible on some platforms).
     */
     static void makeForegroundProcess();
-
-    /** Hides the application (on an OS that supports this, e.g. OSX) */
-    static void hide();
 
     //==============================================================================
     /** Raises the current process's privilege level.
@@ -152,4 +149,4 @@ private:
 };
 
 
-#endif   // JUCE_PROCESS_H_INCLUDED
+#endif   // __JUCE_PROCESS_JUCEHEADER__

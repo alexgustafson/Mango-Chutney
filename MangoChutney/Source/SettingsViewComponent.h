@@ -22,6 +22,7 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
+#include "SampleSettingsComponent.h"
 //[/Headers]
 
 
@@ -51,15 +52,16 @@ public:
     void buttonClicked (Button* buttonThatWasClicked);
 
 
-
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    ScopedPointer<SampleSettingsComponent> sampleSettingsPanel;
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<TextButton> textButton;
-    ScopedPointer<TextButton> textButton2;
+    ScopedPointer<TextButton> sampleEditButton;
+    ScopedPointer<TextButton> synthEditButton;
     ScopedPointer<Component> settingsPanel;
+    ScopedPointer<TextButton> closeButton;
 
 
     //==============================================================================

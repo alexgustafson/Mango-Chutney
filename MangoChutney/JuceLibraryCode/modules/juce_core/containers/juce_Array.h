@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_ARRAY_H_INCLUDED
-#define JUCE_ARRAY_H_INCLUDED
+#ifndef __JUCE_ARRAY_JUCEHEADER__
+#define __JUCE_ARRAY_JUCEHEADER__
 
 #include "juce_ArrayAllocationBase.h"
 #include "juce_ElementComparator.h"
@@ -137,7 +137,7 @@ public:
         if (this != &other)
         {
             Array<ElementType, TypeOfCriticalSectionToUse> otherCopy (other);
-            swapWith (otherCopy);
+            swapWithArray (otherCopy);
         }
 
         return *this;
@@ -204,6 +204,7 @@ public:
     }
 
     /** Removes all elements from the array without freeing the array's allocated storage.
+
         @see clear
     */
     void clearQuick()
@@ -234,14 +235,8 @@ public:
     ElementType operator[] (const int index) const
     {
         const ScopedLockType lock (getLock());
-
-        if (isPositiveAndBelow (index, numUsed))
-        {
-            jassert (data.elements != nullptr);
-            return data.elements [index];
-        }
-
-        return ElementType();
+        return isPositiveAndBelow (index, numUsed) ? data.elements [index]
+                                                   : ElementType();
     }
 
     /** Returns one of the elements in the array, without checking the index passed in.
@@ -256,7 +251,7 @@ public:
     inline ElementType getUnchecked (const int index) const
     {
         const ScopedLockType lock (getLock());
-        jassert (isPositiveAndBelow (index, numUsed) && data.elements != nullptr);
+        jassert (isPositiveAndBelow (index, numUsed));
         return data.elements [index];
     }
 
@@ -272,7 +267,7 @@ public:
     inline ElementType& getReference (const int index) const noexcept
     {
         const ScopedLockType lock (getLock());
-        jassert (isPositiveAndBelow (index, numUsed) && data.elements != nullptr);
+        jassert (isPositiveAndBelow (index, numUsed));
         return data.elements [index];
     }
 
@@ -393,7 +388,6 @@ public:
     {
         const ScopedLockType lock (getLock());
         data.ensureAllocatedSize (numUsed + 1);
-        jassert (data.elements != nullptr);
 
         if (isPositiveAndBelow (indexToInsertAt, numUsed))
         {
@@ -575,11 +569,11 @@ public:
         If you need to exchange two arrays, this is vastly quicker than using copy-by-value
         because it just swaps their internal pointers.
     */
-    template <class OtherArrayType>
-    void swapWith (OtherArrayType& otherArray) noexcept
+    void swapWithArray (Array& otherArray) noexcept
     {
         const ScopedLockType lock1 (getLock());
-        const typename OtherArrayType::ScopedLockType lock2 (otherArray.getLock());
+        const ScopedLockType lock2 (otherArray.getLock());
+
         data.swapWith (otherArray.data);
         std::swap (numUsed, otherArray.numUsed);
     }
@@ -727,7 +721,6 @@ public:
 
         if (isPositiveAndBelow (indexToRemove, numUsed))
         {
-            jassert (data.elements != nullptr);
             ElementType removed (data.elements[indexToRemove]);
             removeInternal (indexToRemove);
             return removed;
@@ -1024,11 +1017,6 @@ public:
     typedef typename TypeOfCriticalSectionToUse::ScopedLockType ScopedLockType;
 
 
-    //==============================================================================
-    // Note that the swapWithArray method has been replaced by a more flexible templated version,
-    // and renamed "swapWith" to be more consistent with the names used in other classes.
-    JUCE_DEPRECATED_WITH_BODY (void swapWithArray (Array& other) noexcept, { swapWith (other); })
-
 private:
     //==============================================================================
     ArrayAllocationBase <ElementType, TypeOfCriticalSectionToUse> data;
@@ -1061,4 +1049,4 @@ private:
 };
 
 
-#endif   // JUCE_ARRAY_H_INCLUDED
+#endif   // __JUCE_ARRAY_JUCEHEADER__
