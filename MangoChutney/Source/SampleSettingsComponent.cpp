@@ -176,6 +176,7 @@ void SampleSettingsComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == loadSampleButton)
     {
         //[UserButtonCode_loadSampleButton] -- add your button handler code here..
+        EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_OPEN_AUDIO_FILE_SELECTOR, nullptr);
         //[/UserButtonCode_loadSampleButton]
     }
 

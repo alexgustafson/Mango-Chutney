@@ -26,6 +26,7 @@
 #include "DrumController.h"
 #include "AudioFileSelector.h"
 #include "SettingsViewComponent.h"
+#include "MangoEventDispatch.h"
 //[/Headers]
 
 #include "PadFieldComponent.h"
@@ -43,7 +44,8 @@
 class MainViewComponent  : public Component,
                            public AudioFileSelectorListener,
                            public ButtonListener,
-                           public SliderListener
+                           public SliderListener,
+                           public EventListener
 {
 public:
     //==============================================================================
@@ -63,7 +65,8 @@ public:
     void fileSelected(const File& file);
     void selectionCanceled();
     
-    void closeSettingsView();
+    void eventListenerCallback (const String &message, void* payload);
+
 
     //[/UserMethods]
 

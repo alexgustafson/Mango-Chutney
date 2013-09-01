@@ -151,8 +151,8 @@ MainViewComponent::MainViewComponent ()
     setupButton->setClickingTogglesState(false);
     stepButton->setClickingTogglesState(true);
     patternButton->setClickingTogglesState(true);
-
     
+    EventDispatch::getInstance()->addEventListener(this);
 
     //[/Constructor]
 }
@@ -262,11 +262,10 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
         if(!settingsComponent)
         {
             settingsComponent = new SettingsViewComponent();
-            addAndMakeVisible(settingsComponent);
-            settingsComponent->setTopLeftPosition(0, 0);
-            settingsComponent->setSize(getWidth(), getHeight());
         }
-        
+        addAndMakeVisible(settingsComponent);
+        settingsComponent->setTopLeftPosition(0, 0);
+        settingsComponent->setSize(getWidth(), getHeight());
 
         //[/UserButtonCode_setupButton]
     }
@@ -360,10 +359,43 @@ void MainViewComponent::selectionCanceled()
     removeChildComponent(fileBrowser);
 }
 
-void MainViewComponent::closeSettingsView()
+void MainViewComponent::eventListenerCallback (const String &message, void* payload)
 {
-    removeChildComponent(settingsComponent);
+    if( message.equalsIgnoreCase(EventDispatch::MSG_CLOSE_SETTINGS_VIEW) )
+    {
+        removeChildComponent(settingsComponent);
+
+    }else if(message.equalsIgnoreCase(EventDispatch::MSG_OPEN_AUDIO_FILE_SELECTOR) )
+    {
+        if(!fileBrowser)
+        {
+            juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
+            
+            #if JUCE_IOS
+                theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
+            #endif
+            
+            #if JUCE_ANDROID
+                theDocumentDirectory("/storage/sdcard0/DrumSounds");
+            #endif
+            
+            int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
+            
+            fileBrowser = new AudioFileSelector(flags, theDocumentDirectory ,NULL, NULL );
+        }
+        
+        addAndMakeVisible(fileBrowser);
+        fileBrowser->setTopLeftPosition(0, 0);
+        fileBrowser->setSize(getWidth(), getHeight());
+        fileBrowser->setListener(this);
+        
+    }else if(message.equalsIgnoreCase(EventDispatch::MSG_CLOSE_AUDIO_FILE_SELECTOR) )
+    {
+        
+    }
+    
 }
+
 
 //[/MiscUserCode]
 

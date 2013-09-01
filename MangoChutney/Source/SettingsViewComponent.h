@@ -23,6 +23,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
 #include "SampleSettingsComponent.h"
+#include "MangoEventDispatch.h"
 //[/Headers]
 
 

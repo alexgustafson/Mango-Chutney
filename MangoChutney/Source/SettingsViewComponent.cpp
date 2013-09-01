@@ -108,7 +108,7 @@ void SettingsViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == closeButton)
     {
         //[UserButtonCode_closeButton] -- add your button handler code here..
-    
+        EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_CLOSE_SETTINGS_VIEW, nullptr);
         //[/UserButtonCode_closeButton]
     }
 
