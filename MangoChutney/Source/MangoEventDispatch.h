@@ -27,6 +27,34 @@ public:
     virtual void eventListenerCallback (const String& message, void* payload) = 0;
 };
 
+class PadDownEvent
+{
+public:
+    PadDownEvent(int padNr, float xValue, float yValue){
+        _padNr = padNr;
+        _xValue = xValue;
+        _yValue = yValue;
+    }
+int _padNr;
+float _xValue;
+float _yValue;
+
+};
+
+class PadUpdateEvent
+{
+public:
+    PadUpdateEvent(int padNr, int state){
+        _padNr = padNr;
+        _state = state;
+
+    }
+    int _padNr;
+    int _state;
+
+    
+};
+
 
 
 class EventDispatch
@@ -43,10 +71,12 @@ public:
     static String MSG_CLOSE_SETTINGS_VIEW;
     static String MSG_OPEN_AUDIO_FILE_SELECTOR;
     static String MSG_CLOSE_AUDIO_FILE_SELECTOR;
+    static String MSG_PAD_DOWN_EVENT;
+    static String MSG_UPDATE_PAD_STATE;
     
 private:
     
-    static ScopedPointer<EventDispatch> instance;
+    static EventDispatch* instance;
     EventDispatch() noexcept;
     
     SortedSet <EventListener*> eventListeners;

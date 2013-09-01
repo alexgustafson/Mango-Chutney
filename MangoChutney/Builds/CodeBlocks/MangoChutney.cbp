@@ -108,6 +108,11 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
+    <Unit filename="../../Source/DrumPad.cpp"/>
+    <Unit filename="../../Source/DrumPad.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../Source/SampleSettingsComponent.cpp"/>
     <Unit filename="../../Source/SampleSettingsComponent.h">
       <Option compile="0"/>

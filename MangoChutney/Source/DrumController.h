@@ -13,21 +13,27 @@
 
 #include "JuceHeader.h"
 #include "AudioEngine.h"
+#include "MangoEventDispatch.h"
 
-class DrumController : public ButtonListener {
+enum DrumMode { Selectmode, Playmode, Stepmode, Patternmode };
+
+class DrumController : public EventListener,
+                        public  Timer
+{
 public:
     
     DrumController ();
     ~DrumController ();
 
-    void buttonClicked(juce::Button *buttonClicked);
-    void buttonStateChanged(juce::Button *buttonWhichStateChanged);
     void setFileForActivePad(const File file );
     void toggleSequencerPlayStop();
     void saveDefaultSettings();
     void loadDefaultSettings();
     void loadSettings(File &settingsFile);
     void saveSettings(File &settingsFile);
+    void timerCallback();
+    
+    void eventListenerCallback (const String &message, void* payload);
     
 private:
     AudioDeviceManager deviceManager;
@@ -37,6 +43,7 @@ private:
     ValueTree drumSettings;
     
     int lastSelectedPad;
+    DrumMode mode;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DrumController)
     

@@ -11,6 +11,7 @@ LOCAL_SRC_FILES := \
   ../../../../../juce_lookandfeel/Source/LAF.cpp\
   ../../../Source/MangoEventDispatch.cpp\
   ../../../Source/Sequencer.cpp\
+  ../../../Source/DrumPad.cpp\
   ../../../Source/SampleSettingsComponent.cpp\
   ../../../Source/SettingsViewComponent.cpp\
   ../../../Source/AudioFileSelector.cpp\

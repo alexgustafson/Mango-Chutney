@@ -29,118 +29,22 @@
 //==============================================================================
 PadField::PadField ()
 {
-    addAndMakeVisible (pad1 = new ImageButton ("new button"));
-    pad1->addListener (this);
-
-    pad1->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 0.932f, Colour (0x00ffffff),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad2 = new ImageButton ("new button"));
-    pad2->addListener (this);
-
-    pad2->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad3 = new ImageButton ("new button"));
-    pad3->addListener (this);
-
-    pad3->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad4 = new ImageButton ("new button"));
-    pad4->addListener (this);
-
-    pad4->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad5 = new ImageButton ("new button"));
-    pad5->addListener (this);
-
-    pad5->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad6 = new ImageButton ("new button"));
-    pad6->addListener (this);
-
-    pad6->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad7 = new ImageButton ("new button"));
-    pad7->addListener (this);
-
-    pad7->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad8 = new ImageButton ("new button"));
-    pad8->addListener (this);
-
-    pad8->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad9 = new ImageButton ("new button"));
-    pad9->addListener (this);
-
-    pad9->setImages (false, true, true,
-                     ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                     Image(), 1.000f, Colour (0x00000000),
-                     ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad10 = new ImageButton ("new button"));
-    pad10->addListener (this);
-
-    pad10->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad11 = new ImageButton ("new button"));
-    pad11->addListener (this);
-
-    pad11->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad12 = new ImageButton ("new button"));
-    pad12->addListener (this);
-
-    pad12->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad13 = new ImageButton ("new button"));
-    pad13->addListener (this);
-
-    pad13->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad14 = new ImageButton ("new button"));
-    pad14->addListener (this);
-
-    pad14->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad15 = new ImageButton ("new button"));
-    pad15->addListener (this);
-
-    pad15->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
-    addAndMakeVisible (pad16 = new ImageButton ("new button"));
-    pad16->addListener (this);
-
-    pad16->setImages (false, true, true,
-                      ImageCache::getFromMemory (pad_notlit_png, pad_notlit_pngSize), 1.000f, Colour (0x00000000),
-                      Image(), 1.000f, Colour (0x00000000),
-                      ImageCache::getFromMemory (pad_lit_png, pad_lit_pngSize), 1.000f, Colour (0x00000000));
+    addAndMakeVisible (pad1 = new DrumPad());
+    addAndMakeVisible (pad2 = new DrumPad());
+    addAndMakeVisible (pad3 = new DrumPad());
+    addAndMakeVisible (pad4 = new DrumPad());
+    addAndMakeVisible (pad5 = new DrumPad());
+    addAndMakeVisible (pad6 = new DrumPad());
+    addAndMakeVisible (pad7 = new DrumPad());
+    addAndMakeVisible (pad8 = new DrumPad());
+    addAndMakeVisible (pad9 = new DrumPad());
+    addAndMakeVisible (pad10 = new DrumPad());
+    addAndMakeVisible (pad11 = new DrumPad());
+    addAndMakeVisible (pad12 = new DrumPad());
+    addAndMakeVisible (pad13 = new DrumPad());
+    addAndMakeVisible (pad14 = new DrumPad());
+    addAndMakeVisible (pad15 = new DrumPad());
+    addAndMakeVisible (pad16 = new DrumPad());
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -149,7 +53,6 @@ PadField::PadField ()
 
 
     //[Constructor] You can add your own custom stuff here..
-    sequencer = Sequencer::getInstance();
     pad1->setName("pad1");
     pad2->setName("pad2");
     pad3->setName("pad3");
@@ -166,25 +69,24 @@ PadField::PadField ()
     pad14->setName("pad14");
     pad15->setName("pad15");
     pad16->setName("pad16");
+    
+    pad1->setPadNr(1);
+    pad2->setPadNr(2);
+    pad3->setPadNr(3);
+    pad4->setPadNr(4);
+    pad5->setPadNr(5);
+    pad6->setPadNr(6);
+    pad7->setPadNr(7);
+    pad8->setPadNr(8);
+    pad9->setPadNr(9);
+    pad10->setPadNr(10);
+    pad11->setPadNr(12);
+    pad12->setPadNr(13);
+    pad13->setPadNr(14);
+    pad14->setPadNr(15);
+    pad15->setPadNr(16);
+    pad16->setPadNr(17);
 
-    pad1->setRadioGroupId (34567);
-    pad2->setRadioGroupId (34567);
-    pad3->setRadioGroupId (34567);
-    pad4->setRadioGroupId (34567);
-    pad5->setRadioGroupId (34567);
-    pad6->setRadioGroupId (34567);
-    pad7->setRadioGroupId (34567);
-    pad8->setRadioGroupId (34567);
-    pad9->setRadioGroupId (34567);
-    pad10->setRadioGroupId (34567);
-    pad11->setRadioGroupId (34567);
-    pad12->setRadioGroupId (34567);
-    pad13->setRadioGroupId (34567);
-    pad14->setRadioGroupId (34567);
-    pad15->setRadioGroupId (34567);
-    pad16->setRadioGroupId (34567);
-
-    padMode = Selectmode;
 
     pads.add(pad1);
     pads.add(pad2);
@@ -203,7 +105,6 @@ PadField::PadField ()
     pads.add(pad15);
     pads.add(pad16);
 
-    activepad = pad1;
 
 
     //[/Constructor]
@@ -234,7 +135,6 @@ PadField::~PadField()
 
 
     //[Destructor]. You can add your own custom destruction code here..
-    mainDrumController = nullptr;
 
     //[/Destructor]
 }
@@ -251,22 +151,22 @@ void PadField::paint (Graphics& g)
 
 void PadField::resized()
 {
-    pad1->setBounds (0, 0, 96, 96);
-    pad2->setBounds (96, 0, 96, 96);
-    pad3->setBounds (192, 0, 96, 96);
-    pad4->setBounds (288, 0, 96, 96);
-    pad5->setBounds (0, 96, 96, 96);
-    pad6->setBounds (96, 96, 96, 96);
-    pad7->setBounds (192, 96, 96, 96);
-    pad8->setBounds (288, 96, 96, 96);
-    pad9->setBounds (0, 192, 96, 96);
-    pad10->setBounds (96, 192, 96, 96);
-    pad11->setBounds (192, 192, 96, 96);
-    pad12->setBounds (288, 192, 96, 96);
-    pad13->setBounds (0, 288, 96, 96);
-    pad14->setBounds (96, 288, 96, 96);
-    pad15->setBounds (192, 288, 96, 96);
-    pad16->setBounds (288, 288, 96, 96);
+    pad1->setBounds (0, 0, 112, 112);
+    pad2->setBounds (112, 0, 112, 112);
+    pad3->setBounds (224, 0, 112, 112);
+    pad4->setBounds (336, 0, 112, 112);
+    pad5->setBounds (0, 112, 112, 112);
+    pad6->setBounds (112, 112, 112, 112);
+    pad7->setBounds (224, 112, 112, 112);
+    pad8->setBounds (336, 112, 112, 112);
+    pad9->setBounds (0, 224, 112, 112);
+    pad10->setBounds (112, 224, 112, 112);
+    pad11->setBounds (224, 224, 112, 112);
+    pad12->setBounds (336, 224, 112, 112);
+    pad13->setBounds (0, 336, 112, 112);
+    pad14->setBounds (112, 336, 112, 112);
+    pad15->setBounds (224, 336, 112, 112);
+    pad16->setBounds (336, 336, 112, 112);
     //[UserResized] Add your own custom resize handling here..
 
 
@@ -324,239 +224,12 @@ void PadField::resized()
     //[/UserResized]
 }
 
-void PadField::buttonClicked (Button* buttonThatWasClicked)
-{
-    //[UserbuttonClicked_Pre]
-    if (padMode == Selectmode)
-    {
-        activepad = (ImageButton* )buttonThatWasClicked;
-        mainDrumController->buttonStateChanged(buttonThatWasClicked);
-
-    }
-    else if (padMode == Playmode)
-    {
-        mainDrumController->buttonStateChanged(buttonThatWasClicked);
-    }
-
-    //[/UserbuttonClicked_Pre]
-
-    if (buttonThatWasClicked == pad1)
-    {
-        //[UserButtonCode_pad1] -- add your button handler code here..
-        //[/UserButtonCode_pad1]
-    }
-    else if (buttonThatWasClicked == pad2)
-    {
-        //[UserButtonCode_pad2] -- add your button handler code here..
-        //[/UserButtonCode_pad2]
-    }
-    else if (buttonThatWasClicked == pad3)
-    {
-        //[UserButtonCode_pad3] -- add your button handler code here..
-        //[/UserButtonCode_pad3]
-    }
-    else if (buttonThatWasClicked == pad4)
-    {
-        //[UserButtonCode_pad4] -- add your button handler code here..
-        //[/UserButtonCode_pad4]
-    }
-    else if (buttonThatWasClicked == pad5)
-    {
-        //[UserButtonCode_pad5] -- add your button handler code here..
-        //[/UserButtonCode_pad5]
-    }
-    else if (buttonThatWasClicked == pad6)
-    {
-        //[UserButtonCode_pad6] -- add your button handler code here..
-        //[/UserButtonCode_pad6]
-    }
-    else if (buttonThatWasClicked == pad7)
-    {
-        //[UserButtonCode_pad7] -- add your button handler code here..
-        //[/UserButtonCode_pad7]
-    }
-    else if (buttonThatWasClicked == pad8)
-    {
-        //[UserButtonCode_pad8] -- add your button handler code here..
-        //[/UserButtonCode_pad8]
-    }
-    else if (buttonThatWasClicked == pad9)
-    {
-        //[UserButtonCode_pad9] -- add your button handler code here..
-        //[/UserButtonCode_pad9]
-    }
-    else if (buttonThatWasClicked == pad10)
-    {
-        //[UserButtonCode_pad10] -- add your button handler code here..
-        //[/UserButtonCode_pad10]
-    }
-    else if (buttonThatWasClicked == pad11)
-    {
-        //[UserButtonCode_pad11] -- add your button handler code here..
-        //[/UserButtonCode_pad11]
-    }
-    else if (buttonThatWasClicked == pad12)
-    {
-        //[UserButtonCode_pad12] -- add your button handler code here..
-        //[/UserButtonCode_pad12]
-    }
-    else if (buttonThatWasClicked == pad13)
-    {
-        //[UserButtonCode_pad13] -- add your button handler code here..
-        //[/UserButtonCode_pad13]
-    }
-    else if (buttonThatWasClicked == pad14)
-    {
-        //[UserButtonCode_pad14] -- add your button handler code here..
-        //[/UserButtonCode_pad14]
-    }
-    else if (buttonThatWasClicked == pad15)
-    {
-        //[UserButtonCode_pad15] -- add your button handler code here..
-        //[/UserButtonCode_pad15]
-    }
-    else if (buttonThatWasClicked == pad16)
-    {
-        //[UserButtonCode_pad16] -- add your button handler code here..
-        //[/UserButtonCode_pad16]
-    }
-
-    //[UserbuttonClicked_Post]
-
-    if (padMode == Stepmode)
-    {
-        int activePadIndex = pads.indexOf(activepad);
-        int selectedPad = pads.indexOf((ImageButton* )buttonThatWasClicked);
-
-        if (sequencer->pattern.tracks[activePadIndex].notes[selectedPad] == 0.0)
-        {
-            sequencer->pattern.tracks[activePadIndex].notes[selectedPad] = 0.7;
-        }else
-        {
-            sequencer->pattern.tracks[activePadIndex].notes[selectedPad] = 0.0;
-        }
-
-    }else if (padMode == Patternmode)
-    {
-        int selectedPad = pads.indexOf((ImageButton* )buttonThatWasClicked);
-
-        sequencer->setPattern(selectedPad);
-    }
-
-    //[/UserbuttonClicked_Post]
-}
-
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-void PadField::setMode(PadMode mode)
-{
-    padMode = mode;
-    if (mode == Selectmode) {
-
-        for (int i = 0; i < pads.size(); i++) {
-
-            ImageButton *tempButton = pads[i];
-            tempButton->setRadioGroupId(34567);
-            tempButton->setClickingTogglesState(true);
-            tempButton->setToggleState(false, false);
-
-        }
-
-        activepad->setToggleState(true, false);
-
-    }else if(mode == Playmode)
-    {
-
-        for (int i = 0; i < pads.size(); i++) {
-
-            ImageButton *tempButton = pads[i];
-            tempButton->setRadioGroupId(34567);
-            tempButton->setClickingTogglesState(false);
-            tempButton->setToggleState(false, false);
-
-        }
 
 
-    }else if(mode == Stepmode)
-    {
 
-        for (int i = 0; i < pads.size(); i++) {
-
-            ImageButton *tempButton = pads[i];
-            tempButton->setRadioGroupId(34566 - i);
-            tempButton->setClickingTogglesState(true);
-            tempButton->setToggleState(false, false);
-
-        }
-
-
-    }
-    else if(mode == Patternmode)
-    {
-
-        for (int i = 0; i < pads.size(); i++) {
-
-            ImageButton *tempButton = pads[i];
-            tempButton->setRadioGroupId(34567);
-            tempButton->setClickingTogglesState(true);
-            tempButton->setToggleState(false, false);
-
-        }
-
-        ImageButton *tempButton = pads[sequencer->activePattern];
-        tempButton->setToggleState(true, false);
-
-    }
-    startTimer(60);
-}
-
-void PadField::buttonStateChanged(juce::Button *button)
-{
-    //mainDrumController->buttonStateChanged(button);
-}
-
-void PadField::addDrumController(DrumController* drumController)
-{
-    mainDrumController = drumController;
-}
-
-void PadField::timerCallback()
-{
-
-    if (padMode == Stepmode) {
-
-        int activePadIndex = pads.indexOf(activepad);
-
-        for (int i = 0; i < 16; i++) {
-
-            ImageButton *tempButton = pads[i];
-
-            if (sequencer->pattern.tracks[activePadIndex].notes[i] > 0.0) {
-
-                tempButton->setToggleState(true, false);
-
-            }else{
-
-                tempButton->setToggleState(false, false);
-
-            }
-        }
-    }
-
-    if(beatCount != sequencer->beatCount)
-    {
-        beatCount = sequencer->beatCount;
-
-        if(padMode == Stepmode)
-        {
-            ImageButton *tempButton = pads[beatCount];
-            tempButton->setToggleState(true, false);
-        }
-
-    }
-
-}
 //[/MiscUserCode]
 
 
@@ -575,102 +248,54 @@ BEGIN_JUCER_METADATA
                  overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
                  initialHeight="400">
   <BACKGROUND backgroundColour="ffffff"/>
-  <IMAGEBUTTON name="new button" id="7d32e006f32652e5" memberName="pad1" virtualName=""
-               explicitFocusOrder="0" pos="0 0 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="0.932031274" colourNormal="ffffff"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="c33024e3ca1a0405" memberName="pad2" virtualName=""
-               explicitFocusOrder="0" pos="96 0 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="e2c3d5cbaae04c26" memberName="pad3" virtualName=""
-               explicitFocusOrder="0" pos="192 0 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="821a24bb539d979d" memberName="pad4" virtualName=""
-               explicitFocusOrder="0" pos="288 0 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="c9e3181ecc4cc2c1" memberName="pad5" virtualName=""
-               explicitFocusOrder="0" pos="0 96 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="b1e2445fcddc6ce4" memberName="pad6" virtualName=""
-               explicitFocusOrder="0" pos="96 96 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="16d25e8854ed1fd0" memberName="pad7" virtualName=""
-               explicitFocusOrder="0" pos="192 96 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="e8c2af11a520884c" memberName="pad8" virtualName=""
-               explicitFocusOrder="0" pos="288 96 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="2d70a2b0791396c1" memberName="pad9" virtualName=""
-               explicitFocusOrder="0" pos="0 192 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="9f3347983cacb2d6" memberName="pad10" virtualName=""
-               explicitFocusOrder="0" pos="96 192 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="272153ed578f5605" memberName="pad11" virtualName=""
-               explicitFocusOrder="0" pos="192 192 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="2e5a9f941aa8d9a3" memberName="pad12" virtualName=""
-               explicitFocusOrder="0" pos="288 192 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="6cfef46d8817e80e" memberName="pad13" virtualName=""
-               explicitFocusOrder="0" pos="0 288 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="66edcf99efefcaa" memberName="pad14" virtualName=""
-               explicitFocusOrder="0" pos="96 288 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="e0f3b25d4ec980c5" memberName="pad15" virtualName=""
-               explicitFocusOrder="0" pos="192 288 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
-  <IMAGEBUTTON name="new button" id="37e919574569dfc1" memberName="pad16" virtualName=""
-               explicitFocusOrder="0" pos="288 288 96 96" buttonText="new button"
-               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="pad_notlit_png" opacityNormal="1" colourNormal="0"
-               resourceOver="" opacityOver="1" colourOver="0" resourceDown="pad_lit_png"
-               opacityDown="1" colourDown="0"/>
+  <JUCERCOMP name="pad1" id="4e2a88cee6dd488a" memberName="pad1" virtualName=""
+             explicitFocusOrder="0" pos="0 0 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="pad2" id="34d658e7330f0d7a" memberName="pad2" virtualName=""
+             explicitFocusOrder="0" pos="112 0 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="pad3" id="6d6451fff5362597" memberName="pad3" virtualName=""
+             explicitFocusOrder="0" pos="224 0 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="5e5b05e2c206f54" memberName="pad4" virtualName=""
+             explicitFocusOrder="0" pos="336 0 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="fd966361ad1c634a" memberName="pad5" virtualName=""
+             explicitFocusOrder="0" pos="0 112 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="f0b0eba5435bd252" memberName="pad6" virtualName=""
+             explicitFocusOrder="0" pos="112 112 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="26352b07ec7a7586" memberName="pad7" virtualName=""
+             explicitFocusOrder="0" pos="224 112 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="dd0334a483c87e3e" memberName="pad8" virtualName=""
+             explicitFocusOrder="0" pos="336 112 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="554a1cd815592613" memberName="pad9" virtualName=""
+             explicitFocusOrder="0" pos="0 224 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="534ac94151d53edf" memberName="pad10" virtualName=""
+             explicitFocusOrder="0" pos="112 224 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="186ec0bddc11c2b9" memberName="pad11" virtualName=""
+             explicitFocusOrder="0" pos="224 224 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="fb2fb66696a63fc" memberName="pad12" virtualName=""
+             explicitFocusOrder="0" pos="336 224 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="aa66b29cede01d41" memberName="pad13" virtualName=""
+             explicitFocusOrder="0" pos="0 336 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="2a3e30fb4cfbc15f" memberName="pad14" virtualName=""
+             explicitFocusOrder="0" pos="112 336 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="55b9a25f48748b71" memberName="pad15" virtualName=""
+             explicitFocusOrder="0" pos="224 336 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
+  <JUCERCOMP name="" id="53dfe3e6a59aaecf" memberName="pad16" virtualName=""
+             explicitFocusOrder="0" pos="336 336 112 112" sourceFile="DrumPad.cpp"
+             constructorParams=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

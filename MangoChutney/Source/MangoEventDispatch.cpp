@@ -18,9 +18,11 @@ EventDispatch::EventDispatch() noexcept{
 
 String EventDispatch::MSG_CLOSE_SETTINGS_VIEW = "closes settings view";
 String EventDispatch::MSG_OPEN_AUDIO_FILE_SELECTOR = "open audio file selector";
-String EventDispatch::MSG_CLOSE_AUDIO_FILE_SELECTOR = "close audil file selector view";
+String EventDispatch::MSG_CLOSE_AUDIO_FILE_SELECTOR = "close audio file selector view";
+String EventDispatch::MSG_PAD_DOWN_EVENT = "pad down event detected";
+String EventDispatch::MSG_UPDATE_PAD_STATE = "update pad state";
 
-ScopedPointer<EventDispatch> EventDispatch::instance = nullptr;
+EventDispatch* EventDispatch::instance = nullptr;
 
 EventDispatch* EventDispatch::getInstance()
 {
@@ -29,7 +31,7 @@ EventDispatch* EventDispatch::getInstance()
         instance = new EventDispatch();
     }
     
-    return instance.get();
+    return instance;
 }
 
 EventDispatch::~EventDispatch()
@@ -55,6 +57,5 @@ void EventDispatch::sendEventMessage (const String& message, void* payload)
     for (int i = eventListeners.size(); --i >= 0;)
     {
         (eventListeners.getUnchecked(i))->eventListenerCallback(message, payload);
-
     }
 }

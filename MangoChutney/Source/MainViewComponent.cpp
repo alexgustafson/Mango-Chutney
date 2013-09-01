@@ -18,9 +18,10 @@
 */
 
 //[Headers] You can add your own extra header files here...
+//[/Headers]
+
 #include "MainViewComponent.h"
 
-//==============================================================================
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
 //[/MiscUserDefs]
@@ -139,11 +140,10 @@ MainViewComponent::MainViewComponent ()
 
 
     //[Constructor] You can add your own custom stuff here..
-    
+
     sequencer = Sequencer::getInstance();
     tempoSlider->setValue(sequencer->tempo);
     drumController = new DrumController();
-    component->addDrumController(drumController);
     setSize (getParentWidth(), getParentHeight());
 
     selectButton->setClickingTogglesState(true);
@@ -151,8 +151,8 @@ MainViewComponent::MainViewComponent ()
     setupButton->setClickingTogglesState(false);
     stepButton->setClickingTogglesState(true);
     patternButton->setClickingTogglesState(true);
-    
-    EventDispatch::getInstance()->addEventListener(this);
+
+    EventDispatch::getInstance()->addEventListener((EventListener*)this);
 
     //[/Constructor]
 }
@@ -198,18 +198,18 @@ void MainViewComponent::paint (Graphics& g)
 
 void MainViewComponent::resized()
 {
-    setupButton->setBounds (16, 8, proportionOfWidth (0.1215f), proportionOfHeight (0.1390f));
-    selectButton->setBounds (((16) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f)), 8, proportionOfWidth (0.1215f), proportionOfHeight (0.1390f));
-    playButton->setBounds ((16) + (proportionOfWidth (0.1215f)), 8, proportionOfWidth (0.1215f), proportionOfHeight (0.1390f));
+    setupButton->setBounds (16, 8, proportionOfWidth (0.1228f), proportionOfHeight (0.1378f));
+    selectButton->setBounds (((16) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f)), 8, proportionOfWidth (0.1228f), proportionOfHeight (0.1378f));
+    playButton->setBounds ((16) + (proportionOfWidth (0.1228f)), 8, proportionOfWidth (0.1228f), proportionOfHeight (0.1378f));
     component->setBounds (24, 152, 290, 290);
-    stepButton->setBounds ((((16) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f)), 8, proportionOfWidth (0.1215f), proportionOfHeight (0.1390f));
+    stepButton->setBounds ((((16) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f)), 8, proportionOfWidth (0.1228f), proportionOfHeight (0.1378f));
     tempoSlider->setBounds (getWidth() - 107, 8, 96, 80);
-    label->setBounds ((16) + (proportionOfWidth (0.1215f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1390f)) - 8, 40, 24);
-    label2->setBounds ((((16) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1390f)) - 8, 40, 24);
-    label3->setBounds (((16) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1390f)) - 8, 40, 24);
-    label4->setBounds (((((16) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1390f)) - 8, 40, 24);
-    patternButton->setBounds (((((16) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f)), 8, proportionOfWidth (0.1215f), proportionOfHeight (0.1390f));
-    label5->setBounds ((((((16) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f))) + (proportionOfWidth (0.1215f)) / 2 - ((48) / 2), (8) + (proportionOfHeight (0.1390f)) - 8, 48, 24);
+    label->setBounds ((16) + (proportionOfWidth (0.1228f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1378f)) - 8, 40, 24);
+    label2->setBounds ((((16) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1378f)) - 8, 40, 24);
+    label3->setBounds (((16) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1378f)) - 8, 40, 24);
+    label4->setBounds (((((16) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f)) / 2 - ((40) / 2), (8) + (proportionOfHeight (0.1378f)) - 8, 40, 24);
+    patternButton->setBounds (((((16) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f)), 8, proportionOfWidth (0.1228f), proportionOfHeight (0.1378f));
+    label5->setBounds ((((((16) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f))) + (proportionOfWidth (0.1228f)) / 2 - ((48) / 2), (8) + (proportionOfHeight (0.1378f)) - 8, 48, 24);
     //[UserResized] Add your own custom resize handling here..
     if(getHeight() > getWidth())
     {
@@ -272,26 +272,26 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == selectButton)
     {
         //[UserButtonCode_selectButton] -- add your button handler code here..
-        component->setMode(Selectmode);
+        //component->setMode(Selectmode);
         //[/UserButtonCode_selectButton]
     }
     else if (buttonThatWasClicked == playButton)
     {
         //[UserButtonCode_playButton] -- add your button handler code here..
-        component->setMode(Playmode);
+        //component->setMode(Playmode);
         drumController->toggleSequencerPlayStop();
         //[/UserButtonCode_playButton]
     }
     else if (buttonThatWasClicked == stepButton)
     {
         //[UserButtonCode_stepButton] -- add your button handler code here..
-        component->setMode(Stepmode);
+        //component->setMode(Stepmode);
         //[/UserButtonCode_stepButton]
     }
     else if (buttonThatWasClicked == patternButton)
     {
         //[UserButtonCode_patternButton] -- add your button handler code here..
-        component->setMode(Patternmode);
+        //component->setMode(Patternmode);
         //[/UserButtonCode_patternButton]
     }
 
@@ -370,30 +370,30 @@ void MainViewComponent::eventListenerCallback (const String &message, void* payl
         if(!fileBrowser)
         {
             juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
-            
+
             #if JUCE_IOS
                 theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
             #endif
-            
+
             #if JUCE_ANDROID
                 theDocumentDirectory("/storage/sdcard0/DrumSounds");
             #endif
-            
+
             int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
-            
+
             fileBrowser = new AudioFileSelector(flags, theDocumentDirectory ,NULL, NULL );
         }
-        
+
         addAndMakeVisible(fileBrowser);
         fileBrowser->setTopLeftPosition(0, 0);
         fileBrowser->setSize(getWidth(), getHeight());
         fileBrowser->setListener(this);
-        
+
     }else if(message.equalsIgnoreCase(EventDispatch::MSG_CLOSE_AUDIO_FILE_SELECTOR) )
     {
-        
+
     }
-    
+
 }
 
 
@@ -410,25 +410,25 @@ void MainViewComponent::eventListenerCallback (const String &message, void* payl
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="MainViewComponent" componentName=""
-                 parentClasses="public Component, public AudioFileSelectorListener"
+                 parentClasses="public Component, public AudioFileSelectorListener, public EventListener"
                  constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
                  snapShown="1" overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
                  initialHeight="300">
   <BACKGROUND backgroundColour="ff373940"/>
   <IMAGEBUTTON name="new button" id="6fc8c6b2dd61df0d" memberName="setupButton"
-               virtualName="" explicitFocusOrder="0" pos="16 8 12.24% 13.852%"
+               virtualName="" explicitFocusOrder="0" pos="16 8 12.291% 13.742%"
                buttonText="new button" connectedEdges="0" needsCallback="1"
                radioGroupId="34566" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
                colourOver="0" resourceDown="buttonOn_png" opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="select button" id="2e13002f79a45ac3" memberName="selectButton"
-               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.291% 13.742%"
                posRelativeX="ccc5656cdd20daae" buttonText="new button" connectedEdges="0"
                needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
                colourOver="0" resourceDown="buttonOn_png" opacityDown="1" colourDown="0"/>
   <IMAGEBUTTON name="play button" id="ccc5656cdd20daae" memberName="playButton"
-               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.291% 13.742%"
                posRelativeX="6fc8c6b2dd61df0d" buttonText="new button" connectedEdges="0"
                needsCallback="1" radioGroupId="33000" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
@@ -437,7 +437,7 @@ BEGIN_JUCER_METADATA
              explicitFocusOrder="0" pos="24 152 290 290" sourceFile="PadFieldComponent.cpp"
              constructorParams=""/>
   <IMAGEBUTTON name="step button" id="3c48281046602f90" memberName="stepButton"
-               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.291% 13.742%"
                posRelativeX="2e13002f79a45ac3" buttonText="new button" connectedEdges="0"
                needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"
@@ -473,7 +473,7 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="13"
          bold="0" italic="0" justification="36"/>
   <IMAGEBUTTON name="patternbutton" id="9a7688cc97b26649" memberName="patternButton"
-               virtualName="" explicitFocusOrder="0" pos="0R 8 12.24% 13.852%"
+               virtualName="" explicitFocusOrder="0" pos="0R 8 12.291% 13.742%"
                posRelativeX="3c48281046602f90" buttonText="new button" connectedEdges="0"
                needsCallback="1" radioGroupId="34567" keepProportions="1" resourceNormal="buttonOff_png"
                opacityNormal="1" colourNormal="0" resourceOver="" opacityOver="1"

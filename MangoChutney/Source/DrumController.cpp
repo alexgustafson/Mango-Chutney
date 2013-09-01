@@ -21,6 +21,9 @@ DrumController::DrumController()
     deviceManager.addMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
     
     lastSelectedPad = 1;
+    
+    EventDispatch::getInstance()->addEventListener((EventListener*)this);
+    mode = DrumMode::Playmode;
 }
 
 DrumController::~DrumController()
@@ -50,97 +53,6 @@ void DrumController::setFileForActivePad(const File file )
     padParameters.setProperty("audioFilePath", file.getFullPathName(), nullptr);
     saveDefaultSettings();
     
-}
-
-void DrumController::buttonClicked(juce::Button *buttonClicked)
-{
-    
-}
-
-
-void DrumController::buttonStateChanged(juce::Button *buttonWhichStateChanged)
-{
-
-
-        if (buttonWhichStateChanged->getName() == "pad1") {
-            lastSelectedPad = 1;
-            keyboardState.noteOn(1, 1, 1.0);
-        }else if (buttonWhichStateChanged->getName() == "pad2")
-        {
-            lastSelectedPad = 2;
-            keyboardState.noteOn(1, 2, 1.0);
-
-        }else if (buttonWhichStateChanged->getName() == "pad3")
-        {
-            lastSelectedPad = 3;
-            keyboardState.noteOn(1, 3, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad4")
-        {
-            lastSelectedPad = 4;
-            keyboardState.noteOn(1, 4, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad5")
-        {
-            lastSelectedPad = 5;
-            keyboardState.noteOn(1, 5, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad6")
-        {
-            lastSelectedPad = 6;
-            keyboardState.noteOn(1, 6, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad7")
-        {
-            lastSelectedPad = 7;
-            keyboardState.noteOn(1, 7, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad8")
-        {
-            lastSelectedPad = 8;
-            keyboardState.noteOn(1, 8, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad9")
-        {
-            lastSelectedPad = 9;
-            keyboardState.noteOn(1,9, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad10")
-        {
-            lastSelectedPad = 10;
-            keyboardState.noteOn(1, 10, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad11")
-        {
-            lastSelectedPad = 11;
-            keyboardState.noteOn(1, 11, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad12")
-        {
-            lastSelectedPad = 12;
-            keyboardState.noteOn(1, 12, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad13")
-        {
-            lastSelectedPad = 13;
-            keyboardState.noteOn(1, 13, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad14")
-        {
-            lastSelectedPad = 14;
-            keyboardState.noteOn(1, 14, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad15")
-        {
-            lastSelectedPad = 15;
-            keyboardState.noteOn(1, 15, 1.0);
-            
-        }else if (buttonWhichStateChanged->getName() == "pad16")
-        {
-            lastSelectedPad = 16;
-            keyboardState.noteOn(1, 16, 1.0);
-            
-        }
 }
 
 void DrumController::saveDefaultSettings()
@@ -188,4 +100,21 @@ void DrumController::saveSettings(File &settingsFile)
 
 }
 
+void DrumController::eventListenerCallback (const String &message, void* payload)
+{
+    if (message.equalsIgnoreCase(EventDispatch::MSG_PAD_DOWN_EVENT)) {
+        
+        if (mode == DrumMode::Playmode) {
+            
+            lastSelectedPad = ((PadDownEvent *)(payload))->_padNr;
+            keyboardState.noteOn(1, lastSelectedPad, 1.0);
+        }
+    }
+}
 
+void DrumController::timerCallback()
+{
+    
+
+    
+}

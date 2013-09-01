@@ -52,6 +52,7 @@ OBJECTS := \
   $(OBJDIR)/LAF_fc1694d5.o \
   $(OBJDIR)/MangoEventDispatch_af51e11b.o \
   $(OBJDIR)/Sequencer_5ffb45b2.o \
+  $(OBJDIR)/DrumPad_27a920ee.o \
   $(OBJDIR)/SampleSettingsComponent_c9173bf1.o \
   $(OBJDIR)/SettingsViewComponent_2f2f6156.o \
   $(OBJDIR)/AudioFileSelector_bf4d7952.o \
@@ -108,6 +109,11 @@ $(OBJDIR)/MangoEventDispatch_af51e11b.o: ../../Source/MangoEventDispatch.cpp
 $(OBJDIR)/Sequencer_5ffb45b2.o: ../../Source/Sequencer.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling Sequencer.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/DrumPad_27a920ee.o: ../../Source/DrumPad.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling DrumPad.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/SampleSettingsComponent_c9173bf1.o: ../../Source/SampleSettingsComponent.cpp

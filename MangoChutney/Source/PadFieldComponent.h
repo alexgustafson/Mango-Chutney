@@ -24,9 +24,9 @@
 #include "JuceHeader.h"
 #include "DrumController.h"
 
-enum PadMode { Selectmode, Playmode, Stepmode, Patternmode };
 //[/Headers]
 
+#include "DrumPad.h"
 
 
 //==============================================================================
@@ -37,9 +37,7 @@ enum PadMode { Selectmode, Playmode, Stepmode, Patternmode };
  Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class PadField  : public Component,
-                  public Timer,
-                  public ButtonListener
+class PadField  : public Component
 {
 public:
     //==============================================================================
@@ -48,15 +46,11 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-    void addDrumController(DrumController* drumcontroller);
-    void setMode(PadMode mode);
     void buttonStateChanged(juce::Button *button);
-    void timerCallback();
     //[/UserMethods]
 
     void paint (Graphics& g);
     void resized();
-    void buttonClicked (Button* buttonThatWasClicked);
 
     // Binary resources:
     static const char* pad_notlit_png;
@@ -67,31 +61,28 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    DrumController* mainDrumController;
-    OwnedArray<ImageButton> pads;
-    PadMode padMode;
-    ImageButton* activepad;
-    int beatCount;
-    Sequencer* sequencer;
+
+    OwnedArray<DrumPad> pads;
+
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<ImageButton> pad1;
-    ScopedPointer<ImageButton> pad2;
-    ScopedPointer<ImageButton> pad3;
-    ScopedPointer<ImageButton> pad4;
-    ScopedPointer<ImageButton> pad5;
-    ScopedPointer<ImageButton> pad6;
-    ScopedPointer<ImageButton> pad7;
-    ScopedPointer<ImageButton> pad8;
-    ScopedPointer<ImageButton> pad9;
-    ScopedPointer<ImageButton> pad10;
-    ScopedPointer<ImageButton> pad11;
-    ScopedPointer<ImageButton> pad12;
-    ScopedPointer<ImageButton> pad13;
-    ScopedPointer<ImageButton> pad14;
-    ScopedPointer<ImageButton> pad15;
-    ScopedPointer<ImageButton> pad16;
+    ScopedPointer<DrumPad> pad1;
+    ScopedPointer<DrumPad> pad2;
+    ScopedPointer<DrumPad> pad3;
+    ScopedPointer<DrumPad> pad4;
+    ScopedPointer<DrumPad> pad5;
+    ScopedPointer<DrumPad> pad6;
+    ScopedPointer<DrumPad> pad7;
+    ScopedPointer<DrumPad> pad8;
+    ScopedPointer<DrumPad> pad9;
+    ScopedPointer<DrumPad> pad10;
+    ScopedPointer<DrumPad> pad11;
+    ScopedPointer<DrumPad> pad12;
+    ScopedPointer<DrumPad> pad13;
+    ScopedPointer<DrumPad> pad14;
+    ScopedPointer<DrumPad> pad15;
+    ScopedPointer<DrumPad> pad16;
 
 
     //==============================================================================

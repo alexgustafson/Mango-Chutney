@@ -32,7 +32,6 @@
 #include "PadFieldComponent.h"
 
 
-
 //==============================================================================
 /**
                                                                     //[Comments]
@@ -43,9 +42,9 @@
 */
 class MainViewComponent  : public Component,
                            public AudioFileSelectorListener,
+                           public EventListener,
                            public ButtonListener,
-                           public SliderListener,
-                           public EventListener
+                           public SliderListener
 {
 public:
     //==============================================================================
@@ -64,7 +63,7 @@ public:
 
     void fileSelected(const File& file);
     void selectionCanceled();
-    
+
     void eventListenerCallback (const String &message, void* payload);
 
 
