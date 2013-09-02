@@ -8,7 +8,6 @@ include $(CLEAR_VARS)
 LOCAL_ARM_MODE := arm
 LOCAL_MODULE := juce_jni
 LOCAL_SRC_FILES := \
-  ../../../../../juce_lookandfeel/Source/LAF.cpp\
   ../../../Source/MangoEventDispatch.cpp\
   ../../../Source/Sequencer.cpp\
   ../../../Source/DrumPad.cpp\

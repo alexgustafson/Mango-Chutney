@@ -103,7 +103,7 @@ void AudioFileSelector::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_selectButton] -- add your button handler code here..
         if (fileIsSelected) {
             listener->fileSelected(selectedFile);
-            
+
         }
         //[/UserButtonCode_selectButton]
     }
@@ -159,8 +159,7 @@ BEGIN_JUCER_METADATA
                  parentClasses="public Component, public FileBrowserListener"
                  constructorParams="int flags_, const File&amp; initialFileOrDirectory, const FileFilter* fileFilter_, FilePreviewComponent* previewComp_"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330000013" fixedSize="0" initialWidth="400"
-                 initialHeight="400">
+                 overlayOpacity="0.33" fixedSize="0" initialWidth="400" initialHeight="400">
   <BACKGROUND backgroundColour="ffd8d8d8"/>
   <TEXTBUTTON name="new button" id="36e73d197a61a3a" memberName="selectButton"
               virtualName="" explicitFocusOrder="0" pos="336 384 63 24" buttonText="select"

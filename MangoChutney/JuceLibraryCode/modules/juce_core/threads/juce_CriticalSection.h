@@ -26,10 +26,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_CRITICALSECTION_JUCEHEADER__
-#define __JUCE_CRITICALSECTION_JUCEHEADER__
-
-#include "juce_ScopedLock.h"
+#ifndef JUCE_CRITICALSECTION_H_INCLUDED
+#define JUCE_CRITICALSECTION_H_INCLUDED
 
 
 //==============================================================================
@@ -254,4 +252,4 @@ typedef CriticalSection::ScopedUnlockType  ScopedUnlock;
 typedef CriticalSection::ScopedTryLockType  ScopedTryLock;
 
 
-#endif   // __JUCE_CRITICALSECTION_JUCEHEADER__
+#endif   // JUCE_CRITICALSECTION_H_INCLUDED

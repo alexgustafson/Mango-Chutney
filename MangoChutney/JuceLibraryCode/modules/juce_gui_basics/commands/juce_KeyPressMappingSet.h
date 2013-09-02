@@ -22,11 +22,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_KEYPRESSMAPPINGSET_JUCEHEADER__
-#define __JUCE_KEYPRESSMAPPINGSET_JUCEHEADER__
-
-#include "../keyboard/juce_KeyListener.h"
-#include "../commands/juce_ApplicationCommandManager.h"
+#ifndef JUCE_KEYPRESSMAPPINGSET_H_INCLUDED
+#define JUCE_KEYPRESSMAPPINGSET_H_INCLUDED
 
 
 //==============================================================================
@@ -214,11 +211,11 @@ public:
 
     //==============================================================================
     /** @internal */
-    bool keyPressed (const KeyPress&, Component* originatingComponent);
+    bool keyPressed (const KeyPress&, Component*) override;
     /** @internal */
-    bool keyStateChanged (bool isKeyDown, Component* originatingComponent);
+    bool keyStateChanged (bool isKeyDown, Component*) override;
     /** @internal */
-    void globalFocusChanged (Component*);
+    void globalFocusChanged (Component*) override;
 
 private:
     //==============================================================================
@@ -241,7 +238,6 @@ private:
 
     OwnedArray <KeyPressTime> keysDown;
 
-    void handleMessage (const Message&);
     void invokeCommand (const CommandID, const KeyPress&, const bool isKeyDown,
                         const int millisecsSinceKeyPressed, Component* originator) const;
 
@@ -250,4 +246,4 @@ private:
 };
 
 
-#endif   // __JUCE_KEYPRESSMAPPINGSET_JUCEHEADER__
+#endif   // JUCE_KEYPRESSMAPPINGSET_H_INCLUDED

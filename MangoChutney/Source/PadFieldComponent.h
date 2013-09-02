@@ -52,11 +52,6 @@ public:
     void paint (Graphics& g);
     void resized();
 
-    // Binary resources:
-    static const char* pad_notlit_png;
-    static const int pad_notlit_pngSize;
-    static const char* pad_lit_png;
-    static const int pad_lit_pngSize;
 
 
 private:

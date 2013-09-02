@@ -44,14 +44,22 @@ float _yValue;
 class PadUpdateEvent
 {
 public:
-    PadUpdateEvent(int padNr, int state){
+    enum padAction{
+        musicTap,
+        showActive,
+    };
+    
+    PadUpdateEvent(int padNr, padAction action, float xValue, float yValue){
         _padNr = padNr;
-        _state = state;
+        _action = action;
+        _xValue = xValue;
+        _yValue = yValue;
 
     }
     int _padNr;
-    int _state;
-
+    padAction _action;
+    float _xValue;
+    float _yValue;
     
 };
 

@@ -108,6 +108,11 @@ void DrumController::eventListenerCallback (const String &message, void* payload
             
             lastSelectedPad = ((PadDownEvent *)(payload))->_padNr;
             keyboardState.noteOn(1, lastSelectedPad, 1.0);
+            
+            PadUpdateEvent* padUpdateEvent = new PadUpdateEvent(lastSelectedPad, PadUpdateEvent::padAction::musicTap, ((PadDownEvent *)(payload))->_xValue, ((PadDownEvent *)(payload))->_yValue);
+            
+            EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_PAD_STATE, padUpdateEvent);
+
         }
     }
 }

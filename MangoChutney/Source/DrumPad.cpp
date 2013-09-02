@@ -24,6 +24,7 @@
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
+
 //[/MiscUserDefs]
 
 //==============================================================================
@@ -37,6 +38,8 @@ DrumPad::DrumPad ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    EventDispatch::getInstance()->addEventListener((EventListener*)this);
+    countDown = 1.0f;
     //[/Constructor]
 }
 
@@ -68,6 +71,8 @@ void DrumPad::paint (Graphics& g)
     g.drawRoundedRectangle (static_cast<float> (proportionOfWidth (0.0251f)), static_cast<float> (proportionOfHeight (0.0190f)), static_cast<float> (proportionOfWidth (0.9553f)), static_cast<float> (proportionOfHeight (0.9598f)), 5.500f, 0.900f);
 
     //[UserPaint] Add your own custom painting code here..
+    g.setColour(padColor);
+    g.fillRoundedRectangle (static_cast<float> (proportionOfWidth (0.0251f)), static_cast<float> (proportionOfHeight (0.0190f)), static_cast<float> (proportionOfWidth (0.9553f)), static_cast<float> (proportionOfHeight (0.9598f)), 5.500f);
     //[/UserPaint]
 }
 
@@ -120,6 +125,21 @@ void DrumPad::mouseUp (const MouseEvent& e)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void DrumPad::eventListenerCallback (const String &message, void* payload)
+{
+    if (message.equalsIgnoreCase(EventDispatch::MSG_UPDATE_PAD_STATE)) {
+
+        if (getPadNr() == ((PadUpdateEvent *)(payload))->_padNr) {
+
+            if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::musicTap) {
+
+                drawHit();
+            }
+
+        }
+    }
+}
+
 void DrumPad::setPadNr(int id)
 {
     padNr = id;
@@ -129,6 +149,33 @@ int DrumPad::getPadNr()
 {
     return padNr;
 }
+
+void DrumPad::drawHit()
+{
+    DBG("pad hit");
+    countDown = 1.0f;
+    startTimer(60);
+
+}
+
+void DrumPad::timerCallback()
+{
+    if(countDown > 0.0f){
+        
+        countDown = countDown - 0.15f;
+        padColor = normalColor.interpolatedWith(selectedColor, countDown);
+        repaint();
+
+    }else{
+        countDown = 1.0f;
+        padColor = normalColor;
+        stopTimer();
+        DBG("stopped");
+    }
+    
+
+}
+
 //[/MiscUserCode]
 
 
@@ -142,9 +189,10 @@ int DrumPad::getPadNr()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="DrumPad" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330000013"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 parentClasses="public Component, public EventListener, public Timer"
+                 constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
+                 snapShown="1" overlayOpacity="0.33" fixedSize="0" initialWidth="600"
+                 initialHeight="400">
   <METHODS>
     <METHOD name="mouseDown (const MouseEvent&amp; e)"/>
     <METHOD name="mouseExit (const MouseEvent&amp; e)"/>
@@ -155,7 +203,7 @@ BEGIN_JUCER_METADATA
   </METHODS>
   <BACKGROUND backgroundColour="6d6d6d">
     <ROUNDRECT pos="2.514% 1.903% 95.531% 95.983%" cornerSize="5.5" fill="linear: 72 56, 240 376, 0=ff43709c, 1=ff24517d"
-               hasStroke="1" stroke="0.899999976, mitered, butt" strokeColour="solid: ffaaaaaa"/>
+               hasStroke="1" stroke="0.9, mitered, butt" strokeColour="solid: ffaaaaaa"/>
   </BACKGROUND>
 </JUCER_COMPONENT>
 
