@@ -113,6 +113,23 @@ void DrumController::eventListenerCallback (const String &message, void* payload
             
             EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_PAD_STATE, padUpdateEvent);
 
+        }else if(mode == Selectmode)
+        {
+            lastSelectedPad = ((PadDownEvent *)(payload))->_padNr;
+            PadUpdateEvent* padUpdateEvent = new PadUpdateEvent(lastSelectedPad, PadUpdateEvent::padAction::showActive, ((PadDownEvent *)(payload))->_xValue, ((PadDownEvent *)(payload))->_yValue);
+            
+            EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_PAD_STATE, padUpdateEvent);
+
+        }
+    }else if (message.equalsIgnoreCase(EventDispatch::MSG_UPDATE_GUI_MODE))
+    {
+        if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::playmode)
+        {
+            mode = DrumMode::Playmode;
+            
+        }else if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::selectmode)
+        {
+            mode = DrumMode::Selectmode;
         }
     }
 }

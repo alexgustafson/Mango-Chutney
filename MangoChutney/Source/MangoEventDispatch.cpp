@@ -21,6 +21,7 @@ String EventDispatch::MSG_OPEN_AUDIO_FILE_SELECTOR = "open audio file selector";
 String EventDispatch::MSG_CLOSE_AUDIO_FILE_SELECTOR = "close audio file selector view";
 String EventDispatch::MSG_PAD_DOWN_EVENT = "pad down event detected";
 String EventDispatch::MSG_UPDATE_PAD_STATE = "update pad state";
+String EventDispatch::MSG_UPDATE_GUI_MODE = "update gui mode";
 
 EventDispatch* EventDispatch::instance = nullptr;
 

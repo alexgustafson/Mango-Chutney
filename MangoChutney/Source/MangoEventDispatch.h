@@ -63,6 +63,25 @@ public:
     
 };
 
+class ModeUpdateEvent
+{
+public:
+    enum mode{
+        setupmode,
+        selectmode,
+        playmode,
+        stepmode,
+        patternmode
+    };
+    
+    ModeUpdateEvent(mode mode){
+        _mode = mode;
+        
+    }
+    mode _mode;
+    
+};
+
 
 
 class EventDispatch
@@ -81,6 +100,7 @@ public:
     static String MSG_CLOSE_AUDIO_FILE_SELECTOR;
     static String MSG_PAD_DOWN_EVENT;
     static String MSG_UPDATE_PAD_STATE;
+    static String MSG_UPDATE_GUI_MODE;
     
 private:
     

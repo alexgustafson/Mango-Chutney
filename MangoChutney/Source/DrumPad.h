@@ -51,6 +51,7 @@ public:
     void setPadNr(int id);
     int getPadNr();
     void drawHit();
+    void fadePad();
     void timerCallback();
     //[/UserMethods]
 
@@ -73,34 +74,7 @@ private:
     Colour playedColor = Colour((0xfff0f8ff));
     Colour stepColor = Colour((0xfff0f8ff));
     Colour padColor = Colour((0xff43709c));
-
-    class DrumPadAnimator : public Thread
-    {
-    public:
-        DrumPadAnimator(const String &threadName, DrumPad& p) : Thread(threadName), parent(p)
-        {
-
-        };
-
-        void run()
-        {
-            while(countDown > 0.0f){
-                countDown = countDown - 0.01f;
-                parent.padColor = parent.normalColor.interpolatedWith(parent.selectedColor, 1.0 - countDown);
-                parent.repaint();
-                wait(100);
-            }
-
-            countDown = 1.0f;
-            parent.padColor = parent.normalColor;
-
-        };
-
-        float countDown = 1.0f;
-    private:
-        DrumPad& parent;
-
-    };
+    Colour currentColor;
 
     float countDown;
 

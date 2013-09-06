@@ -134,6 +134,23 @@ void DrumPad::eventListenerCallback (const String &message, void* payload)
             if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::musicTap) {
 
                 drawHit();
+            }else if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::showActive)
+            {
+                padColor = selectedColor;
+                countDown = 1.0f;
+                repaint();
+
+            }
+
+        }else
+        {
+            if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::musicTap) {
+                
+                fadePad();
+            }else if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::showActive)
+            {
+                
+                fadePad();
             }
 
         }
@@ -152,10 +169,20 @@ int DrumPad::getPadNr()
 
 void DrumPad::drawHit()
 {
+    currentColor = selectedColor;
     DBG("pad hit");
     countDown = 1.0f;
     startTimer(60);
 
+}
+
+void DrumPad::fadePad()
+{
+    currentColor = padColor;
+    DBG("pad hit");
+    countDown = 1.0f;
+    startTimer(60);
+    
 }
 
 void DrumPad::timerCallback()
@@ -163,7 +190,7 @@ void DrumPad::timerCallback()
     if(countDown > 0.0f){
         
         countDown = countDown - 0.15f;
-        padColor = normalColor.interpolatedWith(selectedColor, countDown);
+        padColor = normalColor.interpolatedWith(currentColor, countDown);
         repaint();
 
     }else{

@@ -236,29 +236,6 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == setupButton)
     {
         //[UserButtonCode_setupButton] -- add your button handler code here..
-        /*
-        if(!fileBrowser)
-        {
-            juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
-
-            #if JUCE_IOS
-                theDocumentDirectory = File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents");
-            #endif
-
-            #if JUCE_ANDROID
-                theDocumentDirectory("/storage/sdcard0/DrumSounds");
-            #endif
-
-            int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
-
-            fileBrowser = new AudioFileSelector(flags, theDocumentDirectory ,NULL, NULL );
-        }
-
-        addAndMakeVisible(fileBrowser);
-        fileBrowser->setTopLeftPosition(0, 0);
-        fileBrowser->setSize(getWidth(), getHeight());
-        fileBrowser->setListener(this);
-        */
         if(!settingsComponent)
         {
             settingsComponent = new SettingsViewComponent();
@@ -272,26 +249,27 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == selectButton)
     {
         //[UserButtonCode_selectButton] -- add your button handler code here..
-        //component->setMode(Selectmode);
+        EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_GUI_MODE, (new ModeUpdateEvent(ModeUpdateEvent::mode::selectmode)));
+
         //[/UserButtonCode_selectButton]
     }
     else if (buttonThatWasClicked == playButton)
     {
         //[UserButtonCode_playButton] -- add your button handler code here..
-        //component->setMode(Playmode);
-        drumController->toggleSequencerPlayStop();
+        EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_GUI_MODE, (new ModeUpdateEvent(ModeUpdateEvent::mode::playmode)));
+
         //[/UserButtonCode_playButton]
     }
     else if (buttonThatWasClicked == stepButton)
     {
         //[UserButtonCode_stepButton] -- add your button handler code here..
-        //component->setMode(Stepmode);
+        EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_GUI_MODE, (new ModeUpdateEvent(ModeUpdateEvent::mode::stepmode)));
+
         //[/UserButtonCode_stepButton]
     }
     else if (buttonThatWasClicked == patternButton)
     {
         //[UserButtonCode_patternButton] -- add your button handler code here..
-        //component->setMode(Patternmode);
         //[/UserButtonCode_patternButton]
     }
 
@@ -391,6 +369,14 @@ void MainViewComponent::eventListenerCallback (const String &message, void* payl
 
     }else if(message.equalsIgnoreCase(EventDispatch::MSG_CLOSE_AUDIO_FILE_SELECTOR) )
     {
+
+    }else if(message.equalsIgnoreCase(EventDispatch::MSG_UPDATE_GUI_MODE))
+    {
+        if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::playmode)
+        {
+            
+        }
+
 
     }
 
