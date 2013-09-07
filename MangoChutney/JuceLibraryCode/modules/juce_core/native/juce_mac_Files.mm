@@ -213,7 +213,6 @@ File File::getSpecialLocation (const SpecialLocationType type)
             case userPicturesDirectory:             resultPath = "~/Pictures"; break;
             case userApplicationDataDirectory:      resultPath = "~/Library"; break;
             case commonApplicationDataDirectory:    resultPath = "/Library"; break;
-            case commonDocumentsDirectory:          resultPath = "/Users/Shared"; break;
             case globalApplicationsDirectory:       resultPath = "/Applications"; break;
 
             case invokedExecutableFile:
@@ -392,48 +391,45 @@ bool DirectoryIterator::NativeIterator::next (String& filenameFound,
 
 
 //==============================================================================
-bool JUCE_CALLTYPE Process::openDocument (const String& fileName, const String& parameters)
+bool Process::openDocument (const String& fileName, const String& parameters)
 {
+  #if JUCE_IOS
+    return [[UIApplication sharedApplication] openURL: [NSURL URLWithString: juceStringToNS (fileName)]];
+  #else
     JUCE_AUTORELEASEPOOL
     {
-        NSURL* filenameAsURL = [NSURL URLWithString: juceStringToNS (fileName)];
-
-      #if JUCE_IOS
-        return [[UIApplication sharedApplication] openURL: filenameAsURL];
-      #else
-        NSWorkspace* workspace = [NSWorkspace sharedWorkspace];
-
         if (parameters.isEmpty())
-            return [workspace openFile: juceStringToNS (fileName)]
-                || [workspace openURL: filenameAsURL];
+        {
+            return [[NSWorkspace sharedWorkspace] openFile: juceStringToNS (fileName)]
+                || [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: juceStringToNS (fileName)]];
+        }
 
+        bool ok = false;
         const File file (fileName);
 
         if (file.isBundle())
         {
-            StringArray params;
-            params.addTokens (parameters, true);
+            NSMutableArray* urls = [NSMutableArray array];
 
-            NSMutableArray* paramArray = [[[NSMutableArray alloc] init] autorelease];
-            for (int i = 0; i < params.size(); ++i)
-                [paramArray addObject: juceStringToNS (params[i])];
+            StringArray docs;
+            docs.addTokens (parameters, true);
+            for (int i = 0; i < docs.size(); ++i)
+                [urls addObject: juceStringToNS (docs[i])];
 
-            NSMutableDictionary* dict = [[[NSMutableDictionary alloc] init] autorelease];
-            [dict setObject: paramArray
-                     forKey: nsStringLiteral ("NSWorkspaceLaunchConfigurationArguments")];
-
-            return [workspace launchApplicationAtURL: filenameAsURL
-                                             options: NSWorkspaceLaunchDefault | NSWorkspaceLaunchNewInstance
-                                       configuration: dict
-                                               error: nil];
+            ok = [[NSWorkspace sharedWorkspace] openURLs: urls
+                                 withAppBundleIdentifier: [[NSBundle bundleWithPath: juceStringToNS (fileName)] bundleIdentifier]
+                                                 options: 0
+                          additionalEventParamDescriptor: nil
+                                       launchIdentifiers: nil];
+        }
+        else if (file.exists())
+        {
+            ok = FileHelpers::launchExecutable ("\"" + fileName + "\" " + parameters);
         }
 
-        if (file.exists())
-            return FileHelpers::launchExecutable ("\"" + fileName + "\" " + parameters);
-
-        return false;
-      #endif
+        return ok;
     }
+  #endif
 }
 
 void File::revealToUser() const

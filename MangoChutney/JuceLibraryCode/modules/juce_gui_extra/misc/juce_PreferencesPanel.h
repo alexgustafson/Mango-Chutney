@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PREFERENCESPANEL_H_INCLUDED
-#define JUCE_PREFERENCESPANEL_H_INCLUDED
+#ifndef __JUCE_PREFERENCESPANEL_JUCEHEADER__
+#define __JUCE_PREFERENCESPANEL_JUCEHEADER__
 
 
 //==============================================================================
@@ -102,7 +102,7 @@ public:
     void showInDialogBox (const String& dialogTitle,
                           int dialogWidth,
                           int dialogHeight,
-                          Colour backgroundColour = Colours::white);
+                          const Colour& backgroundColour = Colours::white);
 
     //==============================================================================
     /** Subclasses must override this to return a component for each preferences page.
@@ -127,11 +127,11 @@ public:
 
     //==============================================================================
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void buttonClicked (Button*) override;
+    void buttonClicked (Button* button);
 
 private:
     //==============================================================================
@@ -145,4 +145,4 @@ private:
 
 
 
-#endif   // JUCE_PREFERENCESPANEL_H_INCLUDED
+#endif   // __JUCE_PREFERENCESPANEL_JUCEHEADER__

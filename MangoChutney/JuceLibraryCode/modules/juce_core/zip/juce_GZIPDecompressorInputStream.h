@@ -26,8 +26,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_GZIPDECOMPRESSORINPUTSTREAM_H_INCLUDED
-#define JUCE_GZIPDECOMPRESSORINPUTSTREAM_H_INCLUDED
+#ifndef __JUCE_GZIPDECOMPRESSORINPUTSTREAM_JUCEHEADER__
+#define __JUCE_GZIPDECOMPRESSORINPUTSTREAM_JUCEHEADER__
+
+#include "../streams/juce_InputStream.h"
+#include "../memory/juce_OptionalScopedPointer.h"
+#include "../memory/juce_HeapBlock.h"
 
 
 //==============================================================================
@@ -71,14 +75,15 @@ public:
     ~GZIPDecompressorInputStream();
 
     //==============================================================================
-    int64 getPosition() override;
-    bool setPosition (int64 pos) override;
-    int64 getTotalLength() override;
-    bool isExhausted() override;
-    int read (void* destBuffer, int maxBytesToRead) override;
+    int64 getPosition();
+    bool setPosition (int64 pos);
+    int64 getTotalLength();
+    bool isExhausted();
+    int read (void* destBuffer, int maxBytesToRead);
 
-private:
+
     //==============================================================================
+private:
     OptionalScopedPointer<InputStream> sourceStream;
     const int64 uncompressedStreamLength;
     const bool noWrap;
@@ -88,10 +93,10 @@ private:
     HeapBlock <uint8> buffer;
 
     class GZIPDecompressHelper;
-    friend struct ContainerDeletePolicy<GZIPDecompressHelper>;
-    ScopedPointer<GZIPDecompressHelper> helper;
+    friend class ScopedPointer <GZIPDecompressHelper>;
+    ScopedPointer <GZIPDecompressHelper> helper;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GZIPDecompressorInputStream)
 };
 
-#endif   // JUCE_GZIPDECOMPRESSORINPUTSTREAM_H_INCLUDED
+#endif   // __JUCE_GZIPDECOMPRESSORINPUTSTREAM_JUCEHEADER__

@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TONEGENERATORAUDIOSOURCE_H_INCLUDED
-#define JUCE_TONEGENERATORAUDIOSOURCE_H_INCLUDED
+#ifndef __JUCE_TONEGENERATORAUDIOSOURCE_JUCEHEADER__
+#define __JUCE_TONEGENERATORAUDIOSOURCE_JUCEHEADER__
+
+#include "juce_AudioSource.h"
 
 
 //==============================================================================
@@ -51,13 +53,13 @@ public:
 
     //==============================================================================
     /** Implementation of the AudioSource method. */
-    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
 
     /** Implementation of the AudioSource method. */
-    void releaseResources() override;
+    void releaseResources();
 
     /** Implementation of the AudioSource method. */
-    void getNextAudioBlock (const AudioSourceChannelInfo&) override;
+    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
 
 
 private:
@@ -70,4 +72,4 @@ private:
 };
 
 
-#endif   // JUCE_TONEGENERATORAUDIOSOURCE_H_INCLUDED
+#endif   // __JUCE_TONEGENERATORAUDIOSOURCE_JUCEHEADER__

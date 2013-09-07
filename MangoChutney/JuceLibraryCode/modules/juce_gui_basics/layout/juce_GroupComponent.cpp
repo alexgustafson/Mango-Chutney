@@ -51,7 +51,7 @@ String GroupComponent::getText() const
 }
 
 //==============================================================================
-void GroupComponent::setTextLabelPosition (Justification newJustification)
+void GroupComponent::setTextLabelPosition (const Justification& newJustification)
 {
     if (justification != newJustification)
     {

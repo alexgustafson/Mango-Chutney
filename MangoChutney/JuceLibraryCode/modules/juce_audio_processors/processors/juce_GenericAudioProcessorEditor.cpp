@@ -58,7 +58,7 @@ public:
             paramHasChanged = true;
     }
 
-    void timerCallback() override
+    void timerCallback()
     {
         if (paramHasChanged)
         {

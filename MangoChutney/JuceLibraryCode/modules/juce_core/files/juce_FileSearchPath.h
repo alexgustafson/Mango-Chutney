@@ -26,13 +26,16 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILESEARCHPATH_H_INCLUDED
-#define JUCE_FILESEARCHPATH_H_INCLUDED
+#ifndef __JUCE_FILESEARCHPATH_JUCEHEADER__
+#define __JUCE_FILESEARCHPATH_JUCEHEADER__
+
+#include "juce_File.h"
+#include "../text/juce_StringArray.h"
 
 
 //==============================================================================
 /**
-    Represents a set of folders that make up a search path.
+    Encapsulates a set of folders that make up a search path.
 
     @see File
 */
@@ -53,10 +56,7 @@ public:
     FileSearchPath (const String& path);
 
     /** Creates a copy of another search path. */
-    FileSearchPath (const FileSearchPath&);
-
-    /** Copies another search path. */
-    FileSearchPath& operator= (const FileSearchPath&);
+    FileSearchPath (const FileSearchPath& other);
 
     /** Destructor. */
     ~FileSearchPath();
@@ -70,12 +70,15 @@ public:
 
     //==============================================================================
     /** Returns the number of folders in this search path.
+
         @see operator[]
     */
     int getNumPaths() const;
 
     /** Returns one of the folders in this search path.
+
         The file returned isn't guaranteed to actually be a valid directory.
+
         @see getNumPaths
     */
     File operator[] (int index) const;
@@ -99,6 +102,7 @@ public:
     void remove (int indexToRemove);
 
     /** Merges another search path into this one.
+
         This will remove any duplicate directories.
     */
     void addPath (const FileSearchPath& other);
@@ -157,9 +161,9 @@ private:
     //==============================================================================
     StringArray directories;
 
-    void init (const String&);
+    void init (const String& path);
 
     JUCE_LEAK_DETECTOR (FileSearchPath)
 };
 
-#endif   // JUCE_FILESEARCHPATH_H_INCLUDED
+#endif   // __JUCE_FILESEARCHPATH_JUCEHEADER__

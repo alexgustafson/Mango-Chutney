@@ -26,8 +26,9 @@
   ==============================================================================
 */
 
-FileSearchPath::FileSearchPath() {}
-FileSearchPath::~FileSearchPath() {}
+FileSearchPath::FileSearchPath()
+{
+}
 
 FileSearchPath::FileSearchPath (const String& path)
 {
@@ -35,14 +36,12 @@ FileSearchPath::FileSearchPath (const String& path)
 }
 
 FileSearchPath::FileSearchPath (const FileSearchPath& other)
-   : directories (other.directories)
+  : directories (other.directories)
 {
 }
 
-FileSearchPath& FileSearchPath::operator= (const FileSearchPath& other)
+FileSearchPath::~FileSearchPath()
 {
-    directories = other.directories;
-    return *this;
 }
 
 FileSearchPath& FileSearchPath::operator= (const String& path)

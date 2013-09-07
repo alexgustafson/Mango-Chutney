@@ -22,9 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_LAGRANGEINTERPOLATOR_H_INCLUDED
-#define JUCE_LAGRANGEINTERPOLATOR_H_INCLUDED
-
+#ifndef __JUCE_LAGRANGEINTERPOLATOR_JUCEHEADER__
+#define __JUCE_LAGRANGEINTERPOLATOR_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -91,4 +90,4 @@ private:
 };
 
 
-#endif   // JUCE_LAGRANGEINTERPOLATOR_H_INCLUDED
+#endif   // __JUCE_LAGRANGEINTERPOLATOR_JUCEHEADER__

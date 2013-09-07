@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SCOPEDVALUESETTER_H_INCLUDED
-#define JUCE_SCOPEDVALUESETTER_H_INCLUDED
+#ifndef __JUCE_SCOPEDVALUESETTER_JUCEHEADER__
+#define __JUCE_SCOPEDVALUESETTER_JUCEHEADER__
 
 
 //==============================================================================
@@ -97,4 +97,4 @@ private:
 };
 
 
-#endif   // JUCE_SCOPEDVALUESETTER_H_INCLUDED
+#endif   // __JUCE_SCOPEDVALUESETTER_JUCEHEADER__

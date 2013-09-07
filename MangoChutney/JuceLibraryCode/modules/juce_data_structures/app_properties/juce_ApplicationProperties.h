@@ -22,9 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_APPLICATIONPROPERTIES_H_INCLUDED
-#define JUCE_APPLICATIONPROPERTIES_H_INCLUDED
+#ifndef __JUCE_APPLICATIONPROPERTIES_JUCEHEADER__
+#define __JUCE_APPLICATIONPROPERTIES_JUCEHEADER__
 
+#include "juce_PropertiesFile.h"
 
 //==============================================================================
 /**
@@ -124,4 +125,4 @@ private:
 };
 
 
-#endif   // JUCE_APPLICATIONPROPERTIES_H_INCLUDED
+#endif   // __JUCE_APPLICATIONPROPERTIES_JUCEHEADER__

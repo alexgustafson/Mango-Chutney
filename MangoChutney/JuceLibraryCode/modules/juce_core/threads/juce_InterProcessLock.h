@@ -26,8 +26,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_INTERPROCESSLOCK_H_INCLUDED
-#define JUCE_INTERPROCESSLOCK_H_INCLUDED
+#ifndef __JUCE_INTERPROCESSLOCK_JUCEHEADER__
+#define __JUCE_INTERPROCESSLOCK_JUCEHEADER__
+
+#include "../text/juce_String.h"
+#include "../memory/juce_ScopedPointer.h"
 
 
 //==============================================================================
@@ -115,8 +118,8 @@ public:
 private:
     //==============================================================================
     class Pimpl;
-    friend struct ContainerDeletePolicy<Pimpl>;
-    ScopedPointer<Pimpl> pimpl;
+    friend class ScopedPointer <Pimpl>;
+    ScopedPointer <Pimpl> pimpl;
 
     CriticalSection lock;
     String name;
@@ -125,4 +128,4 @@ private:
 };
 
 
-#endif   // JUCE_INTERPROCESSLOCK_H_INCLUDED
+#endif   // __JUCE_INTERPROCESSLOCK_JUCEHEADER__

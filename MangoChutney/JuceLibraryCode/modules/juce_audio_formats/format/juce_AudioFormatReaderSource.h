@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOFORMATREADERSOURCE_H_INCLUDED
-#define JUCE_AUDIOFORMATREADERSOURCE_H_INCLUDED
+#ifndef __JUCE_AUDIOFORMATREADERSOURCE_JUCEHEADER__
+#define __JUCE_AUDIOFORMATREADERSOURCE_JUCEHEADER__
 
 
 //==============================================================================
@@ -68,23 +68,23 @@ public:
 
     //==============================================================================
     /** Implementation of the AudioSource method. */
-    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
 
     /** Implementation of the AudioSource method. */
-    void releaseResources() override;
+    void releaseResources();
 
     /** Implementation of the AudioSource method. */
-    void getNextAudioBlock (const AudioSourceChannelInfo&) override;
+    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
 
     //==============================================================================
     /** Implements the PositionableAudioSource method. */
-    void setNextReadPosition (int64 newPosition) override;
+    void setNextReadPosition (int64 newPosition);
 
     /** Implements the PositionableAudioSource method. */
-    int64 getNextReadPosition() const override;
+    int64 getNextReadPosition() const;
 
     /** Implements the PositionableAudioSource method. */
-    int64 getTotalLength() const override;
+    int64 getTotalLength() const;
 
 private:
     //==============================================================================
@@ -93,8 +93,12 @@ private:
     int64 volatile nextPlayPos;
     bool volatile looping;
 
+    void readBufferSection (int start, int length, AudioSampleBuffer& buffer, int startSample);
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioFormatReaderSource)
 };
 
 
-#endif   // JUCE_AUDIOFORMATREADERSOURCE_H_INCLUDED
+
+
+#endif   // __JUCE_AUDIOFORMATREADERSOURCE_JUCEHEADER__

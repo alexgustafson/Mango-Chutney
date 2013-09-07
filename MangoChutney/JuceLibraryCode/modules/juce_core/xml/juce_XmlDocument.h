@@ -26,8 +26,14 @@
   ==============================================================================
 */
 
-#ifndef JUCE_XMLDOCUMENT_H_INCLUDED
-#define JUCE_XMLDOCUMENT_H_INCLUDED
+#ifndef __JUCE_XMLDOCUMENT_JUCEHEADER__
+#define __JUCE_XMLDOCUMENT_JUCEHEADER__
+
+#include "juce_XmlElement.h"
+#include "../text/juce_StringArray.h"
+#include "../files/juce_File.h"
+#include "../memory/juce_ScopedPointer.h"
+class InputSource;
 
 
 //==============================================================================
@@ -177,4 +183,4 @@ private:
 };
 
 
-#endif   // JUCE_XMLDOCUMENT_H_INCLUDED
+#endif   // __JUCE_XMLDOCUMENT_JUCEHEADER__

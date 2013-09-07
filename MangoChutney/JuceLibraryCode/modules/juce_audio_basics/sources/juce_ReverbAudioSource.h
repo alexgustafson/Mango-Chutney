@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_REVERBAUDIOSOURCE_H_INCLUDED
-#define JUCE_REVERBAUDIOSOURCE_H_INCLUDED
+#ifndef __JUCE_REVERBAUDIOSOURCE_JUCEHEADER__
+#define __JUCE_REVERBAUDIOSOURCE_JUCEHEADER__
+
+#include "juce_AudioSource.h"
+#include "../effects/juce_Reverb.h"
 
 
 //==============================================================================
@@ -58,9 +61,9 @@ public:
     bool isBypassed() const noexcept                            { return bypass; }
 
     //==============================================================================
-    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
-    void releaseResources() override;
-    void getNextAudioBlock (const AudioSourceChannelInfo&) override;
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
+    void releaseResources();
+    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
 
 private:
     //==============================================================================
@@ -73,4 +76,4 @@ private:
 };
 
 
-#endif   // JUCE_REVERBAUDIOSOURCE_H_INCLUDED
+#endif   // __JUCE_REVERBAUDIOSOURCE_JUCEHEADER__

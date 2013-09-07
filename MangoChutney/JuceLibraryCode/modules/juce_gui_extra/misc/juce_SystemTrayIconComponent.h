@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SYSTEMTRAYICONCOMPONENT_H_INCLUDED
-#define JUCE_SYSTEMTRAYICONCOMPONENT_H_INCLUDED
+#ifndef __JUCE_SYSTEMTRAYICONCOMPONENT_JUCEHEADER__
+#define __JUCE_SYSTEMTRAYICONCOMPONENT_JUCEHEADER__
 
 #if JUCE_WINDOWS || JUCE_LINUX || JUCE_MAC || DOXYGEN
 
@@ -64,7 +64,7 @@ public:
 
    #if JUCE_LINUX
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
    #endif
 
 private:
@@ -77,4 +77,4 @@ private:
 
 
 #endif
-#endif   // JUCE_SYSTEMTRAYICONCOMPONENT_H_INCLUDED
+#endif   // __JUCE_SYSTEMTRAYICONCOMPONENT_JUCEHEADER__

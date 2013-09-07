@@ -26,8 +26,13 @@
   ==============================================================================
 */
 
-#ifndef JUCE_ZIPFILE_H_INCLUDED
-#define JUCE_ZIPFILE_H_INCLUDED
+#ifndef __JUCE_ZIPFILE_JUCEHEADER__
+#define __JUCE_ZIPFILE_JUCEHEADER__
+
+#include "../files/juce_File.h"
+#include "../streams/juce_InputSource.h"
+#include "../threads/juce_CriticalSection.h"
+#include "../containers/juce_OwnedArray.h"
 
 
 //==============================================================================
@@ -205,7 +210,7 @@ public:
         //==============================================================================
     private:
         class Item;
-        friend struct ContainerDeletePolicy<Item>;
+        friend class OwnedArray<Item>;
         OwnedArray<Item> items;
 
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Builder)
@@ -241,4 +246,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ZipFile)
 };
 
-#endif   // JUCE_ZIPFILE_H_INCLUDED
+#endif   // __JUCE_ZIPFILE_JUCEHEADER__

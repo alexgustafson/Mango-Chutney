@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_COMPONENTANIMATOR_H_INCLUDED
-#define JUCE_COMPONENTANIMATOR_H_INCLUDED
+#ifndef __JUCE_COMPONENTANIMATOR_JUCEHEADER__
+#define __JUCE_COMPONENTANIMATOR_JUCEHEADER__
+
+#include "../components/juce_Component.h"
 
 
 //==============================================================================
@@ -158,4 +160,4 @@ private:
 };
 
 
-#endif   // JUCE_COMPONENTANIMATOR_H_INCLUDED
+#endif   // __JUCE_COMPONENTANIMATOR_JUCEHEADER__

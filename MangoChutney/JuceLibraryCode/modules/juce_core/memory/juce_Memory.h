@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MEMORY_H_INCLUDED
-#define JUCE_MEMORY_H_INCLUDED
+#ifndef __JUCE_MEMORY_JUCEHEADER__
+#define __JUCE_MEMORY_JUCEHEADER__
 
 //==============================================================================
 /** Fills a block of memory with zeros. */
@@ -123,4 +123,4 @@ inline Type* createCopyIfNotNull (const Type* pointer)     { return pointer != n
 #endif
 
 
-#endif   // JUCE_MEMORY_H_INCLUDED
+#endif   // __JUCE_MEMORY_JUCEHEADER__

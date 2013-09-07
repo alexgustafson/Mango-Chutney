@@ -22,27 +22,34 @@
   ==============================================================================
 */
 
-struct MultiTimer::MultiTimerCallback    : public Timer
+class MultiTimer::MultiTimerCallback    : public Timer
 {
-    MultiTimerCallback (const int tid, MultiTimer& mt) noexcept
-        : owner (mt), timerID (tid)
+public:
+    MultiTimerCallback (const int timerId_, MultiTimer& owner_)
+        : timerId (timerId_),
+          owner (owner_)
     {
     }
 
-    void timerCallback() override
+    void timerCallback()
     {
-        owner.timerCallback (timerID);
+        owner.timerCallback (timerId);
     }
 
+    const int timerId;
+
+private:
     MultiTimer& owner;
-    const int timerID;
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultiTimerCallback)
 };
 
 //==============================================================================
-MultiTimer::MultiTimer() noexcept {}
-MultiTimer::MultiTimer (const MultiTimer&) noexcept {}
+MultiTimer::MultiTimer() noexcept
+{
+}
+
+MultiTimer::MultiTimer (const MultiTimer&) noexcept
+{
+}
 
 MultiTimer::~MultiTimer()
 {
@@ -51,55 +58,63 @@ MultiTimer::~MultiTimer()
 }
 
 //==============================================================================
-MultiTimer::MultiTimerCallback* MultiTimer::getCallback (int timerID) const noexcept
+void MultiTimer::startTimer (const int timerId, const int intervalInMilliseconds) noexcept
 {
+    const SpinLock::ScopedLockType sl (timerListLock);
+
     for (int i = timers.size(); --i >= 0;)
     {
         MultiTimerCallback* const t = timers.getUnchecked(i);
 
-        if (t->timerID == timerID)
-            return t;
+        if (t->timerId == timerId)
+        {
+            t->startTimer (intervalInMilliseconds);
+            return;
+        }
     }
 
-    return nullptr;
+    MultiTimerCallback* const newTimer = new MultiTimerCallback (timerId, *this);
+    timers.add (newTimer);
+    newTimer->startTimer (intervalInMilliseconds);
 }
 
-void MultiTimer::startTimer (const int timerID, const int intervalInMilliseconds) noexcept
+void MultiTimer::stopTimer (const int timerId) noexcept
 {
     const SpinLock::ScopedLockType sl (timerListLock);
 
-    MultiTimerCallback* timer = getCallback (timerID);
+    for (int i = timers.size(); --i >= 0;)
+    {
+        MultiTimerCallback* const t = timers.getUnchecked(i);
 
-    if (timer == nullptr)
-        timers.add (timer = new MultiTimerCallback (timerID, *this));
-
-    timer->startTimer (intervalInMilliseconds);
+        if (t->timerId == timerId)
+            t->stopTimer();
+    }
 }
 
-void MultiTimer::stopTimer (const int timerID) noexcept
+bool MultiTimer::isTimerRunning (const int timerId) const noexcept
 {
     const SpinLock::ScopedLockType sl (timerListLock);
 
-    if (MultiTimerCallback* const t = getCallback (timerID))
-        t->stopTimer();
-}
-
-bool MultiTimer::isTimerRunning (const int timerID) const noexcept
-{
-    const SpinLock::ScopedLockType sl (timerListLock);
-
-    if (MultiTimerCallback* const t = getCallback (timerID))
-        return t->isTimerRunning();
+    for (int i = timers.size(); --i >= 0;)
+    {
+        const MultiTimerCallback* const t = timers.getUnchecked(i);
+        if (t->timerId == timerId)
+            return t->isTimerRunning();
+    }
 
     return false;
 }
 
-int MultiTimer::getTimerInterval (const int timerID) const noexcept
+int MultiTimer::getTimerInterval (const int timerId) const noexcept
 {
     const SpinLock::ScopedLockType sl (timerListLock);
 
-    if (MultiTimerCallback* const t = getCallback (timerID))
-        return t->getTimerInterval();
+    for (int i = timers.size(); --i >= 0;)
+    {
+        const MultiTimerCallback* const t = timers.getUnchecked(i);
+        if (t->timerId == timerId)
+            return t->getTimerInterval();
+    }
 
     return 0;
 }

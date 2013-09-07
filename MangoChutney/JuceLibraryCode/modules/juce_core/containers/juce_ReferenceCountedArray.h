@@ -26,8 +26,13 @@
   ==============================================================================
 */
 
-#ifndef JUCE_REFERENCECOUNTEDARRAY_H_INCLUDED
-#define JUCE_REFERENCECOUNTEDARRAY_H_INCLUDED
+#ifndef __JUCE_REFERENCECOUNTEDARRAY_JUCEHEADER__
+#define __JUCE_REFERENCECOUNTEDARRAY_JUCEHEADER__
+
+#include "../memory/juce_ReferenceCountedObject.h"
+#include "juce_ArrayAllocationBase.h"
+#include "juce_ElementComparator.h"
+#include "../threads/juce_CriticalSection.h"
 
 
 //==============================================================================
@@ -91,7 +96,7 @@ public:
     ReferenceCountedArray& operator= (const ReferenceCountedArray& other) noexcept
     {
         ReferenceCountedArray otherCopy (other);
-        swapWith (otherCopy);
+        swapWithArray (otherCopy);
         return *this;
     }
 
@@ -102,7 +107,7 @@ public:
     ReferenceCountedArray<ObjectClass, TypeOfCriticalSectionToUse>& operator= (const ReferenceCountedArray<OtherObjectClass, TypeOfCriticalSectionToUse>& other) noexcept
     {
         ReferenceCountedArray<ObjectClass, TypeOfCriticalSectionToUse> otherCopy (other);
-        swapWith (otherCopy);
+        swapWithArray (otherCopy);
         return *this;
     }
 
@@ -288,17 +293,14 @@ public:
         @param newObject       the new object to add to the array
         @see set, insert, addIfNotAlreadyThere, addSorted, addArray
     */
-    ObjectClass* add (ObjectClass* const newObject) noexcept
+    void add (ObjectClass* const newObject) noexcept
     {
         const ScopedLockType lock (getLock());
         data.ensureAllocatedSize (numUsed + 1);
-        jassert (data.elements != nullptr);
         data.elements [numUsed++] = newObject;
 
         if (newObject != nullptr)
             newObject->incReferenceCount();
-
-        return newObject;
     }
 
     /** Inserts a new object into the array at the given index.
@@ -314,8 +316,8 @@ public:
         @param newObject            the new object to add to the array
         @see add, addSorted, addIfNotAlreadyThere, set
     */
-    ObjectClass* insert (int indexToInsertAt,
-                         ObjectClass* const newObject) noexcept
+    void insert (int indexToInsertAt,
+                 ObjectClass* const newObject) noexcept
     {
         if (indexToInsertAt >= 0)
         {
@@ -325,7 +327,6 @@ public:
                 indexToInsertAt = numUsed;
 
             data.ensureAllocatedSize (numUsed + 1);
-            jassert (data.elements != nullptr);
 
             ObjectClass** const e = data.elements + indexToInsertAt;
             const int numToMove = numUsed - indexToInsertAt;
@@ -339,12 +340,10 @@ public:
                 newObject->incReferenceCount();
 
             ++numUsed;
-
-            return newObject;
         }
         else
         {
-            return add (newObject);
+            add (newObject);
         }
     }
 
@@ -394,7 +393,6 @@ public:
             else
             {
                 data.ensureAllocatedSize (numUsed + 1);
-                jassert (data.elements != nullptr);
                 data.elements [numUsed++] = newObject;
             }
         }
@@ -740,11 +738,11 @@ public:
         If you need to exchange two arrays, this is vastly quicker than using copy-by-value
         because it just swaps their internal pointers.
     */
-    template <class OtherArrayType>
-    void swapWith (OtherArrayType& otherArray) noexcept
+    void swapWithArray (ReferenceCountedArray& otherArray) noexcept
     {
         const ScopedLockType lock1 (getLock());
-        const typename OtherArrayType::ScopedLockType lock2 (otherArray.getLock());
+        const ScopedLockType lock2 (otherArray.getLock());
+
         data.swapWith (otherArray.data);
         std::swap (numUsed, otherArray.numUsed);
     }
@@ -852,13 +850,6 @@ public:
     typedef typename TypeOfCriticalSectionToUse::ScopedLockType ScopedLockType;
 
 
-    //==============================================================================
-   #ifndef DOXYGEN
-    // Note that the swapWithArray method has been replaced by a more flexible templated version,
-    // and renamed "swapWith" to be more consistent with the names used in other classes.
-    JUCE_DEPRECATED_WITH_BODY (void swapWithArray (ReferenceCountedArray& other) noexcept, { swapWith (other); })
-   #endif
-
 private:
     //==============================================================================
     ArrayAllocationBase <ObjectClass*, TypeOfCriticalSectionToUse> data;
@@ -866,4 +857,4 @@ private:
 };
 
 
-#endif   // JUCE_REFERENCECOUNTEDARRAY_H_INCLUDED
+#endif   // __JUCE_REFERENCECOUNTEDARRAY_JUCEHEADER__

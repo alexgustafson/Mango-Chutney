@@ -47,7 +47,7 @@ Thread::~Thread()
     */
     jassert (! isThreadRunning());
 
-    stopThread (-1);
+    stopThread (100);
 }
 
 //==============================================================================
@@ -65,15 +65,10 @@ struct CurrentThreadHolder   : public ReferenceCountedObject
 
 static char currentThreadHolderLock [sizeof (SpinLock)]; // (statically initialised to zeros).
 
-static SpinLock* castToSpinLockWithoutAliasingWarning (void* s)
-{
-    return static_cast<SpinLock*> (s);
-}
-
 static CurrentThreadHolder::Ptr getCurrentThreadHolder()
 {
     static CurrentThreadHolder::Ptr currentThreadHolder;
-    SpinLock::ScopedLockType lock (*castToSpinLockWithoutAliasingWarning (currentThreadHolderLock));
+    SpinLock::ScopedLockType lock (*reinterpret_cast <SpinLock*> (currentThreadHolderLock));
 
     if (currentThreadHolder == nullptr)
         currentThreadHolder = new CurrentThreadHolder();
@@ -148,7 +143,7 @@ bool Thread::isThreadRunning() const
     return threadHandle != nullptr;
 }
 
-Thread* JUCE_CALLTYPE Thread::getCurrentThread()
+Thread* Thread::getCurrentThread()
 {
     return getCurrentThreadHolder()->value.get();
 }
@@ -177,7 +172,7 @@ bool Thread::waitForThreadToExit (const int timeOutMilliseconds) const
     return true;
 }
 
-bool Thread::stopThread (const int timeOutMilliseconds)
+void Thread::stopThread (const int timeOutMilliseconds)
 {
     // agh! You can't stop the thread that's calling this method! How on earth
     // would that work??
@@ -204,11 +199,8 @@ bool Thread::stopThread (const int timeOutMilliseconds)
 
             threadHandle = nullptr;
             threadId = 0;
-            return false;
         }
     }
-
-    return true;
 }
 
 //==============================================================================
@@ -284,7 +276,7 @@ public:
 
         expect (ByteOrder::swap ((uint16) 0x1122) == 0x2211);
         expect (ByteOrder::swap ((uint32) 0x11223344) == 0x44332211);
-        expect (ByteOrder::swap ((uint64) 0x1122334455667788ULL) == 0x8877665544332211LL);
+        expect (ByteOrder::swap ((uint64) literal64bit (0x1122334455667788)) == literal64bit (0x8877665544332211));
 
         beginTest ("Atomic int");
         AtomicTester <int>::testInteger (*this);

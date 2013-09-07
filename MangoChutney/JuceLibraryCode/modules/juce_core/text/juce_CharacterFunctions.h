@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CHARACTERFUNCTIONS_H_INCLUDED
-#define JUCE_CHARACTERFUNCTIONS_H_INCLUDED
+#ifndef __JUCE_CHARACTERFUNCTIONS_JUCEHEADER__
+#define __JUCE_CHARACTERFUNCTIONS_JUCEHEADER__
 
 
 //==============================================================================
@@ -541,29 +541,32 @@ public:
         to its null terminator.
     */
     template <typename Type>
-    static Type findEndOfWhitespace (Type text) noexcept
+    static Type findEndOfWhitespace (const Type& text) noexcept
     {
-        while (text.isWhitespace())
-            ++text;
+        Type p (text);
 
-        return text;
+        while (p.isWhitespace())
+            ++p;
+
+        return p;
     }
 
     /** Returns a pointer to the first character in the string which is found in
         the breakCharacters string.
     */
     template <typename Type>
-    static Type findEndOfToken (Type text, const Type breakCharacters, const Type quoteCharacters)
+    static Type findEndOfToken (const Type& text, const Type& breakCharacters, const Type& quoteCharacters)
     {
+        Type t (text);
         juce_wchar currentQuoteChar = 0;
 
-        while (! text.isEmpty())
+        while (! t.isEmpty())
         {
-            const juce_wchar c = text.getAndAdvance();
+            const juce_wchar c = t.getAndAdvance();
 
             if (currentQuoteChar == 0 && breakCharacters.indexOf (c) >= 0)
             {
-                --text;
+                --t;
                 break;
             }
 
@@ -576,7 +579,7 @@ public:
             }
         }
 
-        return text;
+        return t;
     }
 
 private:
@@ -584,4 +587,4 @@ private:
 };
 
 
-#endif   // JUCE_CHARACTERFUNCTIONS_H_INCLUDED
+#endif   // __JUCE_CHARACTERFUNCTIONS_JUCEHEADER__

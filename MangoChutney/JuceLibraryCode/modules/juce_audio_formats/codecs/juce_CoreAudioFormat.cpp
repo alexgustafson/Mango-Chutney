@@ -64,9 +64,9 @@ struct CoreAudioFormatMetatdata
     {
         FileHeader (InputStream& input)
         {
-            fileType    = (uint32) input.readIntBigEndian();
-            fileVersion = (uint16) input.readShortBigEndian();
-            fileFlags   = (uint16) input.readShortBigEndian();
+            fileType    = input.readIntBigEndian();
+            fileVersion = input.readShortBigEndian();
+            fileFlags   = input.readShortBigEndian();
         }
 
         uint32 fileType;
@@ -79,8 +79,8 @@ struct CoreAudioFormatMetatdata
     {
         ChunkHeader (InputStream& input)
         {
-            chunkType = (uint32) input.readIntBigEndian();
-            chunkSize = (int64)  input.readInt64BigEndian();
+            chunkType = input.readIntBigEndian();
+            chunkSize = input.readInt64BigEndian();
         }
 
         uint32 chunkType;
@@ -93,12 +93,12 @@ struct CoreAudioFormatMetatdata
         AudioDescriptionChunk (InputStream& input)
         {
             sampleRate          = input.readDoubleBigEndian();
-            formatID            = (uint32) input.readIntBigEndian();
-            formatFlags         = (uint32) input.readIntBigEndian();
-            bytesPerPacket      = (uint32) input.readIntBigEndian();
-            framesPerPacket     = (uint32) input.readIntBigEndian();
-            channelsPerFrame    = (uint32) input.readIntBigEndian();
-            bitsPerChannel      = (uint32) input.readIntBigEndian();
+            formatID            = input.readIntBigEndian();
+            formatFlags         = input.readIntBigEndian();
+            bytesPerPacket      = input.readIntBigEndian();
+            framesPerPacket     = input.readIntBigEndian();
+            channelsPerFrame    = input.readIntBigEndian();
+            bitsPerChannel      = input.readIntBigEndian();
         }
 
         double sampleRate;
@@ -360,7 +360,7 @@ public:
 
     //==============================================================================
     bool readSamples (int** destSamples, int numDestChannels, int startOffsetInDestBuffer,
-                      int64 startSampleInFile, int numSamples) override
+                      int64 startSampleInFile, int numSamples)
     {
         clearSamplesBeyondAvailableLength (destSamples, numDestChannels, startOffsetInDestBuffer,
                                            startSampleInFile, numSamples, lengthInSamples);
@@ -478,12 +478,12 @@ AudioFormatReader* CoreAudioFormat::createReaderFor (InputStream* sourceStream,
     return nullptr;
 }
 
-AudioFormatWriter* CoreAudioFormat::createWriterFor (OutputStream*,
-                                                     double /*sampleRateToUse*/,
-                                                     unsigned int /*numberOfChannels*/,
-                                                     int /*bitsPerSample*/,
-                                                     const StringPairArray& /*metadataValues*/,
-                                                     int /*qualityOptionIndex*/)
+AudioFormatWriter* CoreAudioFormat::createWriterFor (OutputStream* streamToWriteTo,
+                                                     double sampleRateToUse,
+                                                     unsigned int numberOfChannels,
+                                                     int bitsPerSample,
+                                                     const StringPairArray& metadataValues,
+                                                     int qualityOptionIndex)
 {
     jassertfalse; // not yet implemented!
     return nullptr;

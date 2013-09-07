@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_IMAGEBUTTON_H_INCLUDED
-#define JUCE_IMAGEBUTTON_H_INCLUDED
+#ifndef __JUCE_IMAGEBUTTON_JUCEHEADER__
+#define __JUCE_IMAGEBUTTON_JUCEHEADER__
+
+#include "juce_Button.h"
 
 
 //==============================================================================
@@ -127,9 +129,11 @@ public:
 protected:
     //==============================================================================
     /** @internal */
-    bool hitTest (int x, int y) override;
+    bool hitTest (int x, int y);
     /** @internal */
-    void paintButton (Graphics&, bool isMouseOver, bool isButtonDown) override;
+    void paintButton (Graphics& g,
+                      bool isMouseOverButton,
+                      bool isButtonDown);
 
 private:
     //==============================================================================
@@ -146,4 +150,4 @@ private:
 };
 
 
-#endif   // JUCE_IMAGEBUTTON_H_INCLUDED
+#endif   // __JUCE_IMAGEBUTTON_JUCEHEADER__

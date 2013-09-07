@@ -22,9 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOPROCESSORLISTENER_H_INCLUDED
-#define JUCE_AUDIOPROCESSORLISTENER_H_INCLUDED
+#ifndef __JUCE_AUDIOPROCESSORLISTENER_JUCEHEADER__
+#define __JUCE_AUDIOPROCESSORLISTENER_JUCEHEADER__
 
+class AudioProcessor;
 
 //==============================================================================
 /**
@@ -103,4 +104,4 @@ public:
                                                           int parameterIndex);
 };
 
-#endif   // JUCE_AUDIOPROCESSORLISTENER_H_INCLUDED
+#endif   // __JUCE_AUDIOPROCESSORLISTENER_JUCEHEADER__

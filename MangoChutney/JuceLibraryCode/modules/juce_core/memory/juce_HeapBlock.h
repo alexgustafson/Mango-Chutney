@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_HEAPBLOCK_H_INCLUDED
-#define JUCE_HEAPBLOCK_H_INCLUDED
+#ifndef __JUCE_HEAPBLOCK_JUCEHEADER__
+#define __JUCE_HEAPBLOCK_JUCEHEADER__
 
 #ifndef DOXYGEN
 namespace HeapBlockHelper
@@ -305,4 +305,4 @@ private:
 };
 
 
-#endif   // JUCE_HEAPBLOCK_H_INCLUDED
+#endif   // __JUCE_HEAPBLOCK_JUCEHEADER__

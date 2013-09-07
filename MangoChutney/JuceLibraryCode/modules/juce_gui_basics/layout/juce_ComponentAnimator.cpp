@@ -154,11 +154,11 @@ public:
             toBehind (&c);
         }
 
-        void paint (Graphics& g) override
+        void paint (Graphics& g)
         {
             g.setOpacity (1.0f);
-            g.drawImageTransformed (image, AffineTransform::scale (getWidth()  / (float) image.getWidth(),
-                                                                   getHeight() / (float) image.getHeight()), false);
+            g.drawImage (image, 0, 0, getWidth(), getHeight(),
+                         0, 0, image.getWidth(), image.getHeight());
         }
 
     private:

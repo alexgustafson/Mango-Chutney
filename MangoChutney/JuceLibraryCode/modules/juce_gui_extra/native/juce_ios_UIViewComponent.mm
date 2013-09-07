@@ -43,7 +43,7 @@ public:
         [view release];
     }
 
-    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/) override
+    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/)
     {
         Component* const topComp = owner.getTopLevelComponent();
 
@@ -56,7 +56,7 @@ public:
         }
     }
 
-    void componentPeerChanged() override
+    void componentPeerChanged()
     {
         ComponentPeer* const peer = owner.getPeer();
 
@@ -78,7 +78,7 @@ public:
         [view setHidden: ! owner.isShowing()];
      }
 
-    void componentVisibilityChanged() override
+    void componentVisibilityChanged()
     {
         componentPeerChanged();
     }

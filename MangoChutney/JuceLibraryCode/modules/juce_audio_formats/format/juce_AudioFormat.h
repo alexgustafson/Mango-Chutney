@@ -22,9 +22,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOFORMAT_H_INCLUDED
-#define JUCE_AUDIOFORMAT_H_INCLUDED
+#ifndef __JUCE_AUDIOFORMAT_JUCEHEADER__
+#define __JUCE_AUDIOFORMAT_JUCEHEADER__
 
+#include "juce_AudioFormatReader.h"
+#include "juce_AudioFormatWriter.h"
+#include "juce_MemoryMappedAudioFormatReader.h"
 
 //==============================================================================
 /**
@@ -109,7 +112,9 @@ public:
     virtual AudioFormatReader* createReaderFor (InputStream* sourceStream,
                                                 bool deleteStreamIfOpeningFails) = 0;
 
-    /** Attempts to create a MemoryMappedAudioFormatReader, if possible for this format.
+    /** Attempts to create a MemoryMappedAudioFormatReader, if possible for this
+        format.
+
         If the format does not support this, the method will return nullptr;
     */
     virtual MemoryMappedAudioFormatReader* createMemoryMappedReader (const File& file);
@@ -170,4 +175,4 @@ private:
 };
 
 
-#endif   // JUCE_AUDIOFORMAT_H_INCLUDED
+#endif   // __JUCE_AUDIOFORMAT_JUCEHEADER__

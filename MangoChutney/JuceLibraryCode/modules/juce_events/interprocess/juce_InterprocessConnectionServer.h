@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_INTERPROCESSCONNECTIONSERVER_H_INCLUDED
-#define JUCE_INTERPROCESSCONNECTIONSERVER_H_INCLUDED
+#ifndef __JUCE_INTERPROCESSCONNECTIONSERVER_JUCEHEADER__
+#define __JUCE_INTERPROCESSCONNECTIONSERVER_JUCEHEADER__
+
+#include "juce_InterprocessConnection.h"
 
 
 //==============================================================================
@@ -84,10 +86,10 @@ private:
     //==============================================================================
     ScopedPointer <StreamingSocket> socket;
 
-    void run() override;
+    void run();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InterprocessConnectionServer)
 };
 
 
-#endif   // JUCE_INTERPROCESSCONNECTIONSERVER_H_INCLUDED
+#endif   // __JUCE_INTERPROCESSCONNECTIONSERVER_JUCEHEADER__

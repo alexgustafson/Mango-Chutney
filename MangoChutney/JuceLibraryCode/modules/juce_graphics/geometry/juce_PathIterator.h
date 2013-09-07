@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PATHITERATOR_H_INCLUDED
-#define JUCE_PATHITERATOR_H_INCLUDED
+#ifndef __JUCE_PATHITERATOR_JUCEHEADER__
+#define __JUCE_PATHITERATOR_JUCEHEADER__
+
+#include "juce_Path.h"
 
 
 //==============================================================================
@@ -110,4 +112,4 @@ private:
 };
 
 
-#endif   // JUCE_PATHITERATOR_H_INCLUDED
+#endif   // __JUCE_PATHITERATOR_JUCEHEADER__

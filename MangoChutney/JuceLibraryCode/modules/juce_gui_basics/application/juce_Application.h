@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_APPLICATION_H_INCLUDED
-#define JUCE_APPLICATION_H_INCLUDED
+#ifndef __JUCE_APPLICATION_JUCEHEADER__
+#define __JUCE_APPLICATION_JUCEHEADER__
 
 
 //==============================================================================
@@ -254,7 +254,7 @@ private:
     //==============================================================================
     struct MultipleInstanceHandler;
     friend struct MultipleInstanceHandler;
-    friend struct ContainerDeletePolicy<MultipleInstanceHandler>;
+    friend class ScopedPointer<MultipleInstanceHandler>;
     ScopedPointer<MultipleInstanceHandler> multipleInstanceHandler;
 
     int appReturnValue;
@@ -264,4 +264,4 @@ private:
 };
 
 
-#endif   // JUCE_APPLICATION_H_INCLUDED
+#endif   // __JUCE_APPLICATION_JUCEHEADER__

@@ -22,8 +22,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DIRECTORYCONTENTSDISPLAYCOMPONENT_H_INCLUDED
-#define JUCE_DIRECTORYCONTENTSDISPLAYCOMPONENT_H_INCLUDED
+#ifndef __JUCE_DIRECTORYCONTENTSDISPLAYCOMPONENT_JUCEHEADER__
+#define __JUCE_DIRECTORYCONTENTSDISPLAYCOMPONENT_JUCEHEADER__
+
+#include "../components/juce_Component.h"
+#include "juce_DirectoryContentsList.h"
+#include "juce_FileBrowserListener.h"
 
 
 //==============================================================================
@@ -108,4 +112,4 @@ private:
 };
 
 
-#endif   // JUCE_DIRECTORYCONTENTSDISPLAYCOMPONENT_H_INCLUDED
+#endif   // __JUCE_DIRECTORYCONTENTSDISPLAYCOMPONENT_JUCEHEADER__

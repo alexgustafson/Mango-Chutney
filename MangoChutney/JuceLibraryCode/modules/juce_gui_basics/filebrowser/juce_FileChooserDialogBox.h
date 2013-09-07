@@ -22,8 +22,13 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILECHOOSERDIALOGBOX_H_INCLUDED
-#define JUCE_FILECHOOSERDIALOGBOX_H_INCLUDED
+#ifndef __JUCE_FILECHOOSERDIALOGBOX_JUCEHEADER__
+#define __JUCE_FILECHOOSERDIALOGBOX_JUCEHEADER__
+
+#include "juce_FileBrowserComponent.h"
+#include "../windows/juce_ResizableWindow.h"
+#include "../buttons/juce_TextButton.h"
+#include "../windows/juce_AlertWindow.h"
 
 
 //==============================================================================
@@ -86,7 +91,7 @@ public:
                           const String& instructions,
                           FileBrowserComponent& browserComponent,
                           bool warnAboutOverwritingExistingFiles,
-                          Colour backgroundColour);
+                          const Colour& backgroundColour);
 
     /** Destructor. */
     ~FileChooserDialogBox();
@@ -135,13 +140,12 @@ private:
     ContentComponent* content;
     const bool warnAboutOverwritingExistingFiles;
 
-    void buttonClicked (Button*) override;
+    void buttonClicked (Button*);
     void closeButtonPressed();
-    void selectionChanged() override;
-    void fileClicked (const File&, const MouseEvent&) override;
-    void fileDoubleClicked (const File&) override;
-    void browserRootChanged (const File&) override;
-    int getDefaultWidth() const;
+    void selectionChanged();
+    void fileClicked (const File&, const MouseEvent&);
+    void fileDoubleClicked (const File&);
+    void browserRootChanged (const File&);
 
     void okButtonPressed();
     void createNewFolder();
@@ -154,4 +158,4 @@ private:
 };
 
 
-#endif   // JUCE_FILECHOOSERDIALOGBOX_H_INCLUDED
+#endif   // __JUCE_FILECHOOSERDIALOGBOX_JUCEHEADER__

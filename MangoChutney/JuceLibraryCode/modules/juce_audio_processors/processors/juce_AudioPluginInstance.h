@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOPLUGININSTANCE_H_INCLUDED
-#define JUCE_AUDIOPLUGININSTANCE_H_INCLUDED
+#ifndef __JUCE_AUDIOPLUGININSTANCE_JUCEHEADER__
+#define __JUCE_AUDIOPLUGININSTANCE_JUCEHEADER__
+
+#include "../processors/juce_AudioProcessor.h"
+#include "juce_PluginDescription.h"
 
 
 //==============================================================================
@@ -69,4 +72,4 @@ protected:
 };
 
 
-#endif   // JUCE_AUDIOPLUGININSTANCE_H_INCLUDED
+#endif   // __JUCE_AUDIOPLUGININSTANCE_JUCEHEADER__

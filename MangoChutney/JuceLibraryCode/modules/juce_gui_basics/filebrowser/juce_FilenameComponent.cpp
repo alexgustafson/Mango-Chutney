@@ -28,7 +28,7 @@ FilenameComponent::FilenameComponent (const String& name,
                                       const bool isDirectory,
                                       const bool isForSaving,
                                       const String& fileBrowserWildcard,
-                                      const String& suffix,
+                                      const String& enforcedSuffix_,
                                       const String& textWhenNothingSelected)
     : Component (name),
       maxRecentFiles (30),
@@ -36,7 +36,7 @@ FilenameComponent::FilenameComponent (const String& name,
       isSaving (isForSaving),
       isFileDragOver (false),
       wildcard (fileBrowserWildcard),
-      enforcedSuffix (suffix)
+      enforcedSuffix (enforcedSuffix_)
 {
     addAndMakeVisible (&filenameBox);
     filenameBox.setEditableText (canEditFilename);
@@ -96,18 +96,13 @@ void FilenameComponent::setDefaultBrowseTarget (const File& newDefaultDirectory)
     defaultBrowseFile = newDefaultDirectory;
 }
 
-File FilenameComponent::getLocationToBrowse()
-{
-    return getCurrentFile() == File::nonexistent ? defaultBrowseFile
-                                                 : getCurrentFile();
-}
-
 void FilenameComponent::buttonClicked (Button*)
 {
    #if JUCE_MODAL_LOOPS_PERMITTED
     FileChooser fc (isDir ? TRANS ("Choose a new directory")
                           : TRANS ("Choose a new file"),
-                    getLocationToBrowse(),
+                    getCurrentFile() == File::nonexistent ? defaultBrowseFile
+                                                          : getCurrentFile(),
                     wildcard);
 
     if (isDir ? fc.browseForDirectory()
@@ -179,7 +174,7 @@ void FilenameComponent::setCurrentFile (File newFile,
         if (addToRecentlyUsedList)
             addRecentlyUsedFile (newFile);
 
-        filenameBox.setText (lastFilename, dontSendNotification);
+        filenameBox.setText (lastFilename, true);
 
         if (notification != dontSendNotification)
         {

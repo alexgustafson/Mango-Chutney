@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOSAMPLEBUFFER_H_INCLUDED
-#define JUCE_AUDIOSAMPLEBUFFER_H_INCLUDED
+#ifndef __JUCE_AUDIOSAMPLEBUFFER_JUCEHEADER__
+#define __JUCE_AUDIOSAMPLEBUFFER_JUCEHEADER__
 
 
 //==============================================================================
@@ -96,14 +96,16 @@ public:
     AudioSampleBuffer (const AudioSampleBuffer& other) noexcept;
 
     /** Copies another buffer onto this one.
+
         This buffer's size will be changed to that of the other buffer.
     */
     AudioSampleBuffer& operator= (const AudioSampleBuffer& other) noexcept;
 
     /** Destructor.
+
         This will free any memory allocated by the buffer.
     */
-    ~AudioSampleBuffer() noexcept;
+    virtual ~AudioSampleBuffer() noexcept;
 
     //==============================================================================
     /** Returns the number of channels of audio data that this buffer contains.
@@ -441,4 +443,4 @@ private:
 };
 
 
-#endif   // JUCE_AUDIOSAMPLEBUFFER_H_INCLUDED
+#endif   // __JUCE_AUDIOSAMPLEBUFFER_JUCEHEADER__

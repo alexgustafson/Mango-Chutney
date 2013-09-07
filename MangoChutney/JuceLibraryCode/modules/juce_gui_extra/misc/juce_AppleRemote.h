@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_APPLEREMOTE_H_INCLUDED
-#define JUCE_APPLEREMOTE_H_INCLUDED
+#ifndef __JUCE_APPLEREMOTE_JUCEHEADER__
+#define __JUCE_APPLEREMOTE_JUCEHEADER__
 
 
 //==============================================================================
@@ -111,4 +111,4 @@ private:
 };
 
 #endif
-#endif   // JUCE_APPLEREMOTE_H_INCLUDED
+#endif   // __JUCE_APPLEREMOTE_JUCEHEADER__

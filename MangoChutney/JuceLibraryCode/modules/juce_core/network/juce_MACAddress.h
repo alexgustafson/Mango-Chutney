@@ -26,8 +26,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MACADDRESS_H_INCLUDED
-#define JUCE_MACADDRESS_H_INCLUDED
+#ifndef __JUCE_MACADDRESS_JUCEHEADER__
+#define __JUCE_MACADDRESS_JUCEHEADER__
+
+#include "../containers/juce_Array.h"
 
 
 //==============================================================================
@@ -84,4 +86,4 @@ private:
 };
 
 
-#endif   // JUCE_MACADDRESS_H_INCLUDED
+#endif   // __JUCE_MACADDRESS_JUCEHEADER__

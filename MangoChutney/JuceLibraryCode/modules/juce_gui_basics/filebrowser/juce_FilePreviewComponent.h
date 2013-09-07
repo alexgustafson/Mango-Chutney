@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILEPREVIEWCOMPONENT_H_INCLUDED
-#define JUCE_FILEPREVIEWCOMPONENT_H_INCLUDED
+#ifndef __JUCE_FILEPREVIEWCOMPONENT_JUCEHEADER__
+#define __JUCE_FILEPREVIEWCOMPONENT_JUCEHEADER__
+
+#include "../components/juce_Component.h"
 
 
 //==============================================================================
@@ -62,4 +64,4 @@ private:
 };
 
 
-#endif   // JUCE_FILEPREVIEWCOMPONENT_H_INCLUDED
+#endif   // __JUCE_FILEPREVIEWCOMPONENT_JUCEHEADER__

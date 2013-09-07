@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_ACTIONBROADCASTER_H_INCLUDED
-#define JUCE_ACTIONBROADCASTER_H_INCLUDED
+#ifndef __JUCE_ACTIONBROADCASTER_JUCEHEADER__
+#define __JUCE_ACTIONBROADCASTER_JUCEHEADER__
+
+#include "juce_ActionListener.h"
 
 
 //==============================================================================
@@ -80,4 +82,4 @@ private:
 };
 
 
-#endif   // JUCE_ACTIONBROADCASTER_H_INCLUDED
+#endif   // __JUCE_ACTIONBROADCASTER_JUCEHEADER__

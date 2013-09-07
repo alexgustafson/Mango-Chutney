@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MODIFIERKEYS_H_INCLUDED
-#define JUCE_MODIFIERKEYS_H_INCLUDED
+#ifndef __JUCE_MODIFIERKEYS_JUCEHEADER__
+#define __JUCE_MODIFIERKEYS_JUCEHEADER__
 
 
 //==============================================================================
@@ -220,4 +220,4 @@ private:
 };
 
 
-#endif   // JUCE_MODIFIERKEYS_H_INCLUDED
+#endif   // __JUCE_MODIFIERKEYS_JUCEHEADER__

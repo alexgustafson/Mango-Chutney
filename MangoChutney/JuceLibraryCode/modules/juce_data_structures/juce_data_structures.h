@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DATA_STRUCTURES_H_INCLUDED
-#define JUCE_DATA_STRUCTURES_H_INCLUDED
+#ifndef __JUCE_DATA_STRUCTURES_JUCEHEADER__
+#define __JUCE_DATA_STRUCTURES_JUCEHEADER__
 
 //=============================================================================
 #include "../juce_events/juce_events.h"
@@ -31,13 +31,27 @@
 namespace juce
 {
 
-#include "undomanager/juce_UndoableAction.h"
-#include "undomanager/juce_UndoManager.h"
-#include "values/juce_Value.h"
-#include "values/juce_ValueTree.h"
-#include "app_properties/juce_PropertiesFile.h"
-#include "app_properties/juce_ApplicationProperties.h"
+// START_AUTOINCLUDE values, undomanager, app_properties
+#ifndef __JUCE_VALUE_JUCEHEADER__
+ #include "values/juce_Value.h"
+#endif
+#ifndef __JUCE_VALUETREE_JUCEHEADER__
+ #include "values/juce_ValueTree.h"
+#endif
+#ifndef __JUCE_UNDOABLEACTION_JUCEHEADER__
+ #include "undomanager/juce_UndoableAction.h"
+#endif
+#ifndef __JUCE_UNDOMANAGER_JUCEHEADER__
+ #include "undomanager/juce_UndoManager.h"
+#endif
+#ifndef __JUCE_APPLICATIONPROPERTIES_JUCEHEADER__
+ #include "app_properties/juce_ApplicationProperties.h"
+#endif
+#ifndef __JUCE_PROPERTIESFILE_JUCEHEADER__
+ #include "app_properties/juce_PropertiesFile.h"
+#endif
+// END_AUTOINCLUDE
 
 }
 
-#endif   // JUCE_DATA_STRUCTURES_H_INCLUDED
+#endif   // __JUCE_DATA_STRUCTURES_JUCEHEADER__

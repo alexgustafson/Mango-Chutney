@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SAMPLER_H_INCLUDED
-#define JUCE_SAMPLER_H_INCLUDED
+#ifndef __JUCE_SAMPLER_JUCEHEADER__
+#define __JUCE_SAMPLER_JUCEHEADER__
 
 
 //==============================================================================
@@ -150,4 +150,4 @@ private:
 };
 
 
-#endif   // JUCE_SAMPLER_H_INCLUDED
+#endif   // __JUCE_SAMPLER_JUCEHEADER__

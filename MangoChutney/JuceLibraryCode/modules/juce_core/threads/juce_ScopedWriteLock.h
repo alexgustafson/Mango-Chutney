@@ -26,8 +26,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SCOPEDWRITELOCK_H_INCLUDED
-#define JUCE_SCOPEDWRITELOCK_H_INCLUDED
+#ifndef __JUCE_SCOPEDWRITELOCK_JUCEHEADER__
+#define __JUCE_SCOPEDWRITELOCK_JUCEHEADER__
+
+#include "juce_ReadWriteLock.h"
 
 
 //==============================================================================
@@ -87,4 +89,4 @@ private:
 };
 
 
-#endif   // JUCE_SCOPEDWRITELOCK_H_INCLUDED
+#endif   // __JUCE_SCOPEDWRITELOCK_JUCEHEADER__

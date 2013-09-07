@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PLATFORMDEFS_H_INCLUDED
-#define JUCE_PLATFORMDEFS_H_INCLUDED
+#ifndef __JUCE_PLATFORMDEFS_JUCEHEADER__
+#define __JUCE_PLATFORMDEFS_JUCEHEADER__
 
 //==============================================================================
 /*  This file defines miscellaneous macros for debugging, assertions, etc.
@@ -83,16 +83,6 @@
   #define juce_breakDebugger        { __asm int 3 }
 #endif
 
-#if JUCE_CLANG && defined (__has_feature) && ! defined (JUCE_ANALYZER_NORETURN)
- #if __has_feature (attribute_analyzer_noreturn)
-  inline void __attribute__((analyzer_noreturn)) juce_assert_noreturn() {}
-  #define JUCE_ANALYZER_NORETURN juce_assert_noreturn();
- #endif
-#endif
-
-#ifndef JUCE_ANALYZER_NORETURN
- #define JUCE_ANALYZER_NORETURN
-#endif
 
 //==============================================================================
 #if JUCE_DEBUG || DOXYGEN
@@ -107,7 +97,7 @@
       It is only compiled in a debug build, (unless JUCE_LOG_ASSERTIONS is enabled for your build).
       @see jassert
   */
-  #define jassertfalse              { juce_LogCurrentAssertion; if (juce::juce_isRunningUnderDebugger()) juce_breakDebugger; JUCE_ANALYZER_NORETURN }
+  #define jassertfalse              { juce_LogCurrentAssertion; if (juce::juce_isRunningUnderDebugger()) juce_breakDebugger; }
 
   //==============================================================================
   /** Platform-independent assertion macro.
@@ -175,8 +165,8 @@ namespace juce
     };@endcode
 */
 #define JUCE_DECLARE_NON_COPYABLE(className) \
-    className (const className&) JUCE_DELETED_FUNCTION;\
-    className& operator= (const className&) JUCE_DELETED_FUNCTION;
+    className (const className&);\
+    className& operator= (const className&);
 
 /** This is a shorthand way of writing both a JUCE_DECLARE_NON_COPYABLE and
     JUCE_LEAK_DETECTOR macro for a class.
@@ -190,8 +180,8 @@ namespace juce
 */
 #define JUCE_PREVENT_HEAP_ALLOCATION \
    private: \
-    static void* operator new (size_t) JUCE_DELETED_FUNCTION; \
-    static void operator delete (void*) JUCE_DELETED_FUNCTION;
+    static void* operator new (size_t); \
+    static void operator delete (void*);
 
 
 //==============================================================================
@@ -271,19 +261,13 @@ namespace juce
 
 //==============================================================================
 // Cross-compiler deprecation macros..
-#ifdef DOXYGEN
- /** This macro can be used to wrap a function which has been deprecated. */
- #define JUCE_DEPRECATED(functionDef)
- #define JUCE_DEPRECATED_WITH_BODY(functionDef, body)
-#elif JUCE_MSVC && ! JUCE_NO_DEPRECATION_WARNINGS
- #define JUCE_DEPRECATED(functionDef)                   __declspec(deprecated) functionDef
- #define JUCE_DEPRECATED_WITH_BODY(functionDef, body)   __declspec(deprecated) functionDef body
-#elif JUCE_GCC && ! JUCE_NO_DEPRECATION_WARNINGS
- #define JUCE_DEPRECATED(functionDef)                   functionDef __attribute__ ((deprecated))
- #define JUCE_DEPRECATED_WITH_BODY(functionDef, body)   functionDef __attribute__ ((deprecated)) body
+#if DOXYGEN || (JUCE_MSVC && ! JUCE_NO_DEPRECATION_WARNINGS)
+ /** This can be used to wrap a function which has been deprecated. */
+ #define JUCE_DEPRECATED(functionDef)     __declspec(deprecated) functionDef
+#elif JUCE_GCC  && ! JUCE_NO_DEPRECATION_WARNINGS
+ #define JUCE_DEPRECATED(functionDef)     functionDef __attribute__ ((deprecated))
 #else
- #define JUCE_DEPRECATED(functionDef)                   functionDef
- #define JUCE_DEPRECATED_WITH_BODY(functionDef, body)   functionDef body
+ #define JUCE_DEPRECATED(functionDef)     functionDef
 #endif
 
 //==============================================================================
@@ -313,10 +297,6 @@ namespace juce
  #if (__GNUC__ * 100 + __GNUC_MINOR__) >= 407 && ! defined (JUCE_COMPILER_SUPPORTS_OVERRIDE_AND_FINAL)
   #define JUCE_COMPILER_SUPPORTS_OVERRIDE_AND_FINAL 1
  #endif
-
- #if (__GNUC__ * 100 + __GNUC_MINOR__) >= 407 && ! defined (JUCE_DELETED_FUNCTION)
-  #define JUCE_DELETED_FUNCTION = delete
- #endif
 #endif
 
 #if JUCE_CLANG && defined (__has_feature)
@@ -330,10 +310,6 @@ namespace juce
 
  #if __has_feature (cxx_rvalue_references)
   #define JUCE_COMPILER_SUPPORTS_MOVE_SEMANTICS 1
- #endif
-
- #if __has_feature (cxx_deleted_functions)
-  #define JUCE_DELETED_FUNCTION = delete
  #endif
 
  #ifndef JUCE_COMPILER_SUPPORTS_OVERRIDE_AND_FINAL
@@ -352,10 +328,6 @@ namespace juce
 
 #if defined (_MSC_VER) && _MSC_VER >= 1700
  #define JUCE_COMPILER_SUPPORTS_OVERRIDE_AND_FINAL 1
-#endif
-
-#ifndef JUCE_DELETED_FUNCTION
- #define JUCE_DELETED_FUNCTION
 #endif
 
 //==============================================================================
@@ -382,4 +354,4 @@ namespace juce
  #define override
 #endif
 
-#endif   // JUCE_PLATFORMDEFS_H_INCLUDED
+#endif   // __JUCE_PLATFORMDEFS_JUCEHEADER__

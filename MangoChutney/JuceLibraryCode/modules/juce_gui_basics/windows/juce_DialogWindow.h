@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DIALOGWINDOW_H_INCLUDED
-#define JUCE_DIALOGWINDOW_H_INCLUDED
+#ifndef __JUCE_DIALOGWINDOW_JUCEHEADER__
+#define __JUCE_DIALOGWINDOW_JUCEHEADER__
+
+#include "juce_DocumentWindow.h"
 
 
 //==============================================================================
@@ -62,7 +64,7 @@ public:
                                     desktop; if false, you can use it as a child component
     */
     DialogWindow (const String& name,
-                  Colour backgroundColour,
+                  const Colour& backgroundColour,
                   bool escapeKeyTriggersCloseButton,
                   bool addToDesktop = true);
 
@@ -190,7 +192,7 @@ public:
     static void showDialog (const String& dialogTitle,
                             Component* contentComponent,
                             Component* componentToCentreAround,
-                            Colour backgroundColour,
+                            const Colour& backgroundColour,
                             bool escapeKeyTriggersCloseButton,
                             bool shouldBeResizable = false,
                             bool useBottomRightCornerResizer = false);
@@ -238,7 +240,7 @@ public:
     static int showModalDialog (const String& dialogTitle,
                                 Component* contentComponent,
                                 Component* componentToCentreAround,
-                                Colour backgroundColour,
+                                const Colour& backgroundColour,
                                 bool escapeKeyTriggersCloseButton,
                                 bool shouldBeResizable = false,
                                 bool useBottomRightCornerResizer = false);
@@ -248,9 +250,9 @@ public:
 protected:
     //==============================================================================
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    bool keyPressed (const KeyPress&) override;
+    bool keyPressed (const KeyPress&);
 
 private:
     bool escapeKeyTriggersCloseButton;
@@ -258,4 +260,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DialogWindow)
 };
 
-#endif   // JUCE_DIALOGWINDOW_H_INCLUDED
+#endif   // __JUCE_DIALOGWINDOW_JUCEHEADER__

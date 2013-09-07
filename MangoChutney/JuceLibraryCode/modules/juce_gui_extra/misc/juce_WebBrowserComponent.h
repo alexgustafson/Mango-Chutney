@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_WEBBROWSERCOMPONENT_H_INCLUDED
-#define JUCE_WEBBROWSERCOMPONENT_H_INCLUDED
+#ifndef __JUCE_WEBBROWSERCOMPONENT_JUCEHEADER__
+#define __JUCE_WEBBROWSERCOMPONENT_JUCEHEADER__
 
 #if JUCE_WEB_BROWSER || DOXYGEN
 
@@ -68,16 +68,20 @@ public:
                   const StringArray* headers = nullptr,
                   const MemoryBlock* postData = nullptr);
 
-    /** Stops the current page loading. */
+    /** Stops the current page loading.
+    */
     void stop();
 
-    /** Sends the browser back one page. */
+    /** Sends the browser back one page.
+    */
     void goBack();
 
-    /** Sends the browser forward one page. */
+    /** Sends the browser forward one page.
+    */
     void goForward();
 
-    /** Refreshes the browser. */
+    /** Refreshes the browser.
+    */
     void refresh();
 
     //==============================================================================
@@ -95,13 +99,13 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void parentHierarchyChanged() override;
+    void parentHierarchyChanged();
     /** @internal */
-    void visibilityChanged() override;
+    void visibilityChanged();
 
 private:
     //==============================================================================
@@ -120,4 +124,4 @@ private:
 
 
 #endif
-#endif   // JUCE_WEBBROWSERCOMPONENT_H_INCLUDED
+#endif   // __JUCE_WEBBROWSERCOMPONENT_JUCEHEADER__

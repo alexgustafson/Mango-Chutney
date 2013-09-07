@@ -22,9 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CONCERTINAPANEL_H_INCLUDED
-#define JUCE_CONCERTINAPANEL_H_INCLUDED
-
+#ifndef __JUCE_CONCERTINAPANEL_JUCEHEADER__
+#define __JUCE_CONCERTINAPANEL_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -94,14 +93,14 @@ public:
     void setPanelHeaderSize (Component* panelComponent, int headerSize);
 
 private:
-    void resized() override;
+    void resized();
 
     class PanelHolder;
     struct PanelSizes;
     friend class PanelHolder;
     friend struct PanelSizes;
-    friend struct ContainerDeletePolicy<PanelSizes>;
-    friend struct ContainerDeletePolicy<PanelHolder>;
+    friend class ScopedPointer<PanelSizes>;
+    friend class OwnedArray<PanelHolder>;
 
     ScopedPointer<PanelSizes> currentSizes;
     OwnedArray<PanelHolder> holders;
@@ -118,4 +117,4 @@ private:
 };
 
 
-#endif   // JUCE_CONCERTINAPANEL_H_INCLUDED
+#endif   // __JUCE_CONCERTINAPANEL_JUCEHEADER__

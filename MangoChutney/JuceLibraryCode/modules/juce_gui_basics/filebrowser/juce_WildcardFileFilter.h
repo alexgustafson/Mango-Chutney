@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_WILDCARDFILEFILTER_H_INCLUDED
-#define JUCE_WILDCARDFILEFILTER_H_INCLUDED
+#ifndef __JUCE_WILDCARDFILEFILTER_JUCEHEADER__
+#define __JUCE_WILDCARDFILEFILTER_JUCEHEADER__
+
+#include "juce_FileFilter.h"
 
 
 //==============================================================================
@@ -79,4 +81,4 @@ private:
 
 
 
-#endif   // JUCE_WILDCARDFILEFILTER_H_INCLUDED
+#endif   // __JUCE_WILDCARDFILEFILTER_JUCEHEADER__

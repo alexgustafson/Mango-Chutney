@@ -22,8 +22,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RELATIVECOORDINATEPOSITIONER_H_INCLUDED
-#define JUCE_RELATIVECOORDINATEPOSITIONER_H_INCLUDED
+#ifndef __JUCE_RELATIVECOORDINATEPOSITIONER_JUCEHEADER__
+#define __JUCE_RELATIVECOORDINATEPOSITIONER_JUCEHEADER__
+
+#include "juce_RelativePoint.h"
+#include "juce_MarkerList.h"
+#include "../components/juce_Component.h"
 
 
 //==============================================================================
@@ -89,4 +93,4 @@ private:
 };
 
 
-#endif   // JUCE_RELATIVECOORDINATEPOSITIONER_H_INCLUDED
+#endif   // __JUCE_RELATIVECOORDINATEPOSITIONER_JUCEHEADER__

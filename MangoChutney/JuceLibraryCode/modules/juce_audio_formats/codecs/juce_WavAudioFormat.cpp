@@ -70,7 +70,6 @@ const char* const WavAudioFormat::acidTempo            = "acid tempo";
 namespace WavFileHelpers
 {
     inline int chunkName (const char* const name) noexcept   { return (int) ByteOrder::littleEndianInt (name); }
-    inline size_t roundUpSize (size_t sz) noexcept           { return (sz + 3) & ~3u; }
 
     #if JUCE_MSVC
      #pragma pack (push, 1)
@@ -109,7 +108,8 @@ namespace WavFileHelpers
 
         static MemoryBlock createFrom (const StringPairArray& values)
         {
-            MemoryBlock data (roundUpSize (sizeof (BWAVChunk) + values [WavAudioFormat::bwavCodingHistory].getNumBytesAsUTF8()));
+            const size_t sizeNeeded = sizeof (BWAVChunk) + values [WavAudioFormat::bwavCodingHistory].getNumBytesAsUTF8();
+            MemoryBlock data ((sizeNeeded + 3) & ~3);
             data.fillWith (0);
 
             BWAVChunk* b = (BWAVChunk*) data.getData();
@@ -223,7 +223,8 @@ namespace WavFileHelpers
 
             if (numLoops > 0)
             {
-                data.setSize (roundUpSize (sizeof (SMPLChunk) + (size_t) (numLoops - 1) * sizeof (SampleLoop)), true);
+                const size_t sizeNeeded = sizeof (SMPLChunk) + (size_t) (numLoops - 1) * sizeof (SampleLoop);
+                data.setSize ((sizeNeeded + 3) & ~3, true);
 
                 SMPLChunk* const s = static_cast <SMPLChunk*> (data.getData());
 
@@ -352,7 +353,8 @@ namespace WavFileHelpers
 
             if (numCues > 0)
             {
-                data.setSize (roundUpSize (sizeof (CueChunk) + (size_t) (numCues - 1) * sizeof (Cue)), true);
+                const size_t sizeNeeded = sizeof (CueChunk) + (size_t) (numCues - 1) * sizeof (Cue);
+                data.setSize ((sizeNeeded + 3) & ~3, true);
 
                 CueChunk* const c = static_cast <CueChunk*> (data.getData());
 
@@ -415,7 +417,7 @@ namespace WavFileHelpers
             out.writeInt (chunkType);
             out.writeInt (chunkLength);
             out.writeInt (getValue (values, prefix, "Identifier"));
-            out.write (label.toUTF8(), (size_t) labelLength);
+            out.write (label.toUTF8(), labelLength);
 
             if ((out.getDataSize() & 1) != 0)
                 out.writeByte (0);
@@ -437,7 +439,7 @@ namespace WavFileHelpers
             out.writeShort ((short) getValue (values, prefix, "Language"));
             out.writeShort ((short) getValue (values, prefix, "Dialect"));
             out.writeShort ((short) getValue (values, prefix, "CodePage"));
-            out.write (text.toUTF8(), (size_t) textLength);
+            out.write (text.toUTF8(), textLength);
 
             if ((out.getDataSize() & 1) != 0)
                 out.writeByte (0);
@@ -469,10 +471,10 @@ namespace WavFileHelpers
     struct AcidChunk
     {
         /** Reads an acid RIFF chunk from a stream positioned just after the size byte. */
-        AcidChunk (InputStream& input, size_t length)
+        AcidChunk (InputStream& input, int length)
         {
             zerostruct (*this);
-            input.read (this, (int) jmin (sizeof (*this), length));
+            input.read (this, jmin ((int) sizeof (*this), length));
         }
 
         void addToMetadata (StringPairArray& values) const
@@ -515,10 +517,6 @@ namespace WavFileHelpers
         uint16 data2;
         uint16 data3;
         uint8  data4[8];
-
-        bool operator== (const ExtensibleWavSubFormat& other) const noexcept   { return memcmp (this, &other, sizeof (*this)) == 0; }
-        bool operator!= (const ExtensibleWavSubFormat& other) const noexcept   { return ! operator== (other); }
-
     } JUCE_PACKED;
 
     static const ExtensibleWavSubFormat pcmFormat       = { 0x00000001, 0x0000, 0x0010, { 0x80, 0x00, 0x00, 0xaa, 0x00, 0x38, 0x9b, 0x71 } };
@@ -641,9 +639,9 @@ public:
                             subFormat.data3 = (uint16) input->readShort();
                             input->read (subFormat.data4, sizeof (subFormat.data4));
 
-                            if (subFormat == IEEEFloatFormat)
-                                usesFloatingPointData = true;
-                            else if (subFormat != pcmFormat && subFormat != ambisonicFormat)
+                            if (memcmp (&subFormat, &pcmFormat, sizeof (subFormat)) != 0
+                                 && memcmp (&subFormat, &IEEEFloatFormat, sizeof (subFormat)) != 0
+                                 && memcmp (&subFormat, &ambisonicFormat, sizeof (subFormat)) != 0)
                                 bytesPerFrame = 0;
                         }
                     }
@@ -769,7 +767,7 @@ public:
 
     //==============================================================================
     bool readSamples (int** destSamples, int numDestChannels, int startOffsetInDestBuffer,
-                      int64 startSampleInFile, int numSamples) override
+                      int64 startSampleInFile, int numSamples)
     {
         clearSamplesBeyondAvailableLength (destSamples, numDestChannels, startOffsetInDestBuffer,
                                            startSampleInFile, numSamples, lengthInSamples);
@@ -872,9 +870,8 @@ public:
     }
 
     //==============================================================================
-    bool write (const int** data, int numSamples) override
+    bool write (const int** data, int numSamples)
     {
-        jassert (numSamples >= 0);
         jassert (data != nullptr && *data != nullptr); // the input must contain at least one channel!
 
         if (writeFailed)
@@ -904,7 +901,7 @@ public:
         else
         {
             bytesWritten += bytes;
-            lengthInSamples += (uint64) numSamples;
+            lengthInSamples += numSamples;
 
             return true;
         }
@@ -945,7 +942,7 @@ private:
         const size_t bytesPerFrame = numChannels * bitsPerSample / 8;
         uint64 audioDataSize = bytesPerFrame * lengthInSamples;
 
-        const bool isRF64 = (bytesWritten >= 0x100000000LL);
+        const bool isRF64 = (bytesWritten >= literal64bit (0x100000000));
         const bool isWaveFmtEx = isRF64 || (numChannels > 2);
 
         int64 riffChunkSize = (int64) (4 /* 'RIFF' */ + 8 + 40 /* WAVEFORMATEX */
@@ -965,29 +962,13 @@ private:
 
         if (! isRF64)
         {
-           #if ! JUCE_WAV_DO_NOT_PAD_HEADER_SIZE
-            /* NB: This junk chunk is added for padding, so that the header is a fixed size
-               regardless of whether it's RF64 or not. That way, we can begin recording a file,
-               and when it's finished, can go back and write either a RIFF or RF64 header,
-               depending on whether more than 2^32 samples were written.
-
-               The JUCE_WAV_DO_NOT_PAD_HEADER_SIZE macro allows you to disable this feature in case
-               you need to create files for crappy WAV players with bugs that stop them skipping chunks
-               which they don't recognise. But DO NOT USE THIS option unless you really have no choice,
-               because it means that if you write more than 2^32 samples to the file, you'll corrupt it.
-            */
             output->writeInt (chunkName ("JUNK"));
             output->writeInt (28 + (isWaveFmtEx? 0 : 24));
             output->writeRepeatedByte (0, 28 /* ds64 */ + (isWaveFmtEx? 0 : 24));
-           #endif
         }
         else
         {
-           #if ! JUCE_WAV_DO_NOT_PAD_HEADER_SIZE
-            // If you disable padding, then you MUST NOT write more than 2^32 samples to a file.
-            jassertfalse;
-           #endif
-
+            // write ds64 chunk
             output->writeInt (chunkName ("ds64"));
             output->writeInt (28);  // chunk size for uncompressed data (no table)
             output->writeInt64 (riffChunkSize);
@@ -1085,7 +1066,7 @@ public:
     }
 
     bool readSamples (int** destSamples, int numDestChannels, int startOffsetInDestBuffer,
-                      int64 startSampleInFile, int numSamples) override
+                      int64 startSampleInFile, int numSamples)
     {
         clearSamplesBeyondAvailableLength (destSamples, numDestChannels, startOffsetInDestBuffer,
                                            startSampleInFile, numSamples, lengthInSamples);
@@ -1103,7 +1084,7 @@ public:
     }
 
     void readMaxLevels (int64 startSampleInFile, int64 numSamples,
-                        float& min0, float& max0, float& min1, float& max1) override
+                        float& min0, float& max0, float& min1, float& max1)
     {
         if (numSamples <= 0)
         {

@@ -29,14 +29,14 @@
 int64 juce_fileSetPosition (void* handle, int64 pos);
 
 //==============================================================================
-FileOutputStream::FileOutputStream (const File& f, const size_t bufferSizeToUse)
+FileOutputStream::FileOutputStream (const File& f, const int bufferSize_)
     : file (f),
       fileHandle (nullptr),
       status (Result::ok()),
       currentPosition (0),
-      bufferSize (bufferSizeToUse),
+      bufferSize (bufferSize_),
       bytesInBuffer (0),
-      buffer (jmax (bufferSizeToUse, (size_t) 16))
+      buffer ((size_t) jmax (bufferSize_, 16))
 {
     openHandle();
 }
@@ -119,7 +119,7 @@ bool FileOutputStream::write (const void* const src, const size_t numBytes)
     return true;
 }
 
-bool FileOutputStream::writeRepeatedByte (uint8 byte, size_t numBytes)
+void FileOutputStream::writeRepeatedByte (uint8 byte, size_t numBytes)
 {
     jassert (((ssize_t) numBytes) >= 0);
 
@@ -128,8 +128,9 @@ bool FileOutputStream::writeRepeatedByte (uint8 byte, size_t numBytes)
         memset (buffer + bytesInBuffer, byte, numBytes);
         bytesInBuffer += numBytes;
         currentPosition += numBytes;
-        return true;
     }
-
-    return OutputStream::writeRepeatedByte (byte, numBytes);
+    else
+    {
+        OutputStream::writeRepeatedByte (byte, numBytes);
+    }
 }

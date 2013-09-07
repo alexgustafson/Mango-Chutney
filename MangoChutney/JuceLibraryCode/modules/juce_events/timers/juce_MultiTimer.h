@@ -22,9 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MULTITIMER_H_INCLUDED
-#define JUCE_MULTITIMER_H_INCLUDED
+#ifndef __JUCE_MULTITIMER_JUCEHEADER__
+#define __JUCE_MULTITIMER_JUCEHEADER__
 
+#include "juce_Timer.h"
 
 //==============================================================================
 /**
@@ -58,7 +59,7 @@ protected:
         Note that this timer will not contain any running timers, even if the one you're
         copying from was running.
     */
-    MultiTimer (const MultiTimer&) noexcept;
+    MultiTimer (const MultiTimer& other) noexcept;
 
 public:
     //==============================================================================
@@ -72,7 +73,7 @@ public:
         It's perfectly ok to call startTimer() or stopTimer() from within this
         callback to change the subsequent intervals.
     */
-    virtual void timerCallback (int timerID) = 0;
+    virtual void timerCallback (int timerId) = 0;
 
     //==============================================================================
     /** Starts a timer and sets the length of interval required.
@@ -81,14 +82,14 @@ public:
         time between calling this method and the next timer callback
         will not be less than the interval length passed in.
 
-        @param timerID                  a unique Id number that identifies the timer to
+        @param timerId                  a unique Id number that identifies the timer to
                                         start. This is the id that will be passed back
                                         to the timerCallback() method when this timer is
                                         triggered
         @param  intervalInMilliseconds  the interval to use (any values less than 1 will be
                                         rounded up to 1)
     */
-    void startTimer (int timerID, int intervalInMilliseconds) noexcept;
+    void startTimer (int timerId, int intervalInMilliseconds) noexcept;
 
     /** Stops a timer.
 
@@ -99,31 +100,30 @@ public:
         be currently executing may be allowed to finish before the method
         returns.
     */
-    void stopTimer (int timerID) noexcept;
+    void stopTimer (int timerId) noexcept;
 
     //==============================================================================
     /** Checks whether a timer has been started for a specified ID.
 
         @returns true if a timer with the given ID is running.
     */
-    bool isTimerRunning (int timerID) const noexcept;
+    bool isTimerRunning (int timerId) const noexcept;
 
     /** Returns the interval for a specified timer ID.
 
-        @returns    the timer's interval in milliseconds if it's running, or 0 if no
-                    timer was running for the ID number specified.
+        @returns    the timer's interval in milliseconds if it's running, or 0 if it's no timer
+                    is running for the ID number specified.
     */
-    int getTimerInterval (int timerID) const noexcept;
+    int getTimerInterval (int timerId) const noexcept;
 
 
     //==============================================================================
 private:
-    struct MultiTimerCallback;
+    class MultiTimerCallback;
     SpinLock timerListLock;
-    OwnedArray<MultiTimerCallback> timers;
+    OwnedArray <MultiTimerCallback> timers;
 
-    MultiTimerCallback* getCallback (int) const noexcept;
     MultiTimer& operator= (const MultiTimer&);
 };
 
-#endif   // JUCE_MULTITIMER_H_INCLUDED
+#endif   // __JUCE_MULTITIMER_JUCEHEADER__

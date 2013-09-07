@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TOPLEVELWINDOW_H_INCLUDED
-#define JUCE_TOPLEVELWINDOW_H_INCLUDED
+#ifndef __JUCE_TOPLEVELWINDOW_JUCEHEADER__
+#define __JUCE_TOPLEVELWINDOW_JUCEHEADER__
+
+#include "../components/juce_Component.h"
+#include "../misc/juce_DropShadower.h"
 
 
 //==============================================================================
@@ -125,7 +128,7 @@ public:
 
     //==============================================================================
     /** @internal */
-    virtual void addToDesktop (int windowStyleFlags, void* nativeWindowToAttachTo = nullptr) override;
+    virtual void addToDesktop (int windowStyleFlags, void* nativeWindowToAttachTo = nullptr);
 
 protected:
     //==============================================================================
@@ -137,20 +140,20 @@ protected:
 
     //==============================================================================
     /** @internal */
-    void focusOfChildComponentChanged (FocusChangeType) override;
+    void focusOfChildComponentChanged (FocusChangeType cause);
     /** @internal */
-    void parentHierarchyChanged() override;
+    void parentHierarchyChanged();
     /** @internal */
     virtual int getDesktopWindowStyleFlags() const;
     /** @internal */
     void recreateDesktopWindow();
     /** @internal */
-    void visibilityChanged() override;
+    void visibilityChanged();
 
 private:
     friend class TopLevelWindowManager;
     bool useDropShadow, useNativeTitleBar, isCurrentlyActive;
-    ScopedPointer<DropShadower> shadower;
+    ScopedPointer <DropShadower> shadower;
 
     void setWindowActive (bool isNowActive);
 
@@ -158,4 +161,4 @@ private:
 };
 
 
-#endif   // JUCE_TOPLEVELWINDOW_H_INCLUDED
+#endif   // __JUCE_TOPLEVELWINDOW_JUCEHEADER__

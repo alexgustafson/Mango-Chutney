@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOCDREADER_H_INCLUDED
-#define JUCE_AUDIOCDREADER_H_INCLUDED
+#ifndef __JUCE_AUDIOCDREADER_JUCEHEADER__
+#define __JUCE_AUDIOCDREADER_JUCEHEADER__
 
 #if JUCE_USE_CDREADER || DOXYGEN
 
@@ -67,7 +67,7 @@ public:
 
     /** Implementation of the AudioFormatReader method. */
     bool readSamples (int** destSamples, int numDestChannels, int startOffsetInDestBuffer,
-                      int64 startSampleInFile, int numSamples) override;
+                      int64 startSampleInFile, int numSamples);
 
     /** Checks whether the CD has been removed from the drive. */
     bool isCDStillPresent() const;
@@ -171,4 +171,4 @@ private:
 };
 
 #endif
-#endif   // JUCE_AUDIOCDREADER_H_INCLUDED
+#endif   // __JUCE_AUDIOCDREADER_JUCEHEADER__

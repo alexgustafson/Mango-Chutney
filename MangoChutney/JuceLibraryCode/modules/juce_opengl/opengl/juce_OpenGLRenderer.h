@@ -22,9 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OPENGLRENDERER_H_INCLUDED
-#define JUCE_OPENGLRENDERER_H_INCLUDED
-
+#ifndef __JUCE_OPENGLRENDERER_JUCEHEADER__
+#define __JUCE_OPENGLRENDERER_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -67,4 +66,4 @@ public:
 };
 
 
-#endif   // JUCE_OPENGLRENDERER_H_INCLUDED
+#endif   // __JUCE_OPENGLRENDERER_JUCEHEADER__

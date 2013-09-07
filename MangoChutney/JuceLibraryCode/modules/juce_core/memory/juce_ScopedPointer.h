@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SCOPEDPOINTER_H_INCLUDED
-#define JUCE_SCOPEDPOINTER_H_INCLUDED
+#ifndef __JUCE_SCOPEDPOINTER_JUCEHEADER__
+#define __JUCE_SCOPEDPOINTER_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -97,7 +97,7 @@ public:
     /** Destructor.
         This will delete the object that this ScopedPointer currently refers to.
     */
-    inline ~ScopedPointer()                 { ContainerDeletePolicy<ObjectType>::destroy (object); }
+    inline ~ScopedPointer()                                                         { delete object; }
 
     /** Changes this ScopedPointer to point to a new object.
 
@@ -119,7 +119,7 @@ public:
             ObjectType* const oldObject = object;
             object = objectToTransferFrom.object;
             objectToTransferFrom.object = nullptr;
-            ContainerDeletePolicy<ObjectType>::destroy (oldObject);
+            delete oldObject;
         }
 
         return *this;
@@ -138,7 +138,7 @@ public:
         {
             ObjectType* const oldObject = object;
             object = newObjectToTakePossessionOf;
-            ContainerDeletePolicy<ObjectType>::destroy (oldObject);
+            delete oldObject;
         }
 
         return *this;
@@ -250,4 +250,4 @@ template <typename Type>
 void deleteAndZero (ScopedPointer<Type>&)  { static_jassert (sizeof (Type) == 12345); }
 #endif
 
-#endif   // JUCE_SCOPEDPOINTER_H_INCLUDED
+#endif   // __JUCE_SCOPEDPOINTER_JUCEHEADER__

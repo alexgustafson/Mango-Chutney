@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_APPLICATIONCOMMANDID_H_INCLUDED
-#define JUCE_APPLICATIONCOMMANDID_H_INCLUDED
+#ifndef __JUCE_APPLICATIONCOMMANDID_JUCEHEADER__
+#define __JUCE_APPLICATIONCOMMANDID_JUCEHEADER__
 
 
 //==============================================================================
@@ -85,4 +85,4 @@ namespace StandardApplicationCommandIDs
 }
 
 
-#endif   // JUCE_APPLICATIONCOMMANDID_H_INCLUDED
+#endif   // __JUCE_APPLICATIONCOMMANDID_JUCEHEADER__

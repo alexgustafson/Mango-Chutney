@@ -26,8 +26,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SOCKET_H_INCLUDED
-#define JUCE_SOCKET_H_INCLUDED
+#ifndef __JUCE_SOCKET_JUCEHEADER__
+#define __JUCE_SOCKET_JUCEHEADER__
+
+#include "../text/juce_String.h"
 
 
 //==============================================================================
@@ -302,4 +304,4 @@ private:
 };
 
 
-#endif   // JUCE_SOCKET_H_INCLUDED
+#endif   // __JUCE_SOCKET_JUCEHEADER__

@@ -131,11 +131,10 @@ Component* ComponentBuilder::createComponent()
 {
     jassert (types.size() > 0);  // You need to register all the necessary types before you can load a component!
 
-    if (TypeHandler* const type = getHandlerForState (state))
-        return ComponentBuilderHelpers::createNewComponent (*type, state, nullptr);
+    TypeHandler* const type = getHandlerForState (state);
+    jassert (type != nullptr); // trying to create a component from an unknown type of ValueTree
 
-    jassertfalse; // trying to create a component from an unknown type of ValueTree
-    return nullptr;
+    return type != nullptr ? ComponentBuilderHelpers::createNewComponent (*type, state, nullptr) : nullptr;
 }
 
 void ComponentBuilder::registerTypeHandler (ComponentBuilder::TypeHandler* const type)

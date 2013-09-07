@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_BUFFERINGAUDIOFORMATREADER_H_INCLUDED
-#define JUCE_BUFFERINGAUDIOFORMATREADER_H_INCLUDED
+#ifndef __JUCE_BUFFERINGAUDIOFORMATREADER_JUCEHEADER__
+#define __JUCE_BUFFERINGAUDIOFORMATREADER_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -60,7 +60,7 @@ public:
     void setReadTimeout (int timeoutMilliseconds) noexcept;
 
     bool readSamples (int** destSamples, int numDestChannels, int startOffsetInDestBuffer,
-                      int64 startSampleInFile, int numSamples) override;
+                      int64 startSampleInFile, int numSamples);
 
 private:
     ScopedPointer<AudioFormatReader> source;
@@ -83,11 +83,11 @@ private:
     OwnedArray<BufferedBlock> blocks;
 
     BufferedBlock* getBlockContaining (int64 pos) const noexcept;
-    int useTimeSlice() override;
+    int useTimeSlice();
     bool readNextBufferChunk();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BufferingAudioReader)
 };
 
 
-#endif   // JUCE_BUFFERINGAUDIOFORMATREADER_H_INCLUDED
+#endif   // __JUCE_BUFFERINGAUDIOFORMATREADER_JUCEHEADER__

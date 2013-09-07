@@ -57,11 +57,11 @@ public:
         return true;
     }
 
-    void paintButtonArea (Graphics&, int, int, bool, bool) override
+    void paintButtonArea (Graphics&, int, int, bool, bool)
     {
     }
 
-    void contentAreaChanged (const Rectangle<int>&) override
+    void contentAreaChanged (const Rectangle<int>&)
     {
     }
 
@@ -70,7 +70,7 @@ public:
         return fixedSize <= 0 ? 0 : 1;
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         const int w = getWidth();
         const int h = getHeight();
@@ -149,14 +149,14 @@ private:
 class Toolbar::MissingItemsComponent  : public PopupMenu::CustomComponent
 {
 public:
-    MissingItemsComponent (Toolbar& bar, const int h)
+    MissingItemsComponent (Toolbar& owner_, const int height_)
         : PopupMenu::CustomComponent (true),
-          owner (&bar),
-          height (h)
+          owner (&owner_),
+          height (height_)
     {
-        for (int i = bar.items.size(); --i >= 0;)
+        for (int i = owner_.items.size(); --i >= 0;)
         {
-            ToolbarItemComponent* const tc = bar.items.getUnchecked(i);
+            ToolbarItemComponent* const tc = owner_.items.getUnchecked(i);
 
             if (dynamic_cast <Spacer*> (tc) == nullptr && ! tc->isVisible())
             {
@@ -501,15 +501,13 @@ void Toolbar::updateAllItemPositions (const bool animate)
                 else
                     newBounds.setBounds (pos, 0, size, getHeight());
 
-                ComponentAnimator& animator = Desktop::getInstance().getAnimator();
-
                 if (animate)
                 {
-                    animator.animateComponent (tc, newBounds, 1.0f, 200, false, 3.0, 0.0);
+                    Desktop::getInstance().getAnimator().animateComponent (tc, newBounds, 1.0f, 200, false, 3.0, 0.0);
                 }
                 else
                 {
-                    animator.cancelAnimation (tc, false);
+                    Desktop::getInstance().getAnimator().cancelAnimation (tc, false);
                     tc->setBounds (newBounds);
                 }
 
@@ -550,7 +548,7 @@ void Toolbar::itemDragMove (const SourceDetails& dragSourceDetails)
             if (tc->getEditingMode() == ToolbarItemComponent::editableOnPalette)
             {
                 if (ToolbarItemPalette* const palette = tc->findParentComponentOfClass<ToolbarItemPalette>())
-                    palette->replaceComponent (*tc);
+                    palette->replaceComponent (tc);
             }
             else
             {
@@ -562,8 +560,6 @@ void Toolbar::itemDragMove (const SourceDetails& dragSourceDetails)
             updateAllItemPositions (true);
         }
 
-        ComponentAnimator& animator = Desktop::getInstance().getAnimator();
-
         for (int i = getNumItems(); --i >= 0;)
         {
             const int currentIndex = items.indexOf (tc);
@@ -573,11 +569,12 @@ void Toolbar::itemDragMove (const SourceDetails& dragSourceDetails)
                                                 : (dragSourceDetails.localPosition.getX() - tc->dragOffsetX);
             const int dragObjectRight = dragObjectLeft + (vertical ? tc->getHeight() : tc->getWidth());
 
-            const Rectangle<int> current (animator.getComponentDestination (getChildComponent (newIndex)));
+            const Rectangle<int> current (Desktop::getInstance().getAnimator()
+                                            .getComponentDestination (getChildComponent (newIndex)));
 
             if (ToolbarItemComponent* const prev = getNextActiveComponent (newIndex, -1))
             {
-                const Rectangle<int> previousPos (animator.getComponentDestination (prev));
+                const Rectangle<int> previousPos (Desktop::getInstance().getAnimator().getComponentDestination (prev));
 
                 if (abs (dragObjectLeft - (vertical ? previousPos.getY() : previousPos.getX())
                       < abs (dragObjectRight - (vertical ? current.getBottom() : current.getRight()))))
@@ -588,7 +585,7 @@ void Toolbar::itemDragMove (const SourceDetails& dragSourceDetails)
 
             if (ToolbarItemComponent* const next = getNextActiveComponent (newIndex, 1))
             {
-                const Rectangle<int> nextPos (animator.getComponentDestination (next));
+                const Rectangle<int> nextPos (Desktop::getInstance().getAnimator().getComponentDestination (next));
 
                 if (abs (dragObjectLeft - (vertical ? current.getY() : current.getX())
                      > abs (dragObjectRight - (vertical ? nextPos.getBottom() : nextPos.getRight()))))
@@ -628,15 +625,21 @@ void Toolbar::itemDropped (const SourceDetails& dragSourceDetails)
         tc->setState (Button::buttonNormal);
 }
 
-void Toolbar::mouseDown (const MouseEvent&) {}
+
+//==============================================================================
+void Toolbar::mouseDown (const MouseEvent&)
+{
+}
 
 //==============================================================================
 class Toolbar::CustomisationDialog   : public DialogWindow
 {
 public:
-    CustomisationDialog (ToolbarItemFactory& factory, Toolbar& bar, int optionFlags)
+    CustomisationDialog (ToolbarItemFactory& factory,
+                         Toolbar* const toolbar_,
+                         const int optionFlags)
         : DialogWindow (TRANS("Add/remove items from toolbar"), Colours::white, true, true),
-          toolbar (bar)
+          toolbar (toolbar_)
     {
         setContentOwned (new CustomiserPanel (factory, toolbar, optionFlags), true);
         setResizable (true, true);
@@ -646,61 +649,64 @@ public:
 
     ~CustomisationDialog()
     {
-        toolbar.setEditingActive (false);
+        toolbar->setEditingActive (false);
     }
 
-    void closeButtonPressed() override
+    void closeButtonPressed()
     {
         setVisible (false);
     }
 
-    bool canModalEventBeSentToComponent (const Component* comp) override
+    bool canModalEventBeSentToComponent (const Component* comp)
     {
-        return toolbar.isParentOf (comp)
-                 || dynamic_cast <const ToolbarItemComponent::ItemDragAndDropOverlayComponent*> (comp) != nullptr;
+        return toolbar->isParentOf (comp);
     }
 
     void positionNearBar()
     {
-        const Rectangle<int> screenSize (toolbar.getParentMonitorArea());
-        const int tbx = toolbar.getScreenX();
-        const int tby = toolbar.getScreenY();
+        const Rectangle<int> screenSize (toolbar->getParentMonitorArea());
+        const int tbx = toolbar->getScreenX();
+        const int tby = toolbar->getScreenY();
         const int gap = 8;
 
         int x, y;
 
-        if (toolbar.isVertical())
+        if (toolbar->isVertical())
         {
             y = tby;
 
             if (tbx > screenSize.getCentreX())
                 x = tbx - getWidth() - gap;
             else
-                x = tbx + toolbar.getWidth() + gap;
+                x = tbx + toolbar->getWidth() + gap;
         }
         else
         {
-            x = tbx + (toolbar.getWidth() - getWidth()) / 2;
+            x = tbx + (toolbar->getWidth() - getWidth()) / 2;
 
             if (tby > screenSize.getCentreY())
                 y = tby - getHeight() - gap;
             else
-                y = tby + toolbar.getHeight() + gap;
+                y = tby + toolbar->getHeight() + gap;
         }
 
         setTopLeftPosition (x, y);
     }
 
 private:
-    Toolbar& toolbar;
+    Toolbar* const toolbar;
 
     class CustomiserPanel  : public Component,
                              private ComboBoxListener, // (can't use ComboBox::Listener due to idiotic VC2005 bug)
                              private ButtonListener
     {
     public:
-        CustomiserPanel (ToolbarItemFactory& tbf, Toolbar& bar, int optionFlags)
-          : factory (tbf), toolbar (bar), palette (tbf, bar),
+        CustomiserPanel (ToolbarItemFactory& factory_,
+                         Toolbar* const toolbar_,
+                         const int optionFlags)
+          : factory (factory_),
+            toolbar (toolbar_),
+            palette (factory_, toolbar_),
             instructions (String::empty, TRANS ("You can drag the items above and drop them onto a toolbar to add them.")
                                           + "\n\n"
                                           + TRANS ("Items on the toolbar can also be dragged around to change their order, or dragged off the edge to delete them.")),
@@ -720,7 +726,7 @@ private:
                 if ((optionFlags & Toolbar::allowTextOnlyChoice) != 0)      styleBox.addItem (TRANS("Show descriptions only"), 3);
 
                 int selectedStyle = 0;
-                switch (bar.getStyle())
+                switch (toolbar_->getStyle())
                 {
                     case Toolbar::iconsOnly:        selectedStyle = 1; break;
                     case Toolbar::iconsWithText:    selectedStyle = 2; break;
@@ -744,24 +750,24 @@ private:
             setSize (500, 300);
         }
 
-        void comboBoxChanged (ComboBox*) override
+        void comboBoxChanged (ComboBox*)
         {
             switch (styleBox.getSelectedId())
             {
-                case 1:   toolbar.setStyle (Toolbar::iconsOnly); break;
-                case 2:   toolbar.setStyle (Toolbar::iconsWithText); break;
-                case 3:   toolbar.setStyle (Toolbar::textOnly); break;
+                case 1:   toolbar->setStyle (Toolbar::iconsOnly); break;
+                case 2:   toolbar->setStyle (Toolbar::iconsWithText); break;
+                case 3:   toolbar->setStyle (Toolbar::textOnly); break;
             }
 
             palette.resized(); // to make it update the styles
         }
 
-        void buttonClicked (Button*) override
+        void buttonClicked (Button*)
         {
-            toolbar.addDefaultItems (factory);
+            toolbar->addDefaultItems (factory);
         }
 
-        void paint (Graphics& g) override
+        void paint (Graphics& g)
         {
             Colour background;
 
@@ -772,7 +778,7 @@ private:
             g.fillRect (palette.getX(), palette.getBottom() - 1, palette.getWidth(), 1);
         }
 
-        void resized() override
+        void resized()
         {
             palette.setBounds (0, 0, getWidth(), getHeight() - 120);
             styleBox.setBounds (10, getHeight() - 110, 200, 22);
@@ -785,7 +791,7 @@ private:
 
     private:
         ToolbarItemFactory& factory;
-        Toolbar& toolbar;
+        Toolbar* const toolbar;
 
         ToolbarItemPalette palette;
         Label instructions;
@@ -798,6 +804,6 @@ void Toolbar::showCustomisationDialog (ToolbarItemFactory& factory, const int op
 {
     setEditingActive (true);
 
-    (new CustomisationDialog (factory, *this, optionFlags))
+    (new CustomisationDialog (factory, this, optionFlags))
         ->enterModalState (true, nullptr, true);
 }

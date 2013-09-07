@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DROPSHADOWEFFECT_H_INCLUDED
-#define JUCE_DROPSHADOWEFFECT_H_INCLUDED
+#ifndef __JUCE_DROPSHADOWEFFECT_JUCEHEADER__
+#define __JUCE_DROPSHADOWEFFECT_JUCEHEADER__
+
+#include "juce_ImageEffectFilter.h"
 
 
 //==============================================================================
@@ -107,4 +109,4 @@ private:
 };
 
 
-#endif   // JUCE_DROPSHADOWEFFECT_H_INCLUDED
+#endif   // __JUCE_DROPSHADOWEFFECT_JUCEHEADER__

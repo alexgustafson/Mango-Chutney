@@ -26,8 +26,13 @@
   ==============================================================================
 */
 
-#ifndef JUCE_XMLELEMENT_H_INCLUDED
-#define JUCE_XMLELEMENT_H_INCLUDED
+#ifndef __JUCE_XMLELEMENT_JUCEHEADER__
+#define __JUCE_XMLELEMENT_JUCEHEADER__
+
+#include "../text/juce_String.h"
+#include "../streams/juce_OutputStream.h"
+#include "../files/juce_File.h"
+#include "../containers/juce_LinkedListPointer.h"
 
 
 //==============================================================================
@@ -731,4 +736,4 @@ private:
 };
 
 
-#endif   // JUCE_XMLELEMENT_H_INCLUDED
+#endif   // __JUCE_XMLELEMENT_JUCEHEADER__

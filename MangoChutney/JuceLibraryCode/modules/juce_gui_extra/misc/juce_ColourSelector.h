@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_COLOURSELECTOR_H_INCLUDED
-#define JUCE_COLOURSELECTOR_H_INCLUDED
+#ifndef __JUCE_COLOURSELECTOR_JUCEHEADER__
+#define __JUCE_COLOURSELECTOR_JUCEHEADER__
 
 
 //==============================================================================
@@ -137,9 +137,9 @@ private:
     class ColourSpaceMarker;
     class HueSelectorMarker;
     friend class ColourSpaceView;
-    friend struct ContainerDeletePolicy<ColourSpaceView>;
+    friend class ScopedPointer<ColourSpaceView>;
     friend class HueSelectorComp;
-    friend struct ContainerDeletePolicy<HueSelectorComp>;
+    friend class ScopedPointer<HueSelectorComp>;
 
     Colour colour;
     float h, s, v;
@@ -156,8 +156,8 @@ private:
     void updateHSV();
     void update();
     void sliderValueChanged (Slider*);
-    void paint (Graphics&) override;
-    void resized() override;
+    void paint (Graphics& g);
+    void resized();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ColourSelector)
 
@@ -169,4 +169,4 @@ private:
 };
 
 
-#endif   // JUCE_COLOURSELECTOR_H_INCLUDED
+#endif   // __JUCE_COLOURSELECTOR_JUCEHEADER__

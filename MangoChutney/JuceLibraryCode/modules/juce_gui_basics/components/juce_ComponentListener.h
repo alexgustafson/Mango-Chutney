@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_COMPONENTLISTENER_H_INCLUDED
-#define JUCE_COMPONENTLISTENER_H_INCLUDED
+#ifndef __JUCE_COMPONENTLISTENER_JUCEHEADER__
+#define __JUCE_COMPONENTLISTENER_JUCEHEADER__
+
+class Component;
 
 
 //==============================================================================
@@ -108,4 +110,4 @@ public:
 };
 
 
-#endif   // JUCE_COMPONENTLISTENER_H_INCLUDED
+#endif   // __JUCE_COMPONENTLISTENER_JUCEHEADER__

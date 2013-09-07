@@ -98,19 +98,18 @@ public:
 
         AudioSessionSetActive (true);
 
-        UInt32 audioCategory = (numInputChannels > 0 && audioInputIsAvailable) ? kAudioSessionCategory_PlayAndRecord
-                                                                               : kAudioSessionCategory_MediaPlayback;
+        UInt32 audioCategory = kAudioSessionCategory_MediaPlayback;
 
-        AudioSessionSetProperty (kAudioSessionProperty_AudioCategory, sizeof (audioCategory), &audioCategory);
-
-        if (audioCategory == kAudioSessionCategory_PlayAndRecord)
+        if (numInputChannels > 0 && audioInputIsAvailable)
         {
-            // (note: mustn't set this until after the audio category property has been set)
+            audioCategory = kAudioSessionCategory_PlayAndRecord;
+
             UInt32 allowBluetoothInput = 1;
             AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryEnableBluetoothInput,
                                      sizeof (allowBluetoothInput), &allowBluetoothInput);
         }
 
+        AudioSessionSetProperty (kAudioSessionProperty_AudioCategory, sizeof (audioCategory), &audioCategory);
         AudioSessionAddPropertyListener (kAudioSessionProperty_AudioRouteChange, routingChangedStatic, this);
 
         fixAudioRouteIfSetToReceiver();
@@ -211,18 +210,15 @@ private:
 
     void prepareFloatBuffers()
     {
-        if (numInputChannels + numOutputChannels > 0)
-        {
-            floatData.setSize (numInputChannels + numOutputChannels, actualBufferSize);
-            zeromem (inputChannels, sizeof (inputChannels));
-            zeromem (outputChannels, sizeof (outputChannels));
+        floatData.setSize (numInputChannels + numOutputChannels, actualBufferSize);
+        zeromem (inputChannels, sizeof (inputChannels));
+        zeromem (outputChannels, sizeof (outputChannels));
 
-            for (int i = 0; i < numInputChannels; ++i)
-                inputChannels[i] = floatData.getSampleData (i);
+        for (int i = 0; i < numInputChannels; ++i)
+            inputChannels[i] = floatData.getSampleData (i);
 
-            for (int i = 0; i < numOutputChannels; ++i)
-                outputChannels[i] = floatData.getSampleData (i + numInputChannels);
-        }
+        for (int i = 0; i < numOutputChannels; ++i)
+            outputChannels[i] = floatData.getSampleData (i + numInputChannels);
     }
 
     //==================================================================================================

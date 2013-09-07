@@ -26,8 +26,13 @@
   ==============================================================================
 */
 
-#ifndef JUCE_URL_H_INCLUDED
-#define JUCE_URL_H_INCLUDED
+#ifndef __JUCE_URL_JUCEHEADER__
+#define __JUCE_URL_JUCEHEADER__
+
+#include "../text/juce_StringPairArray.h"
+#include "../files/juce_File.h"
+class InputStream;
+class XmlElement;
 
 
 //==============================================================================
@@ -342,4 +347,4 @@ private:
 };
 
 
-#endif   // JUCE_URL_H_INCLUDED
+#endif   // __JUCE_URL_JUCEHEADER__

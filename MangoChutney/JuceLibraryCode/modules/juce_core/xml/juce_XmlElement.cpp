@@ -209,7 +209,7 @@ namespace XmlOutputFunctions
         }
     }
 
-    static void writeSpaces (OutputStream& out, const size_t numSpaces)
+    static void writeSpaces (OutputStream& out, const int numSpaces)
     {
         out.writeRepeatedByte (' ', numSpaces);
     }
@@ -222,7 +222,7 @@ void XmlElement::writeElementAsText (OutputStream& outputStream,
     using namespace XmlOutputFunctions;
 
     if (indentationLevel >= 0)
-        writeSpaces (outputStream, (size_t) indentationLevel);
+        writeSpaces (outputStream, indentationLevel);
 
     if (! isTextElement())
     {
@@ -230,7 +230,7 @@ void XmlElement::writeElementAsText (OutputStream& outputStream,
         outputStream << tagName;
 
         {
-            const size_t attIndent = (size_t) (indentationLevel + tagName.length() + 1);
+            const int attIndent = indentationLevel + tagName.length() + 1;
             int lineLen = 0;
 
             for (const XmlAttributeNode* att = attributes; att != nullptr; att = att->nextListItem)
@@ -279,7 +279,7 @@ void XmlElement::writeElementAsText (OutputStream& outputStream,
             if (indentationLevel >= 0 && ! lastWasTextNode)
             {
                 outputStream << newLine;
-                writeSpaces (outputStream, (size_t) indentationLevel);
+                writeSpaces (outputStream, indentationLevel);
             }
 
             outputStream.write ("</", 2);

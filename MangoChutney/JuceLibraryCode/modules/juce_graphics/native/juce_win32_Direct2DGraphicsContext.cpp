@@ -92,7 +92,7 @@ public:
         currentState->transform = transform.followedBy (currentState->transform);
     }
 
-    float getPhysicalPixelScaleFactor()
+    float getScaleFactor()
     {
         return currentState->transform.getScaleFactor();
     }
@@ -103,7 +103,7 @@ public:
         return ! isClipEmpty();
     }
 
-    bool clipToRectangleList (const RectangleList<int>& clipRegion)
+    bool clipToRectangleList (const RectangleList& clipRegion)
     {
         currentState->clipToRectList (rectListToPathGeometry (clipRegion));
         return ! isClipEmpty();
@@ -183,12 +183,6 @@ public:
         currentState->createBrush();
         renderingTarget->FillRectangle (rectangleToRectF (r), currentState->currentBrush);
         renderingTarget->SetTransform (D2D1::IdentityMatrix());
-    }
-
-    void fillRectList (const RectangleList<float>& list)
-    {
-        for (const Rectangle<float>* r = list.begin(), * const e = list.end(); r != e; ++r)
-            fillRect (*r);
     }
 
     void fillPath (const Path& p, const AffineTransform& transform)
@@ -728,7 +722,7 @@ private:
         return D2D1::RectF ((float) r.getX(), (float) r.getY(), (float) r.getRight(), (float) r.getBottom());
     }
 
-    static D2D1_COLOR_F colourToD2D (Colour c)
+    static D2D1_COLOR_F colourToD2D (const Colour& c)
     {
         return D2D1::ColorF::ColorF (c.getFloatRed(), c.getFloatGreen(), c.getFloatBlue(), c.getFloatAlpha());
     }
@@ -748,7 +742,7 @@ private:
         sink->EndFigure (D2D1_FIGURE_END_CLOSED);
     }
 
-    static ID2D1PathGeometry* rectListToPathGeometry (const RectangleList<int>& clipRegion)
+    static ID2D1PathGeometry* rectListToPathGeometry (const RectangleList& clipRegion)
     {
         ID2D1PathGeometry* p = nullptr;
         Direct2DFactories::getInstance().d2dFactory->CreatePathGeometry (&p);

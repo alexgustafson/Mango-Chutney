@@ -153,13 +153,10 @@ public:
         {
             hr = dwFontFamily->GetFont (i, dwFont.resetAndGetPointerAddress());
 
-            if (i == 0)
-                break;
-
             ComSmartPtr<IDWriteLocalizedStrings> faceNames;
             hr = dwFont->GetFaceNames (faceNames.resetAndGetPointerAddress());
 
-            if (font.getTypefaceStyle() == getLocalisedName (faceNames))
+            if (i == 0 || font.getTypefaceStyle() == getLocalisedName (faceNames))
                 break;
         }
 

@@ -248,13 +248,13 @@ namespace
 {
     static bool xErrorTriggered = false;
 
-    static int temporaryErrorHandler (Display*, XErrorEvent*)
+    int temporaryErrorHandler (Display*, XErrorEvent*)
     {
         xErrorTriggered = true;
         return 0;
     }
 
-    static EventProcPtr getPropertyFromXWindow (Window handle, Atom atom)
+    EventProcPtr getPropertyFromXWindow (Window handle, Atom atom)
     {
         XErrorHandler oldErrorHandler = XSetErrorHandler (temporaryErrorHandler);
         xErrorTriggered = false;
@@ -292,7 +292,7 @@ namespace
         return 0;
     }
 
-    static void translateJuceToXButtonModifiers (const MouseEvent& e, XEvent& ev) noexcept
+    void translateJuceToXButtonModifiers (const MouseEvent& e, XEvent& ev) noexcept
     {
         if (e.mods.isLeftButtonDown())
         {
@@ -311,21 +311,21 @@ namespace
         }
     }
 
-    static void translateJuceToXMotionModifiers (const MouseEvent& e, XEvent& ev) noexcept
+    void translateJuceToXMotionModifiers (const MouseEvent& e, XEvent& ev) noexcept
     {
         if (e.mods.isLeftButtonDown())          ev.xmotion.state |= Button1Mask;
         else if (e.mods.isRightButtonDown())    ev.xmotion.state |= Button3Mask;
         else if (e.mods.isMiddleButtonDown())   ev.xmotion.state |= Button2Mask;
     }
 
-    static void translateJuceToXCrossingModifiers (const MouseEvent& e, XEvent& ev) noexcept
+    void translateJuceToXCrossingModifiers (const MouseEvent& e, XEvent& ev) noexcept
     {
         if (e.mods.isLeftButtonDown())          ev.xcrossing.state |= Button1Mask;
         else if (e.mods.isRightButtonDown())    ev.xcrossing.state |= Button3Mask;
         else if (e.mods.isMiddleButtonDown())   ev.xcrossing.state |= Button2Mask;
     }
 
-    static void translateJuceToXMouseWheelModifiers (const MouseEvent& e, const float increment, XEvent& ev) noexcept
+    void translateJuceToXMouseWheelModifiers (const MouseEvent& e, const float increment, XEvent& ev) noexcept
     {
         if (increment < 0)
         {
@@ -796,7 +796,7 @@ public:
         effect = nullptr;
     }
 
-    void fillInPluginDescription (PluginDescription& desc) const override
+    void fillInPluginDescription (PluginDescription& desc) const
     {
         desc.name = name;
 
@@ -872,8 +872,8 @@ public:
         setLatencySamples (effect->initialDelay);
     }
 
-    void* getPlatformSpecificData() override  { return effect; }
-    const String getName() const override     { return name; }
+    void* getPlatformSpecificData()  { return effect; }
+    const String getName() const     { return name; }
 
     int getUID() const
     {
@@ -885,12 +885,12 @@ public:
         return uid;
     }
 
-    bool silenceInProducesSilenceOut() const override
+    bool silenceInProducesSilenceOut() const
     {
         return effect == nullptr || (effect->flags & effFlagsNoSoundInStop) != 0;
     }
 
-    double getTailLengthSeconds() const override
+    double getTailLengthSeconds() const
     {
         if (effect == nullptr)
             return 0.0;
@@ -904,11 +904,11 @@ public:
         return samples / sampleRate;
     }
 
-    bool acceptsMidi() const override    { return wantsMidiMessages; }
-    bool producesMidi() const override   { return dispatch (effCanDo, 0, 0, (void*) "sendVstMidiEvent", 0) > 0; }
+    bool acceptsMidi() const    { return wantsMidiMessages; }
+    bool producesMidi() const   { return dispatch (effCanDo, 0, 0, (void*) "sendVstMidiEvent", 0) > 0; }
 
     //==============================================================================
-    void prepareToPlay (double rate, int samplesPerBlockExpected) override
+    void prepareToPlay (double rate, int samplesPerBlockExpected)
     {
         setPlayConfigDetails (effect->numInputs, effect->numOutputs, rate, samplesPerBlockExpected);
 
@@ -955,7 +955,7 @@ public:
         }
     }
 
-    void releaseResources() override
+    void releaseResources()
     {
         if (initialised)
         {
@@ -969,7 +969,7 @@ public:
         midiEventsToSend.freeEvents();
     }
 
-    void reset() override
+    void reset()
     {
         if (isPowerOn)
         {
@@ -978,7 +978,7 @@ public:
         }
     }
 
-    void processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages) override
+    void processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
     {
         const int numSamples = buffer.getNumSamples();
 
@@ -1083,11 +1083,11 @@ public:
     }
 
     //==============================================================================
-    bool hasEditor() const override                  { return effect != nullptr && (effect->flags & effFlagsHasEditor) != 0; }
-    AudioProcessorEditor* createEditor() override;
+    bool hasEditor() const                  { return effect != nullptr && (effect->flags & effFlagsHasEditor) != 0; }
+    AudioProcessorEditor* createEditor();
 
     //==============================================================================
-    const String getInputChannelName (int index) const override
+    const String getInputChannelName (int index) const
     {
         if (index >= 0 && index < getNumInputChannels())
         {
@@ -1099,7 +1099,7 @@ public:
         return String::empty;
     }
 
-    bool isInputChannelStereoPair (int index) const override
+    bool isInputChannelStereoPair (int index) const
     {
         if (index < 0 || index >= getNumInputChannels())
             return false;
@@ -1111,7 +1111,7 @@ public:
         return true;
     }
 
-    const String getOutputChannelName (int index) const override
+    const String getOutputChannelName (int index) const
     {
         if (index >= 0 && index < getNumOutputChannels())
         {
@@ -1123,7 +1123,7 @@ public:
         return String::empty;
     }
 
-    bool isOutputChannelStereoPair (int index) const override
+    bool isOutputChannelStereoPair (int index) const
     {
         if (index < 0 || index >= getNumOutputChannels())
             return false;
@@ -1144,7 +1144,7 @@ public:
     //==============================================================================
     int getNumParameters()      { return effect != nullptr ? effect->numParams : 0; }
 
-    float getParameter (int index) override
+    float getParameter (int index)
     {
         if (effect != nullptr && isPositiveAndBelow (index, (int) effect->numParams))
         {
@@ -1155,7 +1155,7 @@ public:
         return 0.0f;
     }
 
-    void setParameter (int index, float newValue) override
+    void setParameter (int index, float newValue)
     {
         if (effect != nullptr && isPositiveAndBelow (index, (int) effect->numParams))
         {
@@ -1166,11 +1166,11 @@ public:
         }
     }
 
-    const String getParameterName (int index) override       { return getTextForOpcode (index, effGetParamName); }
-    const String getParameterText (int index) override       { return getTextForOpcode (index, effGetParamDisplay); }
-    String getParameterLabel (int index) const override      { return getTextForOpcode (index, effGetParamLabel); }
+    const String getParameterName (int index)       { return getTextForOpcode (index, effGetParamName); }
+    const String getParameterText (int index)       { return getTextForOpcode (index, effGetParamDisplay); }
+    String getParameterLabel (int index) const      { return getTextForOpcode (index, effGetParamLabel); }
 
-    bool isParameterAutomatable (int index) const override
+    bool isParameterAutomatable (int index) const
     {
         if (effect != nullptr)
         {
@@ -1182,16 +1182,16 @@ public:
     }
 
     //==============================================================================
-    int getNumPrograms() override          { return effect != nullptr ? effect->numPrograms : 0; }
-    int getCurrentProgram() override       { return (int) dispatch (effGetProgram, 0, 0, 0, 0); }
+    int getNumPrograms()          { return effect != nullptr ? effect->numPrograms : 0; }
+    int getCurrentProgram()       { return (int) dispatch (effGetProgram, 0, 0, 0, 0); }
 
-    void setCurrentProgram (int newIndex) override
+    void setCurrentProgram (int newIndex)
     {
         if (getNumPrograms() > 0 && newIndex != getCurrentProgram())
             dispatch (effSetProgram, 0, jlimit (0, getNumPrograms() - 1, newIndex), 0, 0);
     }
 
-    const String getProgramName (int index) override
+    const String getProgramName (int index)
     {
         if (index == getCurrentProgram())
             return getCurrentProgramName();
@@ -1211,7 +1211,7 @@ public:
         return programNames [index];
     }
 
-    void changeProgramName (int index, const String& newName) override
+    void changeProgramName (int index, const String& newName)
     {
         if (index == getCurrentProgram())
         {
@@ -1225,20 +1225,20 @@ public:
     }
 
     //==============================================================================
-    void getStateInformation (MemoryBlock& mb) override                  { saveToFXBFile (mb, true); }
-    void getCurrentProgramStateInformation (MemoryBlock& mb) override    { saveToFXBFile (mb, false); }
+    void getStateInformation (MemoryBlock& mb)                  { saveToFXBFile (mb, true); }
+    void getCurrentProgramStateInformation (MemoryBlock& mb)    { saveToFXBFile (mb, false); }
 
-    void setStateInformation (const void* data, int size) override               { loadFromFXBFile (data, size); }
-    void setCurrentProgramStateInformation (const void* data, int size) override { loadFromFXBFile (data, size); }
+    void setStateInformation (const void* data, int size)               { loadFromFXBFile (data, size); }
+    void setCurrentProgramStateInformation (const void* data, int size) { loadFromFXBFile (data, size); }
 
     //==============================================================================
-    void timerCallback() override
+    void timerCallback()
     {
         if (dispatch (effIdle, 0, 0, 0, 0) == 0)
             stopTimer();
     }
 
-    void handleAsyncUpdate() override
+    void handleAsyncUpdate()
     {
         // indicates that something about the plugin has changed..
         updateHostDisplay();
@@ -1395,7 +1395,7 @@ public:
     }
 
     //==============================================================================
-    VstIntPtr dispatch (const int opcode, const int index, const VstIntPtr value, void* const ptr, float opt) const
+    VstIntPtr dispatch (const int opcode, const int index, const int value, void* const ptr, float opt) const
     {
         VstIntPtr result = 0;
 
@@ -1937,7 +1937,7 @@ public:
 
     //==============================================================================
    #if ! JUCE_MAC
-    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/) override
+    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/)
     {
         if (recursiveResize)
             return;
@@ -1966,7 +1966,7 @@ public:
         }
     }
 
-    void componentVisibilityChanged() override
+    void componentVisibilityChanged()
     {
         if (isShowing())
             openPluginWindow();
@@ -1976,7 +1976,7 @@ public:
         componentMovedOrResized (true, true);
     }
 
-    void componentPeerChanged() override
+    void componentPeerChanged()
     {
         closePluginWindow();
         openPluginWindow();
@@ -1984,7 +1984,7 @@ public:
    #endif
 
    #if JUCE_MAC && ! JUCE_SUPPORT_CARBON
-    void visibilityChanged() override
+    void visibilityChanged()
     {
         if (isVisible())
             openPluginWindow();
@@ -1992,7 +1992,7 @@ public:
             closePluginWindow();
     }
 
-    void childBoundsChanged (Component*) override
+    void childBoundsChanged (Component*)
     {
         if (innerWrapper != nullptr)
             setSize (innerWrapper->getWidth(),
@@ -2001,37 +2001,42 @@ public:
    #endif
 
     //==============================================================================
-    bool keyStateChanged (bool) override                 { return pluginWantsKeys; }
-    bool keyPressed (const juce::KeyPress&) override     { return pluginWantsKeys; }
+    bool keyStateChanged (bool)                 { return pluginWantsKeys; }
+    bool keyPressed (const juce::KeyPress&)     { return pluginWantsKeys; }
 
     //==============================================================================
    #if JUCE_MAC
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         g.fillAll (Colours::black);
     }
    #else
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         if (isOpen)
         {
-           #if JUCE_LINUX
-            if (pluginWindow != 0)
+            if (ComponentPeer* const peer = getPeer())
             {
-                const Rectangle<int> clip (g.getClipBounds());
+                peer->addMaskedRegion (peer->globalToLocal (getScreenBounds()));
 
-                XEvent ev = { 0 };
-                ev.xexpose.type = Expose;
-                ev.xexpose.display = display;
-                ev.xexpose.window = pluginWindow;
-                ev.xexpose.x = clip.getX();
-                ev.xexpose.y = clip.getY();
-                ev.xexpose.width = clip.getWidth();
-                ev.xexpose.height = clip.getHeight();
+               #if JUCE_LINUX
+                if (pluginWindow != 0)
+                {
+                    const Rectangle<int> clip (g.getClipBounds());
 
-                sendEventToChild (ev);
+                    XEvent ev = { 0 };
+                    ev.xexpose.type = Expose;
+                    ev.xexpose.display = display;
+                    ev.xexpose.window = pluginWindow;
+                    ev.xexpose.x = clip.getX();
+                    ev.xexpose.y = clip.getY();
+                    ev.xexpose.width = clip.getWidth();
+                    ev.xexpose.height = clip.getHeight();
+
+                    sendEventToChild (&ev);
+                }
+               #endif
             }
-           #endif
         }
         else
         {
@@ -2041,7 +2046,7 @@ public:
    #endif
 
     //==============================================================================
-    void timerCallback() override
+    void timerCallback()
     {
         if (isShowing())
         {
@@ -2065,7 +2070,7 @@ public:
     }
 
     //==============================================================================
-    void mouseDown (const MouseEvent& e) override
+    void mouseDown (const MouseEvent& e)
     {
         (void) e;
 
@@ -2075,18 +2080,27 @@ public:
 
         toFront (true);
 
-        XEvent ev;
-        prepareXEvent (ev, e);
+        XEvent ev = { 0 };
+        ev.xbutton.display = display;
         ev.xbutton.type = ButtonPress;
+        ev.xbutton.window = pluginWindow;
+        ev.xbutton.root = RootWindow (display, DefaultScreen (display));
+        ev.xbutton.time = CurrentTime;
+        ev.xbutton.x = e.x;
+        ev.xbutton.y = e.y;
+        ev.xbutton.x_root = e.getScreenX();
+        ev.xbutton.y_root = e.getScreenY();
+
         translateJuceToXButtonModifiers (e, ev);
-        sendEventToChild (ev);
+
+        sendEventToChild (&ev);
 
        #elif JUCE_WINDOWS
         toFront (true);
        #endif
     }
 
-    void broughtToFront() override
+    void broughtToFront()
     {
         activeVSTWindows.removeFirstMatchingValue (this);
         activeVSTWindows.add (this);
@@ -2119,13 +2133,6 @@ private:
         plugin.fillInPluginDescription (desc);
 
         return desc.manufacturerName.containsIgnoreCase ("Loud Technologies");
-    }
-
-    // This is an old workaround for some plugins that need a repaint when their
-    // windows are first created, but it breaks some Izotope plugins..
-    bool shouldRepaintCarbonWindowWhenCreated()
-    {
-        return ! plugin.getName().containsIgnoreCase ("izotope");
     }
 
     //==============================================================================
@@ -2378,113 +2385,152 @@ private:
 #if JUCE_LINUX
     //==============================================================================
     // overload mouse/keyboard events to forward them to the plugin's inner window..
-    void sendEventToChild (XEvent& event)
+    void sendEventToChild (XEvent* event)
     {
         if (pluginProc != 0)
         {
             // if the plugin publishes an event procedure, pass the event directly..
-            pluginProc (&event);
+            pluginProc (event);
         }
         else if (pluginWindow != 0)
         {
             // if the plugin has a window, then send the event to the window so that
             // its message thread will pick it up..
-            XSendEvent (display, pluginWindow, False, NoEventMask, &event);
+            XSendEvent (display, pluginWindow, False, 0L, event);
             XFlush (display);
         }
     }
 
-    void prepareXEvent (XEvent& ev, const MouseEvent& e) const noexcept
-    {
-        zerostruct (ev);
-        ev.xcrossing.display = display;
-        ev.xcrossing.window = pluginWindow;
-        ev.xcrossing.root = RootWindow (display, DefaultScreen (display));
-        ev.xcrossing.time = CurrentTime;
-        ev.xcrossing.x = e.x;
-        ev.xcrossing.y = e.y;
-        ev.xcrossing.x_root = e.getScreenX();
-        ev.xcrossing.y_root = e.getScreenY();
-    }
-
-    void mouseEnter (const MouseEvent& e) override
+    void mouseEnter (const MouseEvent& e)
     {
         if (pluginWindow != 0)
         {
-            XEvent ev;
-            prepareXEvent (ev, e);
+            XEvent ev = { 0 };
+            ev.xcrossing.display = display;
             ev.xcrossing.type = EnterNotify;
-            ev.xcrossing.mode = NotifyNormal;
-            ev.xcrossing.detail = NotifyAncestor;
+            ev.xcrossing.window = pluginWindow;
+            ev.xcrossing.root = RootWindow (display, DefaultScreen (display));
+            ev.xcrossing.time = CurrentTime;
+            ev.xcrossing.x = e.x;
+            ev.xcrossing.y = e.y;
+            ev.xcrossing.x_root = e.getScreenX();
+            ev.xcrossing.y_root = e.getScreenY();
+            ev.xcrossing.mode = NotifyNormal; // NotifyGrab, NotifyUngrab
+            ev.xcrossing.detail = NotifyAncestor; // NotifyVirtual, NotifyInferior, NotifyNonlinear,NotifyNonlinearVirtual
+
             translateJuceToXCrossingModifiers (e, ev);
-            sendEventToChild (ev);
+
+            sendEventToChild (&ev);
         }
     }
 
-    void mouseExit (const MouseEvent& e) override
+    void mouseExit (const MouseEvent& e)
     {
         if (pluginWindow != 0)
         {
-            XEvent ev;
-            prepareXEvent (ev, e);
+            XEvent ev = { 0 };
+            ev.xcrossing.display = display;
             ev.xcrossing.type = LeaveNotify;
-            ev.xcrossing.mode = NotifyNormal;
-            ev.xcrossing.detail = NotifyAncestor;
-            ev.xcrossing.focus = hasKeyboardFocus (true);
+            ev.xcrossing.window = pluginWindow;
+            ev.xcrossing.root = RootWindow (display, DefaultScreen (display));
+            ev.xcrossing.time = CurrentTime;
+            ev.xcrossing.x = e.x;
+            ev.xcrossing.y = e.y;
+            ev.xcrossing.x_root = e.getScreenX();
+            ev.xcrossing.y_root = e.getScreenY();
+            ev.xcrossing.mode = NotifyNormal; // NotifyGrab, NotifyUngrab
+            ev.xcrossing.detail = NotifyAncestor; // NotifyVirtual, NotifyInferior, NotifyNonlinear,NotifyNonlinearVirtual
+            ev.xcrossing.focus = hasKeyboardFocus (true); // TODO - yes ?
+
             translateJuceToXCrossingModifiers (e, ev);
-            sendEventToChild (ev);
+
+            sendEventToChild (&ev);
         }
     }
 
-    void mouseMove (const MouseEvent& e) override
+    void mouseMove (const MouseEvent& e)
     {
         if (pluginWindow != 0)
         {
-            XEvent ev;
-            prepareXEvent (ev, e);
+            XEvent ev = { 0 };
+            ev.xmotion.display = display;
             ev.xmotion.type = MotionNotify;
+            ev.xmotion.window = pluginWindow;
+            ev.xmotion.root = RootWindow (display, DefaultScreen (display));
+            ev.xmotion.time = CurrentTime;
             ev.xmotion.is_hint = NotifyNormal;
-            sendEventToChild (ev);
+            ev.xmotion.x = e.x;
+            ev.xmotion.y = e.y;
+            ev.xmotion.x_root = e.getScreenX();
+            ev.xmotion.y_root = e.getScreenY();
+
+            sendEventToChild (&ev);
         }
     }
 
-    void mouseDrag (const MouseEvent& e) override
+    void mouseDrag (const MouseEvent& e)
     {
         if (pluginWindow != 0)
         {
-            XEvent ev;
-            prepareXEvent (ev, e);
+            XEvent ev = { 0 };
+            ev.xmotion.display = display;
             ev.xmotion.type = MotionNotify;
+            ev.xmotion.window = pluginWindow;
+            ev.xmotion.root = RootWindow (display, DefaultScreen (display));
+            ev.xmotion.time = CurrentTime;
+            ev.xmotion.x = e.x ;
+            ev.xmotion.y = e.y;
+            ev.xmotion.x_root = e.getScreenX();
+            ev.xmotion.y_root = e.getScreenY();
             ev.xmotion.is_hint = NotifyNormal;
+
             translateJuceToXMotionModifiers (e, ev);
-            sendEventToChild (ev);
+            sendEventToChild (&ev);
         }
     }
 
-    void mouseUp (const MouseEvent& e) override
+    void mouseUp (const MouseEvent& e)
     {
         if (pluginWindow != 0)
         {
-            XEvent ev;
-            prepareXEvent (ev, e);
+            XEvent ev = { 0 };
+            ev.xbutton.display = display;
             ev.xbutton.type = ButtonRelease;
+            ev.xbutton.window = pluginWindow;
+            ev.xbutton.root = RootWindow (display, DefaultScreen (display));
+            ev.xbutton.time = CurrentTime;
+            ev.xbutton.x = e.x;
+            ev.xbutton.y = e.y;
+            ev.xbutton.x_root = e.getScreenX();
+            ev.xbutton.y_root = e.getScreenY();
+
             translateJuceToXButtonModifiers (e, ev);
-            sendEventToChild (ev);
+            sendEventToChild (&ev);
         }
     }
 
-    void mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel) override
+    void mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel)
     {
         if (pluginWindow != 0)
         {
-            XEvent ev;
-            prepareXEvent (ev, e);
+            XEvent ev = { 0 };
+            ev.xbutton.display = display;
             ev.xbutton.type = ButtonPress;
+            ev.xbutton.window = pluginWindow;
+            ev.xbutton.root = RootWindow (display, DefaultScreen (display));
+            ev.xbutton.time = CurrentTime;
+            ev.xbutton.x = e.x;
+            ev.xbutton.y = e.y;
+            ev.xbutton.x_root = e.getScreenX();
+            ev.xbutton.y_root = e.getScreenY();
+
             translateJuceToXMouseWheelModifiers (e, wheel.deltaY, ev);
-            sendEventToChild (ev);
+            sendEventToChild (&ev);
+
+            // TODO - put a usleep here ?
 
             ev.xbutton.type = ButtonRelease;
-            sendEventToChild (ev);
+            sendEventToChild (&ev);
         }
     }
 #endif
@@ -2499,7 +2545,6 @@ private:
             : owner (w), alreadyInside (false)
         {
             keepPluginWindowWhenHidden = w.shouldAvoidDeletingWindow();
-            setRepaintsChildHIViewWhenCreated (w.shouldRepaintCarbonWindowWhenCreated());
         }
 
         ~InnerWrapperComponent()
@@ -2507,13 +2552,13 @@ private:
             deleteWindow();
         }
 
-        HIViewRef attachView (WindowRef windowRef, HIViewRef rootView) override
+        HIViewRef attachView (WindowRef windowRef, HIViewRef rootView)
         {
             owner.openPluginWindow (windowRef);
             return 0;
         }
 
-        void removeView (HIViewRef) override
+        void removeView (HIViewRef)
         {
             if (owner.isOpen)
             {
@@ -2523,7 +2568,7 @@ private:
             }
         }
 
-        bool getEmbeddedViewSize (int& w, int& h) override
+        bool getEmbeddedViewSize (int& w, int& h)
         {
             ERect* rect = nullptr;
             owner.dispatch (effEditGetRect, 0, 0, &rect, 0);
@@ -2532,7 +2577,7 @@ private:
             return true;
         }
 
-        void handleMouseDown (int x, int y) override
+        void handleMouseDown (int x, int y)
         {
             if (! alreadyInside)
             {
@@ -2547,7 +2592,7 @@ private:
             }
         }
 
-        void handlePaint() override
+        void handlePaint()
         {
             if (ComponentPeer* const peer = getPeer())
             {
@@ -2576,7 +2621,7 @@ private:
     ScopedPointer <NSViewComponent> innerWrapper;
    #endif
 
-    void resized() override
+    void resized()
     {
         if (innerWrapper != nullptr)
             innerWrapper->setSize (getWidth(), getHeight());
@@ -2608,23 +2653,6 @@ static VstIntPtr VSTCALLBACK audioMaster (AEffect* effect, VstInt32 opcode, VstI
 VSTPluginFormat::VSTPluginFormat() {}
 VSTPluginFormat::~VSTPluginFormat() {}
 
-static VSTPluginInstance* createAndUpdateDesc (VSTPluginFormat& format, PluginDescription& desc)
-{
-    if (VSTPluginInstance* instance = dynamic_cast <VSTPluginInstance*> (format.createInstanceFromDescription (desc)))
-    {
-       #if JUCE_MAC
-        if (instance->module->resFileId != 0)
-            UseResFile (instance->module->resFileId);
-       #endif
-
-        instance->fillInPluginDescription (desc);
-
-        return instance;
-    }
-
-    return nullptr;
-}
-
 void VSTPluginFormat::findAllTypesForFile (OwnedArray <PluginDescription>& results,
                                            const String& fileOrIdentifier)
 {
@@ -2635,10 +2663,17 @@ void VSTPluginFormat::findAllTypesForFile (OwnedArray <PluginDescription>& resul
     desc.fileOrIdentifier = fileOrIdentifier;
     desc.uid = 0;
 
-    ScopedPointer<VSTPluginInstance> instance (createAndUpdateDesc (*this, desc));
+    ScopedPointer <VSTPluginInstance> instance (dynamic_cast <VSTPluginInstance*> (createInstanceFromDescription (desc)));
 
     if (instance == nullptr)
         return;
+
+   #if JUCE_MAC
+    if (instance->module->resFileId != 0)
+        UseResFile (instance->module->resFileId);
+   #endif
+
+    instance->fillInPluginDescription (desc);
 
     VstPlugCategory category = (VstPlugCategory) instance->dispatch (effGetPlugCategory, 0, 0, 0, 0);
 
@@ -2661,17 +2696,11 @@ void VSTPluginFormat::findAllTypesForFile (OwnedArray <PluginDescription>& resul
                 break;
 
             desc.uid = uid;
+            desc.name = shellEffectName;
+            desc.descriptiveName = shellEffectName;
 
-            ScopedPointer<VSTPluginInstance> shellInstance (createAndUpdateDesc (*this, desc));
-
-            if (shellInstance != nullptr)
-            {
-                jassert (desc.uid == uid);
-                desc.name = shellEffectName;
-
-                if (! arrayContainsPlugin (results, desc))
-                    results.add (new PluginDescription (desc));
-            }
+            if (! arrayContainsPlugin (results, desc))
+                results.add (new PluginDescription (desc));
         }
     }
 }
@@ -2861,14 +2890,6 @@ void VSTPluginFormat::setExtraFunctions (AudioPluginInstance* plugin, ExtraFunct
 
     if (VSTPluginInstance* vst = dynamic_cast <VSTPluginInstance*> (plugin))
         vst->extraFunctions = f;
-}
-
-VstIntPtr JUCE_CALLTYPE dispatcher (AudioPluginInstance* plugin, int32 opcode, int32 index, VstIntPtr value, void* ptr, float opt)
-{
-    if (VSTPluginInstance* vst = dynamic_cast <VSTPluginInstance*> (plugin))
-        return vst->dispatch (opcode, index, value, ptr, opt);
-
-    return 0;
 }
 
 #endif

@@ -22,8 +22,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DOCUMENTWINDOW_H_INCLUDED
-#define JUCE_DOCUMENTWINDOW_H_INCLUDED
+#ifndef __JUCE_DOCUMENTWINDOW_JUCEHEADER__
+#define __JUCE_DOCUMENTWINDOW_JUCEHEADER__
+
+#include "juce_ResizableWindow.h"
+#include "../buttons/juce_Button.h"
+#include "../menus/juce_MenuBarModel.h"
 
 
 //==============================================================================
@@ -85,7 +89,7 @@ public:
         @see TitleBarButtons
     */
     DocumentWindow (const String& name,
-                    Colour backgroundColour,
+                    const Colour& backgroundColour,
                     int requiredButtons,
                     bool addToDesktop = true);
 
@@ -226,25 +230,25 @@ public:
     //==============================================================================
    #ifndef DOXYGEN
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics&);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void lookAndFeelChanged() override;
+    void lookAndFeelChanged();
     /** @internal */
-    BorderSize<int> getBorderThickness() override;
+    BorderSize<int> getBorderThickness();
     /** @internal */
-    BorderSize<int> getContentComponentBorder() override;
+    BorderSize<int> getContentComponentBorder();
     /** @internal */
-    void mouseDoubleClick (const MouseEvent&) override;
+    void mouseDoubleClick (const MouseEvent&);
     /** @internal */
-    void userTriedToCloseWindow() override;
+    void userTriedToCloseWindow();
     /** @internal */
-    void activeWindowStatusChanged() override;
+    void activeWindowStatusChanged();
     /** @internal */
-    int getDesktopWindowStyleFlags() const override;
+    int getDesktopWindowStyleFlags() const;
     /** @internal */
-    void parentHierarchyChanged() override;
+    void parentHierarchyChanged();
     /** @internal */
     Rectangle<int> getTitleBarArea();
    #endif
@@ -259,8 +263,8 @@ private:
     MenuBarModel* menuBarModel;
 
     class ButtonListenerProxy;
-    friend struct ContainerDeletePolicy<ButtonListenerProxy>;
-    ScopedPointer<ButtonListenerProxy> buttonListener;
+    friend class ScopedPointer <ButtonListenerProxy>;
+    ScopedPointer <ButtonListenerProxy> buttonListener;
 
     void repaintTitleBar();
 
@@ -268,4 +272,4 @@ private:
 };
 
 
-#endif   // JUCE_DOCUMENTWINDOW_H_INCLUDED
+#endif   // __JUCE_DOCUMENTWINDOW_JUCEHEADER__

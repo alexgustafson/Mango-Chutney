@@ -22,8 +22,16 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PATH_H_INCLUDED
-#define JUCE_PATH_H_INCLUDED
+#ifndef __JUCE_PATH_JUCEHEADER__
+#define __JUCE_PATH_JUCEHEADER__
+
+#include "juce_AffineTransform.h"
+#include "juce_Line.h"
+#include "juce_Rectangle.h"
+#include "../placement/juce_Justification.h"
+class Image;
+class InputStream;
+class OutputStream;
 
 
 //==============================================================================
@@ -182,7 +190,7 @@ public:
 
     /** Begins a new subpath with a given starting position.
 
-        This will move the path's current position to the coordinates passed in and
+        This will move the path's current position to the co-ordinates passed in and
         make it ready to draw lines or curves starting from this position.
 
         After adding whatever lines and curves are needed, you can either
@@ -195,7 +203,7 @@ public:
 
     /** Begins a new subpath with a given starting position.
 
-        This will move the path's current position to the coordinates passed in and
+        This will move the path's current position to the co-ordinates passed in and
         make it ready to draw lines or curves starting from this position.
 
         After adding whatever lines and curves are needed, you can either
@@ -604,25 +612,7 @@ public:
     */
     AffineTransform getTransformToScaleToFit (float x, float y, float width, float height,
                                               bool preserveProportions,
-                                              Justification justificationType = Justification::centred) const;
-
-    /** Returns a transform that can be used to rescale the path to fit into a given space.
-
-        @param area                 the rectangle to fit the path inside
-        @param preserveProportions  if true, it will fit the path into the space without altering its
-                                    horizontal/vertical scale ratio; if false, it will distort the
-                                    path to fill the specified ratio both horizontally and vertically
-        @param justificationType    if the proportions are preseved, the resultant path may be smaller
-                                    than the available rectangle, so this describes how it should be
-                                    positioned within the space.
-        @returns                    an appropriate transformation
-
-        @see applyTransform, scaleToFit
-
-    */
-    AffineTransform getTransformToScaleToFit (const Rectangle<float>& area,
-                                              bool preserveProportions,
-                                              Justification justificationType = Justification::centred) const;
+                                              const Justification& justificationType = Justification::centred) const;
 
     /** Creates a version of this path where all sharp corners have been replaced by curves.
 
@@ -774,4 +764,4 @@ private:
     JUCE_LEAK_DETECTOR (Path)
 };
 
-#endif   // JUCE_PATH_H_INCLUDED
+#endif   // __JUCE_PATH_JUCEHEADER__

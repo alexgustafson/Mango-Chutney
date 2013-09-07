@@ -52,21 +52,21 @@ public:
     static const char* const timeSig;
 
     //==============================================================================
-    Array<int> getPossibleSampleRates() override;
-    Array<int> getPossibleBitDepths() override;
-    bool canDoStereo() override;
-    bool canDoMono() override;
+    Array<int> getPossibleSampleRates();
+    Array<int> getPossibleBitDepths();
+    bool canDoStereo();
+    bool canDoMono();
 
     //==============================================================================
     AudioFormatReader* createReaderFor (InputStream*,
-                                        bool deleteStreamIfOpeningFails) override;
+                                        bool deleteStreamIfOpeningFails);
 
     AudioFormatWriter* createWriterFor (OutputStream*,
                                         double sampleRateToUse,
                                         unsigned int numberOfChannels,
                                         int bitsPerSample,
                                         const StringPairArray& metadataValues,
-                                        int qualityOptionIndex) override;
+                                        int qualityOptionIndex);
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CoreAudioFormat)

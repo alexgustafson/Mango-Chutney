@@ -175,15 +175,15 @@ namespace DirectShowHelpers
 class DirectShowComponent::DirectShowContext    : public AsyncUpdater
 {
 public:
-    DirectShowContext (DirectShowComponent& c, VideoRendererType renderType)
-        : component (c),
+    DirectShowContext (DirectShowComponent& component_, VideoRendererType type_)
+        : component (component_),
           hwnd (0),
           hdc (0),
           state (uninitializedState),
           hasVideo (false),
           videoWidth (0),
           videoHeight (0),
-          type (renderType),
+          type (type_),
           needToUpdateViewport (true),
           needToRecreateNativeWindow (false)
     {
@@ -252,9 +252,9 @@ public:
             videoRenderer->setVideoWindow (hwnd);
     }
 
-    void handleAsyncUpdate() override
+    void handleAsyncUpdate()
     {
-        if (hwnd != 0)
+        if (hwnd  != 0)
         {
             if (needToRecreateNativeWindow)
             {
@@ -319,17 +319,7 @@ public:
 
         // build filter graph
         if (SUCCEEDED (hr))
-        {
             hr = graphBuilder->RenderFile (fileOrURLPath.toWideCharPointer(), nullptr);
-
-            if (FAILED (hr))
-            {
-                // Annoyingly, if we don't run the msg loop between failing and deleting the window, the
-                // whole OS message-dispatch system gets itself into a state, and refuses to deliver any
-                // more messages for the whole app. (That's what happens in Win7, anyway)
-                MessageManager::getInstance()->runDispatchLoopUntil (200);
-            }
-        }
 
         // remove video renderer if not connected (no video)
         if (SUCCEEDED (hr))
@@ -734,19 +724,19 @@ public:
     {
     }
 
-    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/) override
+    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/)
     {
         if (owner->videoLoaded)
             owner->updateContextPosition();
     }
 
-    void componentPeerChanged() override
+    void componentPeerChanged()
     {
         if (owner->videoLoaded)
             owner->recreateNativeWindowAsync();
     }
 
-    void componentVisibilityChanged() override
+    void componentVisibilityChanged()
     {
         if (owner->videoLoaded)
             owner->showContext (owner->isShowing());
@@ -791,8 +781,12 @@ void DirectShowComponent::updateContextPosition()
     context->updateContextPosition();
 
     if (getWidth() > 0 && getHeight() > 0)
-        if (ComponentPeer* peer = getTopLevelComponent()->getPeer())
-            context->updateWindowPosition (peer->getAreaCoveredBy (*this));
+    {
+        Component* const topComp = getTopLevelComponent();
+
+        if (topComp->getPeer() != nullptr)
+            context->updateWindowPosition (topComp->getLocalArea (this, getLocalBounds()));
+    }
 }
 
 void DirectShowComponent::showContext (const bool shouldBeVisible)
@@ -803,9 +797,16 @@ void DirectShowComponent::showContext (const bool shouldBeVisible)
 void DirectShowComponent::paint (Graphics& g)
 {
     if (videoLoaded)
+    {
         context->handleUpdateNowIfNeeded();
+
+        if (ComponentPeer* const peer = getPeer())
+            peer->addMaskedRegion (peer->globalToLocal (getScreenBounds()));
+    }
     else
+    {
         g.fillAll (Colours::grey);
+    }
 }
 
 //======================================================================
@@ -858,7 +859,7 @@ void DirectShowComponent::getMovieNormalSize (int &width, int &height) const
 
 //======================================================================
 void DirectShowComponent::setBoundsWithCorrectAspectRatio (const Rectangle<int>& spaceToFitWithin,
-                                                           RectanglePlacement placement)
+                                                           const RectanglePlacement& placement)
 {
     int normalWidth, normalHeight;
     getMovieNormalSize (normalWidth, normalHeight);

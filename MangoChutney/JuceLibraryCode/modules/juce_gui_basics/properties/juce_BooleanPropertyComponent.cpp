@@ -54,7 +54,7 @@ BooleanPropertyComponent::~BooleanPropertyComponent()
 
 void BooleanPropertyComponent::setState (const bool newState)
 {
-    button.setToggleState (newState, sendNotification);
+    button.setToggleState (newState, true);
 }
 
 bool BooleanPropertyComponent::getState() const
@@ -75,7 +75,7 @@ void BooleanPropertyComponent::paint (Graphics& g)
 
 void BooleanPropertyComponent::refresh()
 {
-    button.setToggleState (getState(), dontSendNotification);
+    button.setToggleState (getState(), false);
     button.setButtonText (button.getToggleState() ? onText : offText);
 }
 

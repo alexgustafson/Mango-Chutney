@@ -203,7 +203,7 @@ public:
                 && SUCCEEDED (discRecorder->SetRecorderProperties (prop));
     }
 
-    void timerCallback() override
+    void timerCallback()
     {
         const DiskState state = getDiskState();
 

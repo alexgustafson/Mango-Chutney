@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_COMBOBOX_H_INCLUDED
-#define JUCE_COMBOBOX_H_INCLUDED
+#ifndef __JUCE_COMBOBOX_JUCEHEADER__
+#define __JUCE_COMBOBOX_JUCEHEADER__
+
+#include "juce_Label.h"
 
 
 //==============================================================================
@@ -80,7 +82,7 @@ public:
         The default is Justification::centredLeft. The text is displayed using a
         Label component inside the ComboBox.
     */
-    void setJustificationType (Justification justification);
+    void setJustificationType (const Justification& justification);
 
     /** Returns the current justification for the text box.
         @see setJustificationType
@@ -139,12 +141,12 @@ public:
 
     /** Removes all the items from the drop-down list.
 
-        If this call causes the content to be cleared, and a change-message
-        will be broadcast according to the notification parameter.
+        If this call causes the content to be cleared, then a change-message
+        will be broadcast unless dontSendChangeMessage is true.
 
         @see addItem, removeItem, getNumItems
     */
-    void clear (NotificationType notification = sendNotificationAsync);
+    void clear (bool dontSendChangeMessage = false);
 
     /** Returns the number of items that have been added to the list.
 
@@ -159,7 +161,9 @@ public:
     String getItemText (int index) const;
 
     /** Returns the ID for one of the items in the list.
+
         Note that this doesn't include headers or separators.
+
         @param index    the item's index from 0 to (getNumItems() - 1)
     */
     int getItemId (int index) const noexcept;
@@ -192,13 +196,12 @@ public:
         This will set the ComboBox's text to that of the item that matches
         this ID.
 
-        @param newItemId        the new item to select
-        @param notification     determines the type of change notification that will
-                                be sent to listeners if the value changes
+        @param newItemId                the new item to select
+        @param dontSendChangeMessage    if set to true, this method won't trigger a
+                                        change notification
         @see getSelectedId, setSelectedItemIndex, setText
     */
-    void setSelectedId (int newItemId,
-                        NotificationType notification = sendNotificationAsync);
+    void setSelectedId (int newItemId, bool dontSendChangeMessage = false);
 
     //==============================================================================
     /** Returns the index of the item that's currently shown in the box.
@@ -216,13 +219,12 @@ public:
         This will set the ComboBox's text to that of the item at the given
         index in the list.
 
-        @param newItemIndex     the new item to select
-        @param notification     determines the type of change notification that will
-                                be sent to listeners if the value changes
+        @param newItemIndex             the new item to select
+        @param dontSendChangeMessage    if set to true, this method won't trigger a
+                                        change notification
         @see getSelectedItemIndex, setSelectedId, setText
     */
-    void setSelectedItemIndex (int newItemIndex,
-                               NotificationType notification = sendNotificationAsync);
+    void setSelectedItemIndex (int newItemIndex, bool dontSendChangeMessage = false);
 
     //==============================================================================
     /** Returns the text that is currently shown in the combo-box's text field.
@@ -242,13 +244,12 @@ public:
         items, then getSelectedId() will return -1, otherwise it wil return
         the approriate ID.
 
-        @param newText          the text to select
-        @param notification     determines the type of change notification that will
-                                be sent to listeners if the text changes
+        @param newText                  the text to select
+        @param dontSendChangeMessage    if set to true, this method won't trigger a
+                                        change notification
         @see getText
     */
-    void setText (const String& newText,
-                  NotificationType notification = sendNotificationAsync);
+    void setText (const String& newText, bool dontSendChangeMessage = false);
 
     /** Programmatically opens the text editor to allow the user to edit the current item.
 
@@ -314,7 +315,7 @@ public:
 
     //==============================================================================
     /** Gives the ComboBox a tooltip. */
-    void setTooltip (const String& newTooltip) override;
+    void setTooltip (const String& newTooltip);
 
 
     //==============================================================================
@@ -338,45 +339,37 @@ public:
 
     //==============================================================================
     /** @internal */
-    void labelTextChanged (Label*) override;
+    void labelTextChanged (Label*);
     /** @internal */
-    void enablementChanged() override;
+    void enablementChanged();
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
     /** @internal */
-    void focusGained (Component::FocusChangeType) override;
+    void focusGained (Component::FocusChangeType cause);
     /** @internal */
-    void focusLost (Component::FocusChangeType) override;
+    void focusLost (Component::FocusChangeType cause);
     /** @internal */
-    void handleAsyncUpdate() override;
+    void handleAsyncUpdate();
     /** @internal */
-    String getTooltip() override                        { return label->getTooltip(); }
+    String getTooltip()                                       { return label->getTooltip(); }
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent&);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent&);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent&);
     /** @internal */
-    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&) override;
+    void lookAndFeelChanged();
     /** @internal */
-    void lookAndFeelChanged() override;
+    void paint (Graphics&);
     /** @internal */
-    void paint (Graphics&) override;
+    void resized();
     /** @internal */
-    void resized() override;
+    bool keyStateChanged (bool isKeyDown);
     /** @internal */
-    bool keyStateChanged (bool) override;
+    bool keyPressed (const KeyPress&);
     /** @internal */
-    bool keyPressed (const KeyPress&) override;
-    /** @internal */
-    void valueChanged (Value&) override;
-
-    // These methods' bool parameters have changed: see their new method signatures.
-    JUCE_DEPRECATED (void clear (bool));
-    JUCE_DEPRECATED (void setSelectedId (int, bool));
-    JUCE_DEPRECATED (void setSelectedItemIndex (int, bool));
-    JUCE_DEPRECATED (void setText (const String&, bool));
+    void valueChanged (Value&);
 
 private:
     //==============================================================================
@@ -394,7 +387,7 @@ private:
     OwnedArray <ItemInfo> items;
     Value currentId;
     int lastCurrentId;
-    bool isButtonDown, separatorPending, menuActive;
+    bool isButtonDown, separatorPending, menuActive, textIsCustom;
     ListenerList <Listener> listeners;
     ScopedPointer<Label> label;
     String textWhenNothingSelected, noChoicesMessage;
@@ -402,8 +395,6 @@ private:
     ItemInfo* getItemForId (int itemId) const noexcept;
     ItemInfo* getItemForIndex (int index) const noexcept;
     bool selectIfEnabled (int index);
-    bool nudgeSelectedItem (int delta);
-    void sendChange (NotificationType);
     static void popupMenuFinishedCallback (int, ComboBox*);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ComboBox)
@@ -412,4 +403,4 @@ private:
 /** This typedef is just for compatibility with old code - newer code should use the ComboBox::Listener class directly. */
 typedef ComboBox::Listener ComboBoxListener;
 
-#endif   // JUCE_COMBOBOX_H_INCLUDED
+#endif   // __JUCE_COMBOBOX_JUCEHEADER__

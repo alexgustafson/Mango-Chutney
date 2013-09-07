@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_GROUPCOMPONENT_H_INCLUDED
-#define JUCE_GROUPCOMPONENT_H_INCLUDED
+#ifndef __JUCE_GROUPCOMPONENT_JUCEHEADER__
+#define __JUCE_GROUPCOMPONENT_JUCEHEADER__
+
+#include "../components/juce_Component.h"
 
 
 //==============================================================================
@@ -60,13 +62,13 @@ public:
 
         @see getTextLabelPosition
     */
-    void setTextLabelPosition (Justification justification);
+    void setTextLabelPosition (const Justification& justification);
 
     /** Returns the current text label position.
 
         @see setTextLabelPosition
     */
-    Justification getTextLabelPosition() const noexcept           { return justification; }
+    const Justification getTextLabelPosition() const noexcept           { return justification; }
 
     //==============================================================================
     /** A set of colour IDs to use to change the colour of various aspects of the component.
@@ -84,11 +86,11 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void enablementChanged() override;
+    void enablementChanged();
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
 
 private:
     String text;
@@ -98,4 +100,4 @@ private:
 };
 
 
-#endif   // JUCE_GROUPCOMPONENT_H_INCLUDED
+#endif   // __JUCE_GROUPCOMPONENT_JUCEHEADER__

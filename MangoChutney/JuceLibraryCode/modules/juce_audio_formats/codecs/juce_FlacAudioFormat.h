@@ -40,23 +40,23 @@ public:
     ~FlacAudioFormat();
 
     //==============================================================================
-    Array<int> getPossibleSampleRates() override;
-    Array<int> getPossibleBitDepths() override;
-    bool canDoStereo() override;
-    bool canDoMono() override;
-    bool isCompressed() override;
-    StringArray getQualityOptions() override;
+    Array<int> getPossibleSampleRates();
+    Array<int> getPossibleBitDepths();
+    bool canDoStereo();
+    bool canDoMono();
+    bool isCompressed();
+    StringArray getQualityOptions();
 
     //==============================================================================
     AudioFormatReader* createReaderFor (InputStream* sourceStream,
-                                        bool deleteStreamIfOpeningFails) override;
+                                        bool deleteStreamIfOpeningFails);
 
     AudioFormatWriter* createWriterFor (OutputStream* streamToWriteTo,
                                         double sampleRateToUse,
                                         unsigned int numberOfChannels,
                                         int bitsPerSample,
                                         const StringPairArray& metadataValues,
-                                        int qualityOptionIndex) override;
+                                        int qualityOptionIndex);
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (FlacAudioFormat)
 };

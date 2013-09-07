@@ -150,14 +150,6 @@ void JUCE_CALLTYPE Thread::sleep (int millisecs)
     nanosleep (&time, nullptr);
 }
 
-void JUCE_CALLTYPE Process::terminate()
-{
-   #if JUCE_ANDROID
-    _exit (EXIT_FAILURE);
-   #else
-    std::_Exit (EXIT_FAILURE);
-   #endif
-}
 
 //==============================================================================
 const juce_wchar File::separator = '/';
@@ -185,21 +177,6 @@ File File::getCurrentWorkingDirectory()
 bool File::setAsCurrentWorkingDirectory() const
 {
     return chdir (getFullPathName().toUTF8()) == 0;
-}
-
-//==============================================================================
-// The unix siginterrupt function is deprecated - this does the same job.
-int juce_siginterrupt (int sig, int flag)
-{
-    struct ::sigaction act;
-    (void) ::sigaction (sig, nullptr, &act);
-
-    if (flag != 0)
-        act.sa_flags &= ~SA_RESTART;
-    else
-        act.sa_flags |= SA_RESTART;
-
-    return ::sigaction (sig, &act, nullptr);
 }
 
 //==============================================================================
@@ -890,7 +867,7 @@ void Thread::killThread()
     }
 }
 
-void JUCE_CALLTYPE Thread::setCurrentThreadName (const String& name)
+void Thread::setCurrentThreadName (const String& name)
 {
    #if JUCE_IOS || (JUCE_MAC && defined (MAC_OS_X_VERSION_10_5) && MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5)
     JUCE_AUTORELEASEPOOL
@@ -898,11 +875,7 @@ void JUCE_CALLTYPE Thread::setCurrentThreadName (const String& name)
         [[NSThread currentThread] setName: juceStringToNS (name)];
     }
    #elif JUCE_LINUX
-    #if (__GLIBC__ * 1000 + __GLIBC_MINOR__) >= 2012
-     pthread_setname_np (pthread_self(), name.toRawUTF8());
-    #else
-     prctl (PR_SET_NAME, name.toRawUTF8(), 0, 0, 0);
-    #endif
+    pthread_setname_np (pthread_self(), name.toRawUTF8());
    #endif
 }
 
@@ -912,7 +885,7 @@ bool Thread::setThreadPriority (void* handle, int priority)
     int policy;
     priority = jlimit (0, 10, priority);
 
-    if (handle == nullptr)
+    if (handle == 0)
         handle = (void*) pthread_self();
 
     if (pthread_getschedparam ((pthread_t) handle, &policy, &param) != 0)
@@ -927,12 +900,12 @@ bool Thread::setThreadPriority (void* handle, int priority)
     return pthread_setschedparam ((pthread_t) handle, policy, &param) == 0;
 }
 
-Thread::ThreadID JUCE_CALLTYPE Thread::getCurrentThreadId()
+Thread::ThreadID Thread::getCurrentThreadId()
 {
     return (ThreadID) pthread_self();
 }
 
-void JUCE_CALLTYPE Thread::yield()
+void Thread::yield()
 {
     sched_yield();
 }
@@ -946,7 +919,7 @@ void JUCE_CALLTYPE Thread::yield()
  #define SUPPORT_AFFINITIES 1
 #endif
 
-void JUCE_CALLTYPE Thread::setCurrentThreadAffinityMask (const uint32 affinityMask)
+void Thread::setCurrentThreadAffinityMask (const uint32 affinityMask)
 {
    #if SUPPORT_AFFINITIES
     cpu_set_t affinity;
@@ -1151,7 +1124,7 @@ struct HighResolutionTimer::Pimpl
             shouldStop = false;
 
             if (pthread_create (&thread, nullptr, timerThread, this) == 0)
-                setThreadToRealtime (thread, (uint64) newPeriod);
+                setThreadToRealtime (thread, newPeriod);
             else
                 jassertfalse;
         }

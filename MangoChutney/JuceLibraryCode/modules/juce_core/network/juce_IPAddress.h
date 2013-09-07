@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_IPADDRESS_H_INCLUDED
-#define JUCE_IPADDRESS_H_INCLUDED
+#ifndef __JUCE_IPADDRESS_JUCEHEADER__
+#define __JUCE_IPADDRESS_JUCEHEADER__
 
 
 //==============================================================================
@@ -79,4 +79,4 @@ public:
 };
 
 
-#endif   // JUCE_IPADDRESS_H_INCLUDED
+#endif   // __JUCE_IPADDRESS_JUCEHEADER__

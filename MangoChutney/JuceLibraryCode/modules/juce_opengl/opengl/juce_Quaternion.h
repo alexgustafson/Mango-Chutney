@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_QUATERNION_H_INCLUDED
-#define JUCE_QUATERNION_H_INCLUDED
+#ifndef __JUCE_QUATERNION_JUCEHEADER__
+#define __JUCE_QUATERNION_JUCEHEADER__
 
 #include "juce_Matrix3D.h"
 #include "juce_Vector3D.h"
@@ -96,4 +96,4 @@ public:
 };
 
 
-#endif   // JUCE_QUATERNION_H_INCLUDED
+#endif   // __JUCE_QUATERNION_JUCEHEADER__

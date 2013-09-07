@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CHANGELISTENER_H_INCLUDED
-#define JUCE_CHANGELISTENER_H_INCLUDED
+#ifndef __JUCE_CHANGELISTENER_JUCEHEADER__
+#define __JUCE_CHANGELISTENER_JUCEHEADER__
 
 class ChangeBroadcaster;
 
@@ -61,4 +61,4 @@ public:
 };
 
 
-#endif   // JUCE_CHANGELISTENER_H_INCLUDED
+#endif   // __JUCE_CHANGELISTENER_JUCEHEADER__

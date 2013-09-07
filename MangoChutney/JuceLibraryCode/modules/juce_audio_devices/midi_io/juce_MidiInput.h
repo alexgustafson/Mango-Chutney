@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MIDIINPUT_H_INCLUDED
-#define JUCE_MIDIINPUT_H_INCLUDED
+#ifndef __JUCE_MIDIINPUT_JUCEHEADER__
+#define __JUCE_MIDIINPUT_JUCEHEADER__
 
 class MidiInput;
 
@@ -179,4 +179,4 @@ private:
 };
 
 
-#endif   // JUCE_MIDIINPUT_H_INCLUDED
+#endif   // __JUCE_MIDIINPUT_JUCEHEADER__

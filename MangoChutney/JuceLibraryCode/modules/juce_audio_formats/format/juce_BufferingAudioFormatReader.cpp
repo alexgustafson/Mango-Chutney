@@ -89,7 +89,7 @@ bool BufferingAudioReader::readSamples (int** destSamples, int numDestChannels, 
         }
         else
         {
-            if (timeoutMs >= 0 && Time::getMillisecondCounter() >= startTime + (uint32) timeoutMs)
+            if (timeoutMs >= 0 && Time::getMillisecondCounter() >= startTime + timeoutMs)
             {
                 for (int j = 0; j < numDestChannels; ++j)
                     if (float* dest = (float*) destSamples[j])
@@ -110,7 +110,7 @@ bool BufferingAudioReader::readSamples (int** destSamples, int numDestChannels, 
 
 BufferingAudioReader::BufferedBlock::BufferedBlock (AudioFormatReader& reader, int64 pos, int numSamples)
     : range (pos, pos + numSamples),
-      buffer ((int) reader.numChannels, numSamples)
+      buffer (reader.numChannels, numSamples)
 {
     reader.read (&buffer, 0, numSamples, pos, true, true);
 }
@@ -162,7 +162,7 @@ bool BufferingAudioReader::readNextBufferChunk()
 
     {
         const ScopedLock sl (lock);
-        newBlocks.swapWith (blocks);
+        newBlocks.swapWithArray (blocks);
     }
 
     for (int i = blocks.size(); --i >= 0;)

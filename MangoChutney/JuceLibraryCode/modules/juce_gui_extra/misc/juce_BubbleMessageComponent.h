@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_BUBBLEMESSAGECOMPONENT_H_INCLUDED
-#define JUCE_BUBBLEMESSAGECOMPONENT_H_INCLUDED
+#ifndef __JUCE_BUBBLEMESSAGECOMPONENT_JUCEHEADER__
+#define __JUCE_BUBBLEMESSAGECOMPONENT_JUCEHEADER__
 
 
 //==============================================================================
@@ -59,7 +59,7 @@ public:
     /** Shows a message bubble at a particular position.
 
         This shows the bubble with its stem pointing to the given location
-        (coordinates being relative to its parent component).
+        (co-ordinates being relative to its parent component).
 
         For details about exactly how it decides where to position itself, see
         BubbleComponent::updatePosition().
@@ -129,4 +129,4 @@ private:
 };
 
 
-#endif   // JUCE_BUBBLEMESSAGECOMPONENT_H_INCLUDED
+#endif   // __JUCE_BUBBLEMESSAGECOMPONENT_JUCEHEADER__

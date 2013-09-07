@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SHAPEBUTTON_H_INCLUDED
-#define JUCE_SHAPEBUTTON_H_INCLUDED
+#ifndef __JUCE_SHAPEBUTTON_JUCEHEADER__
+#define __JUCE_SHAPEBUTTON_JUCEHEADER__
+
+#include "juce_Button.h"
 
 
 //==============================================================================
@@ -44,9 +46,9 @@ public:
         @param downColour       the colour to use when the button is in the pressed-down state
     */
     ShapeButton (const String& name,
-                 Colour normalColour,
-                 Colour overColour,
-                 Colour downColour);
+                 const Colour& normalColour,
+                 const Colour& overColour,
+                 const Colour& downColour);
 
     /** Destructor. */
     ~ShapeButton();
@@ -71,20 +73,21 @@ public:
         @param overColour       the colour to use when the mouse is over the shape
         @param downColour       the colour to use when the button is in the pressed-down state
     */
-    void setColours (Colour normalColour,
-                     Colour overColour,
-                     Colour downColour);
+    void setColours (const Colour& normalColour,
+                     const Colour& overColour,
+                     const Colour& downColour);
 
     /** Sets up an outline to draw around the shape.
 
         @param outlineColour        the colour to use
         @param outlineStrokeWidth   the thickness of line to draw
     */
-    void setOutline (Colour outlineColour,
+    void setOutline (const Colour& outlineColour,
                      float outlineStrokeWidth);
 
+
     /** @internal */
-    void paintButton (Graphics&, bool isMouseOverButton, bool isButtonDown) override;
+    void paintButton (Graphics&, bool isMouseOverButton, bool isButtonDown);
 
 private:
     //==============================================================================
@@ -98,4 +101,4 @@ private:
 };
 
 
-#endif   // JUCE_SHAPEBUTTON_H_INCLUDED
+#endif   // __JUCE_SHAPEBUTTON_JUCEHEADER__

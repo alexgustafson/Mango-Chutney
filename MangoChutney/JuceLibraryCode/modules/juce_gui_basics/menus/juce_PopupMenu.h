@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_POPUPMENU_H_INCLUDED
-#define JUCE_POPUPMENU_H_INCLUDED
+#ifndef __JUCE_POPUPMENU_JUCEHEADER__
+#define __JUCE_POPUPMENU_JUCEHEADER__
 
 
 //==============================================================================
@@ -287,7 +287,7 @@ public:
     /** Displays the menu at a specific location.
 
         This is the same as show(), but uses a specific location (in global screen
-        coordinates) rather than the current mouse position.
+        co-ordinates) rather than the current mouse position.
 
         The screenAreaToAttachTo parameter indicates a screen area to which the menu
         will be adjacent. Depending on where this is, the menu will decide which edge to
@@ -492,11 +492,11 @@ private:
     friend class Window;
     friend class CustomComponent;
     friend class MenuBarComponent;
-    friend struct ContainerDeletePolicy<Item>;
-    friend struct ContainerDeletePolicy<ItemComponent>;
-    friend struct ContainerDeletePolicy<Window>;
+    friend class OwnedArray <Item>;
+    friend class OwnedArray <ItemComponent>;
+    friend class ScopedPointer <Window>;
 
-    OwnedArray<Item> items;
+    OwnedArray <Item> items;
     LookAndFeel* lookAndFeel;
 
     Component* createWindow (const Options&, ApplicationCommandManager**) const;
@@ -505,4 +505,4 @@ private:
     JUCE_LEAK_DETECTOR (PopupMenu)
 };
 
-#endif   // JUCE_POPUPMENU_H_INCLUDED
+#endif   // __JUCE_POPUPMENU_JUCEHEADER__

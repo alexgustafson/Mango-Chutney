@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TOOLTIPWINDOW_H_INCLUDED
-#define JUCE_TOOLTIPWINDOW_H_INCLUDED
+#ifndef __JUCE_TOOLTIPWINDOW_JUCEHEADER__
+#define __JUCE_TOOLTIPWINDOW_JUCEHEADER__
+
+#include "../components/juce_Component.h"
+#include "../mouse/juce_TooltipClient.h"
 
 
 //==============================================================================
@@ -98,18 +101,19 @@ private:
     int mouseClicks, mouseWheelMoves;
     unsigned int lastCompChangeTime, lastHideTime;
     Component* lastComponentUnderMouse;
+    bool changedCompsSinceShown;
     String tipShowing, lastTipUnderMouse;
 
-    void paint (Graphics&) override;
-    void mouseEnter (const MouseEvent&) override;
-    void timerCallback() override;
+    void paint (Graphics& g);
+    void mouseEnter (const MouseEvent& e);
+    void timerCallback();
 
-    static String getTipFor (Component*);
-    void showFor (const String&);
+    static String getTipFor (Component* c);
+    void showFor (const String& tip);
     void hide();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (TooltipWindow)
 };
 
 
-#endif   // JUCE_TOOLTIPWINDOW_H_INCLUDED
+#endif   // __JUCE_TOOLTIPWINDOW_JUCEHEADER__

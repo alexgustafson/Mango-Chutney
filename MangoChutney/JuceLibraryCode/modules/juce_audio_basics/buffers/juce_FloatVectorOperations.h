@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FLOATVECTOROPERATIONS_H_INCLUDED
-#define JUCE_FLOATVECTOROPERATIONS_H_INCLUDED
+#ifndef __JUCE_FLOATVECTOROPERATIONS_JUCEHEADER__
+#define __JUCE_FLOATVECTOROPERATIONS_JUCEHEADER__
 
 
 //==============================================================================
@@ -76,4 +76,4 @@ public:
 };
 
 
-#endif   // JUCE_FLOATVECTOROPERATIONS_H_INCLUDED
+#endif   // __JUCE_FLOATVECTOROPERATIONS_JUCEHEADER__

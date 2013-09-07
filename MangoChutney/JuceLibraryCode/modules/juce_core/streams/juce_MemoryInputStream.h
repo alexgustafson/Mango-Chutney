@@ -26,8 +26,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MEMORYINPUTSTREAM_H_INCLUDED
-#define JUCE_MEMORYINPUTSTREAM_H_INCLUDED
+#ifndef __JUCE_MEMORYINPUTSTREAM_JUCEHEADER__
+#define __JUCE_MEMORYINPUTSTREAM_JUCEHEADER__
+
+#include "juce_InputStream.h"
+#include "../memory/juce_HeapBlock.h"
 
 
 //==============================================================================
@@ -77,11 +80,11 @@ public:
     size_t getDataSize() const noexcept         { return dataSize; }
 
     //==============================================================================
-    int64 getPosition() override;
-    bool setPosition (int64 pos) override;
-    int64 getTotalLength() override;
-    bool isExhausted() override;
-    int read (void* destBuffer, int maxBytesToRead) override;
+    int64 getPosition();
+    bool setPosition (int64 pos);
+    int64 getTotalLength();
+    bool isExhausted();
+    int read (void* destBuffer, int maxBytesToRead);
 
 private:
     //==============================================================================
@@ -94,4 +97,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MemoryInputStream)
 };
 
-#endif   // JUCE_MEMORYINPUTSTREAM_H_INCLUDED
+#endif   // __JUCE_MEMORYINPUTSTREAM_JUCEHEADER__

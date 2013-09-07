@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_COLOURGRADIENT_H_INCLUDED
-#define JUCE_COLOURGRADIENT_H_INCLUDED
+#ifndef __JUCE_COLOURGRADIENT_JUCEHEADER__
+#define __JUCE_COLOURGRADIENT_JUCEHEADER__
+
+#include "juce_Colour.h"
+#include "../geometry/juce_Point.h"
 
 
 //==============================================================================
@@ -178,4 +181,4 @@ private:
 };
 
 
-#endif   // JUCE_COLOURGRADIENT_H_INCLUDED
+#endif   // __JUCE_COLOURGRADIENT_JUCEHEADER__

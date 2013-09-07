@@ -115,6 +115,8 @@ namespace AudioUnitFormatHelpers
         {
             name = String::fromCFString (cfName);
             CFRelease (cfName);
+
+            DBG ("AU name: " + name);
         }
 
         if (name.containsChar (':'))
@@ -285,7 +287,7 @@ public:
           numInputBusses (0),
           numOutputBusses (0),
           audioUnit (nullptr),
-          eventListenerRef (0),
+          parameterListenerRef (0),
           midiConcatenator (2048)
     {
         using namespace AudioUnitFormatHelpers;
@@ -315,10 +317,10 @@ public:
 
         jassert (AudioUnitFormatHelpers::insideCallback == 0);
 
-        if (eventListenerRef != 0)
+        if (parameterListenerRef != 0)
         {
-            AUListenerDispose (eventListenerRef);
-            eventListenerRef = 0;
+            AUListenerDispose (parameterListenerRef);
+            parameterListenerRef = 0;
         }
 
         if (audioUnit != nullptr)
@@ -345,7 +347,7 @@ public:
     //==============================================================================
     // AudioPluginInstance methods:
 
-    void fillInPluginDescription (PluginDescription& desc) const override
+    void fillInPluginDescription (PluginDescription& desc) const
     {
         desc.name = pluginName;
         desc.descriptiveName = pluginName;
@@ -363,15 +365,15 @@ public:
         desc.isInstrument = (componentDesc.componentType == kAudioUnitType_MusicDevice);
     }
 
-    void* getPlatformSpecificData() override             { return audioUnit; }
-    const String getName() const override                { return pluginName; }
+    void* getPlatformSpecificData()             { return audioUnit; }
+    const String getName() const                { return pluginName; }
 
-    bool silenceInProducesSilenceOut() const override
+    bool silenceInProducesSilenceOut() const
     {
         return getTailLengthSeconds() <= 0;
     }
 
-    double getTailLengthSeconds() const override
+    double getTailLengthSeconds() const
     {
         Float64 tail = 0;
         UInt32 tailSize = sizeof (tail);
@@ -383,13 +385,13 @@ public:
         return tail;
     }
 
-    bool acceptsMidi() const override                    { return wantsMidiMessages; }
-    bool producesMidi() const override                   { return producesMidiMessages; }
+    bool acceptsMidi() const                    { return wantsMidiMessages; }
+    bool producesMidi() const                   { return producesMidiMessages; }
 
     //==============================================================================
     // AudioProcessor methods:
 
-    void prepareToPlay (double newSampleRate, int estimatedSamplesPerBlock) override
+    void prepareToPlay (double newSampleRate, int estimatedSamplesPerBlock)
     {
         if (audioUnit != nullptr)
         {
@@ -472,7 +474,7 @@ public:
         }
     }
 
-    void releaseResources() override
+    void releaseResources()
     {
         if (prepared)
         {
@@ -494,7 +496,7 @@ public:
         for (int i = 0; i < numOutputBusses; ++i)  AudioUnitReset (audioUnit, kAudioUnitScope_Output, i);
     }
 
-    void processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages) override
+    void processBlock (AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
     {
         const int numSamples = buffer.getNumSamples();
 
@@ -560,11 +562,11 @@ public:
     }
 
     //==============================================================================
-    bool hasEditor() const override                  { return true; }
-    AudioProcessorEditor* createEditor() override;
+    bool hasEditor() const                  { return true; }
+    AudioProcessorEditor* createEditor();
 
     //==============================================================================
-    const String getInputChannelName (int index) const override
+    const String getInputChannelName (int index) const
     {
         if (isPositiveAndBelow (index, getNumInputChannels()))
             return "Input " + String (index + 1);
@@ -572,7 +574,7 @@ public:
         return String::empty;
     }
 
-    const String getOutputChannelName (int index) const override
+    const String getOutputChannelName (int index) const
     {
         if (isPositiveAndBelow (index, getNumOutputChannels()))
             return "Output " + String (index + 1);
@@ -580,13 +582,13 @@ public:
         return String::empty;
     }
 
-    bool isInputChannelStereoPair (int index) const override    { return isPositiveAndBelow (index, getNumInputChannels()); }
-    bool isOutputChannelStereoPair (int index) const override   { return isPositiveAndBelow (index, getNumOutputChannels()); }
+    bool isInputChannelStereoPair (int index) const    { return isPositiveAndBelow (index, getNumInputChannels()); }
+    bool isOutputChannelStereoPair (int index) const   { return isPositiveAndBelow (index, getNumOutputChannels()); }
 
     //==============================================================================
-    int getNumParameters() override              { return parameters.size(); }
+    int getNumParameters()              { return parameters.size(); }
 
-    float getParameter (int index) override
+    float getParameter (int index)
     {
         const ScopedLock sl (lock);
 
@@ -608,7 +610,7 @@ public:
         return value;
     }
 
-    void setParameter (int index, float newValue) override
+    void setParameter (int index, float newValue)
     {
         const ScopedLock sl (lock);
 
@@ -646,7 +648,7 @@ public:
             sendParameterChangeEvent (i);
     }
 
-    const String getParameterName (int index) override
+    const String getParameterName (int index)
     {
         if (const ParamInfo* p = parameters[index])
             return p->name;
@@ -654,9 +656,9 @@ public:
         return String::empty;
     }
 
-    const String getParameterText (int index) override   { return String (getParameter (index)); }
+    const String getParameterText (int index)   { return String (getParameter (index)); }
 
-    bool isParameterAutomatable (int index) const override
+    bool isParameterAutomatable (int index) const
     {
         if (const ParamInfo* p = parameters[index])
             return p->automatable;
@@ -665,7 +667,7 @@ public:
     }
 
     //==============================================================================
-    int getNumPrograms() override
+    int getNumPrograms()
     {
         CFArrayRef presets;
         UInt32 sz = sizeof (CFArrayRef);
@@ -681,7 +683,7 @@ public:
         return num;
     }
 
-    int getCurrentProgram() override
+    int getCurrentProgram()
     {
         AUPreset current;
         current.presetNumber = 0;
@@ -693,7 +695,7 @@ public:
         return current.presetNumber;
     }
 
-    void setCurrentProgram (int newIndex) override
+    void setCurrentProgram (int newIndex)
     {
         AUPreset current;
         current.presetNumber = newIndex;
@@ -705,7 +707,7 @@ public:
         sendAllParametersChangedEvents();
     }
 
-    const String getProgramName (int index) override
+    const String getProgramName (int index)
     {
         String s;
         CFArrayRef presets;
@@ -732,18 +734,18 @@ public:
         return s;
     }
 
-    void changeProgramName (int index, const String& newName) override
+    void changeProgramName (int index, const String& newName)
     {
         jassertfalse; // xxx not implemented!
     }
 
     //==============================================================================
-    void getStateInformation (MemoryBlock& destData) override
+    void getStateInformation (MemoryBlock& destData)
     {
         getCurrentProgramStateInformation (destData);
     }
 
-    void getCurrentProgramStateInformation (MemoryBlock& destData) override
+    void getCurrentProgramStateInformation (MemoryBlock& destData)
     {
         CFPropertyListRef propertyList = 0;
         UInt32 sz = sizeof (CFPropertyListRef);
@@ -770,12 +772,12 @@ public:
         }
     }
 
-    void setStateInformation (const void* data, int sizeInBytes) override
+    void setStateInformation (const void* data, int sizeInBytes)
     {
         setCurrentProgramStateInformation (data, sizeInBytes);
     }
 
-    void setCurrentProgramStateInformation (const void* data, int sizeInBytes) override
+    void setCurrentProgramStateInformation (const void* data, int sizeInBytes)
     {
         CFReadStreamRef stream = CFReadStreamCreateWithBytesNoCopy (kCFAllocatorDefault,
                                                                     (const UInt8*) data,
@@ -803,7 +805,7 @@ public:
         }
     }
 
-    void refreshParameterList() override
+    void refreshParameterList()
     {
         parameters.clear();
 
@@ -883,7 +885,7 @@ private:
     int numInputBusChannels, numOutputBusChannels, numInputBusses, numOutputBusses;
 
     AudioUnit audioUnit;
-    AUEventListenerRef eventListenerRef;
+    AUParameterListenerRef parameterListenerRef;
 
     struct ParamInfo
     {
@@ -940,13 +942,7 @@ private:
                                       kAudioUnitScope_Global, 0, &info, sizeof (info));
             }
 
-            AUEventListenerCreate (eventListenerCallback, this,
-                                  #if MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_4
-                                   CFRunLoopGetMain(),
-                                  #else
-                                   nullptr,
-                                  #endif
-                                   kCFRunLoopDefaultMode, 0, 0, &eventListenerRef);
+            AUListenerCreate (parameterListenerCallback, this, nullptr, nullptr, 0, &parameterListenerRef);
 
             for (int i = 0; i < parameters.size(); ++i)
             {
@@ -958,57 +954,28 @@ private:
                 paramToAdd.mScope = kAudioUnitScope_Global;
                 paramToAdd.mElement = 0;
 
-                AudioUnitEvent event;
-                event.mArgument.mParameter = paramToAdd;
-
-                event.mEventType = kAudioUnitEvent_ParameterValueChange;
-                AUEventListenerAddEventType (eventListenerRef, nullptr, &event);
-
-                event.mEventType = kAudioUnitEvent_BeginParameterChangeGesture;
-                AUEventListenerAddEventType (eventListenerRef, nullptr, &event);
-
-                event.mEventType = kAudioUnitEvent_EndParameterChangeGesture;
-                AUEventListenerAddEventType (eventListenerRef, nullptr, &event);
+                AUListenerAddParameter (parameterListenerRef, nullptr, &paramToAdd);
             }
         }
     }
 
-    void eventCallback (const AudioUnitEvent& event, AudioUnitParameterValue newValue)
+    void parameterChanged (const AudioUnitParameter* param, AudioUnitParameterValue newValue)
     {
-        switch (event.mEventType)
+        for (int i = 0; i < parameters.size(); ++i)
         {
-            case kAudioUnitEvent_ParameterValueChange:
-                for (int i = 0; i < parameters.size(); ++i)
-                {
-                    const ParamInfo& p = *parameters.getUnchecked(i);
+            const ParamInfo& p = *parameters.getUnchecked(i);
 
-                    if (p.paramID == event.mArgument.mParameter.mParameterID)
-                    {
-                        sendParamChangeMessageToListeners (i, (newValue - p.minValue) / (p.maxValue - p.minValue));
-                        break;
-                    }
-                }
-
+            if (p.paramID == param->mParameterID)
+            {
+                sendParamChangeMessageToListeners (i, (newValue - p.minValue) / (p.maxValue - p.minValue));
                 break;
-
-            case kAudioUnitEvent_BeginParameterChangeGesture:
-                beginParameterChangeGesture (event.mArgument.mParameter.mParameterID);
-                break;
-
-            case kAudioUnitEvent_EndParameterChangeGesture:
-                endParameterChangeGesture (event.mArgument.mParameter.mParameterID);
-                break;
-
-            default:
-                break;
+            }
         }
     }
 
-    static void eventListenerCallback (void* userData, void*, const AudioUnitEvent* event,
-                                       UInt64, AudioUnitParameterValue value)
+    static void parameterListenerCallback (void* userData, void*, const AudioUnitParameter* param, AudioUnitParameterValue newValue)
     {
-        jassert (event != nullptr);
-        static_cast <AudioUnitPluginInstance*> (userData)->eventCallback (*event, value);
+        ((AudioUnitPluginInstance*) userData)->parameterChanged (param, newValue);
     }
 
     //==============================================================================
@@ -1020,8 +987,7 @@ private:
     {
         if (currentBuffer != nullptr)
         {
-            // if this ever happens, might need to add extra handling
-            jassert (inNumberFrames == (UInt32) currentBuffer->getNumSamples());
+            jassert (inNumberFrames == (UInt32) currentBuffer->getNumSamples()); // if this ever happens, might need to add extra handling
 
             for (UInt32 i = 0; i < ioData->mNumberBuffers; ++i)
             {
@@ -1053,20 +1019,12 @@ private:
 
             for (UInt32 i = 0; i < pktlist->numPackets; ++i)
             {
-                midiConcatenator.pushMidiData (packet->data, (int) packet->length,
-                                               time, (void*) nullptr, *this);
-
+                midiConcatenator.pushMidiData (packet->data, (int) packet->length, time, (void*) nullptr, *this);
                 packet = MIDIPacketNext (packet);
             }
         }
 
         return noErr;
-    }
-
-    template <typename Type1, typename Type2>
-    static void setIfNotNull (Type1* p, Type2 value) noexcept
-    {
-        if (p != nullptr) *p = value;
     }
 
     OSStatus getBeatAndTempo (Float64* outCurrentBeat, Float64* outCurrentTempo) const
@@ -1076,13 +1034,13 @@ private:
 
         if (ph != nullptr && ph->getCurrentPosition (result))
         {
-            setIfNotNull (outCurrentBeat, result.ppqPosition);
-            setIfNotNull (outCurrentTempo, result.bpm);
+            if (outCurrentBeat  != nullptr)    *outCurrentBeat  = result.ppqPosition;
+            if (outCurrentTempo != nullptr)    *outCurrentTempo = result.bpm;
         }
         else
         {
-            setIfNotNull (outCurrentBeat, 0);
-            setIfNotNull (outCurrentTempo, 120.0);
+            if (outCurrentBeat  != nullptr)    *outCurrentBeat  = 0;
+            if (outCurrentTempo != nullptr)    *outCurrentTempo = 120.0;
         }
 
         return noErr;
@@ -1096,17 +1054,17 @@ private:
 
         if (ph != nullptr && ph->getCurrentPosition (result))
         {
-            setIfNotNull (outTimeSig_Numerator, result.timeSigNumerator);
-            setIfNotNull (outTimeSig_Denominator, result.timeSigDenominator);
-            setIfNotNull (outDeltaSampleOffsetToNextBeat, 0); //xxx
-            setIfNotNull (outCurrentMeasureDownBeat, result.ppqPositionOfLastBarStart); //xxx wrong
+            if (outTimeSig_Numerator != nullptr)            *outTimeSig_Numerator   = result.timeSigNumerator;
+            if (outTimeSig_Denominator != nullptr)          *outTimeSig_Denominator = result.timeSigDenominator;
+            if (outDeltaSampleOffsetToNextBeat != nullptr)  *outDeltaSampleOffsetToNextBeat = 0; //xxx
+            if (outCurrentMeasureDownBeat != nullptr)       *outCurrentMeasureDownBeat = result.ppqPositionOfLastBarStart; //xxx wrong
         }
         else
         {
-            setIfNotNull (outDeltaSampleOffsetToNextBeat, 0);
-            setIfNotNull (outTimeSig_Numerator, 4);
-            setIfNotNull (outTimeSig_Denominator, 4);
-            setIfNotNull (outCurrentMeasureDownBeat, 0);
+            if (outDeltaSampleOffsetToNextBeat != nullptr)  *outDeltaSampleOffsetToNextBeat = 0;
+            if (outTimeSig_Numerator != nullptr)            *outTimeSig_Numerator = 4;
+            if (outTimeSig_Denominator != nullptr)          *outTimeSig_Denominator = 4;
+            if (outCurrentMeasureDownBeat != nullptr)       *outCurrentMeasureDownBeat = 0;
         }
 
         return noErr;
@@ -1121,7 +1079,8 @@ private:
 
         if (ph != nullptr && ph->getCurrentPosition (result))
         {
-            setIfNotNull (outIsPlaying, result.isPlaying);
+            if (outIsPlaying != nullptr)
+                *outIsPlaying = result.isPlaying;
 
             if (outTransportStateChanged != nullptr)
             {
@@ -1129,19 +1088,21 @@ private:
                 wasPlaying = result.isPlaying;
             }
 
-            setIfNotNull (outCurrentSampleInTimeLine, result.timeInSamples);
-            setIfNotNull (outIsCycling, false);
-            setIfNotNull (outCycleStartBeat, 0);
-            setIfNotNull (outCycleEndBeat, 0);
+            if (outCurrentSampleInTimeLine != nullptr)
+                *outCurrentSampleInTimeLine = (Float64) result.timeInSamples;
+
+            if (outIsCycling != nullptr)        *outIsCycling = false;
+            if (outCycleStartBeat != nullptr)   *outCycleStartBeat = 0;
+            if (outCycleEndBeat != nullptr)     *outCycleEndBeat = 0;
         }
         else
         {
-            setIfNotNull (outIsPlaying, false);
-            setIfNotNull (outTransportStateChanged, false);
-            setIfNotNull (outCurrentSampleInTimeLine, 0);
-            setIfNotNull (outIsCycling, false);
-            setIfNotNull (outCycleStartBeat, 0);
-            setIfNotNull (outCycleEndBeat, 0);
+            if (outIsPlaying != nullptr)                *outIsPlaying = false;
+            if (outTransportStateChanged != nullptr)    *outTransportStateChanged = false;
+            if (outCurrentSampleInTimeLine != nullptr)  *outCurrentSampleInTimeLine = 0;
+            if (outIsCycling != nullptr)                *outIsCycling = false;
+            if (outCycleStartBeat != nullptr)           *outCycleStartBeat = 0;
+            if (outCycleEndBeat != nullptr)             *outCycleEndBeat = 0;
         }
 
         return noErr;
@@ -1325,23 +1286,23 @@ public:
 
     bool isValid() const        { return wrapper.getView() != nil; }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         g.fillAll (Colours::white);
     }
 
-    void resized() override
+    void resized()
     {
         wrapper.setSize (getWidth(), getHeight());
     }
 
-    void timerCallback() override
+    void timerCallback()
     {
         wrapper.resizeToFitView();
         startTimer (jmin (713, getTimerInterval() + 51));
     }
 
-    void childBoundsChanged (Component* child) override
+    void childBoundsChanged (Component* child)
     {
         setSize (wrapper.getWidth(), wrapper.getHeight());
         startTimer (70);
@@ -1425,9 +1386,9 @@ private:
 class AudioUnitPluginWindowCarbon   : public AudioProcessorEditor
 {
 public:
-    AudioUnitPluginWindowCarbon (AudioUnitPluginInstance& p)
-        : AudioProcessorEditor (&p),
-          plugin (p),
+    AudioUnitPluginWindowCarbon (AudioUnitPluginInstance& plugin_)
+        : AudioProcessorEditor (&plugin_),
+          plugin (plugin_),
           audioComponent (nullptr),
           viewComponent (nullptr)
     {
@@ -1463,20 +1424,20 @@ public:
     bool isValid() const noexcept           { return audioComponent != nullptr; }
 
     //==============================================================================
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         g.fillAll (Colours::black);
     }
 
-    void resized() override
+    void resized()
     {
         if (innerWrapper != nullptr)
             innerWrapper->setSize (getWidth(), getHeight());
     }
 
     //==============================================================================
-    bool keyStateChanged (bool) override         { return false; }
-    bool keyPressed (const KeyPress&) override   { return false; }
+    bool keyStateChanged (bool)         { return false; }
+    bool keyPressed (const KeyPress&)   { return false; }
 
     //==============================================================================
     AudioUnit getAudioUnit() const      { return plugin.audioUnit; }

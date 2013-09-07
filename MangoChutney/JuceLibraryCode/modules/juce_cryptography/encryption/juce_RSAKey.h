@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RSAKEY_H_INCLUDED
-#define JUCE_RSAKEY_H_INCLUDED
+#ifndef __JUCE_RSAKEY_JUCEHEADER__
+#define __JUCE_RSAKEY_JUCEHEADER__
 
 
 //==============================================================================
@@ -111,4 +111,4 @@ private:
 };
 
 
-#endif   // JUCE_RSAKEY_H_INCLUDED
+#endif   // __JUCE_RSAKEY_JUCEHEADER__

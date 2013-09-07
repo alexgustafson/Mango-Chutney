@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DRAWABLEBUTTON_H_INCLUDED
-#define JUCE_DRAWABLEBUTTON_H_INCLUDED
+#ifndef __JUCE_DRAWABLEBUTTON_JUCEHEADER__
+#define __JUCE_DRAWABLEBUTTON_JUCEHEADER__
+
+#include "juce_Button.h"
+#include "../drawables/juce_Drawable.h"
 
 
 //==============================================================================
@@ -112,9 +115,6 @@ public:
     */
     void setButtonStyle (ButtonStyle newStyle);
 
-    /** Returns the current style. */
-    ButtonStyle getStyle() const noexcept       { return style; }
-
     //==============================================================================
     /** Gives the button an optional amount of space around the edge of the drawable.
         By default there's a gap of about 3 pixels.
@@ -160,15 +160,15 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paintButton (Graphics&, bool isMouseOverButton, bool isButtonDown) override;
+    void paintButton (Graphics&, bool isMouseOverButton, bool isButtonDown);
     /** @internal */
-    void buttonStateChanged() override;
+    void buttonStateChanged();
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void enablementChanged() override;
+    void enablementChanged();
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
 
 private:
     //==============================================================================
@@ -182,4 +182,4 @@ private:
 };
 
 
-#endif   // JUCE_DRAWABLEBUTTON_H_INCLUDED
+#endif   // __JUCE_DRAWABLEBUTTON_JUCEHEADER__

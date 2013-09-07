@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MATRIX3D_H_INCLUDED
-#define JUCE_MATRIX3D_H_INCLUDED
+#ifndef __JUCE_MATRIX3D_JUCEHEADER__
+#define __JUCE_MATRIX3D_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -89,4 +89,4 @@ public:
 };
 
 
-#endif   // JUCE_MATRIX3D_H_INCLUDED
+#endif   // __JUCE_MATRIX3D_JUCEHEADER__

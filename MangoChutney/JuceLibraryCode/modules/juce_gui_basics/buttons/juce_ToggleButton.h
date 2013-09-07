@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TOGGLEBUTTON_H_INCLUDED
-#define JUCE_TOGGLEBUTTON_H_INCLUDED
+#ifndef __JUCE_TOGGLEBUTTON_JUCEHEADER__
+#define __JUCE_TOGGLEBUTTON_JUCEHEADER__
+
+#include "juce_Button.h"
 
 
 //==============================================================================
@@ -75,13 +77,13 @@ public:
 protected:
     //==============================================================================
     /** @internal */
-    void paintButton (Graphics&, bool isMouseOverButton, bool isButtonDown) override;
+    void paintButton (Graphics&, bool isMouseOverButton, bool isButtonDown);
     /** @internal */
-    void colourChanged() override;
+    void colourChanged();
 
 private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ToggleButton)
 };
 
 
-#endif   // JUCE_TOGGLEBUTTON_H_INCLUDED
+#endif   // __JUCE_TOGGLEBUTTON_JUCEHEADER__

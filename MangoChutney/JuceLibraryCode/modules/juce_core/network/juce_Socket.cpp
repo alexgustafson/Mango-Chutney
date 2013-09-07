@@ -103,8 +103,7 @@ namespace SocketHelpers
            #if JUCE_WINDOWS
             bytesThisTime = recv (handle, static_cast<char*> (destBuffer) + bytesRead, maxBytesToRead - bytesRead, 0);
            #else
-            while ((bytesThisTime = (int) ::read (handle, addBytesToPointer (destBuffer, bytesRead),
-                                                  (size_t) (maxBytesToRead - bytesRead))) < 0
+            while ((bytesThisTime = (int) ::read (handle, addBytesToPointer (destBuffer, bytesRead), (size_t) (maxBytesToRead - bytesRead))) < 0
                      && errno == EINTR
                      && connected)
             {
@@ -275,15 +274,17 @@ StreamingSocket::StreamingSocket()
     SocketHelpers::initSockets();
 }
 
-StreamingSocket::StreamingSocket (const String& host, int portNum, int h)
-    : hostName (host),
-      portNumber (portNum),
-      handle (h),
+StreamingSocket::StreamingSocket (const String& hostName_,
+                                  const int portNumber_,
+                                  const int handle_)
+    : hostName (hostName_),
+      portNumber (portNumber_),
+      handle (handle_),
       connected (true),
       isListener (false)
 {
     SocketHelpers::initSockets();
-    SocketHelpers::resetSocketOptions (h, false, false);
+    SocketHelpers::resetSocketOptions (handle_, false, false);
 }
 
 StreamingSocket::~StreamingSocket()
@@ -292,11 +293,9 @@ StreamingSocket::~StreamingSocket()
 }
 
 //==============================================================================
-int StreamingSocket::read (void* destBuffer, const int maxBytesToRead,
-                           const bool blockUntilSpecifiedAmountHasArrived)
+int StreamingSocket::read (void* destBuffer, const int maxBytesToRead, const bool blockUntilSpecifiedAmountHasArrived)
 {
-    return (connected && ! isListener) ? SocketHelpers::readSocket (handle, destBuffer, maxBytesToRead,
-                                                                    connected, blockUntilSpecifiedAmountHasArrived)
+    return (connected && ! isListener) ? SocketHelpers::readSocket (handle, destBuffer, maxBytesToRead, connected, blockUntilSpecifiedAmountHasArrived)
                                        : -1;
 }
 
@@ -434,9 +433,8 @@ bool StreamingSocket::createListener (const int newPortNumber, const String& loc
 
 StreamingSocket* StreamingSocket::waitForNextConnection() const
 {
-    // To call this method, you first have to use createListener() to
-    // prepare this socket as a listener.
-    jassert (isListener || ! connected);
+    jassert (isListener || ! connected); // to call this method, you first have to use createListener() to
+                                         // prepare this socket as a listener.
 
     if (connected && isListener)
     {
@@ -460,11 +458,11 @@ bool StreamingSocket::isLocal() const noexcept
 
 //==============================================================================
 //==============================================================================
-DatagramSocket::DatagramSocket (const int localPortNumber, const bool canBroadcast)
+DatagramSocket::DatagramSocket (const int localPortNumber, const bool allowBroadcast_)
     : portNumber (0),
       handle (-1),
       connected (true),
-      allowBroadcast (canBroadcast),
+      allowBroadcast (allowBroadcast_),
       serverAddress (nullptr)
 {
     SocketHelpers::initSockets();
@@ -473,18 +471,18 @@ DatagramSocket::DatagramSocket (const int localPortNumber, const bool canBroadca
     bindToPort (localPortNumber);
 }
 
-DatagramSocket::DatagramSocket (const String& host, const int portNum,
-                                const int h, const int localPortNumber)
-    : hostName (host),
-      portNumber (portNum),
-      handle (h),
+DatagramSocket::DatagramSocket (const String& hostName_, const int portNumber_,
+                                const int handle_, const int localPortNumber)
+    : hostName (hostName_),
+      portNumber (portNumber_),
+      handle (handle_),
       connected (true),
       allowBroadcast (false),
       serverAddress (nullptr)
 {
     SocketHelpers::initSockets();
 
-    SocketHelpers::resetSocketOptions (h, true, allowBroadcast);
+    SocketHelpers::resetSocketOptions (handle_, true, allowBroadcast);
     bindToPort (localPortNumber);
 }
 
@@ -566,8 +564,7 @@ int DatagramSocket::waitUntilReady (const bool readyForReading,
 
 int DatagramSocket::read (void* destBuffer, const int maxBytesToRead, const bool blockUntilSpecifiedAmountHasArrived)
 {
-    return connected ? SocketHelpers::readSocket (handle, destBuffer, maxBytesToRead,
-                                                  connected, blockUntilSpecifiedAmountHasArrived)
+    return connected ? SocketHelpers::readSocket (handle, destBuffer, maxBytesToRead, connected, blockUntilSpecifiedAmountHasArrived)
                      : -1;
 }
 

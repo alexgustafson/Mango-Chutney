@@ -76,19 +76,16 @@ void PluginDirectoryScanner::updateProgress()
     progress = (1.0f - nextIndex.get() / (float) filesOrIdentifiersToScan.size());
 }
 
-bool PluginDirectoryScanner::scanNextFile (const bool dontRescanIfAlreadyInList,
-                                           String& nameOfPluginBeingScanned)
+bool PluginDirectoryScanner::scanNextFile (const bool dontRescanIfAlreadyInList)
 {
     const int index = --nextIndex;
 
     if (index >= 0)
     {
-        const String file (filesOrIdentifiersToScan [index]);
+        String file (filesOrIdentifiersToScan [index]);
 
         if (file.isNotEmpty() && ! list.isListingUpToDate (file, format))
         {
-            nameOfPluginBeingScanned = format.getNameOfPluginFromIdentifier (file);
-
             OwnedArray <PluginDescription> typesFound;
 
             // Add this plugin to the end of the dead-man's pedal list in case it crashes...

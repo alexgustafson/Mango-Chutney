@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_SCOPEDXLOCK_H_INCLUDED
-#define JUCE_SCOPEDXLOCK_H_INCLUDED
+#ifndef __JUCE_SCOPEDXLOCK_JUCEHEADER__
+#define __JUCE_SCOPEDXLOCK_JUCEHEADER__
 
 
 //==============================================================================
@@ -47,4 +47,4 @@ public:
 };
 
 #endif
-#endif   // JUCE_SCOPEDXLOCK_H_INCLUDED
+#endif   // __JUCE_SCOPEDXLOCK_JUCEHEADER__

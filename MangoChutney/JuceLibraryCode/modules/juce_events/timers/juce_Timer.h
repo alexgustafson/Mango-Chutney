@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TIMER_H_INCLUDED
-#define JUCE_TIMER_H_INCLUDED
+#ifndef __JUCE_TIMER_JUCEHEADER__
+#define __JUCE_TIMER_JUCEHEADER__
 
 
 //==============================================================================
@@ -131,4 +131,4 @@ private:
     Timer& operator= (const Timer&);
 };
 
-#endif   // JUCE_TIMER_H_INCLUDED
+#endif   // __JUCE_TIMER_JUCEHEADER__

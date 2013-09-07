@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CHARPOINTER_UTF8_H_INCLUDED
-#define JUCE_CHARPOINTER_UTF8_H_INCLUDED
+#ifndef __JUCE_CHARPOINTER_UTF8_JUCEHEADER__
+#define __JUCE_CHARPOINTER_UTF8_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -562,4 +562,4 @@ private:
     CharType* data;
 };
 
-#endif   // JUCE_CHARPOINTER_UTF8_H_INCLUDED
+#endif   // __JUCE_CHARPOINTER_UTF8_JUCEHEADER__

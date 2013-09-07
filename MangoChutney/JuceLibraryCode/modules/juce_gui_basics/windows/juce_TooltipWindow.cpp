@@ -28,7 +28,8 @@ TooltipWindow::TooltipWindow (Component* const parentComp, const int delayMs)
       mouseClicks (0),
       mouseWheelMoves (0),
       lastHideTime (0),
-      lastComponentUnderMouse (nullptr)
+      lastComponentUnderMouse (nullptr),
+      changedCompsSinceShown (true)
 {
     if (Desktop::getInstance().getMainMouseSource().canHover())
         startTimer (123);
@@ -97,8 +98,8 @@ void TooltipWindow::showFor (const String& tip)
     else
         y += 6;
 
-    x = jmax (parentArea.getX(), jmin (parentArea.getRight()  - w, x));
-    y = jmax (parentArea.getY(), jmin (parentArea.getBottom() - h, y));
+    x = jlimit (parentArea.getX(), parentArea.getRight()  - w, x);
+    y = jlimit (parentArea.getY(), parentArea.getBottom() - h, y);
 
     setBounds (x, y, w, h);
     setVisible (true);

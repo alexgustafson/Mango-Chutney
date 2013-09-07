@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_IIRFILTERAUDIOSOURCE_H_INCLUDED
-#define JUCE_IIRFILTERAUDIOSOURCE_H_INCLUDED
+#ifndef __JUCE_IIRFILTERAUDIOSOURCE_JUCEHEADER__
+#define __JUCE_IIRFILTERAUDIOSOURCE_JUCEHEADER__
+
+#include "juce_AudioSource.h"
+#include "../effects/juce_IIRFilter.h"
 
 
 //==============================================================================
@@ -48,23 +51,20 @@ public:
 
     //==============================================================================
     /** Changes the filter to use the same parameters as the one being passed in. */
-    void setCoefficients (const IIRCoefficients& newCoefficients);
-
-    /** Calls IIRFilter::makeInactive() on all the filters being used internally. */
-    void makeInactive();
+    void setFilterParameters (const IIRFilter& newSettings);
 
     //==============================================================================
-    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
-    void releaseResources() override;
-    void getNextAudioBlock (const AudioSourceChannelInfo&) override;
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
+    void releaseResources();
+    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
 
 private:
     //==============================================================================
     OptionalScopedPointer<AudioSource> input;
-    OwnedArray<IIRFilter> iirFilters;
+    OwnedArray <IIRFilter> iirFilters;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (IIRFilterAudioSource)
 };
 
 
-#endif   // JUCE_IIRFILTERAUDIOSOURCE_H_INCLUDED
+#endif   // __JUCE_IIRFILTERAUDIOSOURCE_JUCEHEADER__

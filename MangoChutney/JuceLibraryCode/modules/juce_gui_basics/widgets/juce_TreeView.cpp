@@ -30,12 +30,11 @@ public:
     ContentComponent (TreeView& tree)
         : owner (tree),
           buttonUnderMouse (nullptr),
-          isDragging (false),
-          needSelectionOnMouseUp (false)
+          isDragging (false)
     {
     }
 
-    void mouseDown (const MouseEvent& e) override
+    void mouseDown (const MouseEvent& e)
     {
         updateButtonUnderMouse (e);
 
@@ -73,7 +72,7 @@ public:
         }
     }
 
-    void mouseUp (const MouseEvent& e) override
+    void mouseUp (const MouseEvent& e)
     {
         updateButtonUnderMouse (e);
 
@@ -85,7 +84,7 @@ public:
         }
     }
 
-    void mouseDoubleClick (const MouseEvent& e) override
+    void mouseDoubleClick (const MouseEvent& e)
     {
         if (e.getNumberOfClicks() != 3 && isEnabled())  // ignore triple clicks
         {
@@ -96,7 +95,7 @@ public:
         }
     }
 
-    void mouseDrag (const MouseEvent& e) override
+    void mouseDrag (const MouseEvent& e)
     {
         if (isEnabled()
              && ! (isDragging || e.mouseWasClicked()
@@ -134,10 +133,10 @@ public:
         }
     }
 
-    void mouseMove (const MouseEvent& e) override    { updateButtonUnderMouse (e); }
-    void mouseExit (const MouseEvent& e) override    { updateButtonUnderMouse (e); }
+    void mouseMove (const MouseEvent& e)    { updateButtonUnderMouse (e); }
+    void mouseExit (const MouseEvent& e)    { updateButtonUnderMouse (e); }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         if (owner.rootItem != nullptr)
         {
@@ -238,12 +237,12 @@ public:
         return item == buttonUnderMouse;
     }
 
-    void resized() override
+    void resized()
     {
         owner.itemsChanged();
     }
 
-    String getTooltip() override
+    String getTooltip()
     {
         Rectangle<int> pos;
         if (TreeViewItem* const item = findItemAt (getMouseXYRelative().y, pos))
@@ -382,7 +381,7 @@ private:
         return false;
     }
 
-    void handleAsyncUpdate() override
+    void handleAsyncUpdate()
     {
         owner.recalculateIfNeeded();
     }
@@ -409,7 +408,7 @@ public:
         repaint();
     }
 
-    void visibleAreaChanged (const Rectangle<int>& newVisibleArea) override
+    void visibleAreaChanged (const Rectangle<int>& newVisibleArea)
     {
         const bool hasScrolledSideways = (newVisibleArea.getX() != lastX);
         lastX = newVisibleArea.getX();
@@ -421,7 +420,7 @@ public:
         return static_cast <ContentComponent*> (getViewedComponent());
     }
 
-    bool keyPressed (const KeyPress& key) override
+    bool keyPressed (const KeyPress& key)
     {
         Component* const tree = getParentComponent();
 
@@ -925,7 +924,7 @@ class TreeView::InsertPointHighlight   : public Component
 {
 public:
     InsertPointHighlight()
-        : lastItem (nullptr), lastIndex (0)
+        : lastItem (nullptr)
     {
         setSize (100, 12);
         setAlwaysOnTop (true);
@@ -941,7 +940,7 @@ public:
                    width - (insertPos.pos.x - offset), getHeight());
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         Path p;
         const float h = (float) getHeight();
@@ -977,7 +976,7 @@ public:
         setBounds (r);
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         g.setColour (findColour (TreeView::dragAndDropIndicatorColourId, true));
         g.drawRoundedRectangle (1.0f, 1.0f, getWidth() - 2.0f, getHeight() - 2.0f, 3.0f, 2.0f);
@@ -1123,8 +1122,6 @@ TreeViewItem::TreeViewItem()
       y (0),
       itemHeight (0),
       totalHeight (0),
-      itemWidth (0),
-      totalWidth (0),
       selected (false),
       redrawNeeded (true),
       drawLinesInside (true),
@@ -1160,26 +1157,19 @@ TreeViewItem* TreeViewItem::getSubItem (const int index) const noexcept
 
 void TreeViewItem::clearSubItems()
 {
-    if (ownerView != nullptr)
+    if (subItems.size() > 0)
     {
-        const ScopedLock sl (ownerView->nodeAlterationLock);
-
-        if (subItems.size() > 0)
+        if (ownerView != nullptr)
         {
-            removeAllSubItemsFromList();
+            const ScopedLock sl (ownerView->nodeAlterationLock);
+            subItems.clear();
             treeHasChanged();
         }
+        else
+        {
+            subItems.clear();
+        }
     }
-    else
-    {
-        removeAllSubItemsFromList();
-    }
-}
-
-void TreeViewItem::removeAllSubItemsFromList()
-{
-    for (int i = subItems.size(); --i >= 0;)
-        removeSubItemFromList (i, true);
 }
 
 void TreeViewItem::addSubItem (TreeViewItem* const newItem, const int insertPosition)
@@ -1213,31 +1203,22 @@ void TreeViewItem::addSubItem (TreeViewItem* const newItem, const int insertPosi
     }
 }
 
-void TreeViewItem::removeSubItem (int index, bool deleteItem)
+void TreeViewItem::removeSubItem (const int index, const bool deleteItem)
 {
     if (ownerView != nullptr)
     {
         const ScopedLock sl (ownerView->nodeAlterationLock);
 
-        if (removeSubItemFromList (index, deleteItem))
+        if (isPositiveAndBelow (index, subItems.size()))
+        {
+            subItems.remove (index, deleteItem);
             treeHasChanged();
+        }
     }
     else
     {
-        removeSubItemFromList (index, deleteItem);
-    }
-}
-
-bool TreeViewItem::removeSubItemFromList (int index, bool deleteItem)
-{
-    if (TreeViewItem* child = subItems [index])
-    {
-        child->parentItem = nullptr;
         subItems.remove (index, deleteItem);
-        return true;
     }
-
-    return false;
 }
 
 bool TreeViewItem::isOpen() const noexcept
@@ -1389,7 +1370,7 @@ Rectangle<int> TreeViewItem::getItemPosition (const bool relativeToTreeViewTopLe
 
     Rectangle<int> r (indentX, y, jmax (0, width), totalHeight);
 
-    if (relativeToTreeViewTopLeft && ownerView != nullptr)
+    if (relativeToTreeViewTopLeft)
         r -= ownerView->viewport->getViewPosition();
 
     return r;
@@ -1726,8 +1707,10 @@ int TreeViewItem::getRowNumberInTree() const noexcept
 
         return n;
     }
-
-    return 0;
+    else
+    {
+        return 0;
+    }
 }
 
 void TreeViewItem::setLinesDrawnForSubItems (const bool drawLines) noexcept
@@ -1856,10 +1839,13 @@ XmlElement* TreeViewItem::getOpennessState (const bool canReturnNull) const
         e->setAttribute ("id", name);
         return e;
     }
+    else
+    {
+        // trying to save the openness for an element that has no name - this won't
+        // work because it needs the names to identify what to open.
+        jassertfalse;
+    }
 
-    // trying to save the openness for an element that has no name - this won't
-    // work because it needs the names to identify what to open.
-    jassertfalse;
     return nullptr;
 }
 

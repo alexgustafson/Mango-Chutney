@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_PROPERTYPANEL_H_INCLUDED
-#define JUCE_PROPERTYPANEL_H_INCLUDED
+#ifndef __JUCE_PROPERTYPANEL_JUCEHEADER__
+#define __JUCE_PROPERTYPANEL_JUCEHEADER__
+
+#include "juce_PropertyComponent.h"
+#include "../layout/juce_Viewport.h"
 
 
 //==============================================================================
@@ -141,9 +144,9 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics&);
     /** @internal */
-    void resized() override;
+    void resized();
 
 private:
     class SectionComponent;
@@ -160,4 +163,4 @@ private:
 };
 
 
-#endif   // JUCE_PROPERTYPANEL_H_INCLUDED
+#endif   // __JUCE_PROPERTYPANEL_JUCEHEADER__

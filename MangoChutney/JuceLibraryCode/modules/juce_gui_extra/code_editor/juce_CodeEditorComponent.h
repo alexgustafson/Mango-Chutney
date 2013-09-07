@@ -22,11 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CODEEDITORCOMPONENT_H_INCLUDED
-#define JUCE_CODEEDITORCOMPONENT_H_INCLUDED
+#ifndef __JUCE_CODEEDITORCOMPONENT_JUCEHEADER__
+#define __JUCE_CODEEDITORCOMPONENT_JUCEHEADER__
 
+#include "juce_CodeDocument.h"
 class CodeTokeniser;
-
 
 //==============================================================================
 /**
@@ -90,7 +90,7 @@ public:
     CodeDocument::Position getCaretPos() const                  { return caretPos; }
 
     /** Returns the position of the caret, relative to the editor's origin. */
-    Rectangle<int> getCaretRectangle() override;
+    Rectangle<int> getCaretRectangle();
 
     /** Moves the caret.
         If selecting is true, the section of the document between the current
@@ -105,7 +105,7 @@ public:
     Rectangle<int> getCharacterBounds (const CodeDocument::Position& pos) const;
 
     /** Finds the character at a given on-screen position.
-        The coordinates are relative to this component's top-left origin.
+        The co-ordinates are relative to this component's top-left origin.
     */
     CodeDocument::Position getPositionAt (int x, int y);
 
@@ -144,7 +144,7 @@ public:
     void scrollToKeepCaretOnScreen();
     void scrollToKeepLinesOnScreen (Range<int> linesToShow);
 
-    void insertTextAtCaret (const String& textToInsert) override;
+    void insertTextAtCaret (const String& textToInsert);
     void insertTabAtCaret();
 
     void indentSelection();
@@ -232,7 +232,7 @@ public:
         The token type values are dependent on the tokeniser being used.
         @see setColourScheme
     */
-    Colour getColourForTokenType (int tokenType) const;
+    Colour getColourForTokenType (const int tokenType) const;
 
     //==============================================================================
     /** A set of colour IDs to use to change the colour of various aspects of the editor.
@@ -311,37 +311,37 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics&);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    bool keyPressed (const KeyPress&) override;
+    bool keyPressed (const KeyPress&);
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent&);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent&);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent&);
     /** @internal */
-    void mouseDoubleClick (const MouseEvent&) override;
+    void mouseDoubleClick (const MouseEvent&);
     /** @internal */
-    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&) override;
+    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&);
     /** @internal */
-    void focusGained (FocusChangeType) override;
+    void focusGained (FocusChangeType);
     /** @internal */
-    void focusLost (FocusChangeType) override;
+    void focusLost (FocusChangeType);
     /** @internal */
-    bool isTextInputActive() const override;
+    bool isTextInputActive() const;
     /** @internal */
-    void setTemporaryUnderlining (const Array <Range<int> >&) override;
+    void setTemporaryUnderlining (const Array <Range<int> >&);
     /** @internal */
-    ApplicationCommandTarget* getNextCommandTarget() override;
+    ApplicationCommandTarget* getNextCommandTarget();
     /** @internal */
-    void getAllCommands (Array<CommandID>&) override;
+    void getAllCommands (Array<CommandID>&);
     /** @internal */
-    void getCommandInfo (CommandID, ApplicationCommandInfo&) override;
+    void getCommandInfo (CommandID, ApplicationCommandInfo&);
     /** @internal */
-    bool perform (const InvocationInfo&) override;
+    bool perform (const InvocationInfo&);
 
 private:
     //==============================================================================
@@ -363,12 +363,12 @@ private:
 
     class Pimpl;
     friend class Pimpl;
-    friend struct ContainerDeletePolicy<Pimpl>;
+    friend class ScopedPointer<Pimpl>;
     ScopedPointer<Pimpl> pimpl;
 
     class GutterComponent;
     friend class GutterComponent;
-    friend struct ContainerDeletePolicy<GutterComponent>;
+    friend class ScopedPointer<GutterComponent>;
     ScopedPointer<GutterComponent> gutter;
 
     enum DragType
@@ -417,4 +417,4 @@ private:
 };
 
 
-#endif   // JUCE_CODEEDITORCOMPONENT_H_INCLUDED
+#endif   // __JUCE_CODEEDITORCOMPONENT_JUCEHEADER__

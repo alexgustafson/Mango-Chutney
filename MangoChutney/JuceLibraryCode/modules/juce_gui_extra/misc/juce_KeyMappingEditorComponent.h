@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_KEYMAPPINGEDITORCOMPONENT_H_INCLUDED
-#define JUCE_KEYMAPPINGEDITORCOMPONENT_H_INCLUDED
+#ifndef __JUCE_KEYMAPPINGEDITORCOMPONENT_JUCEHEADER__
+#define __JUCE_KEYMAPPINGEDITORCOMPONENT_JUCEHEADER__
 
 
 //==============================================================================
@@ -109,9 +109,9 @@ public:
 
     //==============================================================================
     /** @internal */
-    void parentHierarchyChanged() override;
+    void parentHierarchyChanged();
     /** @internal */
-    void resized() override;
+    void resized();
 
 private:
     //==============================================================================
@@ -125,12 +125,12 @@ private:
     class CategoryItem;
     class ItemComponent;
     friend class TopLevelItem;
-    friend struct ContainerDeletePolicy<ChangeKeyButton>;
-    friend struct ContainerDeletePolicy<TopLevelItem>;
+    friend class OwnedArray <ChangeKeyButton>;
+    friend class ScopedPointer<TopLevelItem>;
     ScopedPointer<TopLevelItem> treeItem;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyMappingEditorComponent)
 };
 
 
-#endif   // JUCE_KEYMAPPINGEDITORCOMPONENT_H_INCLUDED
+#endif   // __JUCE_KEYMAPPINGEDITORCOMPONENT_JUCEHEADER__

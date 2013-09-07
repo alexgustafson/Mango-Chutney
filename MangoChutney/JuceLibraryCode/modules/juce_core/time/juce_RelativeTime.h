@@ -26,8 +26,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RELATIVETIME_H_INCLUDED
-#define JUCE_RELATIVETIME_H_INCLUDED
+#ifndef __JUCE_RELATIVETIME_JUCEHEADER__
+#define __JUCE_RELATIVETIME_JUCEHEADER__
+
+#include "../text/juce_String.h"
 
 
 //==============================================================================
@@ -60,19 +62,14 @@ public:
 
     //==============================================================================
     /** Creates a new RelativeTime object representing a number of milliseconds.
-        @see seconds, minutes, hours, days, weeks
+        @see minutes, hours, days, weeks
     */
     static RelativeTime milliseconds (int milliseconds) noexcept;
 
     /** Creates a new RelativeTime object representing a number of milliseconds.
-        @see seconds, minutes, hours, days, weeks
+        @see minutes, hours, days, weeks
     */
     static RelativeTime milliseconds (int64 milliseconds) noexcept;
-
-    /** Creates a new RelativeTime object representing a number of seconds.
-        @see milliseconds, minutes, hours, days, weeks
-    */
-    static RelativeTime seconds (double seconds) noexcept;
 
     /** Creates a new RelativeTime object representing a number of minutes.
         @see milliseconds, hours, days, weeks
@@ -103,7 +100,7 @@ public:
     /** Returns the number of seconds this time represents.
         @see inMilliseconds, inMinutes, inHours, inDays, inWeeks
     */
-    double inSeconds() const noexcept       { return numSeconds; }
+    double inSeconds() const noexcept       { return seconds; }
 
     /** Returns the number of minutes this time represents.
         @see inMilliseconds, inSeconds, inHours, inDays, inWeeks
@@ -156,7 +153,7 @@ public:
 
 private:
     //==============================================================================
-    double numSeconds;
+    double seconds;
 };
 
 //==============================================================================
@@ -181,4 +178,4 @@ RelativeTime  operator-  (RelativeTime t1, RelativeTime t2) noexcept;
 
 
 
-#endif   // JUCE_RELATIVETIME_H_INCLUDED
+#endif   // __JUCE_RELATIVETIME_JUCEHEADER__

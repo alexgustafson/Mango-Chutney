@@ -26,8 +26,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_WAITABLEEVENT_H_INCLUDED
-#define JUCE_WAITABLEEVENT_H_INCLUDED
+#ifndef __JUCE_WAITABLEEVENT_JUCEHEADER__
+#define __JUCE_WAITABLEEVENT_JUCEHEADER__
+
+#include "../text/juce_String.h"
 
 
 //==============================================================================
@@ -44,13 +46,11 @@ public:
     //==============================================================================
     /** Creates a WaitableEvent object.
 
-        The object is initially in an unsignalled state.
-
         @param manualReset  If this is false, the event will be reset automatically when the wait()
                             method is called. If manualReset is true, then once the event is signalled,
                             the only way to reset it will be by calling the reset() method.
     */
-    explicit WaitableEvent (bool manualReset = false) noexcept;
+    WaitableEvent (bool manualReset = false) noexcept;
 
     /** Destructor.
 
@@ -116,4 +116,4 @@ private:
 };
 
 
-#endif   // JUCE_WAITABLEEVENT_H_INCLUDED
+#endif   // __JUCE_WAITABLEEVENT_JUCEHEADER__

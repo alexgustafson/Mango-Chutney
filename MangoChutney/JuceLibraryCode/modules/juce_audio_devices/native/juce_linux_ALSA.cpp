@@ -47,7 +47,7 @@ namespace
 
 #define JUCE_ALSA_FAILED(x)  failed (x)
 
-static void getDeviceSampleRates (snd_pcm_t* handle, Array <int>& rates)
+void getDeviceSampleRates (snd_pcm_t* handle, Array <int>& rates)
 {
     const int ratesToTry[] = { 22050, 32000, 44100, 48000, 88200, 96000, 176400, 192000, 0 };
 
@@ -64,7 +64,7 @@ static void getDeviceSampleRates (snd_pcm_t* handle, Array <int>& rates)
     }
 }
 
-static void getDeviceNumChannels (snd_pcm_t* handle, unsigned int* minChans, unsigned int* maxChans)
+void getDeviceNumChannels (snd_pcm_t* handle, unsigned int* minChans, unsigned int* maxChans)
 {
     snd_pcm_hw_params_t *params;
     snd_pcm_hw_params_alloca (&params);
@@ -86,14 +86,14 @@ static void getDeviceNumChannels (snd_pcm_t* handle, unsigned int* minChans, uns
     }
 }
 
-static void getDeviceProperties (const String& deviceID,
-                                 unsigned int& minChansOut,
-                                 unsigned int& maxChansOut,
-                                 unsigned int& minChansIn,
-                                 unsigned int& maxChansIn,
-                                 Array <int>& rates,
-                                 bool testOutput,
-                                 bool testInput)
+void getDeviceProperties (const String& deviceID,
+                          unsigned int& minChansOut,
+                          unsigned int& maxChansOut,
+                          unsigned int& minChansIn,
+                          unsigned int& maxChansIn,
+                          Array <int>& rates,
+                          bool testOutput = true,
+                          bool testInput = true)
 {
     minChansOut = maxChansOut = minChansIn = maxChansIn = 0;
 
@@ -132,14 +132,6 @@ static void getDeviceProperties (const String& deviceID,
             snd_pcm_close (pcmHandle);
         }
     }
-}
-
-static void ensureMinimumNumBitsSet (BigInteger& chans, int minNumChans)
-{
-    int i = 0;
-
-    while (chans.countNumberOfSetBits() < minNumChans)
-        chans.setBit (i++);
 }
 
 static void silentErrorHandler (const char*, int, const char*, int, const char*,...) {}
@@ -219,7 +211,7 @@ public:
             return false;
         }
 
-        enum { isFloatBit = 1 << 16, isLittleEndianBit = 1 << 17, onlyUseLower24Bits = 1 << 18 };
+        enum { isFloatBit = 1 << 16, isLittleEndianBit = 1 << 17 };
 
         const int formatsToTry[] = { SND_PCM_FORMAT_FLOAT_LE,   32 | isFloatBit | isLittleEndianBit,
                                      SND_PCM_FORMAT_FLOAT_BE,   32 | isFloatBit,
@@ -227,7 +219,6 @@ public:
                                      SND_PCM_FORMAT_S32_BE,     32,
                                      SND_PCM_FORMAT_S24_3LE,    24 | isLittleEndianBit,
                                      SND_PCM_FORMAT_S24_3BE,    24,
-                                     SND_PCM_FORMAT_S24_LE,     32 | isLittleEndianBit | onlyUseLower24Bits,
                                      SND_PCM_FORMAT_S16_LE,     16 | isLittleEndianBit,
                                      SND_PCM_FORMAT_S16_BE,     16 };
         bitDepth = 0;
@@ -236,14 +227,14 @@ public:
         {
             if (snd_pcm_hw_params_set_format (handle, hwParams, (_snd_pcm_format) formatsToTry [i]) >= 0)
             {
-                const int type = formatsToTry [i + 1];
-                bitDepth = type & 255;
+                bitDepth = formatsToTry [i + 1] & 255;
+                const bool isFloat = (formatsToTry [i + 1] & isFloatBit) != 0;
+                const bool isLittleEndian = (formatsToTry [i + 1] & isLittleEndianBit) != 0;
+                converter = createConverter (isInput, bitDepth, isFloat, isLittleEndian, numChannels);
 
-                converter = createConverter (isInput, bitDepth,
-                                             (type & isFloatBit) != 0,
-                                             (type & isLittleEndianBit) != 0,
-                                             (type & onlyUseLower24Bits) != 0,
-                                             numChannels);
+                JUCE_ALSA_LOG ("format: bitDepth=" << bitDepth << ", isFloat="
+                                << isFloat << ", isLittleEndian=" << isLittleEndian
+                                << ", numChannels=" << numChannels);
                 break;
             }
         }
@@ -406,33 +397,30 @@ private:
 
                 return new AudioData::ConverterInstance <AudioData::Pointer <SampleType, AudioData::BigEndian, AudioData::Interleaved, AudioData::Const>, DestType> (numInterleavedChannels, 1);
             }
+            else
+            {
+                typedef AudioData::Pointer <AudioData::Float32, AudioData::NativeEndian, AudioData::NonInterleaved, AudioData::Const> SourceType;
 
-            typedef AudioData::Pointer <AudioData::Float32, AudioData::NativeEndian, AudioData::NonInterleaved, AudioData::Const> SourceType;
+                if (isLittleEndian)
+                    return new AudioData::ConverterInstance <SourceType, AudioData::Pointer <SampleType, AudioData::LittleEndian, AudioData::Interleaved, AudioData::NonConst> > (1, numInterleavedChannels);
 
-            if (isLittleEndian)
-                return new AudioData::ConverterInstance <SourceType, AudioData::Pointer <SampleType, AudioData::LittleEndian, AudioData::Interleaved, AudioData::NonConst> > (1, numInterleavedChannels);
-
-            return new AudioData::ConverterInstance <SourceType, AudioData::Pointer <SampleType, AudioData::BigEndian, AudioData::Interleaved, AudioData::NonConst> > (1, numInterleavedChannels);
+                return new AudioData::ConverterInstance <SourceType, AudioData::Pointer <SampleType, AudioData::BigEndian, AudioData::Interleaved, AudioData::NonConst> > (1, numInterleavedChannels);
+            }
         }
     };
 
-    static AudioData::Converter* createConverter (bool forInput, int bitDepth,
-                                                  bool isFloat, bool isLittleEndian, bool useOnlyLower24Bits,
-                                                  int numInterleavedChannels)
+    static AudioData::Converter* createConverter (const bool forInput, const int bitDepth, const bool isFloat, const bool isLittleEndian, const int numInterleavedChannels)
     {
-        JUCE_ALSA_LOG ("format: bitDepth=" << bitDepth << ", isFloat=" << isFloat
-                        << ", isLittleEndian=" << isLittleEndian << ", numChannels=" << numInterleavedChannels);
+        switch (bitDepth)
+        {
+            case 16:    return ConverterHelper <AudioData::Int16>::createConverter (forInput, isLittleEndian,  numInterleavedChannels);
+            case 24:    return ConverterHelper <AudioData::Int24>::createConverter (forInput, isLittleEndian,  numInterleavedChannels);
+            case 32:    return isFloat ? ConverterHelper <AudioData::Float32>::createConverter (forInput, isLittleEndian,  numInterleavedChannels)
+                                       : ConverterHelper <AudioData::Int32>::createConverter (forInput, isLittleEndian,  numInterleavedChannels);
+            default:    jassertfalse; break; // unsupported format!
+        }
 
-        if (isFloat)         return ConverterHelper <AudioData::Float32>::createConverter (forInput, isLittleEndian, numInterleavedChannels);
-        if (bitDepth == 16)  return ConverterHelper <AudioData::Int16>  ::createConverter (forInput, isLittleEndian, numInterleavedChannels);
-        if (bitDepth == 24)  return ConverterHelper <AudioData::Int24>  ::createConverter (forInput, isLittleEndian, numInterleavedChannels);
-
-        jassert (bitDepth == 32);
-
-        if (useOnlyLower24Bits)
-            return ConverterHelper <AudioData::Int24in32>::createConverter (forInput, isLittleEndian, numInterleavedChannels);
-
-        return ConverterHelper <AudioData::Int32>::createConverter (forInput, isLittleEndian, numInterleavedChannels);
+        return nullptr;
     }
 
     //==============================================================================
@@ -453,15 +441,16 @@ private:
 class ALSAThread  : public Thread
 {
 public:
-    ALSAThread (const String& inputDeviceID, const String& outputDeviceID)
+    ALSAThread (const String& inputId_,
+                const String& outputId_)
         : Thread ("Juce ALSA"),
           sampleRate (0),
           bufferSize (0),
           outputLatency (0),
           inputLatency (0),
           callback (0),
-          inputId (inputDeviceID),
-          outputId (outputDeviceID),
+          inputId (inputId_),
+          outputId (outputId_),
           numCallbacks (0),
           audioIoInProgress (false),
           inputChannelBuffer (1, 1),
@@ -477,14 +466,14 @@ public:
 
     void open (BigInteger inputChannels,
                BigInteger outputChannels,
-               const double newSampleRate,
-               const int newBufferSize)
+               const double sampleRate_,
+               const int bufferSize_)
     {
         close();
 
         error = String::empty;
-        sampleRate = newSampleRate;
-        bufferSize = newBufferSize;
+        sampleRate = sampleRate_;
+        bufferSize = bufferSize_;
 
         inputChannelBuffer.setSize (jmax ((int) minChansIn, inputChannels.getHighestBit()) + 1, bufferSize);
         inputChannelBuffer.clear();
@@ -502,8 +491,6 @@ public:
                 }
             }
         }
-
-        ensureMinimumNumBitsSet (outputChannels, minChansOut);
 
         outputChannelBuffer.setSize (jmax ((int) minChansOut, outputChannels.getHighestBit()) + 1, bufferSize);
         outputChannelBuffer.clear();
@@ -533,9 +520,10 @@ public:
                 return;
             }
 
+            currentOutputChans.setRange (0, minChansOut, true);
+
             if (! outputDevice->setParameters ((unsigned int) sampleRate,
-                                               jlimit ((int) minChansOut, (int) maxChansOut,
-                                                       currentOutputChans.getHighestBit() + 1),
+                                               jlimit ((int) minChansOut, (int) maxChansOut, currentOutputChans.getHighestBit() + 1),
                                                bufferSize))
             {
                 error = outputDevice->error;
@@ -557,7 +545,7 @@ public:
                 return;
             }
 
-            ensureMinimumNumBitsSet (currentInputChans, minChansIn);
+            currentInputChans.setRange (0, minChansIn, true);
 
             if (! inputDevice->setParameters ((unsigned int) sampleRate,
                                               jlimit ((int) minChansIn, (int) maxChansIn, currentInputChans.getHighestBit() + 1),
@@ -640,7 +628,7 @@ public:
         callback = newCallback;
     }
 
-    void run() override
+    void run()
     {
         while (! threadShouldExit())
         {
@@ -782,14 +770,14 @@ class ALSAAudioIODevice   : public AudioIODevice
 public:
     ALSAAudioIODevice (const String& deviceName,
                        const String& typeName,
-                       const String& inputDeviceID,
-                       const String& outputDeviceID)
+                       const String& inputId_,
+                       const String& outputId_)
         : AudioIODevice (deviceName, typeName),
-          inputId (inputDeviceID),
-          outputId (outputDeviceID),
+          inputId (inputId_),
+          outputId (outputId_),
           isOpen_ (false),
           isStarted (false),
-          internal (inputDeviceID, outputDeviceID)
+          internal (inputId_, outputId_)
     {
     }
 

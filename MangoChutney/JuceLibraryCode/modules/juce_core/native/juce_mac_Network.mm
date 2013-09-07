@@ -53,10 +53,10 @@ void MACAddress::findAllAddresses (Array<MACAddress>& result)
 }
 
 //==============================================================================
-bool JUCE_CALLTYPE Process::openEmailWithAttachments (const String& targetEmailAddress,
-                                                      const String& emailSubject,
-                                                      const String& bodyText,
-                                                      const StringArray& filesToAttach)
+bool Process::openEmailWithAttachments (const String& targetEmailAddress,
+                                        const String& emailSubject,
+                                        const String& bodyText,
+                                        const StringArray& filesToAttach)
 {
   #if JUCE_IOS
     //xxx probably need to use MFMailComposeViewController
@@ -226,7 +226,7 @@ public:
         signalThreadShouldExit();
     }
 
-    void run() override
+    void run()
     {
         connection = [[NSURLConnection alloc] initWithRequest: request
                                                      delegate: delegate];
@@ -327,12 +327,12 @@ public:
     }
 
     //==============================================================================
-    bool isError() const                { return connection == nullptr; }
-    int64 getTotalLength() override     { return connection == nullptr ? -1 : connection->contentLength; }
-    bool isExhausted() override         { return finished; }
-    int64 getPosition() override        { return position; }
+    bool isError() const        { return connection == nullptr; }
+    int64 getTotalLength()      { return connection == nullptr ? -1 : connection->contentLength; }
+    bool isExhausted()          { return finished; }
+    int64 getPosition()         { return position; }
 
-    int read (void* buffer, int bytesToRead) override
+    int read (void* buffer, int bytesToRead)
     {
         jassert (buffer != nullptr && bytesToRead >= 0);
 
@@ -351,7 +351,7 @@ public:
         }
     }
 
-    bool setPosition (int64 wantedPos) override
+    bool setPosition (int64 wantedPos)
     {
         if (wantedPos != position)
         {

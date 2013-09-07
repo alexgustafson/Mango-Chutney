@@ -22,9 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MEMORYMAPPEDAUDIOFORMATREADER_H_INCLUDED
-#define JUCE_MEMORYMAPPEDAUDIOFORMATREADER_H_INCLUDED
-
+#ifndef __JUCE_MEMORYMAPPEDAUDIOFORMATREADER_JUCEHEADER__
+#define __JUCE_MEMORYMAPPEDAUDIOFORMATREADER_JUCEHEADER__
 
 //==============================================================================
 /**
@@ -95,7 +94,7 @@ protected:
     {
         typedef AudioData::Pointer <SampleType, Endianness, AudioData::Interleaved, AudioData::Const> SourceType;
 
-        SourceType (addBytesToPointer (sampleToPointer (startSampleInFile), ((int) bitsPerSample / 8) * channel), (int) numChannels)
+        SourceType (addBytesToPointer (sampleToPointer (startSampleInFile), (bitsPerSample / 8) * channel), (int) numChannels)
            .findMinAndMax ((size_t) numSamples, mn, mx);
     }
 
@@ -103,4 +102,4 @@ protected:
 };
 
 
-#endif   // JUCE_MEMORYMAPPEDAUDIOFORMATREADER_H_INCLUDED
+#endif   // __JUCE_MEMORYMAPPEDAUDIOFORMATREADER_JUCEHEADER__

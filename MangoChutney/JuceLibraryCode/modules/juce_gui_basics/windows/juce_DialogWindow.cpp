@@ -22,7 +22,7 @@
   ==============================================================================
 */
 
-DialogWindow::DialogWindow (const String& name, Colour colour,
+DialogWindow::DialogWindow (const String& name, const Colour& colour,
                             const bool escapeCloses, const bool onDesktop)
     : DocumentWindow (name, colour, DocumentWindow::closeButton, onDesktop),
       escapeKeyTriggersCloseButton (escapeCloses)
@@ -80,7 +80,7 @@ public:
         setResizable (options.resizable, options.useBottomRightCornerResizer);
     }
 
-    void closeButtonPressed() override
+    void closeButtonPressed()
     {
         setVisible (false);
     }
@@ -124,7 +124,7 @@ int DialogWindow::LaunchOptions::runModal()
 void DialogWindow::showDialog (const String& dialogTitle,
                                Component* const contentComponent,
                                Component* const componentToCentreAround,
-                               Colour backgroundColour,
+                               const Colour& backgroundColour,
                                const bool escapeKeyTriggersCloseButton,
                                const bool resizable,
                                const bool useBottomRightCornerResizer)
@@ -146,7 +146,7 @@ void DialogWindow::showDialog (const String& dialogTitle,
 int DialogWindow::showModalDialog (const String& dialogTitle,
                                    Component* const contentComponent,
                                    Component* const componentToCentreAround,
-                                   Colour backgroundColour,
+                                   const Colour& backgroundColour,
                                    const bool escapeKeyTriggersCloseButton,
                                    const bool resizable,
                                    const bool useBottomRightCornerResizer)

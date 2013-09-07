@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_BUFFERINGAUDIOSOURCE_H_INCLUDED
-#define JUCE_BUFFERINGAUDIOSOURCE_H_INCLUDED
+#ifndef __JUCE_BUFFERINGAUDIOSOURCE_JUCEHEADER__
+#define __JUCE_BUFFERINGAUDIOSOURCE_JUCEHEADER__
+
+#include "juce_PositionableAudioSource.h"
 
 
 //==============================================================================
@@ -68,26 +70,26 @@ public:
 
     //==============================================================================
     /** Implementation of the AudioSource method. */
-    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
 
     /** Implementation of the AudioSource method. */
-    void releaseResources() override;
+    void releaseResources();
 
     /** Implementation of the AudioSource method. */
-    void getNextAudioBlock (const AudioSourceChannelInfo&) override;
+    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
 
     //==============================================================================
     /** Implements the PositionableAudioSource method. */
-    void setNextReadPosition (int64 newPosition) override;
+    void setNextReadPosition (int64 newPosition);
 
     /** Implements the PositionableAudioSource method. */
-    int64 getNextReadPosition() const override;
+    int64 getNextReadPosition() const;
 
     /** Implements the PositionableAudioSource method. */
-    int64 getTotalLength() const override       { return source->getTotalLength(); }
+    int64 getTotalLength() const                { return source->getTotalLength(); }
 
     /** Implements the PositionableAudioSource method. */
-    bool isLooping() const override             { return source->isLooping(); }
+    bool isLooping() const                      { return source->isLooping(); }
 
 private:
     //==============================================================================
@@ -102,10 +104,10 @@ private:
 
     bool readNextBufferChunk();
     void readBufferSection (int64 start, int length, int bufferOffset);
-    int useTimeSlice() override;
+    int useTimeSlice();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BufferingAudioSource)
 };
 
 
-#endif   // JUCE_BUFFERINGAUDIOSOURCE_H_INCLUDED
+#endif   // __JUCE_BUFFERINGAUDIOSOURCE_JUCEHEADER__

@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DRAWABLESHAPE_H_INCLUDED
-#define JUCE_DRAWABLESHAPE_H_INCLUDED
+#ifndef __JUCE_DRAWABLESHAPE_JUCEHEADER__
+#define __JUCE_DRAWABLESHAPE_JUCEHEADER__
+
+#include "juce_Drawable.h"
+#include "../positioning/juce_RelativeCoordinatePositioner.h"
 
 
 //==============================================================================
@@ -142,11 +145,11 @@ public:
     };
 
     /** @internal */
-    Rectangle<float> getDrawableBounds() const override;
+    Rectangle<float> getDrawableBounds() const;
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    bool hitTest (int x, int y) override;
+    bool hitTest (int x, int y);
 
 protected:
     //==============================================================================
@@ -177,4 +180,4 @@ private:
 };
 
 
-#endif   // JUCE_DRAWABLESHAPE_H_INCLUDED
+#endif   // __JUCE_DRAWABLESHAPE_JUCEHEADER__

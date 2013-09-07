@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILEBROWSERLISTENER_H_INCLUDED
-#define JUCE_FILEBROWSERLISTENER_H_INCLUDED
+#ifndef __JUCE_FILEBROWSERLISTENER_JUCEHEADER__
+#define __JUCE_FILEBROWSERLISTENER_JUCEHEADER__
+
+#include "../mouse/juce_MouseEvent.h"
 
 
 //==============================================================================
@@ -54,4 +56,4 @@ public:
 };
 
 
-#endif   // JUCE_FILEBROWSERLISTENER_H_INCLUDED
+#endif   // __JUCE_FILEBROWSERLISTENER_JUCEHEADER__

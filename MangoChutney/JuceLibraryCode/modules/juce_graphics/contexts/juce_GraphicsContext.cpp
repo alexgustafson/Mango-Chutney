@@ -85,7 +85,7 @@ bool Graphics::reduceClipRegion (const int x, const int y, const int w, const in
     return reduceClipRegion (Rectangle<int> (x, y, w, h));
 }
 
-bool Graphics::reduceClipRegion (const RectangleList<int>& clipRegion)
+bool Graphics::reduceClipRegion (const RectangleList& clipRegion)
 {
     saveStateIfPending();
     return context.clipToRectangleList (clipRegion);
@@ -222,7 +222,7 @@ Font Graphics::getCurrentFont() const
 
 //==============================================================================
 void Graphics::drawSingleLineText (const String& text, const int startX, const int baselineY,
-                                   Justification justification) const
+                                   const Justification& justification) const
 {
     if (text.isNotEmpty()
          && startX < context.getClipBounds().getRight())
@@ -251,6 +251,16 @@ void Graphics::drawSingleLineText (const String& text, const int startX, const i
     }
 }
 
+void Graphics::drawTextAsPath (const String& text, const AffineTransform& transform) const
+{
+    if (text.isNotEmpty())
+    {
+        GlyphArrangement arr;
+        arr.addLineOfText (context.getFont(), text, 0.0f, 0.0f);
+        arr.draw (*this, transform);
+    }
+}
+
 void Graphics::drawMultiLineText (const String& text, const int startX,
                                   const int baselineY, const int maximumLineWidth) const
 {
@@ -266,7 +276,7 @@ void Graphics::drawMultiLineText (const String& text, const int startX,
 }
 
 void Graphics::drawText (const String& text, const Rectangle<int>& area,
-                         Justification justificationType,
+                         const Justification& justificationType,
                          const bool useEllipsesIfTooBig) const
 {
     if (text.isNotEmpty() && context.clipRegionIntersects (area))
@@ -285,14 +295,14 @@ void Graphics::drawText (const String& text, const Rectangle<int>& area,
 }
 
 void Graphics::drawText (const String& text, const int x, const int y, const int width, const int height,
-                         Justification justificationType,
+                         const Justification& justificationType,
                          const bool useEllipsesIfTooBig) const
 {
     drawText (text, Rectangle<int> (x, y, width, height), justificationType, useEllipsesIfTooBig);
 }
 
 void Graphics::drawFittedText (const String& text, const Rectangle<int>& area,
-                               Justification justification,
+                               const Justification& justification,
                                const int maximumNumberOfLines,
                                const float minimumHorizontalScale) const
 {
@@ -311,7 +321,7 @@ void Graphics::drawFittedText (const String& text, const Rectangle<int>& area,
 }
 
 void Graphics::drawFittedText (const String& text, const int x, const int y, const int width, const int height,
-                               Justification justification,
+                               const Justification& justification,
                                const int maximumNumberOfLines,
                                const float minimumHorizontalScale) const
 {
@@ -346,11 +356,6 @@ void Graphics::fillRect (const float x, const float y, const float width, const 
     jassert (areCoordsSensibleNumbers (x, y, width, height));
 
     fillRect (Rectangle<float> (x, y, width, height));
-}
-
-void Graphics::fillRectList (const RectangleList<float>& rectangles) const
-{
-    context.fillRectList (rectangles);
 }
 
 void Graphics::setPixel (int x, int y) const
@@ -389,7 +394,7 @@ void Graphics::strokePath (const Path& path,
                            const AffineTransform& transform) const
 {
     Path stroke;
-    strokeType.createStrokedPath (stroke, path, transform, context.getPhysicalPixelScaleFactor());
+    strokeType.createStrokedPath (stroke, path, transform, context.getScaleFactor());
     fillPath (stroke);
 }
 
@@ -620,24 +625,48 @@ void Graphics::drawImageAt (const Image& imageToDraw,
                             const int topLeftX, const int topLeftY,
                             const bool fillAlphaChannelWithCurrentBrush) const
 {
-    drawImageTransformed (imageToDraw,
-                          AffineTransform::translation ((float) topLeftX, (float) topLeftY),
-                          fillAlphaChannelWithCurrentBrush);
+    const int imageW = imageToDraw.getWidth();
+    const int imageH = imageToDraw.getHeight();
+
+    drawImage (imageToDraw,
+               topLeftX, topLeftY, imageW, imageH,
+               0, 0, imageW, imageH,
+               fillAlphaChannelWithCurrentBrush);
 }
 
 void Graphics::drawImageWithin (const Image& imageToDraw,
-                                int dx, int dy, int dw, int dh,
-                                RectanglePlacement placementWithinTarget,
+                                const int destX, const int destY,
+                                const int destW, const int destH,
+                                const RectanglePlacement& placementWithinTarget,
                                 const bool fillAlphaChannelWithCurrentBrush) const
 {
     // passing in a silly number can cause maths problems in rendering!
-    jassert (areCoordsSensibleNumbers (dx, dy, dw, dh));
+    jassert (areCoordsSensibleNumbers (destX, destY, destW, destH));
 
     if (imageToDraw.isValid())
-        drawImageTransformed (imageToDraw,
-                              placementWithinTarget.getTransformToFit (imageToDraw.getBounds().toFloat(),
-                                                                       Rectangle<int> (dx, dy, dw, dh).toFloat()),
-                              fillAlphaChannelWithCurrentBrush);
+    {
+        const int imageW = imageToDraw.getWidth();
+        const int imageH = imageToDraw.getHeight();
+
+        if (imageW > 0 && imageH > 0)
+        {
+            double newX = 0.0, newY = 0.0;
+            double newW = imageW;
+            double newH = imageH;
+
+            placementWithinTarget.applyTo (newX, newY, newW, newH,
+                                           destX, destY, destW, destH);
+
+            if (newW > 0 && newH > 0)
+            {
+                drawImage (imageToDraw,
+                           roundToInt (newX), roundToInt (newY),
+                           roundToInt (newW), roundToInt (newH),
+                           0, 0, imageW, imageH,
+                           fillAlphaChannelWithCurrentBrush);
+            }
+        }
+    }
 }
 
 void Graphics::drawImage (const Image& imageToDraw,
@@ -650,10 +679,12 @@ void Graphics::drawImage (const Image& imageToDraw,
     jassert (areCoordsSensibleNumbers (sx, sy, sw, sh));
 
     if (imageToDraw.isValid() && context.clipRegionIntersects  (Rectangle<int> (dx, dy, dw, dh)))
+    {
         drawImageTransformed (imageToDraw.getClippedImage (Rectangle<int> (sx, sy, sw, sh)),
                               AffineTransform::scale (dw / (float) sw, dh / (float) sh)
                                               .translated ((float) dx, (float) dy),
                               fillAlphaChannelWithCurrentBrush);
+    }
 }
 
 void Graphics::drawImageTransformed (const Image& imageToDraw,

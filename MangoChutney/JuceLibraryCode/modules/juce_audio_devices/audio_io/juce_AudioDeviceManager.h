@@ -22,8 +22,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIODEVICEMANAGER_H_INCLUDED
-#define JUCE_AUDIODEVICEMANAGER_H_INCLUDED
+#ifndef __JUCE_AUDIODEVICEMANAGER_JUCEHEADER__
+#define __JUCE_AUDIODEVICEMANAGER_JUCEHEADER__
+
+#include "juce_AudioIODeviceType.h"
+#include "../midi_io/juce_MidiInput.h"
+#include "../midi_io/juce_MidiOutput.h"
 
 
 //==============================================================================
@@ -477,7 +481,7 @@ private:
     //==============================================================================
     class CallbackHandler;
     friend class CallbackHandler;
-    friend struct ContainerDeletePolicy<CallbackHandler>;
+    friend class ScopedPointer<CallbackHandler>;
     ScopedPointer<CallbackHandler> callbackHandler;
 
     void audioDeviceIOCallbackInt (const float** inputChannelData, int totalNumInputChannels,
@@ -507,4 +511,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioDeviceManager)
 };
 
-#endif   // JUCE_AUDIODEVICEMANAGER_H_INCLUDED
+#endif   // __JUCE_AUDIODEVICEMANAGER_JUCEHEADER__

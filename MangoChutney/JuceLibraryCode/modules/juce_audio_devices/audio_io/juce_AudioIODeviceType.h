@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOIODEVICETYPE_H_INCLUDED
-#define JUCE_AUDIOIODEVICETYPE_H_INCLUDED
+#ifndef __JUCE_AUDIOIODEVICETYPE_JUCEHEADER__
+#define __JUCE_AUDIOIODEVICETYPE_JUCEHEADER__
+
+#include "juce_AudioIODevice.h"
+class AudioDeviceManager;
 
 
 //==============================================================================
@@ -179,4 +182,4 @@ private:
 };
 
 
-#endif   // JUCE_AUDIOIODEVICETYPE_H_INCLUDED
+#endif   // __JUCE_AUDIOIODEVICETYPE_JUCEHEADER__

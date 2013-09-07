@@ -136,11 +136,10 @@ public:
         if (start.getAddress() == nullptr || start.isEmpty())
             return getEmpty();
 
-        const size_t numBytes = (size_t) (reinterpret_cast<const char*> (end.getAddress())
-                                           - reinterpret_cast<const char*> (start.getAddress()));
-        const CharPointerType dest (createUninitialisedBytes (numBytes + sizeof (CharType)));
+        const size_t numBytes = (size_t) (end.getAddress() - start.getAddress());
+        const CharPointerType dest (createUninitialisedBytes (numBytes + 1));
         memcpy (dest.getAddress(), start, numBytes);
-        dest.getAddress()[numBytes / sizeof (CharType)] = 0;
+        dest.getAddress()[numBytes] = 0;
         return dest;
     }
 
@@ -363,20 +362,32 @@ String String::charToString (const juce_wchar character)
 //==============================================================================
 namespace NumberToStringConverters
 {
-    enum
+    // pass in a pointer to the END of a buffer..
+    static char* numberToString (char* t, const int64 n) noexcept
     {
-        charsNeededForInt = 32,
-        charsNeededForDouble = 48
-    };
+        *--t = 0;
+        int64 v = (n >= 0) ? n : -n;
 
-    template <typename Type>
-    static char* printDigits (char* t, Type v) noexcept
+        do
+        {
+            *--t = (char) ('0' + (int) (v % 10));
+            v /= 10;
+
+        } while (v > 0);
+
+        if (n < 0)
+            *--t = '-';
+
+        return t;
+    }
+
+    static char* numberToString (char* t, uint64 v) noexcept
     {
         *--t = 0;
 
         do
         {
-            *--t = '0' + (char) (v % 10);
+            *--t = (char) ('0' + (int) (v % 10));
             v /= 10;
 
         } while (v > 0);
@@ -384,63 +395,40 @@ namespace NumberToStringConverters
         return t;
     }
 
-    // pass in a pointer to the END of a buffer..
-    static char* numberToString (char* t, const int64 n) noexcept
-    {
-        if (n >= 0)
-            return printDigits (t, static_cast<uint64> (n));
-
-        // NB: this needs to be careful not to call -std::numeric_limits<int64>::min(),
-        // which has undefined behaviour
-        t = printDigits (t, static_cast<uint64> (-(n + 1)) + 1);
-        *--t = '-';
-        return t;
-    }
-
-    static char* numberToString (char* t, uint64 v) noexcept
-    {
-        return printDigits (t, v);
-    }
-
     static char* numberToString (char* t, const int n) noexcept
     {
-        if (n >= 0)
-            return printDigits (t, static_cast<unsigned int> (n));
+        if (n == (int) 0x80000000) // (would cause an overflow)
+            return numberToString (t, (int64) n);
 
-        // NB: this needs to be careful not to call -std::numeric_limits<int>::min(),
-        // which has undefined behaviour
-        t = printDigits (t, static_cast<unsigned int> (-(n + 1)) + 1);
-        *--t = '-';
+        *--t = 0;
+        int v = abs (n);
+
+        do
+        {
+            *--t = (char) ('0' + (v % 10));
+            v /= 10;
+
+        } while (v > 0);
+
+        if (n < 0)
+            *--t = '-';
+
         return t;
     }
 
     static char* numberToString (char* t, unsigned int v) noexcept
     {
-        return printDigits (t, v);
+        *--t = 0;
+
+        do
+        {
+            *--t = (char) ('0' + (v % 10));
+            v /= 10;
+
+        } while (v > 0);
+
+        return t;
     }
-
-    struct StackArrayStream  : public std::basic_streambuf<char, std::char_traits<char> >
-    {
-        explicit StackArrayStream (char* d)
-        {
-            imbue (std::locale::classic());
-            setp (d, d + charsNeededForDouble);
-        }
-
-        size_t writeDouble (double n, int numDecPlaces)
-        {
-            {
-                std::ostream o (this);
-
-                if (numDecPlaces > 0)
-                    o.precision ((std::streamsize) numDecPlaces);
-
-                o << n;
-            }
-
-            return (size_t) (pptr() - pbase());
-        }
-    };
 
     static char* doubleToString (char* buffer, const int numChars, double n, int numDecPlaces, size_t& len) noexcept
     {
@@ -469,24 +457,36 @@ namespace NumberToStringConverters
             return t;
         }
 
-        StackArrayStream strm (buffer);
-        len = strm.writeDouble (n, numDecPlaces);
-        jassert (len <= charsNeededForDouble);
+       // Use a locale-free sprintf where possible (not available on linux AFAICT)
+       #if JUCE_MSVC
+        static _locale_t cLocale = _create_locale (LC_NUMERIC, "C");
+
+        len = (size_t) (numDecPlaces > 0 ? _sprintf_l (buffer, "%.*f", cLocale, numDecPlaces, n)
+                                         : _sprintf_l (buffer, "%.9g", cLocale, n));
+       #elif JUCE_MAC || JUCE_IOS
+        len = (size_t) (numDecPlaces > 0 ? sprintf_l (buffer, nullptr, "%.*f", numDecPlaces, n)
+                                         : sprintf_l (buffer, nullptr, "%.9g", n));
+       #else
+        len = (size_t) (numDecPlaces > 0 ? sprintf (buffer, "%.*f", numDecPlaces, n)
+                                         : sprintf (buffer, "%.9g", n));
+       #endif
+
         return buffer;
     }
 
     template <typename IntegerType>
     static String::CharPointerType createFromInteger (const IntegerType number)
     {
-        char buffer [charsNeededForInt];
+        char buffer [32];
         char* const end = buffer + numElementsInArray (buffer);
         char* const start = numberToString (end, number);
+
         return StringHolder::createFromFixedLength (start, (size_t) (end - start - 1));
     }
 
     static String::CharPointerType createFromDouble (const double number, const int numberOfDecimalPlaces)
     {
-        char buffer [charsNeededForDouble];
+        char buffer [48];
         size_t len;
         char* const start = doubleToString (buffer, numElementsInArray (buffer), (double) number, numberOfDecimalPlaces, len);
         return StringHolder::createFromFixedLength (start, len);
@@ -525,9 +525,10 @@ juce_wchar String::operator[] (int index) const noexcept
 
 int String::hashCode() const noexcept
 {
+    CharPointerType t (text);
     int result = 0;
 
-    for (CharPointerType t (text); ! t.isEmpty();)
+    while (! t.isEmpty())
         result = 31 * result + (int) t.getAndAdvance();
 
     return result;
@@ -535,9 +536,10 @@ int String::hashCode() const noexcept
 
 int64 String::hashCode64() const noexcept
 {
+    CharPointerType t (text);
     int64 result = 0;
 
-    for (CharPointerType t (text); ! t.isEmpty();)
+    while (! t.isEmpty())
         result = 101 * result + t.getAndAdvance();
 
     return result;
@@ -686,38 +688,50 @@ String& String::operator+= (const int number)
 }
 
 //==============================================================================
-JUCE_API String JUCE_CALLTYPE operator+ (const char* const s1, const String& s2)    { String s (s1); return s += s2; }
-JUCE_API String JUCE_CALLTYPE operator+ (const wchar_t* const s1, const String& s2) { String s (s1); return s += s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (const char* const string1, const String& string2)
+{
+    String s (string1);
+    return s += string2;
+}
 
-JUCE_API String JUCE_CALLTYPE operator+ (const char s1, const String& s2)           { return String::charToString ((juce_wchar) (uint8) s1) + s2; }
-JUCE_API String JUCE_CALLTYPE operator+ (const wchar_t s1, const String& s2)        { return String::charToString (s1) + s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (const wchar_t* const string1, const String& string2)
+{
+    String s (string1);
+    return s += string2;
+}
 
-JUCE_API String JUCE_CALLTYPE operator+ (String s1, const String& s2)               { return s1 += s2; }
-JUCE_API String JUCE_CALLTYPE operator+ (String s1, const char* const s2)           { return s1 += s2; }
-JUCE_API String JUCE_CALLTYPE operator+ (String s1, const wchar_t* s2)              { return s1 += s2; }
-
-JUCE_API String JUCE_CALLTYPE operator+ (String s1, const char s2)                  { return s1 += s2; }
-JUCE_API String JUCE_CALLTYPE operator+ (String s1, const wchar_t s2)               { return s1 += s2; }
-
+JUCE_API String JUCE_CALLTYPE operator+ (const char s1, const String& s2)       { return String::charToString ((juce_wchar) (uint8) s1) + s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (const wchar_t s1, const String& s2)    { return String::charToString (s1) + s2; }
 #if ! JUCE_NATIVE_WCHAR_IS_UTF32
-JUCE_API String JUCE_CALLTYPE operator+ (const juce_wchar s1, const String& s2)     { return String::charToString (s1) + s2; }
-JUCE_API String JUCE_CALLTYPE operator+ (String s1, const juce_wchar s2)            { return s1 += s2; }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const juce_wchar s2)         { return s1 += s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (const juce_wchar s1, const String& s2) { return String::charToString (s1) + s2; }
 #endif
 
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const char s2)               { return s1 += s2; }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const wchar_t s2)            { return s1 += s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (String s1, const String& s2)       { return s1 += s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (String s1, const char* const s2)   { return s1 += s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (String s1, const wchar_t* s2)      { return s1 += s2; }
 
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const char* const s2)        { return s1 += s2; }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const wchar_t* const s2)     { return s1 += s2; }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const String& s2)            { return s1 += s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (String s1, const char s2)          { return s1 += s2; }
+JUCE_API String JUCE_CALLTYPE operator+ (String s1, const wchar_t s2)       { return s1 += s2; }
+#if ! JUCE_NATIVE_WCHAR_IS_UTF32
+JUCE_API String JUCE_CALLTYPE operator+ (String s1, const juce_wchar s2)    { return s1 += s2; }
+#endif
 
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const int number)            { return s1 += number; }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const short number)          { return s1 += (int) number; }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const long number)           { return s1 += (int) number; }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const int64 number)          { return s1 += String (number); }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const float number)          { return s1 += String (number); }
-JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const double number)         { return s1 += String (number); }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const char s2)             { return s1 += s2; }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const wchar_t s2)          { return s1 += s2; }
+#if ! JUCE_NATIVE_WCHAR_IS_UTF32
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const juce_wchar s2)       { return s1 += s2; }
+#endif
+
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const char* const s2)      { return s1 += s2; }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const wchar_t* const s2)   { return s1 += s2; }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const String& s2)          { return s1 += s2; }
+
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const short number)        { return s1 += (int) number; }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const int number)          { return s1 += number; }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const long number)         { return s1 += (int) number; }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const int64 number)        { return s1 << String (number); }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const float number)        { return s1 += String (number); }
+JUCE_API String& JUCE_CALLTYPE operator<< (String& s1, const double number)       { return s1 += String (number); }
 
 JUCE_API OutputStream& JUCE_CALLTYPE operator<< (OutputStream& stream, const String& text)
 {
@@ -1190,8 +1204,8 @@ public:
         dest = result.getCharPointer();
     }
 
-    StringCreationHelper (const String::CharPointerType s)
-        : source (s), dest (nullptr), allocatedBytes (StringHolder::getAllocatedNumBytes (s)), bytesWritten (0)
+    StringCreationHelper (const String::CharPointerType& source_)
+        : source (source_), dest (nullptr), allocatedBytes (StringHolder::getAllocatedNumBytes (source)), bytesWritten (0)
     {
         result.preallocateBytes (allocatedBytes);
         dest = result.getCharPointer();
@@ -1521,8 +1535,7 @@ String String::quoted (const juce_wchar quoteCharacter) const
 }
 
 //==============================================================================
-static String::CharPointerType findTrimmedEnd (const String::CharPointerType start,
-                                               String::CharPointerType end)
+static String::CharPointerType findTrimmedEnd (const String::CharPointerType& start, String::CharPointerType end)
 {
     while (end > start)
     {
@@ -2211,10 +2224,6 @@ public:
             expect (String ((int64) -1234).getLargeIntValue() == -1234);
             expect (String (-1234.56).getDoubleValue() == -1234.56);
             expect (String (-1234.56f).getFloatValue() == -1234.56f);
-            expect (String (std::numeric_limits<int>::max()).getIntValue() == std::numeric_limits<int>::max());
-            expect (String (std::numeric_limits<int>::min()).getIntValue() == std::numeric_limits<int>::min());
-            expect (String (std::numeric_limits<int64>::max()).getLargeIntValue() == std::numeric_limits<int64>::max());
-            expect (String (std::numeric_limits<int64>::min()).getLargeIntValue() == std::numeric_limits<int64>::min());
             expect (("xyz" + s).getTrailingIntValue() == s.getIntValue());
             expect (s.getHexValue32() == 0x12345678);
             expect (s.getHexValue64() == (int64) 0x12345678);

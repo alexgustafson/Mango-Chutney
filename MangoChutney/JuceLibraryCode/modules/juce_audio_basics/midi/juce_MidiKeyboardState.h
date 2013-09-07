@@ -22,9 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MIDIKEYBOARDSTATE_H_INCLUDED
-#define JUCE_MIDIKEYBOARDSTATE_H_INCLUDED
+#ifndef __JUCE_MIDIKEYBOARDSTATE_JUCEHEADER__
+#define __JUCE_MIDIKEYBOARDSTATE_JUCEHEADER__
 
+#include "juce_MidiBuffer.h"
 class MidiKeyboardState;
 
 
@@ -179,11 +180,13 @@ public:
 
     //==============================================================================
     /** Registers a listener for callbacks when keys go up or down.
+
         @see removeListener
     */
     void addListener (MidiKeyboardStateListener* listener);
 
     /** Deregisters a listener.
+
         @see addListener
     */
     void removeListener (MidiKeyboardStateListener* listener);
@@ -202,4 +205,4 @@ private:
 };
 
 
-#endif   // JUCE_MIDIKEYBOARDSTATE_H_INCLUDED
+#endif   // __JUCE_MIDIKEYBOARDSTATE_JUCEHEADER__

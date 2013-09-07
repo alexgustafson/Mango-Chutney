@@ -22,10 +22,9 @@
   ==============================================================================
 */
 
-#ifndef JUCE_NATIVEMESSAGEBOX_H_INCLUDED
-#define JUCE_NATIVEMESSAGEBOX_H_INCLUDED
+#ifndef __JUCE_NATIVEMESSAGEBOX_JUCEHEADER__
+#define __JUCE_NATIVEMESSAGEBOX_JUCEHEADER__
 
-//==============================================================================
 /**
     This class contains some static methods for showing native alert windows.
 */
@@ -155,10 +154,6 @@ public:
                                                  Component* associatedComponent,
                                                  ModalComponentManager::Callback* callback);
                                                #endif
-
-private:
-    NativeMessageBox() JUCE_DELETED_FUNCTION;
-    JUCE_DECLARE_NON_COPYABLE (NativeMessageBox)
 };
 
-#endif   // JUCE_NATIVEMESSAGEBOX_H_INCLUDED
+#endif   // __JUCE_NATIVEMESSAGEBOX_JUCEHEADER__

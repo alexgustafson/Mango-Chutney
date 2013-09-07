@@ -22,9 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_LOWLEVELGRAPHICSSOFTWARERENDERER_H_INCLUDED
-#define JUCE_LOWLEVELGRAPHICSSOFTWARERENDERER_H_INCLUDED
+#ifndef __JUCE_LOWLEVELGRAPHICSSOFTWARERENDERER_JUCEHEADER__
+#define __JUCE_LOWLEVELGRAPHICSSOFTWARERENDERER_JUCEHEADER__
 
+#include "juce_LowLevelGraphicsContext.h"
+#include "../native/juce_RenderingHelpers.h"
 
 //==============================================================================
 /**
@@ -34,23 +36,60 @@
     User code is not supposed to create instances of this class directly - do all your
     rendering via the Graphics class instead.
 */
-class JUCE_API  LowLevelGraphicsSoftwareRenderer    : public RenderingHelpers::StackBasedLowLevelGraphicsContext<RenderingHelpers::SoftwareRendererSavedState>
+class JUCE_API  LowLevelGraphicsSoftwareRenderer    : public LowLevelGraphicsContext
 {
 public:
     //==============================================================================
-    /** Creates a context to render into an image. */
     LowLevelGraphicsSoftwareRenderer (const Image& imageToRenderOnto);
-
-    /** Creates a context to render into a clipped subsection of an image. */
     LowLevelGraphicsSoftwareRenderer (const Image& imageToRenderOnto, Point<int> origin,
-                                      const RectangleList<int>& initialClip);
-
-    /** Destructor. */
+                                      const RectangleList& initialClip);
     ~LowLevelGraphicsSoftwareRenderer();
 
-private:
+    bool isVectorDevice() const;
+    void setOrigin (int x, int y);
+    void addTransform (const AffineTransform&);
+    float getScaleFactor();
+    bool clipToRectangle (const Rectangle<int>&);
+    bool clipToRectangleList (const RectangleList&);
+    void excludeClipRectangle (const Rectangle<int>&);
+    void clipToPath (const Path&, const AffineTransform&);
+    void clipToImageAlpha (const Image&, const AffineTransform&);
+    bool clipRegionIntersects (const Rectangle<int>&);
+    Rectangle<int> getClipBounds() const;
+    bool isClipEmpty() const;
+
+    void saveState();
+    void restoreState();
+
+    void beginTransparencyLayer (float opacity);
+    void endTransparencyLayer();
+
+    void setFill (const FillType&);
+    void setOpacity (float opacity);
+    void setInterpolationQuality (Graphics::ResamplingQuality);
+
+    void fillRect (const Rectangle<int>&, bool replaceExistingContents);
+    void fillPath (const Path&, const AffineTransform&);
+
+    void drawImage (const Image&, const AffineTransform&);
+
+    void drawLine (const Line <float>&);
+    void drawVerticalLine (int x, float top, float bottom);
+    void drawHorizontalLine (int x, float top, float bottom);
+
+    void setFont (const Font&);
+    const Font& getFont();
+    void drawGlyph (int glyphNumber, float x, float y);
+    void drawGlyph (int glyphNumber, const AffineTransform&);
+
+    const Image& getImage() const noexcept                                          { return savedState->image; }
+    const RenderingHelpers::TranslationOrTransform& getTransform() const noexcept   { return savedState->transform; }
+
+protected:
+    RenderingHelpers::SavedStateStack <RenderingHelpers::SoftwareRendererSavedState> savedState;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (LowLevelGraphicsSoftwareRenderer)
 };
 
 
-#endif   // JUCE_LOWLEVELGRAPHICSSOFTWARERENDERER_H_INCLUDED
+#endif   // __JUCE_LOWLEVELGRAPHICSSOFTWARERENDERER_JUCEHEADER__

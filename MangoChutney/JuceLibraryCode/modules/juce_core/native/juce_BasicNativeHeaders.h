@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_BASICNATIVEHEADERS_H_INCLUDED
-#define JUCE_BASICNATIVEHEADERS_H_INCLUDED
+#ifndef __JUCE_BASICNATIVEHEADERS_JUCEHEADER__
+#define __JUCE_BASICNATIVEHEADERS_JUCEHEADER__
 
 #include "../system/juce_TargetPlatform.h"
 #undef T
@@ -220,4 +220,4 @@
 #undef direct
 #undef check
 
-#endif   // JUCE_BASICNATIVEHEADERS_H_INCLUDED
+#endif   // __JUCE_BASICNATIVEHEADERS_JUCEHEADER__

@@ -22,8 +22,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_KNOWNPLUGINLIST_H_INCLUDED
-#define JUCE_KNOWNPLUGINLIST_H_INCLUDED
+#ifndef __JUCE_KNOWNPLUGINLIST_JUCEHEADER__
+#define __JUCE_KNOWNPLUGINLIST_JUCEHEADER__
+
+#include "../processors/juce_PluginDescription.h"
+#include "../format/juce_AudioPluginFormat.h"
 
 
 //==============================================================================
@@ -204,4 +207,4 @@ private:
 };
 
 
-#endif   // JUCE_KNOWNPLUGINLIST_H_INCLUDED
+#endif   // __JUCE_KNOWNPLUGINLIST_JUCEHEADER__

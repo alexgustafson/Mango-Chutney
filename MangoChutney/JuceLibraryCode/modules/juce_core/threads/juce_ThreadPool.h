@@ -26,9 +26,13 @@
   ==============================================================================
 */
 
-#ifndef JUCE_THREADPOOL_H_INCLUDED
-#define JUCE_THREADPOOL_H_INCLUDED
+#ifndef __JUCE_THREADPOOL_JUCEHEADER__
+#define __JUCE_THREADPOOL_JUCEHEADER__
 
+#include "juce_Thread.h"
+#include "../text/juce_StringArray.h"
+#include "../containers/juce_Array.h"
+#include "../containers/juce_OwnedArray.h"
 class ThreadPool;
 class ThreadPoolThread;
 
@@ -291,8 +295,8 @@ private:
 
     class ThreadPoolThread;
     friend class ThreadPoolThread;
-    friend struct ContainerDeletePolicy<ThreadPoolThread>;
-    OwnedArray<ThreadPoolThread> threads;
+    friend class OwnedArray <ThreadPoolThread>;
+    OwnedArray <ThreadPoolThread> threads;
 
     CriticalSection lock;
     WaitableEvent jobFinishedSignal;
@@ -311,4 +315,4 @@ private:
 };
 
 
-#endif   // JUCE_THREADPOOL_H_INCLUDED
+#endif   // __JUCE_THREADPOOL_JUCEHEADER__

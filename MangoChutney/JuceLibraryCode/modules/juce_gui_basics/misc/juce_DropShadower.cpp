@@ -44,13 +44,13 @@ public:
         }
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         if (Component* c = target)
             shadow.drawForRectangle (g, getLocalArea (c, c->getLocalBounds()));
     }
 
-    void resized() override
+    void resized()
     {
         repaint();  // (needed for correct repainting)
     }

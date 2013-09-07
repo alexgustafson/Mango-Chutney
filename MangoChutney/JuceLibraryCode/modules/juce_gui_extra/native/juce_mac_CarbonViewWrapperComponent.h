@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_MAC_CARBONVIEWWRAPPERCOMPONENT_H_INCLUDED
-#define JUCE_MAC_CARBONVIEWWRAPPERCOMPONENT_H_INCLUDED
+#ifndef __JUCE_MAC_CARBONVIEWWRAPPERCOMPONENT_JUCEHEADER__
+#define __JUCE_MAC_CARBONVIEWWRAPPERCOMPONENT_JUCEHEADER__
 
 
 //==============================================================================
@@ -44,8 +44,7 @@ public:
           wrapperWindow (0),
           carbonWindow (0),
           embeddedView (0),
-          recursiveResize (false),
-          repaintChildOnCreation (true)
+          recursiveResize (false)
     {
     }
 
@@ -193,14 +192,11 @@ public:
 
             if (wrapperWindow != 0)
             {
-                jassert (getTopLevelComponent()->getDesktopScaleFactor() == 1.0f);
-                Rectangle<int> screenBounds (getScreenBounds() * Desktop::getInstance().getGlobalScaleFactor());
-
                 Rect wr;
-                wr.left   = (short) screenBounds.getX();
-                wr.top    = (short) screenBounds.getY();
-                wr.right  = (short) screenBounds.getRight();
-                wr.bottom = (short) screenBounds.getBottom();
+                wr.left   = (short) getScreenX();
+                wr.top    = (short) getScreenY();
+                wr.right  = (short) (wr.left + getWidth());
+                wr.bottom = (short) (wr.top + getHeight());
 
                 SetWindowBounds (wrapperWindow, kWindowContentRgn, &wr);
 
@@ -222,27 +218,18 @@ public:
         }
     }
 
-    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/) override
+    void componentMovedOrResized (bool /*wasMoved*/, bool /*wasResized*/)
     {
         setEmbeddedWindowToOurSize();
     }
 
-    // (overridden to intercept movements of the top-level window)
-    void componentMovedOrResized (Component& component, bool wasMoved, bool wasResized) override
-    {
-        ComponentMovementWatcher::componentMovedOrResized (component, wasMoved, wasResized);
-
-        if (&component == getTopLevelComponent())
-            setEmbeddedWindowToOurSize();
-    }
-
-    void componentPeerChanged() override
+    void componentPeerChanged()
     {
         deleteWindow();
         createWindow();
     }
 
-    void componentVisibilityChanged() override
+    void componentVisibilityChanged()
     {
         if (isShowing())
             createWindow();
@@ -264,7 +251,7 @@ public:
         }
     }
 
-    void timerCallback() override
+    void timerCallback()
     {
         if (isShowing())
         {
@@ -272,14 +259,9 @@ public:
 
             // To avoid strange overpainting problems when the UI is first opened, we'll
             // repaint it a few times during the first second that it's on-screen..
-            if (repaintChildOnCreation && (Time::getCurrentTime() - creationTime).inMilliseconds() < 1000)
+            if ((Time::getCurrentTime() - creationTime).inMilliseconds() < 1000)
                 recursiveHIViewRepaint (HIViewGetRoot (wrapperWindow));
         }
-    }
-
-    void setRepaintsChildHIViewWhenCreated (bool b) noexcept
-    {
-        repaintChildOnCreation = b;
     }
 
     OSStatus carbonEventHandler (EventHandlerCallRef /*nextHandlerRef*/, EventRef event)
@@ -321,7 +303,7 @@ protected:
     WindowRef wrapperWindow;
     NSWindow* carbonWindow;
     HIViewRef embeddedView;
-    bool recursiveResize, repaintChildOnCreation;
+    bool recursiveResize;
     Time creationTime;
 
     EventHandlerRef eventHandlerRef;
@@ -329,4 +311,4 @@ protected:
     NSWindow* getOwnerWindow() const    { return [((NSView*) getWindowHandle()) window]; }
 };
 
-#endif   // JUCE_MAC_CARBONVIEWWRAPPERCOMPONENT_H_INCLUDED
+#endif   // __JUCE_MAC_CARBONVIEWWRAPPERCOMPONENT_JUCEHEADER__

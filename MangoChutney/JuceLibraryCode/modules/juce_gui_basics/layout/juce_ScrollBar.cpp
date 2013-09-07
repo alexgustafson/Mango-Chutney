@@ -31,13 +31,13 @@ public:
         setWantsKeyboardFocus (false);
     }
 
-    void paintButton (Graphics& g, bool over, bool down) override
+    void paintButton (Graphics& g, bool over, bool down)
     {
         getLookAndFeel().drawScrollbarButton (g, owner, getWidth(), getHeight(),
                                               direction, owner.isVertical(), over, down);
     }
 
-    void clicked() override
+    void clicked()
     {
         owner.moveScrollbarInSteps ((direction == 1 || direction == 2) ? 1 : -1);
     }

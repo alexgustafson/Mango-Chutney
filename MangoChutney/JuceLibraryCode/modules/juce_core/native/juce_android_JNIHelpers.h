@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_ANDROID_JNIHELPERS_H_INCLUDED
-#define JUCE_ANDROID_JNIHELPERS_H_INCLUDED
+#ifndef __JUCE_ANDROID_JNIHELPERS_JUCEHEADER__
+#define __JUCE_ANDROID_JNIHELPERS_JUCEHEADER__
 
 #if ! (defined (JUCE_ANDROID_ACTIVITY_CLASSNAME) && defined (JUCE_ANDROID_ACTIVITY_CLASSPATH))
  #error "The JUCE_ANDROID_ACTIVITY_CLASSNAME and JUCE_ANDROID_ACTIVITY_CLASSPATH macros must be set!"
@@ -242,7 +242,7 @@ public:
     //==============================================================================
     GlobalRef activity;
     String appFile, appDataDir;
-    int screenWidth, screenHeight, dpi;
+    int screenWidth, screenHeight;
 };
 
 extern AndroidSystem android;
@@ -404,4 +404,4 @@ DECLARE_JNI_CLASS (Matrix, "android/graphics/Matrix");
 DECLARE_JNI_CLASS (RectClass, "android/graphics/Rect");
 #undef JNI_CLASS_MEMBERS
 
-#endif   // JUCE_ANDROID_JNIHELPERS_H_INCLUDED
+#endif   // __JUCE_ANDROID_JNIHELPERS_JUCEHEADER__

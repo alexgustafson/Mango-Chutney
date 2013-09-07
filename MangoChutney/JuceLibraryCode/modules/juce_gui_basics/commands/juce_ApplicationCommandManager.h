@@ -22,8 +22,13 @@
   ==============================================================================
 */
 
-#ifndef JUCE_APPLICATIONCOMMANDMANAGER_H_INCLUDED
-#define JUCE_APPLICATIONCOMMANDMANAGER_H_INCLUDED
+#ifndef __JUCE_APPLICATIONCOMMANDMANAGER_JUCEHEADER__
+#define __JUCE_APPLICATIONCOMMANDMANAGER_JUCEHEADER__
+
+#include "juce_ApplicationCommandTarget.h"
+class KeyPressMappingSet;
+class ApplicationCommandManagerListener;
+class Desktop;
 
 
 //==============================================================================
@@ -306,8 +311,8 @@ private:
     ApplicationCommandTarget* firstTarget;
 
     void sendListenerInvokeCallback (const ApplicationCommandTarget::InvocationInfo&);
-    void handleAsyncUpdate() override;
-    void globalFocusChanged (Component*) override;
+    void handleAsyncUpdate();
+    void globalFocusChanged (Component*);
 
    #if JUCE_CATCH_DEPRECATED_CODE_MISUSE
     // This is just here to cause a compile error in old code that hasn't been changed to use the new
@@ -349,4 +354,4 @@ public:
 
 
 
-#endif   // JUCE_APPLICATIONCOMMANDMANAGER_H_INCLUDED
+#endif   // __JUCE_APPLICATIONCOMMANDMANAGER_JUCEHEADER__

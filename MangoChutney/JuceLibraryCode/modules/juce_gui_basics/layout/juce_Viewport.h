@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_VIEWPORT_H_INCLUDED
-#define JUCE_VIEWPORT_H_INCLUDED
+#ifndef __JUCE_VIEWPORT_JUCEHEADER__
+#define __JUCE_VIEWPORT_JUCEHEADER__
+
+#include "juce_ScrollBar.h"
 
 
 //==============================================================================
@@ -235,15 +237,15 @@ public:
 
     //==============================================================================
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void scrollBarMoved (ScrollBar*, double newRangeStart) override;
+    void scrollBarMoved (ScrollBar*, double newRangeStart);
     /** @internal */
-    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&) override;
+    void mouseWheelMove (const MouseEvent&, const MouseWheelDetails&);
     /** @internal */
-    bool keyPressed (const KeyPress&) override;
+    bool keyPressed (const KeyPress&);
     /** @internal */
-    void componentMovedOrResized (Component&, bool wasMoved, bool wasResized) override;
+    void componentMovedOrResized (Component&, bool wasMoved, bool wasResized);
     /** @internal */
     bool useMouseWheelMoveIfNeeded (const MouseEvent&, const MouseWheelDetails&);
 
@@ -271,4 +273,4 @@ private:
 };
 
 
-#endif   // JUCE_VIEWPORT_H_INCLUDED
+#endif   // __JUCE_VIEWPORT_JUCEHEADER__

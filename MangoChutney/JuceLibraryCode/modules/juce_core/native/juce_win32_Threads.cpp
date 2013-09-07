@@ -150,7 +150,7 @@ void Thread::killThread()
     }
 }
 
-void JUCE_CALLTYPE Thread::setCurrentThreadName (const String& name)
+void Thread::setCurrentThreadName (const String& name)
 {
    #if JUCE_DEBUG && JUCE_MSVC
     struct
@@ -177,7 +177,7 @@ void JUCE_CALLTYPE Thread::setCurrentThreadName (const String& name)
    #endif
 }
 
-Thread::ThreadID JUCE_CALLTYPE Thread::getCurrentThreadId()
+Thread::ThreadID Thread::getCurrentThreadId()
 {
     return (ThreadID) (pointer_sized_int) GetCurrentThreadId();
 }
@@ -199,7 +199,7 @@ bool Thread::setThreadPriority (void* handle, int priority)
     return SetThreadPriority (handle, pri) != FALSE;
 }
 
-void JUCE_CALLTYPE Thread::setCurrentThreadAffinityMask (const uint32 affinityMask)
+void Thread::setCurrentThreadAffinityMask (const uint32 affinityMask)
 {
     SetThreadAffinityMask (GetCurrentThread(), affinityMask);
 }
@@ -271,7 +271,7 @@ void juce_repeatLastProcessPriority()
     }
 }
 
-void JUCE_CALLTYPE Process::setPriority (ProcessPriority prior)
+void Process::setPriority (ProcessPriority prior)
 {
     if (lastProcessPriority != (int) prior)
     {
@@ -292,7 +292,7 @@ bool JUCE_CALLTYPE Process::isRunningUnderDebugger()
 
 static void* currentModuleHandle = nullptr;
 
-void* JUCE_CALLTYPE Process::getCurrentModuleInstanceHandle() noexcept
+void* Process::getCurrentModuleInstanceHandle() noexcept
 {
     if (currentModuleHandle == nullptr)
         currentModuleHandle = GetModuleHandleA (nullptr);
@@ -300,29 +300,29 @@ void* JUCE_CALLTYPE Process::getCurrentModuleInstanceHandle() noexcept
     return currentModuleHandle;
 }
 
-void JUCE_CALLTYPE Process::setCurrentModuleInstanceHandle (void* const newHandle) noexcept
+void Process::setCurrentModuleInstanceHandle (void* const newHandle) noexcept
 {
     currentModuleHandle = newHandle;
 }
 
-void JUCE_CALLTYPE Process::raisePrivilege()
+void Process::raisePrivilege()
 {
     jassertfalse; // xxx not implemented
 }
 
-void JUCE_CALLTYPE Process::lowerPrivilege()
+void Process::lowerPrivilege()
 {
     jassertfalse; // xxx not implemented
 }
 
-void JUCE_CALLTYPE Process::terminate()
+void Process::terminate()
 {
    #if JUCE_MSVC && JUCE_CHECK_MEMORY_LEAKS
     _CrtDumpMemoryLeaks();
    #endif
 
     // bullet in the head in case there's a problem shutting down..
-    ExitProcess (1);
+    ExitProcess (0);
 }
 
 bool juce_isRunningInWine()

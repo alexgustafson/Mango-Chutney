@@ -35,16 +35,10 @@ IIRFilterAudioSource::IIRFilterAudioSource (AudioSource* const inputSource,
 IIRFilterAudioSource::~IIRFilterAudioSource()  {}
 
 //==============================================================================
-void IIRFilterAudioSource::setCoefficients (const IIRCoefficients& newCoefficients)
+void IIRFilterAudioSource::setFilterParameters (const IIRFilter& newSettings)
 {
     for (int i = iirFilters.size(); --i >= 0;)
-        iirFilters.getUnchecked(i)->setCoefficients (newCoefficients);
-}
-
-void IIRFilterAudioSource::makeInactive()
-{
-    for (int i = iirFilters.size(); --i >= 0;)
-        iirFilters.getUnchecked(i)->makeInactive();
+        iirFilters.getUnchecked(i)->copyCoefficientsFrom (newSettings);
 }
 
 //==============================================================================

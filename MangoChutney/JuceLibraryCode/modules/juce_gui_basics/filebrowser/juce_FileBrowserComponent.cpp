@@ -244,7 +244,7 @@ void FileBrowserComponent::setRoot (const File& newRootDirectory)
     if (currentRootName.isEmpty())
         currentRootName = File::separatorString;
 
-    currentPathBox.setText (currentRootName, dontSendNotification);
+    currentPathBox.setText (currentRootName, true);
 
     goUpButton->setEnabled (currentRoot.getParentDirectory().isDirectory()
                              && currentRoot.getParentDirectory() != currentRoot);
@@ -497,7 +497,7 @@ void FileBrowserComponent::comboBoxChanged (ComboBox*)
     }
 }
 
-void FileBrowserComponent::getDefaultRoots (StringArray& rootNames, StringArray& rootPaths)
+void FileBrowserComponent::getRoots (StringArray& rootNames, StringArray& rootPaths)
 {
    #if JUCE_WINDOWS
     Array<File> roots;
@@ -570,9 +570,4 @@ void FileBrowserComponent::getDefaultRoots (StringArray& rootNames, StringArray&
     rootPaths.add (File::getSpecialLocation (File::userDesktopDirectory).getFullPathName());
     rootNames.add ("Desktop");
    #endif
-}
-
-void FileBrowserComponent::getRoots (StringArray& rootNames, StringArray& rootPaths)
-{
-    getDefaultRoots (rootNames, rootPaths);
 }

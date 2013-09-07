@@ -22,8 +22,14 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILEBROWSERCOMPONENT_H_INCLUDED
-#define JUCE_FILEBROWSERCOMPONENT_H_INCLUDED
+#ifndef __JUCE_FILEBROWSERCOMPONENT_JUCEHEADER__
+#define __JUCE_FILEBROWSERCOMPONENT_JUCEHEADER__
+
+#include "juce_DirectoryContentsDisplayComponent.h"
+#include "juce_FilePreviewComponent.h"
+#include "../widgets/juce_TextEditor.h"
+#include "../widgets/juce_ComboBox.h"
+#include "../buttons/juce_DrawableButton.h"
 
 
 //==============================================================================
@@ -170,42 +176,36 @@ public:
     */
     void removeListener (FileBrowserListener* listener);
 
-    /** Returns a platform-specific list of names and paths for some suggested places the user
-        might want to use as root folders.
-        The list returned contains empty strings to indicate section breaks.
-        @see getRoots()
-    */
-    static void getDefaultRoots (StringArray& rootNames, StringArray& rootPaths);
 
     //==============================================================================
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void buttonClicked (Button*) override;
+    void buttonClicked (Button*);
     /** @internal */
-    void comboBoxChanged (ComboBox*) override;
+    void comboBoxChanged (ComboBox*);
     /** @internal */
-    void textEditorTextChanged (TextEditor&) override;
+    void textEditorTextChanged (TextEditor&);
     /** @internal */
-    void textEditorReturnKeyPressed (TextEditor&) override;
+    void textEditorReturnKeyPressed (TextEditor&);
     /** @internal */
-    void textEditorEscapeKeyPressed (TextEditor&) override;
+    void textEditorEscapeKeyPressed (TextEditor&);
     /** @internal */
-    void textEditorFocusLost (TextEditor&) override;
+    void textEditorFocusLost (TextEditor&);
     /** @internal */
-    bool keyPressed (const KeyPress&) override;
+    bool keyPressed (const KeyPress&);
     /** @internal */
-    void selectionChanged() override;
+    void selectionChanged();
     /** @internal */
-    void fileClicked (const File&, const MouseEvent&) override;
+    void fileClicked (const File&, const MouseEvent&);
     /** @internal */
-    void fileDoubleClicked (const File&) override;
+    void fileDoubleClicked (const File&);
     /** @internal */
-    void browserRootChanged (const File&) override;
+    void browserRootChanged (const File&);
     /** @internal */
-    bool isFileSuitable (const File&) const override;
+    bool isFileSuitable (const File&) const;
     /** @internal */
-    bool isDirectorySuitable (const File&) const override;
+    bool isDirectorySuitable (const File&) const;
 
     /** @internal */
     FilePreviewComponent* getPreviewComponent() const noexcept;
@@ -215,9 +215,7 @@ public:
 
 protected:
     /** Returns a list of names and paths for the default places the user might want to look.
-
-        By default this just calls getDefaultRoots(), but you may want to override it to
-        return a custom list.
+        Use an empty string to indicate a section break.
     */
     virtual void getRoots (StringArray& rootNames, StringArray& rootPaths);
 
@@ -251,4 +249,4 @@ private:
 
 
 
-#endif   // JUCE_FILEBROWSERCOMPONENT_H_INCLUDED
+#endif   // __JUCE_FILEBROWSERCOMPONENT_JUCEHEADER__

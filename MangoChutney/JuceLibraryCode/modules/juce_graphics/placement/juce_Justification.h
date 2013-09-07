@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_JUSTIFICATION_H_INCLUDED
-#define JUCE_JUSTIFICATION_H_INCLUDED
+#ifndef __JUCE_JUSTIFICATION_JUCEHEADER__
+#define __JUCE_JUSTIFICATION_JUCEHEADER__
+
+#include "../geometry/juce_Rectangle.h"
 
 
 //==============================================================================
@@ -35,40 +37,37 @@
 
     It is used in various places wherever this kind of information is needed.
 */
-class Justification
+class JUCE_API  Justification
 {
 public:
     //==============================================================================
     /** Creates a Justification object using a combination of flags from the Flags enum. */
-    Justification (int justificationFlags) noexcept   : flags (justificationFlags) {}
+    inline Justification (int justificationFlags) noexcept   : flags (justificationFlags) {}
 
     /** Creates a copy of another Justification object. */
-    Justification (const Justification& other) noexcept   : flags (other.flags) {}
+    Justification (const Justification& other) noexcept;
 
     /** Copies another Justification object. */
-    Justification& operator= (const Justification& other) noexcept
-    {
-        flags = other.flags;
-        return *this;
-    }
+    Justification& operator= (const Justification& other) noexcept;
 
     bool operator== (const Justification& other) const noexcept     { return flags == other.flags; }
     bool operator!= (const Justification& other) const noexcept     { return flags != other.flags; }
 
     //==============================================================================
     /** Returns the raw flags that are set for this Justification object. */
-    inline int getFlags() const noexcept                        { return flags; }
+    inline int getFlags() const noexcept                            { return flags; }
 
     /** Tests a set of flags for this object.
+
         @returns true if any of the flags passed in are set on this object.
     */
-    inline bool testFlags (int flagsToTest) const noexcept      { return (flags & flagsToTest) != 0; }
+    inline bool testFlags (int flagsToTest) const noexcept          { return (flags & flagsToTest) != 0; }
 
     /** Returns just the flags from this object that deal with vertical layout. */
-    int getOnlyVerticalFlags() const noexcept                   { return flags & (top | bottom | verticallyCentred); }
+    int getOnlyVerticalFlags() const noexcept;
 
     /** Returns just the flags from this object that deal with horizontal layout. */
-    int getOnlyHorizontalFlags() const noexcept                 { return flags & (left | right | horizontallyCentred | horizontallyJustified); }
+    int getOnlyHorizontalFlags() const noexcept;
 
     //==============================================================================
     /** Adjusts the position of a rectangle to fit it into a space.
@@ -186,4 +185,4 @@ private:
     int flags;
 };
 
-#endif   // JUCE_JUSTIFICATION_H_INCLUDED
+#endif   // __JUCE_JUSTIFICATION_JUCEHEADER__

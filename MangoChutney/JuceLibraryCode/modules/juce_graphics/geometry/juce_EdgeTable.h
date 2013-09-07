@@ -22,8 +22,14 @@
   ==============================================================================
 */
 
-#ifndef JUCE_EDGETABLE_H_INCLUDED
-#define JUCE_EDGETABLE_H_INCLUDED
+#ifndef __JUCE_EDGETABLE_JUCEHEADER__
+#define __JUCE_EDGETABLE_JUCEHEADER__
+
+#include "../geometry/juce_AffineTransform.h"
+#include "../geometry/juce_Rectangle.h"
+#include "../geometry/juce_RectangleList.h"
+class Path;
+class Image;
 
 
 //==============================================================================
@@ -53,10 +59,7 @@ public:
     explicit EdgeTable (const Rectangle<int>& rectangleToAdd);
 
     /** Creates an edge table containing a rectangle list. */
-    explicit EdgeTable (const RectangleList<int>& rectanglesToAdd);
-
-    /** Creates an edge table containing a rectangle list. */
-    explicit EdgeTable (const RectangleList<float>& rectanglesToAdd);
+    explicit EdgeTable (const RectangleList& rectanglesToAdd);
 
     /** Creates an edge table containing a rectangle. */
     explicit EdgeTable (const Rectangle<float>& rectangleToAdd);
@@ -188,18 +191,12 @@ public:
 private:
     //==============================================================================
     // table line format: number of points; point0 x, point0 levelDelta, point1 x, point1 levelDelta, etc
-    struct LineItem   { int x, level; };
-    struct LineSorter;
-
     HeapBlock<int> table;
     Rectangle<int> bounds;
     int maxEdgesPerLine, lineStrideElements;
     bool needToCheckEmptinesss;
 
-    void allocate();
-    void clearLineSizes() noexcept;
     void addEdgePoint (int x, int y, int winding);
-    void addEdgePointPair (int x1, int x2, int y, int winding);
     void remapTableForNumEdges (int newNumEdgesPerLine);
     void intersectWithEdgeTableLine (int y, const int* otherLine);
     void clipEdgeTableLineToRange (int* line, int x1, int x2) noexcept;
@@ -210,4 +207,4 @@ private:
 };
 
 
-#endif   // JUCE_EDGETABLE_H_INCLUDED
+#endif   // __JUCE_EDGETABLE_JUCEHEADER__

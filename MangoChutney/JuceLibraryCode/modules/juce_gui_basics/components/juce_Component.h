@@ -22,8 +22,24 @@
   ==============================================================================
 */
 
-#ifndef JUCE_COMPONENT_H_INCLUDED
-#define JUCE_COMPONENT_H_INCLUDED
+#ifndef __JUCE_COMPONENT_JUCEHEADER__
+#define __JUCE_COMPONENT_JUCEHEADER__
+
+#include "../mouse/juce_MouseCursor.h"
+#include "../mouse/juce_MouseListener.h"
+#include "../mouse/juce_MouseEvent.h"
+#include "juce_ComponentListener.h"
+#include "../keyboard/juce_KeyListener.h"
+#include "../keyboard/juce_KeyboardFocusTraverser.h"
+#include "juce_ModalComponentManager.h"
+
+class LookAndFeel;
+class MouseInputSource;
+class MouseInputSourceInternal;
+class ComponentPeer;
+class MarkerList;
+class RelativeRectangle;
+class CachedComponentImage;
 
 
 //==============================================================================
@@ -119,7 +135,7 @@ public:
     */
     bool isVisible() const noexcept                         { return flags.visibleFlag; }
 
-    /** Called when this component's visibility changes.
+    /** Called when this component's visiblility changes.
         @see setVisible, isVisible
     */
     virtual void visibilityChanged();
@@ -198,15 +214,6 @@ public:
         @see getPeer, ComponentPeer::setMinimised, ComponentPeer::isMinimised
     */
     virtual void minimisationStateChanged (bool isNowMinimised);
-
-    /** Returns the default scale factor to use for this component when it is placed
-        on the desktop.
-        The default implementation of this method just returns the value from
-        Desktop::getGlobalScaleFactor(), but it can be overridden if a particular component
-        has different requirements. The method only used if this component is added
-        to the desktop - it has no effect for child components.
-    */
-    virtual float getDesktopScaleFactor() const;
 
     //==============================================================================
     /** Brings the component to the front of its siblings.
@@ -323,7 +330,7 @@ public:
         If includeSiblings is true, it will also take into account any siblings
         that may be overlapping the component.
     */
-    void getVisibleArea (RectangleList<int>& result, bool includeSiblings) const;
+    void getVisibleArea (RectangleList& result, bool includeSiblings) const;
 
     //==============================================================================
     /** Returns this component's x coordinate relative the the screen's top-left origin.
@@ -558,7 +565,7 @@ public:
         @see setBounds
     */
     void setBoundsToFit (int x, int y, int width, int height,
-                         Justification justification,
+                         const Justification& justification,
                          bool onlyReduceInSize);
 
     /** Changes the position of the component's centre.
@@ -1234,9 +1241,6 @@ public:
     */
     static Component* JUCE_CALLTYPE getCurrentlyFocusedComponent() noexcept;
 
-    /** If any component has keyboard focus, this will defocus it. */
-    static void JUCE_CALLTYPE unfocusAllComponents();
-
     //==============================================================================
     /** Tries to move the keyboard focus to one of this component's siblings.
 
@@ -1449,7 +1453,7 @@ public:
                      the source component in which it occurred
         @see mouseEnter, mouseExit, mouseDrag, contains
     */
-    virtual void mouseMove (const MouseEvent& event) override;
+    virtual void mouseMove (const MouseEvent& event);
 
     /** Called when the mouse first enters a component.
 
@@ -1465,7 +1469,7 @@ public:
                      the source component in which it occurred
         @see mouseExit, mouseDrag, mouseMove, contains
     */
-    virtual void mouseEnter (const MouseEvent& event) override;
+    virtual void mouseEnter (const MouseEvent& event);
 
     /** Called when the mouse moves out of a component.
 
@@ -1480,7 +1484,7 @@ public:
                       the source component in which it occurred
         @see mouseEnter, mouseDrag, mouseMove, contains
     */
-    virtual void mouseExit (const MouseEvent& event) override;
+    virtual void mouseExit (const MouseEvent& event);
 
     /** Called when a mouse button is pressed.
 
@@ -1495,7 +1499,7 @@ public:
                       the source component in which it occurred
         @see mouseUp, mouseDrag, mouseDoubleClick, contains
     */
-    virtual void mouseDown (const MouseEvent& event) override;
+    virtual void mouseDown (const MouseEvent& event);
 
     /** Called when the mouse is moved while a button is held down.
 
@@ -1507,7 +1511,7 @@ public:
                       the source component in which it occurred
         @see mouseDown, mouseUp, mouseMove, contains, setDragRepeatInterval
     */
-    virtual void mouseDrag (const MouseEvent& event) override;
+    virtual void mouseDrag (const MouseEvent& event);
 
     /** Called when a mouse button is released.
 
@@ -1522,7 +1526,7 @@ public:
                       the source component in which it occurred
         @see mouseDown, mouseDrag, mouseDoubleClick, contains
     */
-    virtual void mouseUp (const MouseEvent& event) override;
+    virtual void mouseUp (const MouseEvent& event);
 
     /** Called when a mouse button has been double-clicked on a component.
 
@@ -1534,7 +1538,7 @@ public:
                       the source component in which it occurred
         @see mouseDown, mouseUp
     */
-    virtual void mouseDoubleClick (const MouseEvent& event) override;
+    virtual void mouseDoubleClick (const MouseEvent& event);
 
     /** Called when the mouse-wheel is moved.
 
@@ -1552,7 +1556,7 @@ public:
         @param wheel   details about the mouse wheel movement
     */
     virtual void mouseWheelMove (const MouseEvent& event,
-                                 const MouseWheelDetails& wheel) override;
+                                 const MouseWheelDetails& wheel);
 
     /** Called when a pinch-to-zoom mouse-gesture is used.
 
@@ -2210,10 +2214,12 @@ public:
     CachedComponentImage* getCachedComponentImage() const noexcept  { return cachedImage; }
 
     //==============================================================================
+   #ifndef DOXYGEN
     // These methods are deprecated - use localPointToGlobal, getLocalPoint, getLocalPoint, etc instead.
     JUCE_DEPRECATED (Point<int> relativePositionToGlobal (Point<int>) const);
     JUCE_DEPRECATED (Point<int> globalPositionToRelative (Point<int>) const);
     JUCE_DEPRECATED (Point<int> relativePositionToOtherComponent (const Component*, Point<int>) const);
+   #endif
 
 private:
     //==============================================================================
@@ -2238,7 +2244,7 @@ private:
 
     class MouseListenerList;
     friend class MouseListenerList;
-    friend struct ContainerDeletePolicy<MouseListenerList>;
+    friend class ScopedPointer <MouseListenerList>;
     ScopedPointer <MouseListenerList> mouseListeners;
     ScopedPointer <Array <KeyListener*> > keyListeners;
     ListenerList <ComponentListener> componentListeners;
@@ -2330,7 +2336,7 @@ private:
 
     // This is included here to cause an error if you use or overload it - it has been deprecated in
     // favour of contains (Point<int>)
-    void contains (int, int) JUCE_DELETED_FUNCTION;
+    void contains (int, int);
    #endif
 
 protected:
@@ -2341,4 +2347,4 @@ protected:
 };
 
 
-#endif   // JUCE_COMPONENT_H_INCLUDED
+#endif   // __JUCE_COMPONENT_JUCEHEADER__

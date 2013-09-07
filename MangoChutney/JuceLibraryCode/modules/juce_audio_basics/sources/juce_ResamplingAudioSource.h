@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RESAMPLINGAUDIOSOURCE_H_INCLUDED
-#define JUCE_RESAMPLINGAUDIOSOURCE_H_INCLUDED
+#ifndef __JUCE_RESAMPLINGAUDIOSOURCE_JUCEHEADER__
+#define __JUCE_RESAMPLINGAUDIOSOURCE_JUCEHEADER__
+
+#include "juce_AudioSource.h"
 
 
 //==============================================================================
@@ -67,9 +69,9 @@ public:
     double getResamplingRatio() const noexcept                  { return ratio; }
 
     //==============================================================================
-    void prepareToPlay (int samplesPerBlockExpected, double sampleRate) override;
-    void releaseResources() override;
-    void getNextAudioBlock (const AudioSourceChannelInfo&) override;
+    void prepareToPlay (int samplesPerBlockExpected, double sampleRate);
+    void releaseResources();
+    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
 
 private:
     //==============================================================================
@@ -100,4 +102,4 @@ private:
 };
 
 
-#endif   // JUCE_RESAMPLINGAUDIOSOURCE_H_INCLUDED
+#endif   // __JUCE_RESAMPLINGAUDIOSOURCE_JUCEHEADER__

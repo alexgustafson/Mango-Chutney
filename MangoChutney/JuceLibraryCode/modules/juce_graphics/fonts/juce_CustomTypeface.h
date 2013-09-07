@@ -22,8 +22,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CUSTOMTYPEFACE_H_INCLUDED
-#define JUCE_CUSTOMTYPEFACE_H_INCLUDED
+#ifndef __JUCE_CUSTOMTYPEFACE_JUCEHEADER__
+#define __JUCE_CUSTOMTYPEFACE_JUCEHEADER__
+
+#include "juce_Typeface.h"
+class InputStream;
+class OutputStream;
 
 
 //==============================================================================
@@ -113,13 +117,13 @@ public:
 
     //==============================================================================
     // The following methods implement the basic Typeface behaviour.
-    float getAscent() const override;
-    float getDescent() const override;
-    float getHeightToPointsFactor() const override;
-    float getStringWidth (const String&) override;
-    void getGlyphPositions (const String&, Array <int>& glyphs, Array<float>& xOffsets) override;
-    bool getOutlineForGlyph (int glyphNumber, Path&) override;
-    EdgeTable* getEdgeTableForGlyph (int glyphNumber, const AffineTransform&) override;
+    float getAscent() const;
+    float getDescent() const;
+    float getHeightToPointsFactor() const;
+    float getStringWidth (const String& text);
+    void getGlyphPositions (const String& text, Array <int>& glyphs, Array<float>& xOffsets);
+    bool getOutlineForGlyph (int glyphNumber, Path& path);
+    EdgeTable* getEdgeTableForGlyph (int glyphNumber, const AffineTransform& transform);
 
 protected:
     //==============================================================================
@@ -138,8 +142,8 @@ protected:
 private:
     //==============================================================================
     class GlyphInfo;
-    friend struct ContainerDeletePolicy<GlyphInfo>;
-    OwnedArray<GlyphInfo> glyphs;
+    friend class OwnedArray<GlyphInfo>;
+    OwnedArray <GlyphInfo> glyphs;
     short lookupTable [128];
 
     GlyphInfo* findGlyph (const juce_wchar character, bool loadIfNeeded) noexcept;
@@ -147,4 +151,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomTypeface)
 };
 
-#endif   // JUCE_CUSTOMTYPEFACE_H_INCLUDED
+#endif   // __JUCE_CUSTOMTYPEFACE_JUCEHEADER__

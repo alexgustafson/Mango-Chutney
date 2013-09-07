@@ -22,9 +22,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_TOOLBAR_H_INCLUDED
-#define JUCE_TOOLBAR_H_INCLUDED
+#ifndef __JUCE_TOOLBAR_JUCEHEADER__
+#define __JUCE_TOOLBAR_JUCEHEADER__
 
+#include "../mouse/juce_DragAndDropContainer.h"
+#include "../layout/juce_ComponentAnimator.h"
+#include "../buttons/juce_Button.h"
 class ToolbarItemComponent;
 class ToolbarItemFactory;
 
@@ -267,19 +270,19 @@ public:
 
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void resized() override;
+    void resized();
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent&);
     /** @internal */
-    bool isInterestedInDragSource (const SourceDetails&) override;
+    bool isInterestedInDragSource (const SourceDetails&);
     /** @internal */
-    void itemDragMove (const SourceDetails&) override;
+    void itemDragMove (const SourceDetails&);
     /** @internal */
-    void itemDragExit (const SourceDetails&) override;
+    void itemDragExit (const SourceDetails&);
     /** @internal */
-    void itemDropped (const SourceDetails&) override;
+    void itemDropped (const SourceDetails&);
     /** @internal */
     void updateAllItemPositions (bool animate);
     /** @internal */
@@ -298,7 +301,7 @@ private:
     class Spacer;
     class CustomisationDialog;
 
-    void buttonClicked (Button*) override;
+    void buttonClicked (Button*);
     void addItemInternal (ToolbarItemFactory& factory, int itemId, int insertIndex);
 
     ToolbarItemComponent* getNextActiveComponent (int index, int delta) const;
@@ -307,4 +310,4 @@ private:
 };
 
 
-#endif   // JUCE_TOOLBAR_H_INCLUDED
+#endif   // __JUCE_TOOLBAR_JUCEHEADER__

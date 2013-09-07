@@ -26,8 +26,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_CHILDPROCESS_H_INCLUDED
-#define JUCE_CHILDPROCESS_H_INCLUDED
+#ifndef __JUCE_CHILDPROCESS_JUCEHEADER__
+#define __JUCE_CHILDPROCESS_JUCEHEADER__
 
 
 //==============================================================================
@@ -95,11 +95,11 @@ public:
 private:
     //==============================================================================
     class ActiveProcess;
-    friend struct ContainerDeletePolicy<ActiveProcess>;
+    friend class ScopedPointer<ActiveProcess>;
     ScopedPointer<ActiveProcess> activeProcess;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ChildProcess)
 };
 
 
-#endif   // JUCE_CHILDPROCESS_H_INCLUDED
+#endif   // __JUCE_CHILDPROCESS_JUCEHEADER__

@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_RESIZABLECORNERCOMPONENT_H_INCLUDED
-#define JUCE_RESIZABLECORNERCOMPONENT_H_INCLUDED
+#ifndef __JUCE_RESIZABLECORNERCOMPONENT_JUCEHEADER__
+#define __JUCE_RESIZABLECORNERCOMPONENT_JUCEHEADER__
+
+#include "juce_ComponentBoundsConstrainer.h"
 
 
 //==============================================================================
@@ -68,15 +70,15 @@ public:
 protected:
     //==============================================================================
     /** @internal */
-    void paint (Graphics&) override;
+    void paint (Graphics& g);
     /** @internal */
-    void mouseDown (const MouseEvent&) override;
+    void mouseDown (const MouseEvent& e);
     /** @internal */
-    void mouseDrag (const MouseEvent&) override;
+    void mouseDrag (const MouseEvent& e);
     /** @internal */
-    void mouseUp (const MouseEvent&) override;
+    void mouseUp (const MouseEvent& e);
     /** @internal */
-    bool hitTest (int x, int y) override;
+    bool hitTest (int x, int y);
 
 private:
     //==============================================================================
@@ -88,4 +90,4 @@ private:
 };
 
 
-#endif   // JUCE_RESIZABLECORNERCOMPONENT_H_INCLUDED
+#endif   // __JUCE_RESIZABLECORNERCOMPONENT_JUCEHEADER__

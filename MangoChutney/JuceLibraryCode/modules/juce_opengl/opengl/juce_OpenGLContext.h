@@ -22,8 +22,12 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OPENGLCONTEXT_H_INCLUDED
-#define JUCE_OPENGLCONTEXT_H_INCLUDED
+#ifndef __JUCE_OPENGLCONTEXT_JUCEHEADER__
+#define __JUCE_OPENGLCONTEXT_JUCEHEADER__
+
+#include "juce_OpenGLPixelFormat.h"
+#include "../native/juce_OpenGLExtensions.h"
+#include "juce_OpenGLRenderer.h"
 
 
 //==============================================================================
@@ -87,11 +91,6 @@ public:
         Note: This must be called BEFORE attaching your context to a target component!
     */
     void setNativeSharedContext (void* nativeContextToShareWith) noexcept;
-
-    /** Enables multisampling on platforms where this is implemented.
-        If enabling this, you must call this method before attachTo().
-    */
-    void setMultisamplingEnabled (bool) noexcept;
 
     //==============================================================================
     /** Attaches the context to a target component.
@@ -201,16 +200,6 @@ public:
     int getSwapInterval() const;
 
     //==============================================================================
-    /** Returns the scale factor used by the display that is being rendered.
-
-        The scale is that of the display - see Desktop::Displays::Display::scale
-
-        Note that this should only be called during an OpenGLRenderer::renderOpenGL()
-        callback - at other times the value it returns is undefined.
-    */
-    double getRenderingScale() const noexcept   { return currentRenderScale; }
-
-    //==============================================================================
     /** Returns an OS-dependent handle to some kind of underlting OS-provided GL context.
 
         The exact type of the value returned will depend on the OS and may change
@@ -218,6 +207,7 @@ public:
         native code is probably the best way to find out what it is.
     */
     void* getRawContext() const noexcept;
+
 
     //==============================================================================
     /** Draws the currently selected texture into this context at its original size.
@@ -249,11 +239,10 @@ private:
     class Attachment;
     NativeContext* nativeContext;
     OpenGLRenderer* renderer;
-    double currentRenderScale;
     ScopedPointer<Attachment> attachment;
     OpenGLPixelFormat pixelFormat;
     void* contextToShareWith;
-    bool renderComponents, useMultisampling;
+    bool renderComponents;
 
     CachedImage* getCachedImage() const noexcept;
 
@@ -261,4 +250,4 @@ private:
 };
 
 
-#endif   // JUCE_OPENGLCONTEXT_H_INCLUDED
+#endif   // __JUCE_OPENGLCONTEXT_JUCEHEADER__

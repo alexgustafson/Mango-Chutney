@@ -54,7 +54,7 @@ public:
         setInterceptsMouseClicks (false, false);
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         g.setColour (Colour::greyLevel (0.1f));
         g.drawEllipse (1.0f, 1.0f, getWidth() - 2.0f, getHeight() - 2.0f, 1.0f);
@@ -77,7 +77,7 @@ public:
         setMouseCursor (MouseCursor::CrosshairCursor);
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         if (colours.isNull())
         {
@@ -100,19 +100,16 @@ public:
         }
 
         g.setOpacity (1.0f);
-        g.drawImageTransformed (colours,
-                                RectanglePlacement (RectanglePlacement::stretchToFit)
-                                    .getTransformToFit (colours.getBounds().toFloat(),
-                                                        getLocalBounds().reduced (edge).toFloat()),
-                                false);
+        g.drawImage (colours, edge, edge, getWidth() - edge * 2, getHeight() - edge * 2,
+                     0, 0, colours.getWidth(), colours.getHeight());
     }
 
-    void mouseDown (const MouseEvent& e) override
+    void mouseDown (const MouseEvent& e)
     {
         mouseDrag (e);
     }
 
-    void mouseDrag (const MouseEvent& e) override
+    void mouseDrag (const MouseEvent& e)
     {
         const float sat = (e.x - edge) / (float) (getWidth() - edge * 2);
         const float val = 1.0f - (e.y - edge) / (float) (getHeight() - edge * 2);
@@ -132,7 +129,7 @@ public:
         updateMarker();
     }
 
-    void resized() override
+    void resized()
     {
         colours = Image::null;
         updateMarker();
@@ -167,7 +164,7 @@ public:
         setInterceptsMouseClicks (false, false);
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         const float cw = (float) getWidth();
         const float ch = (float) getHeight();
@@ -196,13 +193,13 @@ private:
 class ColourSelector::HueSelectorComp  : public Component
 {
 public:
-    HueSelectorComp (ColourSelector& cs, float& hue, const int edgeSize)
-        : owner (cs), h (hue), edge (edgeSize)
+    HueSelectorComp (ColourSelector& cs, float& hue, float& sat, float& val, const int edgeSize)
+        : owner (cs), h (hue), s (sat), v (val), edge (edgeSize)
     {
         addAndMakeVisible (&marker);
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         ColourGradient cg;
         cg.isRadial = false;
@@ -216,17 +213,17 @@ public:
         g.fillRect (getLocalBounds().reduced (edge));
     }
 
-    void resized() override
+    void resized()
     {
         marker.setBounds (0, roundToInt ((getHeight() - edge * 2) * h), getWidth(), edge * 2);
     }
 
-    void mouseDown (const MouseEvent& e) override
+    void mouseDown (const MouseEvent& e)
     {
         mouseDrag (e);
     }
 
-    void mouseDrag (const MouseEvent& e) override
+    void mouseDrag (const MouseEvent& e)
     {
         owner.setHue ((e.y - edge) / (float) (getHeight() - edge * 2));
     }
@@ -239,6 +236,8 @@ public:
 private:
     ColourSelector& owner;
     float& h;
+    float& s;
+    float& v;
     HueSelectorMarker marker;
     const int edge;
 
@@ -254,7 +253,7 @@ public:
     {
     }
 
-    void paint (Graphics& g) override
+    void paint (Graphics& g)
     {
         const Colour c (owner.getSwatchColour (index));
 
@@ -263,7 +262,7 @@ public:
                             Colour (0xffffffff).overlaidWith (c));
     }
 
-    void mouseDown (const MouseEvent&) override
+    void mouseDown (const MouseEvent&)
     {
         PopupMenu m;
         m.addItem (1, TRANS("Use this swatch as the current colour"));
@@ -333,7 +332,7 @@ ColourSelector::ColourSelector (const int sectionsToShow, const int edge, const 
     if ((flags & showColourspace) != 0)
     {
         addAndMakeVisible (colourSpace = new ColourSpaceView (*this, h, s, v, gapAroundColourSpaceComponent));
-        addAndMakeVisible (hueSelector = new HueSelectorComp (*this, h,  gapAroundColourSpaceComponent));
+        addAndMakeVisible (hueSelector = new HueSelectorComp (*this, h, s, v, gapAroundColourSpaceComponent));
     }
 
     update();

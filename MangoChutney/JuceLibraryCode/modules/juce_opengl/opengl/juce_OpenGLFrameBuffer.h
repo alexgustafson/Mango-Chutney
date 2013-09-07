@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_OPENGLFRAMEBUFFER_H_INCLUDED
-#define JUCE_OPENGLFRAMEBUFFER_H_INCLUDED
+#ifndef __JUCE_OPENGLFRAMEBUFFER_JUCEHEADER__
+#define __JUCE_OPENGLFRAMEBUFFER_JUCEHEADER__
 
 
 //==============================================================================
@@ -139,15 +139,15 @@ public:
 
 private:
     class Pimpl;
-    friend struct ContainerDeletePolicy<Pimpl>;
+    friend class ScopedPointer<Pimpl>;
     ScopedPointer<Pimpl> pimpl;
 
     class SavedState;
-    friend struct ContainerDeletePolicy<SavedState>;
+    friend class ScopedPointer<SavedState>;
     ScopedPointer<SavedState> savedState;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OpenGLFrameBuffer)
 };
 
 
-#endif   // JUCE_OPENGLFRAMEBUFFER_H_INCLUDED
+#endif   // __JUCE_OPENGLFRAMEBUFFER_JUCEHEADER__

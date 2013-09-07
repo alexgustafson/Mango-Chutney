@@ -26,8 +26,11 @@
   ==============================================================================
 */
 
-#ifndef JUCE_THREAD_H_INCLUDED
-#define JUCE_THREAD_H_INCLUDED
+#ifndef __JUCE_THREAD_JUCEHEADER__
+#define __JUCE_THREAD_JUCEHEADER__
+
+#include "juce_WaitableEvent.h"
+#include "juce_CriticalSection.h"
 
 
 //==============================================================================
@@ -58,10 +61,10 @@ public:
 
     /** Destructor.
 
-        You must never attempt to delete a Thread object while it's still running -
-        always call stopThread() and make sure your thread has stopped before deleting
-        the object. Failing to do so will throw an assertion, and put you firmly into
-        undefined behaviour territory.
+        Deleting a Thread object that is running will only give the thread a
+        brief opportunity to stop itself cleanly, so it's recommended that you
+        should always call stopThread() with a decent timeout before deleting,
+        to avoid the thread being forcibly killed (which is a Bad Thing).
     */
     virtual ~Thread();
 
@@ -81,8 +84,8 @@ public:
 
     /** Starts the thread running.
 
-        This will cause the thread's run() method to be called by a new thread.
-        If this thread is already running, startThread() won't do anything.
+        This will start the thread's run() method.
+        (if it's already started, startThread() won't do anything).
 
         @see stopThread
     */
@@ -113,11 +116,9 @@ public:
         @param timeOutMilliseconds  The number of milliseconds to wait for the
                                     thread to finish before killing it by force. A negative
                                     value in here will wait forever.
-        @returns    true if the thread was cleanly stopped before the timeout, or false
-                    if it had to be killed by force.
         @see signalThreadShouldExit, threadShouldExit, waitForThreadToExit, isThreadRunning
     */
-    bool stopThread (int timeOutMilliseconds);
+    void stopThread (int timeOutMilliseconds);
 
     //==============================================================================
     /** Returns true if the thread is currently active */
@@ -185,10 +186,12 @@ public:
     void setAffinityMask (uint32 affinityMask);
 
     /** Changes the affinity mask for the caller thread.
+
         This will change the affinity mask for the thread that calls this static method.
+
         @see setAffinityMask
     */
-    static void JUCE_CALLTYPE setCurrentThreadAffinityMask (uint32 affinityMask);
+    static void setCurrentThreadAffinityMask (uint32 affinityMask);
 
     //==============================================================================
     // this can be called from any thread that needs to pause..
@@ -230,14 +233,14 @@ public:
         @returns    a unique identifier that identifies the calling thread.
         @see getThreadId
     */
-    static ThreadID JUCE_CALLTYPE getCurrentThreadId();
+    static ThreadID getCurrentThreadId();
 
     /** Finds the thread object that is currently running.
 
         Note that the main UI thread (or other non-Juce threads) don't have a Thread
         object associated with them, so this will return 0.
     */
-    static Thread* JUCE_CALLTYPE getCurrentThread();
+    static Thread* getCurrentThread();
 
     /** Returns the ID of this thread.
 
@@ -259,7 +262,7 @@ public:
     /** Changes the name of the caller thread.
         Different OSes may place different length or content limits on this name.
     */
-    static void JUCE_CALLTYPE setCurrentThreadName (const String& newThreadName);
+    static void setCurrentThreadName (const String& newThreadName);
 
 
 private:
@@ -286,4 +289,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Thread)
 };
 
-#endif   // JUCE_THREAD_H_INCLUDED
+#endif   // __JUCE_THREAD_JUCEHEADER__

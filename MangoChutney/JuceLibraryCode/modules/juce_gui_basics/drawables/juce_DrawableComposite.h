@@ -22,8 +22,13 @@
   ==============================================================================
 */
 
-#ifndef JUCE_DRAWABLECOMPOSITE_H_INCLUDED
-#define JUCE_DRAWABLECOMPOSITE_H_INCLUDED
+#ifndef __JUCE_DRAWABLECOMPOSITE_JUCEHEADER__
+#define __JUCE_DRAWABLECOMPOSITE_JUCEHEADER__
+
+#include "juce_Drawable.h"
+#include "../positioning/juce_MarkerList.h"
+#include "../positioning/juce_RelativeParallelogram.h"
+#include "../positioning/juce_RelativeRectangle.h"
 
 
 //==============================================================================
@@ -102,13 +107,13 @@ public:
     /** @internal */
     Rectangle<float> getDrawableBounds() const;
     /** @internal */
-    void childBoundsChanged (Component*) override;
+    void childBoundsChanged (Component*);
     /** @internal */
-    void childrenChanged() override;
+    void childrenChanged();
     /** @internal */
-    void parentHierarchyChanged() override;
+    void parentHierarchyChanged();
     /** @internal */
-    MarkerList* getMarkers (bool xAxis) override;
+    MarkerList* getMarkers (bool xAxis);
 
     //==============================================================================
     /** Internally-used class for wrapping a DrawableComposite's state into a ValueTree. */
@@ -153,4 +158,4 @@ private:
 };
 
 
-#endif   // JUCE_DRAWABLECOMPOSITE_H_INCLUDED
+#endif   // __JUCE_DRAWABLECOMPOSITE_JUCEHEADER__

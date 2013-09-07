@@ -22,8 +22,8 @@
   ==============================================================================
 */
 
-#ifndef JUCE_FILEBASEDDOCUMENT_H_INCLUDED
-#define JUCE_FILEBASEDDOCUMENT_H_INCLUDED
+#ifndef __JUCE_FILEBASEDDOCUMENT_JUCEHEADER__
+#define __JUCE_FILEBASEDDOCUMENT_JUCEHEADER__
 
 
 //==============================================================================
@@ -290,4 +290,4 @@ private:
 };
 
 
-#endif   // JUCE_FILEBASEDDOCUMENT_H_INCLUDED
+#endif   // __JUCE_FILEBASEDDOCUMENT_JUCEHEADER__

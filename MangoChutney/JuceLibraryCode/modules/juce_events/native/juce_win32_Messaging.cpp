@@ -111,7 +111,8 @@ bool MessageManager::dispatchNextMessageOnSystemQueue (const bool returnIfNoPend
         }
         else if (m.message == WM_QUIT)
         {
-            if (JUCEApplicationBase* const app = JUCEApplicationBase::getInstance())
+            JUCEApplicationBase* const app = JUCEApplicationBase::getInstance();
+            if (app != nullptr)
                 app->systemRequestedQuit();
         }
         else if (isEventBlockedByModalComps == nullptr || ! isEventBlockedByModalComps (m))

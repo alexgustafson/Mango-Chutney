@@ -26,8 +26,14 @@
   ==============================================================================
 */
 
-#ifndef JUCE_JSON_H_INCLUDED
-#define JUCE_JSON_H_INCLUDED
+#ifndef __JUCE_JSON_JUCEHEADER__
+#define __JUCE_JSON_JUCEHEADER__
+
+#include "../misc/juce_Result.h"
+#include "../containers/juce_Variant.h"
+class InputStream;
+class OutputStream;
+class File;
 
 
 //==============================================================================
@@ -109,4 +115,4 @@ private:
 };
 
 
-#endif   // JUCE_JSON_H_INCLUDED
+#endif   // __JUCE_JSON_JUCEHEADER__

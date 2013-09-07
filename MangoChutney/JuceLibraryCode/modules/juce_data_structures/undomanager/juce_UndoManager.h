@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_UNDOMANAGER_H_INCLUDED
-#define JUCE_UNDOMANAGER_H_INCLUDED
+#ifndef __JUCE_UNDOMANAGER_JUCEHEADER__
+#define __JUCE_UNDOMANAGER_JUCEHEADER__
+
+#include "juce_UndoableAction.h"
 
 
 //==============================================================================
@@ -214,7 +216,7 @@ public:
 private:
     //==============================================================================
     struct ActionSet;
-    friend struct ContainerDeletePolicy<ActionSet>;
+    friend class OwnedArray<ActionSet>;
     OwnedArray<ActionSet> transactions;
     String currentTransactionName;
     int totalUnitsStored, maxNumUnitsToKeep, minimumTransactionsToKeep, nextIndex;
@@ -227,4 +229,4 @@ private:
 };
 
 
-#endif   // JUCE_UNDOMANAGER_H_INCLUDED
+#endif   // __JUCE_UNDOMANAGER_JUCEHEADER__

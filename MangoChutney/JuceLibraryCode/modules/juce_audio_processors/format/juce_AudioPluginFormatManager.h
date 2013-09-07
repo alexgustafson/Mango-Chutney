@@ -22,8 +22,10 @@
   ==============================================================================
 */
 
-#ifndef JUCE_AUDIOPLUGINFORMATMANAGER_H_INCLUDED
-#define JUCE_AUDIOPLUGINFORMATMANAGER_H_INCLUDED
+#ifndef __JUCE_AUDIOPLUGINFORMATMANAGER_JUCEHEADER__
+#define __JUCE_AUDIOPLUGINFORMATMANAGER_JUCEHEADER__
+
+#include "juce_AudioPluginFormat.h"
 
 
 //==============================================================================
@@ -94,4 +96,4 @@ private:
 
 
 
-#endif   // JUCE_AUDIOPLUGINFORMATMANAGER_H_INCLUDED
+#endif   // __JUCE_AUDIOPLUGINFORMATMANAGER_JUCEHEADER__
