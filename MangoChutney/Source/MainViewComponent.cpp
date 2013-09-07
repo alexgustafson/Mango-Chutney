@@ -257,7 +257,12 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_playButton] -- add your button handler code here..
         EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_GUI_MODE, (new ModeUpdateEvent(ModeUpdateEvent::mode::playmode)));
+        if (sequencer->getState() == SequencerState::isPlaying) {
+            playButton->setToggleState(true, NotificationType::dontSendNotification);
+        }else{
+            playButton->setToggleState(false, NotificationType::dontSendNotification);
 
+        }
         //[/UserButtonCode_playButton]
     }
     else if (buttonThatWasClicked == stepButton)
@@ -375,8 +380,16 @@ void MainViewComponent::eventListenerCallback (const String &message, void* payl
         if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::playmode)
         {
             
+        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::setupmode)
+        {
+            
+        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::selectmode)
+        {
+        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::stepmode)
+        {
+        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::patternmode)
+        {
         }
-
 
     }
 

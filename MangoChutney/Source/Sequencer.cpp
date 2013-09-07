@@ -161,3 +161,19 @@ void Sequencer::saveSettings(File &settingsFile)
     sequecerSettings.writeToStream(os);
     
 }
+
+void Sequencer::eventListenerCallback (const String &message, void* payload)
+{
+    if( message.equalsIgnoreCase(EventDispatch::MSG_UPDATE_GUI_MODE) )
+    {
+        if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::playmode)
+        {
+            if (state == SequencerState::isPlaying) {
+                setState(SequencerState::shouldStop);
+            }else
+            {
+                setState(SequencerState::shouldPlay);
+            }
+        }
+    }
+}
