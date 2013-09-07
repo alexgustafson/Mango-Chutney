@@ -170,7 +170,6 @@ int DrumPad::getPadNr()
 void DrumPad::drawHit()
 {
     currentColor = selectedColor;
-    DBG("pad hit");
     countDown = 1.0f;
     startTimer(60);
 
@@ -179,7 +178,6 @@ void DrumPad::drawHit()
 void DrumPad::fadePad()
 {
     currentColor = padColor;
-    DBG("pad hit");
     countDown = 1.0f;
     startTimer(60);
     
@@ -197,7 +195,6 @@ void DrumPad::timerCallback()
         countDown = 1.0f;
         padColor = normalColor;
         stopTimer();
-        DBG("stopped");
     }
     
 

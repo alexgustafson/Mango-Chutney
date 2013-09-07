@@ -12,6 +12,7 @@
 #define __SEQUENCER_H_3100F9F2__
 
 #include "JuceHeader.h"
+#include "MangoEventDispatch.h"
 enum SequencerState {
     
     isStopped,
@@ -23,7 +24,7 @@ enum SequencerState {
     
 };
 
-class Sequencer
+class Sequencer : public EventListener
 {
 public:
     
@@ -61,6 +62,7 @@ public:
         activePattern = 0;
         pattern = song.patterns[activePattern];
         loadDefaultSettings();
+        EventDispatch::getInstance()->addEventListener((EventListener*)this);
         
     };
     
@@ -74,6 +76,8 @@ public:
     void loadDefaultSettings();
     void loadSettings(File &settingsFile);
     void saveSettings(File &settingsFile);
+    
+    void eventListenerCallback (const String &message, void* payload);
     
     int beatCount;
     int activePattern;
