@@ -42,11 +42,6 @@ public:
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
     void setSampleForSound(int index, File soundFile);
     
-    void startSequencer();
-    void pauseSequencer();
-    void stopSequencer();
-    void toggleStartStop();
-    
 private:
 
     int sampleCounter;

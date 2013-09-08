@@ -23,9 +23,10 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
 #include "MangoEventDispatch.h"
+#include "DrumController.h"
 //[/Headers]
 
-
+class DrumController;
 
 //==============================================================================
 /**
@@ -53,6 +54,7 @@ public:
     void drawHit();
     void fadePad();
     void timerCallback();
+    void makeActive();
     //[/UserMethods]
 
     void paint (Graphics& g);
@@ -68,6 +70,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    WeakReference<DrumController> drumController;
     int padNr;
     Colour normalColor = Colour((0xff43709c));
     Colour selectedColor = Colour((0xfff0f8ff));

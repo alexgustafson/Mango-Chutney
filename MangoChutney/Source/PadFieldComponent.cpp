@@ -53,39 +53,39 @@ PadField::PadField ()
 
 
     //[Constructor] You can add your own custom stuff here..
-    pad1->setName("pad1");
-    pad2->setName("pad2");
-    pad3->setName("pad3");
-    pad4->setName("pad4");
-    pad5->setName("pad5");
-    pad6->setName("pad6");
-    pad7->setName("pad7");
-    pad8->setName("pad8");
-    pad9->setName("pad9");
-    pad10->setName("pad10");
-    pad11->setName("pad11");
-    pad12->setName("pad12");
-    pad13->setName("pad13");
-    pad14->setName("pad14");
-    pad15->setName("pad15");
-    pad16->setName("pad16");
+    pad1->setName("pad0");
+    pad2->setName("pad1");
+    pad3->setName("pad2");
+    pad4->setName("pad3");
+    pad5->setName("pad4");
+    pad6->setName("pad5");
+    pad7->setName("pad6");
+    pad8->setName("pad7");
+    pad9->setName("pad8");
+    pad10->setName("pad9");
+    pad11->setName("pad10");
+    pad12->setName("pad11");
+    pad13->setName("pad12");
+    pad14->setName("pad13");
+    pad15->setName("pad14");
+    pad16->setName("pad15");
 
-    pad1->setPadNr(1);
-    pad2->setPadNr(2);
-    pad3->setPadNr(3);
-    pad4->setPadNr(4);
-    pad5->setPadNr(5);
-    pad6->setPadNr(6);
-    pad7->setPadNr(7);
-    pad8->setPadNr(8);
-    pad9->setPadNr(9);
-    pad10->setPadNr(10);
-    pad11->setPadNr(12);
-    pad12->setPadNr(13);
-    pad13->setPadNr(14);
-    pad14->setPadNr(15);
-    pad15->setPadNr(16);
-    pad16->setPadNr(17);
+    pad1->setPadNr(0);
+    pad2->setPadNr(1);
+    pad3->setPadNr(2);
+    pad4->setPadNr(3);
+    pad5->setPadNr(4);
+    pad6->setPadNr(5);
+    pad7->setPadNr(6);
+    pad8->setPadNr(7);
+    pad9->setPadNr(8);
+    pad10->setPadNr(9);
+    pad11->setPadNr(10);
+    pad12->setPadNr(11);
+    pad13->setPadNr(12);
+    pad14->setPadNr(13);
+    pad15->setPadNr(14);
+    pad16->setPadNr(15);
 
 
     pads.add(pad1);

@@ -143,7 +143,7 @@ MainViewComponent::MainViewComponent ()
 
     sequencer = Sequencer::getInstance();
     tempoSlider->setValue(sequencer->tempo);
-    drumController = new DrumController();
+    drumController = DrumController::getInstance();
     setSize (getParentWidth(), getParentHeight());
 
     selectButton->setClickingTogglesState(true);
@@ -160,7 +160,6 @@ MainViewComponent::MainViewComponent ()
 MainViewComponent::~MainViewComponent()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
-    sequencer->saveDefaultSettings();
     //[/Destructor_pre]
 
     setupButton = nullptr;
@@ -180,7 +179,6 @@ MainViewComponent::~MainViewComponent()
     //[Destructor]. You can add your own custom destruction code here..
     drumController = nullptr;
     fileBrowser = nullptr;
-    delete sequencer;
     //[/Destructor]
 }
 
@@ -249,32 +247,27 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == selectButton)
     {
         //[UserButtonCode_selectButton] -- add your button handler code here..
-        EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_GUI_MODE, (new ModeUpdateEvent(ModeUpdateEvent::mode::selectmode)));
+        drumController->setMode(Selectmode, buttonThatWasClicked);
 
         //[/UserButtonCode_selectButton]
     }
     else if (buttonThatWasClicked == playButton)
     {
         //[UserButtonCode_playButton] -- add your button handler code here..
-        EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_GUI_MODE, (new ModeUpdateEvent(ModeUpdateEvent::mode::playmode)));
-        if (sequencer->getState() == SequencerState::isPlaying) {
-            playButton->setToggleState(true, NotificationType::dontSendNotification);
-        }else{
-            playButton->setToggleState(false, NotificationType::dontSendNotification);
 
-        }
+        drumController->toggleSequencerPlayStop(buttonThatWasClicked);
         //[/UserButtonCode_playButton]
     }
     else if (buttonThatWasClicked == stepButton)
     {
         //[UserButtonCode_stepButton] -- add your button handler code here..
-        EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_GUI_MODE, (new ModeUpdateEvent(ModeUpdateEvent::mode::stepmode)));
-
+        drumController->setMode(Stepmode, buttonThatWasClicked);
         //[/UserButtonCode_stepButton]
     }
     else if (buttonThatWasClicked == patternButton)
     {
         //[UserButtonCode_patternButton] -- add your button handler code here..
+        drumController->setMode(Patternmode, buttonThatWasClicked);
         //[/UserButtonCode_patternButton]
     }
 
@@ -387,12 +380,14 @@ void MainViewComponent::eventListenerCallback (const String &message, void* payl
         {
         }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::stepmode)
         {
+            if (sequencer->getState() == SequencerState::isPlaying) {
+                
+            }
         }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::patternmode)
         {
         }
 
     }
-
 }
 
 

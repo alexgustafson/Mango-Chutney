@@ -39,6 +39,7 @@ void Sequencer::setState(SequencerState newState)
 void Sequencer::stopping()
 {
     state = isStopped;
+    beatCount = 0;
 }
 
 void Sequencer::starting()
@@ -65,8 +66,17 @@ void Sequencer::setPattern(int patternNr)
     activePattern = patternNr;
 }
 
+void Sequencer::setTrack(int trackNr)
+{
+    song.patterns[activePattern].tracks[activeTrack] = track;
+    track = song.patterns[activePattern].tracks[trackNr];
+    activeTrack = trackNr;
+    
+}
+
 void Sequencer::saveDefaultSettings()
 {
+
     File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/seqSettings.data"));
     saveSettings(dataFile);
 }
@@ -118,7 +128,8 @@ void Sequencer::loadSettings(File &settingsFile)
 
 void Sequencer::saveSettings(File &settingsFile)
 {
-    song.patterns[activePattern] = pattern;
+    setTrack(0);
+    setPattern(0);
     
     settingsFile.deleteFile();
     

@@ -60,17 +60,26 @@ public:
             }
         }
         activePattern = 0;
+        activeTrack = 0;
         pattern = song.patterns[activePattern];
+        track = pattern.tracks[activeTrack];
         loadDefaultSettings();
         EventDispatch::getInstance()->addEventListener((EventListener*)this);
+        state = isStopped;
         
     };
+    
+    ~Sequencer()
+    {
+        saveDefaultSettings();
+    }
     
     
     void setState(SequencerState newState);
     SequencerState getState() { return state; };
     void setTempo(int newTempo);
     void setPattern(int patternNr);
+    void setTrack(int trackNr);
     
     void saveDefaultSettings();
     void loadDefaultSettings();
@@ -81,10 +90,12 @@ public:
     
     int beatCount;
     int activePattern;
+    int activeTrack;
     float samplesPerBeat;
     float tempo;
     
     Pattern pattern;
+    Track track;
     Song song;
     
     juce_DeclareSingleton (Sequencer, false)

@@ -40,12 +40,15 @@ DrumPad::DrumPad ()
     //[Constructor] You can add your own custom stuff here..
     EventDispatch::getInstance()->addEventListener((EventListener*)this);
     countDown = 1.0f;
+    drumController = DrumController::getInstance();
+    
     //[/Constructor]
 }
 
 DrumPad::~DrumPad()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+    drumController = nullptr;
     //[/Destructor_pre]
 
 
@@ -103,9 +106,8 @@ void DrumPad::mouseExit (const MouseEvent& e)
 void DrumPad::mouseDown (const MouseEvent& e)
 {
     //[UserCode_mouseDown] -- Add your code here...
-
-    EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_PAD_DOWN_EVENT,
-                                                   new PadDownEvent(padNr, e.x, getHeight() - e.y));
+    
+    drumController->padTouched(this, ((float)e.getMouseDownX()/((float)getWidth())), (float)(e.getMouseDownY()/(float)getHeight()));
 
     //[/UserCode_mouseDown]
 }
@@ -127,39 +129,13 @@ void DrumPad::mouseUp (const MouseEvent& e)
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void DrumPad::eventListenerCallback (const String &message, void* payload)
 {
-    if (message.equalsIgnoreCase(EventDispatch::MSG_UPDATE_PAD_STATE)) {
 
-        if (getPadNr() == ((PadUpdateEvent *)(payload))->_padNr) {
-
-            if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::musicTap) {
-
-                drawHit();
-            }else if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::showActive)
-            {
-                padColor = selectedColor;
-                countDown = 1.0f;
-                repaint();
-
-            }
-
-        }else
-        {
-            if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::musicTap) {
-                
-                fadePad();
-            }else if (((PadUpdateEvent *)(payload))->_action == PadUpdateEvent::padAction::showActive)
-            {
-                
-                fadePad();
-            }
-
-        }
-    }
 }
 
 void DrumPad::setPadNr(int id)
 {
     padNr = id;
+    drumController->addPad(this);
 }
 
 int DrumPad::getPadNr()
@@ -183,6 +159,15 @@ void DrumPad::fadePad()
     
 }
 
+void DrumPad::makeActive()
+{
+    stopTimer();
+    padColor = selectedColor;
+    countDown = 1.0f;
+    repaint();
+    
+}
+
 void DrumPad::timerCallback()
 {
     if(countDown > 0.0f){
@@ -196,8 +181,6 @@ void DrumPad::timerCallback()
         padColor = normalColor;
         stopTimer();
     }
-    
-
 }
 
 //[/MiscUserCode]

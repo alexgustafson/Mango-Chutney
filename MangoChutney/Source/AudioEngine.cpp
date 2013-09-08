@@ -26,7 +26,7 @@ SynthAudioSource::SynthAudioSource (MidiKeyboardState& keyboardState_)
     }
     
     setUsingSampledSound();
-    beatCounter = 0;
+    
     sampleCounter = 0;
     
 }
@@ -35,7 +35,7 @@ void SynthAudioSource::setUsingSampledSound()
 {
     synth.clearSounds();
     
-   
+    
     
 }
 
@@ -60,30 +60,30 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     midiCollector.removeNextBlockOfMessages (incomingMidi, bufferToFill.numSamples);
     
     if (sequencer->getState() == isPlaying) {
-    
-    for (int i = 0; i < bufferToFill.numSamples; i++) {
-        sampleCounter++;
         
-        if (sampleCounter > sequencer->samplesPerBeat) {
-            sampleCounter = 0;
+        for (int i = 0; i < bufferToFill.numSamples; i++) {
+            sampleCounter++;
             
-            
-            if (beatCounter > 15) {
-                beatCounter = 0;
+            if (sampleCounter > sequencer->samplesPerBeat) {
+                sampleCounter = 0;
                 
-            }
-            
-            for (int j = 0; j < 16; j++)
-            {
-                if (sequencer->pattern.tracks[j].notes[beatCounter] > 0.01f) {
-                    incomingMidi.addEvent( MidiMessage::noteOn(1, j + 1, 1.0f), i);
+                for (int j = 0; j < 16; j++)
+                {
+                    if (sequencer->pattern.tracks[j].notes[sequencer->beatCount] > 0.01f) {
+                        incomingMidi.addEvent( MidiMessage::noteOn(1, j, 1.0f), i);
+                    }
+                }
+                
+                sequencer->beatCount++ ;
+                if (sequencer->beatCount > 15) {
+                    sequencer->beatCount = 0;
+                    
                 }
             }
-            sequencer->beatCount = beatCounter;
-            beatCounter++ ;
+            
         }
-        
-    }
+    }else{
+        sampleCounter = 1;
     }
     
     // pass these messages to the keyboard state so that it can update the component
@@ -103,43 +103,14 @@ void SynthAudioSource::setSampleForSound(int index, File soundFile)
     
     if (!sound) {
         BigInteger notes;
-        notes.setRange (index + 1, 1, true);
-        synth.addSound(new DDSamplerSound("name", soundFile, notes, index + 1, 0.01, 0.01, 10.0));
+        notes.setRange (index, 1, true);
+        synth.addSound(new DDSamplerSound("name", soundFile, notes, index, 0.01, 0.01, 10.0));
         
     }else
     {
         sound->setSourceFile(soundFile);
-
-    }
-    
-    
-}
-
-void SynthAudioSource::startSequencer()
-{
-    sequencer->setState(shouldPlay);
-}
-
-void SynthAudioSource::pauseSequencer()
-{
-    sequencer->setState(shouldPause);
-}
-
-void SynthAudioSource::stopSequencer()
-{
-    beatCounter = 0;
-    sampleCounter = 0;
-    sequencer->setState(shouldStop);
-}
-
-void SynthAudioSource::toggleStartStop()
-{
-    if (sequencer->getState() != isPlaying) {
-        startSequencer();
-    }
-    else
-    {
-        stopSequencer();
+        
     }
 }
+
 

@@ -10,7 +10,19 @@
 
 #include "DrumController.h"
 
-DrumController::DrumController()
+DrumController* DrumController::instance = nullptr;
+
+DrumController* DrumController::getInstance()
+{
+    if (instance == nullptr)
+    {
+        instance = new DrumController();
+    }
+    
+    return instance;
+}
+
+DrumController::DrumController() noexcept
 {
     deviceManager.initialise (2, 2, 0, true, String::empty, 0);
     synthAudioSource = new SynthAudioSource (keyboardState);
@@ -21,29 +33,46 @@ DrumController::DrumController()
     deviceManager.addMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
     
     lastSelectedPad = 1;
-    
+    sequencer = Sequencer::getInstance();
     EventDispatch::getInstance()->addEventListener((EventListener*)this);
-    mode = DrumMode::Playmode;
+    mode = Nomode;
+    DrumController::instance = this;
 }
 
 DrumController::~DrumController()
 {
+
     audioSourcePlayer.setSource (0);
     deviceManager.removeMidiInputCallback (String::empty, &(synthAudioSource->midiCollector));
     deviceManager.removeAudioCallback (&audioSourcePlayer);
     synthAudioSource = nullptr;
+    sequencer = nullptr;
+    masterReference.clear();
+}
+
+void DrumController::addPad(DrumPad* drumPad)
+{
+    pads[drumPad->getPadNr()] = drumPad;
+
 }
 
 
-
-void DrumController::toggleSequencerPlayStop()
+void DrumController::toggleSequencerPlayStop(Button* button)
 {
-    synthAudioSource->toggleStartStop();
+    if (sequencer->getState() == isStopped) {
+        sequencer->setState(shouldPlay);
+        button->setToggleState(true, false);
+    }else
+    {
+        sequencer->setState(shouldStop);
+        button->setToggleState(false, false);
+    }
+
 }
 
 void DrumController::setFileForActivePad(const File file )
 {
-    synthAudioSource->setSampleForSound(lastSelectedPad - 1, file);
+    synthAudioSource->setSampleForSound(lastSelectedPad, file);
 
     String nodeName;
     nodeName << "pad" << lastSelectedPad;
@@ -76,8 +105,8 @@ void DrumController::loadSettings(File &settingsFile)
     FileInputStream is(settingsFile);
     drumSettings.removeAllChildren(nullptr);
     drumSettings =   ValueTree::readFromStream(is);
-    
-    for (int i = 1; i < 17; i++) {
+    DBG(drumSettings.toXmlString());
+    for (int i = 0; i < 16; i++) {
         
         String parameter;
         parameter << "pad" << i;
@@ -87,7 +116,7 @@ void DrumController::loadSettings(File &settingsFile)
         if (padParameters.hasProperty("audioFilePath"))
         {
             File audioFile(padParameters.getProperty("audioFilePath"));
-            synthAudioSource->setSampleForSound(i - 1, audioFile);
+            synthAudioSource->setSampleForSound(i, audioFile);
         }
     }
 }
@@ -102,41 +131,113 @@ void DrumController::saveSettings(File &settingsFile)
 
 void DrumController::eventListenerCallback (const String &message, void* payload)
 {
-    if (message.equalsIgnoreCase(EventDispatch::MSG_PAD_DOWN_EVENT)) {
-        
-        if (mode == DrumMode::Playmode) {
-            
-            lastSelectedPad = ((PadDownEvent *)(payload))->_padNr;
-            keyboardState.noteOn(1, lastSelectedPad, 1.0);
-            
-            PadUpdateEvent* padUpdateEvent = new PadUpdateEvent(lastSelectedPad, PadUpdateEvent::padAction::musicTap, ((PadDownEvent *)(payload))->_xValue, ((PadDownEvent *)(payload))->_yValue);
-            
-            EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_PAD_STATE, padUpdateEvent);
 
-        }else if(mode == Selectmode)
-        {
-            lastSelectedPad = ((PadDownEvent *)(payload))->_padNr;
-            PadUpdateEvent* padUpdateEvent = new PadUpdateEvent(lastSelectedPad, PadUpdateEvent::padAction::showActive, ((PadDownEvent *)(payload))->_xValue, ((PadDownEvent *)(payload))->_yValue);
-            
-            EventDispatch::getInstance()->sendEventMessage(EventDispatch::MSG_UPDATE_PAD_STATE, padUpdateEvent);
+}
 
+void DrumController::setMode(DrumMode newMode, Button* button)
+{
+    if (newMode == mode) {
+        newMode = Nomode;
+        button->setToggleState(false, false);
+    }
+    mode = newMode;
+    
+    if (mode == Nomode) {
+
+        for (int i = 0; i < 16; i++) {
+            pads[i]->fadePad();
         }
-    }else if (message.equalsIgnoreCase(EventDispatch::MSG_UPDATE_GUI_MODE))
+        startTimer(60);
+
+    }else if (mode == Selectmode)
     {
-        if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::playmode)
-        {
-            mode = DrumMode::Playmode;
-            
-        }else if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::selectmode)
-        {
-            mode = DrumMode::Selectmode;
+        for (int i = 0; i < 16; i++) {
+            if(i == lastSelectedPad)
+            {
+                pads[i]->makeActive();
+            }else
+            {
+                pads[i]->fadePad();
+            }
         }
+    }else if (mode == Patternmode)
+    {
+        
+    }else if (mode == Stepmode)
+    {
+        for (int i = 0; i < 16; i++) {
+            
+            if (sequencer->pattern.tracks[lastSelectedPad].notes[i] > 0.0)
+            {
+                pads[i]->makeActive();
+            }else
+            {
+                pads[i]->fadePad();
+            }
+            
+        }
+        startTimer(60);
     }
 }
 
+
+void DrumController::padTouched(DrumPad* drumPad, float xValue, float yValue)
+{
+    if (mode == Nomode) {
+        
+        keyboardState.noteOn(1, drumPad->getPadNr(), yValue);
+        drumPad->drawHit();
+        
+    }else if(mode == Selectmode)
+    {
+        keyboardState.noteOn(1, drumPad->getPadNr(), yValue);
+        pads[lastSelectedPad]->fadePad();
+        drumPad->makeActive();
+        lastSelectedPad = drumPad->getPadNr();
+        
+    }else if(mode == Stepmode)
+    {
+            if(sequencer->pattern.tracks[lastSelectedPad].notes[drumPad->getPadNr()] > 0.0)
+            {
+                sequencer->pattern.tracks[lastSelectedPad].notes[drumPad->getPadNr()] = 0.0;
+            }else{
+                sequencer->pattern.tracks[lastSelectedPad].notes[drumPad->getPadNr()] = xValue;
+            }
+    }
+}
+
+
 void DrumController::timerCallback()
 {
-    
-
-    
+    if (mode == Stepmode) {
+        for (int i = 0; i < 16; i++) {
+            
+            if (sequencer->pattern.tracks[lastSelectedPad].notes[i] > 0.0) {
+                pads[i]->makeActive();
+            }else{
+                pads[i]->fadePad();
+            }
+        }
+        pads[sequencer->beatCount]->drawHit();
+    }else if (mode == Nomode) {
+        
+        if (sequencer->getState() != isPlaying)
+        {
+            stopTimer();
+            return;
+        }
+        
+        for (int i = 0; i < 16; i++) {
+            if (sequencer->pattern.tracks[i].notes[sequencer->beatCount] > 0.0) {
+                pads[i]->makeActive();
+            }else{
+                pads[i]->fadePad();
+            }
+        }
+        
+    }
 }
+
+
+
+
