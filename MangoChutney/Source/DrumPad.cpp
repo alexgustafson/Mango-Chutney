@@ -41,7 +41,8 @@ DrumPad::DrumPad ()
     EventDispatch::getInstance()->addEventListener((EventListener*)this);
     countDown = 1.0f;
     drumController = DrumController::getInstance();
-    
+    hasSampleLoaded = false;
+
     //[/Constructor]
 }
 
@@ -71,7 +72,7 @@ void DrumPad::paint (Graphics& g)
     g.fillRoundedRectangle (static_cast<float> (proportionOfWidth (0.0251f)), static_cast<float> (proportionOfHeight (0.0190f)), static_cast<float> (proportionOfWidth (0.9553f)), static_cast<float> (proportionOfHeight (0.9598f)), 5.500f);
 
     g.setColour (Colour (0xffaaaaaa));
-    g.drawRoundedRectangle (static_cast<float> (proportionOfWidth (0.0251f)), static_cast<float> (proportionOfHeight (0.0190f)), static_cast<float> (proportionOfWidth (0.9553f)), static_cast<float> (proportionOfHeight (0.9598f)), 5.500f, 0.900f);
+    g.drawRoundedRectangle (static_cast<float> (proportionOfWidth (0.0251f)), static_cast<float> (proportionOfHeight (0.0190f)), static_cast<float> (proportionOfWidth (0.9553f)), static_cast<float> (proportionOfHeight (0.9598f)), 5.500f, 3.000f);
 
     //[UserPaint] Add your own custom painting code here..
     g.setColour(padColor);
@@ -106,8 +107,8 @@ void DrumPad::mouseExit (const MouseEvent& e)
 void DrumPad::mouseDown (const MouseEvent& e)
 {
     //[UserCode_mouseDown] -- Add your code here...
-    
-    drumController->padTouched(this, ((float)e.getMouseDownX()/((float)getWidth())), (float)(e.getMouseDownY()/(float)getHeight()));
+
+    drumController->padTouched(this,1.0 - ((float)e.getMouseDownX()/((float)getWidth())), 1.0 - (float)(e.getMouseDownY()/(float)getHeight()));
 
     //[/UserCode_mouseDown]
 }
@@ -147,7 +148,7 @@ void DrumPad::drawHit()
 {
     currentColor = selectedColor;
     countDown = 1.0f;
-    startTimer(60);
+    startTimer(40);
 
 }
 
@@ -155,8 +156,8 @@ void DrumPad::fadePad()
 {
     currentColor = padColor;
     countDown = 1.0f;
-    startTimer(60);
-    
+    startTimer(40);
+
 }
 
 void DrumPad::makeActive()
@@ -165,14 +166,14 @@ void DrumPad::makeActive()
     padColor = selectedColor;
     countDown = 1.0f;
     repaint();
-    
+
 }
 
 void DrumPad::timerCallback()
 {
     if(countDown > 0.0f){
-        
-        countDown = countDown - 0.15f;
+
+        countDown = countDown - 0.22f;
         padColor = normalColor.interpolatedWith(currentColor, countDown);
         repaint();
 
@@ -181,6 +182,11 @@ void DrumPad::timerCallback()
         padColor = normalColor;
         stopTimer();
     }
+}
+
+void DrumPad::setHadSampleLoaded(bool sampleLoaded)
+{
+    hasSampleLoaded = sampleLoaded;
 }
 
 //[/MiscUserCode]
@@ -198,8 +204,8 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="DrumPad" componentName=""
                  parentClasses="public Component, public EventListener, public Timer"
                  constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
-                 snapShown="1" overlayOpacity="0.33" fixedSize="0" initialWidth="600"
-                 initialHeight="400">
+                 snapShown="1" overlayOpacity="0.33000001311302185059" fixedSize="0"
+                 initialWidth="600" initialHeight="400">
   <METHODS>
     <METHOD name="mouseDown (const MouseEvent&amp; e)"/>
     <METHOD name="mouseExit (const MouseEvent&amp; e)"/>
@@ -210,7 +216,7 @@ BEGIN_JUCER_METADATA
   </METHODS>
   <BACKGROUND backgroundColour="6d6d6d">
     <ROUNDRECT pos="2.514% 1.903% 95.531% 95.983%" cornerSize="5.5" fill="linear: 72 56, 240 376, 0=ff43709c, 1=ff24517d"
-               hasStroke="1" stroke="0.9, mitered, butt" strokeColour="solid: ffaaaaaa"/>
+               hasStroke="1" stroke="3, mitered, butt" strokeColour="solid: ffaaaaaa"/>
   </BACKGROUND>
 </JUCER_COMPONENT>
 

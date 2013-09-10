@@ -74,6 +74,11 @@ void Sequencer::setTrack(int trackNr)
     
 }
 
+int Sequencer::getActivePatternNr()
+{
+    return activePattern;
+}
+
 void Sequencer::saveDefaultSettings()
 {
 

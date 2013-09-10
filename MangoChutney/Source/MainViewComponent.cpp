@@ -238,6 +238,13 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
         {
             settingsComponent = new SettingsViewComponent();
         }
+        File file = drumController->getSampleFileForActivePad();
+        if (file.exists()) {
+            settingsComponent->setSelectedAudioFile(file);
+        }
+        
+        
+        
         addAndMakeVisible(settingsComponent);
         settingsComponent->setTopLeftPosition(0, 0);
         settingsComponent->setSize(getWidth(), getHeight());
@@ -310,6 +317,7 @@ void MainViewComponent::selectionChanged()
 void MainViewComponent::fileClicked(const juce::File &file, const juce::MouseEvent &e)
 {
     removeChildComponent(fileBrowser);
+    settingsComponent->setSelectedAudioFile(file);
     drumController->setFileForActivePad(file);
 }
 
@@ -325,7 +333,7 @@ void MainViewComponent::browserRootChanged (const File& newRoot)
 
 void MainViewComponent::fileSelected(const juce::File &file)
 {
-
+    settingsComponent->setSelectedAudioFile(file);
     drumController->setFileForActivePad(file);
     removeChildComponent(fileBrowser);
 }

@@ -41,6 +41,7 @@ public:
     void releaseResources();
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill);
     void setSampleForSound(int index, File soundFile);
+    File getSampleFileForSound(int index);
     
 private:
 

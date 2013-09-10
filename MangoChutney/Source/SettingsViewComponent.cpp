@@ -49,7 +49,8 @@ SettingsViewComponent::SettingsViewComponent ()
 
 
     //[Constructor] You can add your own custom stuff here..
-    settingsPanel->addAndMakeVisible(sampleSettingsPanel = new SampleSettingsComponent());
+    sampleSettingsPanel = new SampleSettingsComponent();
+    settingsPanel->addAndMakeVisible(sampleSettingsPanel);
     //[/Constructor]
 }
 
@@ -119,6 +120,11 @@ void SettingsViewComponent::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void SettingsViewComponent::setSelectedAudioFile(File audioFile)
+{
+    selectedAudioFile = audioFile;
+    sampleSettingsPanel->setSelectedAudioFile(audioFile);
+}
 //[/MiscUserCode]
 
 

@@ -46,6 +46,8 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void setSelectedAudioFile(File audioFile);
+
     //[/UserMethods]
 
     void paint (Graphics& g);
@@ -56,6 +58,8 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     ScopedPointer<SampleSettingsComponent> sampleSettingsPanel;
+    File selectedAudioFile;
+
     //[/UserVariables]
 
     //==============================================================================

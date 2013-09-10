@@ -80,6 +80,7 @@ public:
     void setTempo(int newTempo);
     void setPattern(int patternNr);
     void setTrack(int trackNr);
+    int getActivePatternNr();
     
     void saveDefaultSettings();
     void loadDefaultSettings();

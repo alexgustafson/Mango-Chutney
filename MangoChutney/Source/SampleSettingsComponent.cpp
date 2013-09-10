@@ -214,9 +214,25 @@ void SampleSettingsComponent::sliderValueChanged (Slider* sliderThatWasMoved)
     //[/UsersliderValueChanged_Post]
 }
 
+void SampleSettingsComponent::mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel)
+{
+    //[UserCode_mouseWheelMove] -- Add your code here...
+    //[/UserCode_mouseWheelMove]
+}
+
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void SampleSettingsComponent::changeListenerCallback (ChangeBroadcaster *source)
+{
+    
+}
+
+void SampleSettingsComponent::setSelectedAudioFile(File audioFile)
+{
+    selectedAudioFile = audioFile;
+    textEditor->setText(selectedAudioFile.getFileName());
+}
 //[/MiscUserCode]
 
 
@@ -230,10 +246,13 @@ void SampleSettingsComponent::sliderValueChanged (Slider* sliderThatWasMoved)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="SampleSettingsComponent"
-                 componentName="" parentClasses="public Component" constructorParams=""
-                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.330000013" fixedSize="0" initialWidth="600"
-                 initialHeight="400">
+                 componentName="" parentClasses="public Component, public ChangeListener"
+                 constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
+                 snapShown="1" overlayOpacity="0.33000001311302185059" fixedSize="0"
+                 initialWidth="600" initialHeight="400">
+  <METHODS>
+    <METHOD name="mouseWheelMove (const MouseEvent&amp; e, const MouseWheelDetails&amp; wheel)"/>
+  </METHODS>
   <BACKGROUND backgroundColour="ffaeaeae"/>
   <TEXTEDITOR name="new text editor" id="cd908df7e69b2437" memberName="textEditor"
               virtualName="" explicitFocusOrder="0" pos="96 8 116M 24" posRelativeX="52b45f0363840a9a"

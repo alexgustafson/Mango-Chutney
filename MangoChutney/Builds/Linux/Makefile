@@ -49,6 +49,7 @@ ifeq ($(CONFIG),Release)
 endif
 
 OBJECTS := \
+  $(OBJDIR)/LAF_d9327372.o \
   $(OBJDIR)/MangoEventDispatch_af51e11b.o \
   $(OBJDIR)/Sequencer_5ffb45b2.o \
   $(OBJDIR)/DrumPad_27a920ee.o \
@@ -94,6 +95,11 @@ clean:
 strip:
 	@echo Stripping MangoChutney
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/LAF_d9327372.o: ../../Source/LAF.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling LAF.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/MangoEventDispatch_af51e11b.o: ../../Source/MangoEventDispatch.cpp
 	-@mkdir -p $(OBJDIR)

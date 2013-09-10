@@ -36,6 +36,7 @@
                                                                     //[/Comments]
 */
 class SampleSettingsComponent  : public Component,
+                                 public ChangeListener,
                                  public ButtonListener,
                                  public SliderListener
 {
@@ -46,17 +47,20 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void changeListenerCallback (ChangeBroadcaster *source);
+    void setSelectedAudioFile(File audioFile);
     //[/UserMethods]
 
     void paint (Graphics& g);
     void resized();
     void buttonClicked (Button* buttonThatWasClicked);
     void sliderValueChanged (Slider* sliderThatWasMoved);
-
+    void mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel);
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    File selectedAudioFile;
     //[/UserVariables]
 
     //==============================================================================

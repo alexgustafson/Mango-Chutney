@@ -41,6 +41,7 @@ public:
     void padTouched(DrumPad* drumPad, float xValue, float yValue);
     
     void eventListenerCallback (const String &message, void* payload);
+    File getSampleFileForActivePad();
     
 private:
     static DrumController* instance;
@@ -56,6 +57,7 @@ private:
     DrumPad* pads[16];
     
     int lastSelectedPad;
+    int lastBeat;
     DrumMode mode;
     
     WeakReference<DrumController>::Master masterReference;

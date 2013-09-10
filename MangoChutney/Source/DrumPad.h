@@ -24,9 +24,11 @@
 #include "JuceHeader.h"
 #include "MangoEventDispatch.h"
 #include "DrumController.h"
-//[/Headers]
 
 class DrumController;
+//[/Headers]
+
+
 
 //==============================================================================
 /**
@@ -55,6 +57,7 @@ public:
     void fadePad();
     void timerCallback();
     void makeActive();
+    void setHadSampleLoaded(bool sampleLoaded);
     //[/UserMethods]
 
     void paint (Graphics& g);
@@ -80,6 +83,8 @@ private:
     Colour currentColor;
 
     float countDown;
+
+    bool hasSampleLoaded;
 
     //[/UserVariables]
 

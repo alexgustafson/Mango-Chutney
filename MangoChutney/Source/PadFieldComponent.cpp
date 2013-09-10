@@ -244,7 +244,7 @@ BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="PadField" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33"
+                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33000001311302185059"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ffffff"/>
   <JUCERCOMP name="pad1" id="4e2a88cee6dd488a" memberName="pad1" virtualName=""

@@ -93,6 +93,11 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
+    <Unit filename="../../Source/LAF.cpp"/>
+    <Unit filename="../../Source/LAF.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
     <Unit filename="../../Source/MangoEventDispatch.cpp"/>
     <Unit filename="../../Source/MangoEventDispatch.h">
       <Option compile="0"/>

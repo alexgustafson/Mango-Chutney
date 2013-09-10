@@ -70,7 +70,7 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
                 for (int j = 0; j < 16; j++)
                 {
                     if (sequencer->pattern.tracks[j].notes[sequencer->beatCount] > 0.01f) {
-                        incomingMidi.addEvent( MidiMessage::noteOn(1, j, 1.0f), i);
+                        incomingMidi.addEvent( MidiMessage::noteOn(1, j, sequencer->pattern.tracks[j].notes[sequencer->beatCount]), i);
                     }
                 }
                 
@@ -80,7 +80,6 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
                     
                 }
             }
-            
         }
     }else{
         sampleCounter = 1;
@@ -113,4 +112,19 @@ void SynthAudioSource::setSampleForSound(int index, File soundFile)
     }
 }
 
+File SynthAudioSource::getSampleFileForSound(int index)
+{
+    DDSamplerSound *sound = (DDSamplerSound *)synth.getSound(index);
+    
+    if (!sound) {
+        File dummyFile;
+        return dummyFile;
+        
+    }else
+    {
+        return sound->getSourceFile();
+        
+    }
+
+}
 

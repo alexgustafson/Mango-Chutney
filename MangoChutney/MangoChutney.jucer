@@ -5,6 +5,8 @@
   <MAINGROUP id="XJU6G3" name="MangoChutney">
     <FILE id="x0EW2Q" name="juce_icon.png" compile="0" resource="1" file="../../JUCE/JUCE/extras/JuceDemo/Binary Data/juce_icon.png"/>
     <GROUP id="{759C40BD-AFAB-D3EE-6CE6-57B4C71CDEBB}" name="Source">
+      <FILE id="ZaDwRv" name="LAF.cpp" compile="1" resource="0" file="Source/LAF.cpp"/>
+      <FILE id="HNNwZi" name="LAF.h" compile="0" resource="0" file="Source/LAF.h"/>
       <FILE id="UmUBqf" name="MangoEventDispatch.cpp" compile="1" resource="0"
             file="Source/MangoEventDispatch.cpp"/>
       <FILE id="hTRyFC" name="MangoEventDispatch.h" compile="0" resource="0"

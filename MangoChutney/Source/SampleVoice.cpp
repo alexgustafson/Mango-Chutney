@@ -82,6 +82,8 @@ midiRootNote (midiNoteForNormalPitch)
         
         attackSamples = roundToInt (attackTimeSecs * sourceSampleRate);
         releaseSamples = roundToInt (releaseTimeSecs * sourceSampleRate);
+        audioFileSet = true;
+        audioFile = sourceAudioFile;
     }
 }
 
@@ -134,8 +136,6 @@ void DDSamplerSound::setSourceFile(const juce::File file)
     AudioFormat *audioFormat;
     audioFormat = formatManager.findFormatForFileExtension(file.getFileExtension());
 
-    
-    
     ScopedPointer<MemoryMappedAudioFormatReader> source ( audioFormat->createMemoryMappedReader(file));
     source->mapEntireFile();
     sourceSampleRate = source->sampleRate;
@@ -151,12 +151,16 @@ void DDSamplerSound::setSourceFile(const juce::File file)
         length = (int) source->lengthInSamples;
         data = new AudioSampleBuffer (jmin (2, (int) source->numChannels), length + 4);
         source->read (data, 0, length + 4, 0, true, true);
-        
+        audioFileSet = true;
     }
+    audioFile = file;
     
 }
 
-
+File DDSamplerSound::getSourceFile()
+{
+    return audioFile;
+}
 
 //==============================================================================
 DDSamplerVoice::DDSamplerVoice()
