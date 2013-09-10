@@ -26,31 +26,9 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_STRING_JUCEHEADER__
-#define __JUCE_STRING_JUCEHEADER__
+#ifndef JUCE_STRING_H_INCLUDED
+#define JUCE_STRING_H_INCLUDED
 
-#include "juce_CharacterFunctions.h"
-
-#ifndef JUCE_STRING_UTF_TYPE
- #define JUCE_STRING_UTF_TYPE 8
-#endif
-
-#if JUCE_MSVC
- #pragma warning (push)
- #pragma warning (disable: 4514 4996)
-#endif
-
-#include "../memory/juce_Atomic.h"
-#include "juce_CharPointer_UTF8.h"
-#include "juce_CharPointer_UTF16.h"
-#include "juce_CharPointer_UTF32.h"
-#include "juce_CharPointer_ASCII.h"
-
-#if JUCE_MSVC
- #pragma warning (pop)
-#endif
-
-class OutputStream;
 
 //==============================================================================
 /**
@@ -238,6 +216,17 @@ public:
         @param maxCharsToTake   the maximum number of characters to take from the string passed in
     */
     void append (const String& textToAppend, size_t maxCharsToTake);
+
+    /** Appends a string to the end of this one.
+
+        @param startOfTextToAppend  the start of the string to add. This must not be a nullptr
+        @param endOfTextToAppend    the end of the string to add. This must not be a nullptr
+    */
+    void appendCharPointer (const CharPointerType startOfTextToAppend,
+                            const CharPointerType endOfTextToAppend);
+
+    /** Appends a string to the end of this one. */
+    void appendCharPointer (const CharPointerType textToAppend);
 
     /** Appends a string to the end of this one.
 
@@ -1224,7 +1213,7 @@ private:
     explicit String (const PreallocationBytes&); // This constructor preallocates a certain amount of memory
     void appendFixedLength (const char* text, int numExtraChars);
     size_t getByteOffsetOfEnd() const noexcept;
-    JUCE_DEPRECATED (String (const String& stringToCopy, size_t charsToAllocate));
+    JUCE_DEPRECATED (String (const String&, size_t));
 
     // This private cast operator should prevent strings being accidentally cast
     // to bools (this is possible because the compiler can add an implicit cast
@@ -1348,4 +1337,4 @@ std::basic_ostream <wchar_t, traits>& JUCE_CALLTYPE operator<< (std::basic_ostre
 JUCE_API OutputStream& JUCE_CALLTYPE operator<< (OutputStream& stream, const String& stringToWrite);
 
 
-#endif   // __JUCE_STRING_JUCEHEADER__
+#endif   // JUCE_STRING_H_INCLUDED

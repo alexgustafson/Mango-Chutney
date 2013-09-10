@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="konZIe" name="MangoChutney" projectType="guiapp" version="1.0.0"
-              bundleIdentifier="com.alexgustafson.MangoChutney" jucerVersion="3.1.0">
+              bundleIdentifier="com.alexgustafson.MangoChutney" jucerVersion="3.1.0"
+              includeBinaryInAppConfig="1">
   <MAINGROUP id="XJU6G3" name="MangoChutney">
-    <FILE id="x0EW2Q" name="juce_icon.png" compile="0" resource="1" file="../../JUCE/JUCE/extras/JuceDemo/Binary Data/juce_icon.png"/>
+    <FILE id="jGj8fx" name="juce_icon.png" compile="0" resource="1" file="../../JUCE/extras/Introjucer/Source/BinaryData/juce_icon.png"/>
     <GROUP id="{759C40BD-AFAB-D3EE-6CE6-57B4C71CDEBB}" name="Source">
       <FILE id="ZaDwRv" name="LAF.cpp" compile="1" resource="0" file="Source/LAF.cpp"/>
       <FILE id="HNNwZi" name="LAF.h" compile="0" resource="0" file="Source/LAF.h"/>
@@ -63,6 +64,7 @@
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
   </MODULES>
   <EXPORTFORMATS>
     <CODEBLOCKS targetFolder="Builds/CodeBlocks" juceFolder="../../JUCE/JUCE/modules">

@@ -89,7 +89,7 @@
       <Add library="kernel32"/>
       <Add library="comctl32"/>
     </Linker>
-    <Unit filename="../../../../JUCE/JUCE/extras/JuceDemo/Binary Data/juce_icon.png">
+    <Unit filename="../../../../JUCE/extras/Introjucer/Source/BinaryData/juce_icon.png">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
@@ -755,6 +755,58 @@
       <Option link="0"/>
     </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_audio_processors/juce_audio_processors.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_AudioDeviceSelectorComponent.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_AudioDeviceSelectorComponent.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_AudioThumbnail.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_AudioThumbnail.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_AudioThumbnailBase.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_AudioThumbnailCache.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_AudioThumbnailCache.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_MidiKeyboardComponent.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_MidiKeyboardComponent.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/players/juce_AudioProcessorPlayer.cpp">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/players/juce_AudioProcessorPlayer.h">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/juce_module_info">
+      <Option compile="0"/>
+      <Option link="0"/>
+    </Unit>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/juce_audio_utils.h">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
@@ -1910,15 +1962,7 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../JuceLibraryCode/modules/juce_graphics/geometry/juce_RectangleList.cpp">
-      <Option compile="0"/>
-      <Option link="0"/>
-    </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_graphics/geometry/juce_RectangleList.h">
-      <Option compile="0"/>
-      <Option link="0"/>
-    </Unit>
-    <Unit filename="../../JuceLibraryCode/modules/juce_graphics/placement/juce_Justification.cpp">
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
@@ -2998,10 +3042,6 @@
       <Option compile="0"/>
       <Option link="0"/>
     </Unit>
-    <Unit filename="../../JuceLibraryCode/modules/juce_gui_basics/application/juce_Initialisation.h">
-      <Option compile="0"/>
-      <Option link="0"/>
-    </Unit>
     <Unit filename="../../JuceLibraryCode/modules/juce_gui_basics/native/juce_android_FileChooser.cpp">
       <Option compile="0"/>
       <Option link="0"/>
@@ -3431,6 +3471,7 @@
     <Unit filename="../../JuceLibraryCode/modules/juce_audio_devices/juce_audio_devices.cpp"/>
     <Unit filename="../../JuceLibraryCode/modules/juce_audio_formats/juce_audio_formats.cpp"/>
     <Unit filename="../../JuceLibraryCode/modules/juce_audio_processors/juce_audio_processors.cpp"/>
+    <Unit filename="../../JuceLibraryCode/modules/juce_audio_utils/juce_audio_utils.cpp"/>
     <Unit filename="../../JuceLibraryCode/modules/juce_core/juce_core.cpp"/>
     <Unit filename="../../JuceLibraryCode/modules/juce_cryptography/juce_cryptography.cpp"/>
     <Unit filename="../../JuceLibraryCode/modules/juce_data_structures/juce_data_structures.cpp"/>

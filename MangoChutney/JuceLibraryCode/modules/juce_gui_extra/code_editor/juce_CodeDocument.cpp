@@ -25,7 +25,7 @@
 class CodeDocumentLine
 {
 public:
-    CodeDocumentLine (const String::CharPointerType& l,
+    CodeDocumentLine (const String::CharPointerType l,
                       const int lineLen,
                       const int numNewLineChars,
                       const int startInFile)
@@ -522,7 +522,7 @@ String CodeDocument::getTextBetween (const Position& start, const Position& end)
         }
     }
 
-    return mo.toString();
+    return mo.toUTF8();
 }
 
 int CodeDocument::getNumCharacters() const noexcept

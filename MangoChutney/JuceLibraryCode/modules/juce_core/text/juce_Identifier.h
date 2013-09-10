@@ -26,10 +26,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_IDENTIFIER_JUCEHEADER__
-#define __JUCE_IDENTIFIER_JUCEHEADER__
-
-class StringPool;
+#ifndef JUCE_IDENTIFIER_H_INCLUDED
+#define JUCE_IDENTIFIER_H_INCLUDED
 
 
 //==============================================================================
@@ -108,4 +106,4 @@ private:
 };
 
 
-#endif   // __JUCE_IDENTIFIER_JUCEHEADER__
+#endif   // JUCE_IDENTIFIER_H_INCLUDED

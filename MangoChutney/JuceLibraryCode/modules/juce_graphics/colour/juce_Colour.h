@@ -22,10 +22,8 @@
   ==============================================================================
 */
 
-#ifndef __JUCE_COLOUR_JUCEHEADER__
-#define __JUCE_COLOUR_JUCEHEADER__
-
-#include "../colour/juce_PixelFormats.h"
+#ifndef JUCE_COLOUR_H_INCLUDED
+#define JUCE_COLOUR_H_INCLUDED
 
 
 //==============================================================================
@@ -366,4 +364,4 @@ private:
 };
 
 
-#endif   // __JUCE_COLOUR_JUCEHEADER__
+#endif   // JUCE_COLOUR_H_INCLUDED

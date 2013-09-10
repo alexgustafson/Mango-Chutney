@@ -26,6 +26,7 @@ LOCAL_SRC_FILES := \
   ../../../JuceLibraryCode/modules/juce_audio_devices/juce_audio_devices.cpp\
   ../../../JuceLibraryCode/modules/juce_audio_formats/juce_audio_formats.cpp\
   ../../../JuceLibraryCode/modules/juce_audio_processors/juce_audio_processors.cpp\
+  ../../../JuceLibraryCode/modules/juce_audio_utils/juce_audio_utils.cpp\
   ../../../JuceLibraryCode/modules/juce_core/juce_core.cpp\
   ../../../JuceLibraryCode/modules/juce_cryptography/juce_cryptography.cpp\
   ../../../JuceLibraryCode/modules/juce_data_structures/juce_data_structures.cpp\
