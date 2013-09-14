@@ -48,10 +48,12 @@ public:
     void setFile (const File& file);
     void timerCallback();
     void changeListenerCallback (ChangeBroadcaster*);
+    void mouseMagnify(const juce::MouseEvent &event, float scaleFactor);
     //[/UserMethods]
 
     void paint (Graphics& g);
     void resized();
+    void mouseDrag (const MouseEvent& e);
     void mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel);
 
 
@@ -61,7 +63,7 @@ private:
     AudioThumbnailCache thumbnailCache;
     AudioThumbnail thumbnail;
     double startTime, endTime;
-    
+
 
     DrawableRectangle currentPositionMarker;
 

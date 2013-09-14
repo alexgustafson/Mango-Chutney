@@ -64,6 +64,7 @@ void WaveFormComponent::paint (Graphics& g)
     //[UserPaint] Add your own custom painting code here..
     if (thumbnail.getTotalLength() > 0)
     {
+        g.setColour(Colours::orange);
         thumbnail.drawChannels (g, getLocalBounds().reduced (2),
                                 startTime, endTime, 1.0f);
     }
@@ -81,9 +82,35 @@ void WaveFormComponent::resized()
     //[/UserResized]
 }
 
+void WaveFormComponent::mouseDrag (const MouseEvent& e)
+{
+    //[UserCode_mouseDrag] -- Add your code here...
+
+    if (startTime <= 0 || endTime > thumbnail.getTotalLength()) {
+        return;
+    }
+    double window = endTime - startTime;
+    double diff = (double)(e.x - e.getMouseDownX())/10000.0;
+    startTime = startTime - diff;
+    endTime = startTime + window;
+    repaint();
+
+    //[/UserCode_mouseDrag]
+}
+
 void WaveFormComponent::mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel)
 {
     //[UserCode_mouseWheelMove] -- Add your code here...
+    startTime = startTime + wheel.deltaY;
+    endTime = endTime - wheel.deltaY;
+    if (startTime < 0) {
+        startTime = 0;
+    }
+    if (endTime > thumbnail.getTotalLength())
+    {
+        endTime = thumbnail.getTotalLength();
+    }
+    repaint();
     //[/UserCode_mouseWheelMove]
 }
 
@@ -108,11 +135,33 @@ void WaveFormComponent::timerCallback()
 
 }
 
-void WaveFormComponent::changeListenerCallback (ChangeBroadcaster*) 
+void WaveFormComponent::changeListenerCallback (ChangeBroadcaster*)
 {
     // this method is called by the thumbnail when it has changed, so we should repaint it..
     repaint();
 }
+
+void WaveFormComponent::mouseMagnify(const juce::MouseEvent &event, float scaleFactor)
+{
+    if (thumbnail.getTotalLength() == 0) return;
+    double window = endTime - startTime;
+    double center = startTime + (window / 2.0);
+    
+    if (scaleFactor > 1.0) {
+        if (startTime <= 0 && endTime >= thumbnail.getTotalLength()) {
+            return;
+        }
+        window = window * scaleFactor;
+        startTime = center - (window/2);
+        endTime = startTime + window;
+        
+    }
+    
+    if (startTime <= 0) startTime = 0;
+    if (endTime >= thumbnail.getTotalLength()) endTime = thumbnail.getTotalLength();
+    repaint();
+}
+
 //[/MiscUserCode]
 
 
@@ -132,6 +181,7 @@ BEGIN_JUCER_METADATA
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <METHODS>
     <METHOD name="mouseWheelMove (const MouseEvent&amp; e, const MouseWheelDetails&amp; wheel)"/>
+    <METHOD name="mouseDrag (const MouseEvent&amp; e)"/>
   </METHODS>
   <BACKGROUND backgroundColour="ff808080"/>
 </JUCER_COMPONENT>

@@ -42,7 +42,7 @@ SampleSettingsComponent::SampleSettingsComponent ()
     loadSampleButton->setButtonText ("load sample");
     loadSampleButton->addListener (this);
 
-    addAndMakeVisible (waveComponent = new WaveFormComponent(formatManager));
+    addAndMakeVisible (waveComponent = new WaveFormComponent (formatManager));
     waveComponent->setName ("waveform viewer");
 
     addAndMakeVisible (envelopeComponent = new Component());
@@ -155,16 +155,16 @@ void SampleSettingsComponent::resized()
 {
     textEditor->setBounds ((8) + 96, 8, getWidth() - 116, 24);
     loadSampleButton->setBounds (8, 8, 87, 24);
-    waveComponent->setBounds (8, 40, proportionOfWidth (0.9441f), proportionOfHeight (0.3002f));
-    envelopeComponent->setBounds (8, (40) + (proportionOfHeight (0.3002f)) - -6, proportionOfWidth (0.9441f), proportionOfHeight (0.3002f));
-    attackSlider->setBounds (8, ((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10, 56, 48);
-    decaySlider->setBounds (64, ((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10, 56, 48);
-    sustainSlider->setBounds (120, ((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10, 56, 48);
-    releaseSlider->setBounds (176, ((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10, 56, 48);
-    label->setBounds ((8) + (56) / 2 - ((48) / 2), (((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10) + (48), 48, 24);
-    label2->setBounds ((64) + (56) / 2 - ((48) / 2), (((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10) + (48), 48, 24);
-    label3->setBounds ((120) + (56) / 2 - ((56) / 2), (((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10) + (48), 56, 24);
-    label4->setBounds ((176) + (56) / 2 - ((56) / 2), (((40) + (proportionOfHeight (0.3002f)) - -6) + (proportionOfHeight (0.3002f)) - -10) + (48), 56, 24);
+    waveComponent->setBounds (8, 40, proportionOfWidth (0.9443f), proportionOfHeight (0.3004f));
+    envelopeComponent->setBounds (8, (40) + (proportionOfHeight (0.3004f)) - -6, proportionOfWidth (0.9443f), proportionOfHeight (0.3004f));
+    attackSlider->setBounds (8, ((40) + (proportionOfHeight (0.3004f)) - -6) + (proportionOfHeight (0.3004f)) - -10, 56, 48);
+    decaySlider->setBounds (64, ((40) + (proportionOfHeight (0.3004f)) - -6) + (proportionOfHeight (0.3004f)) - -10, 56, 48);
+    sustainSlider->setBounds (120, ((40) + (proportionOfHeight (0.3004f)) - -6) + (proportionOfHeight (0.3004f)) - -10, 56, 48);
+    releaseSlider->setBounds (176, ((40) + (proportionOfHeight (0.3004f)) - -6) + (proportionOfHeight (0.3004f)) - -10, 56, 48);
+    label->setBounds ((8) + (56) / 2 - ((48) / 2), (((40) + (proportionOfHeight (0.3004f)) - -6) + (proportionOfHeight (0.3004f)) - -10) + (48), 48, 24);
+    label2->setBounds ((64) + (56) / 2 - ((48) / 2), (((40) + (proportionOfHeight (0.3004f)) - -6) + (proportionOfHeight (0.3004f)) - -10) + (48), 48, 24);
+    label3->setBounds ((120) + (56) / 2 - ((56) / 2), (((40) + (proportionOfHeight (0.3004f)) - -6) + (proportionOfHeight (0.3004f)) - -10) + (48), 56, 24);
+    label4->setBounds ((176) + (56) / 2 - ((56) / 2), (((40) + (proportionOfHeight (0.3004f)) - -6) + (proportionOfHeight (0.3004f)) - -10) + (48), 56, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -265,7 +265,7 @@ BEGIN_JUCER_METADATA
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="waveform viewer" id="43c696956c040673" memberName="waveComponent"
                     virtualName="" explicitFocusOrder="0" pos="8 40 94.429% 30.042%"
-                    class="Component" params=""/>
+                    class="WaveFormComponent" params="formatManager"/>
   <GENERICCOMPONENT name="envelope viewer" id="c8a20ff7bccda56" memberName="envelopeComponent"
                     virtualName="" explicitFocusOrder="0" pos="8 -6R 94.429% 30.042%"
                     posRelativeY="43c696956c040673" class="Component" params=""/>
