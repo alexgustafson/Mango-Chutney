@@ -52,6 +52,7 @@ OBJECTS := \
   $(OBJDIR)/LAF_d9327372.o \
   $(OBJDIR)/MangoEventDispatch_af51e11b.o \
   $(OBJDIR)/Sequencer_5ffb45b2.o \
+  $(OBJDIR)/WavFormComponent_a923a916.o \
   $(OBJDIR)/DrumPad_27a920ee.o \
   $(OBJDIR)/SampleSettingsComponent_c9173bf1.o \
   $(OBJDIR)/SettingsViewComponent_2f2f6156.o \
@@ -110,6 +111,11 @@ $(OBJDIR)/MangoEventDispatch_af51e11b.o: ../../Source/MangoEventDispatch.cpp
 $(OBJDIR)/Sequencer_5ffb45b2.o: ../../Source/Sequencer.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling Sequencer.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/WavFormComponent_a923a916.o: ../../Source/WavFormComponent.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling WavFormComponent.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/DrumPad_27a920ee.o: ../../Source/DrumPad.cpp

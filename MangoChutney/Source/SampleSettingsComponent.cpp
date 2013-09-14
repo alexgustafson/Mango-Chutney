@@ -42,7 +42,7 @@ SampleSettingsComponent::SampleSettingsComponent ()
     loadSampleButton->setButtonText ("load sample");
     loadSampleButton->addListener (this);
 
-    addAndMakeVisible (waveComponent = new Component());
+    addAndMakeVisible (waveComponent = new WaveFormComponent(formatManager));
     waveComponent->setName ("waveform viewer");
 
     addAndMakeVisible (envelopeComponent = new Component());
@@ -112,6 +112,7 @@ SampleSettingsComponent::SampleSettingsComponent ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    formatManager.registerBasicFormats();
     //[/Constructor]
 }
 
@@ -225,13 +226,14 @@ void SampleSettingsComponent::mouseWheelMove (const MouseEvent& e, const MouseWh
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void SampleSettingsComponent::changeListenerCallback (ChangeBroadcaster *source)
 {
-    
+
 }
 
 void SampleSettingsComponent::setSelectedAudioFile(File audioFile)
 {
     selectedAudioFile = audioFile;
     textEditor->setText(selectedAudioFile.getFileName());
+    waveComponent->setFile(audioFile);
 }
 //[/MiscUserCode]
 
@@ -248,8 +250,8 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="SampleSettingsComponent"
                  componentName="" parentClasses="public Component, public ChangeListener"
                  constructorParams="" variableInitialisers="" snapPixels="8" snapActive="1"
-                 snapShown="1" overlayOpacity="0.33000001311302185059" fixedSize="0"
-                 initialWidth="600" initialHeight="400">
+                 snapShown="1" overlayOpacity="0.330" fixedSize="0" initialWidth="600"
+                 initialHeight="400">
   <METHODS>
     <METHOD name="mouseWheelMove (const MouseEvent&amp; e, const MouseWheelDetails&amp; wheel)"/>
   </METHODS>
@@ -262,10 +264,10 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="8 8 87 24" buttonText="load sample"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="waveform viewer" id="43c696956c040673" memberName="waveComponent"
-                    virtualName="" explicitFocusOrder="0" pos="8 40 94.413% 30.021%"
+                    virtualName="" explicitFocusOrder="0" pos="8 40 94.429% 30.042%"
                     class="Component" params=""/>
   <GENERICCOMPONENT name="envelope viewer" id="c8a20ff7bccda56" memberName="envelopeComponent"
-                    virtualName="" explicitFocusOrder="0" pos="8 -6R 94.413% 30.021%"
+                    virtualName="" explicitFocusOrder="0" pos="8 -6R 94.429% 30.042%"
                     posRelativeY="43c696956c040673" class="Component" params=""/>
   <SLIDER name="Attack Slider" id="742b63db24f445f5" memberName="attackSlider"
           virtualName="" explicitFocusOrder="0" pos="8 -10R 56 48" posRelativeY="c8a20ff7bccda56"

@@ -23,6 +23,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
 #include "MangoEventDispatch.h"
+#include "WavFormComponent.h"
 //[/Headers]
 
 
@@ -58,15 +59,17 @@ public:
     void mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel);
 
 
+
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     File selectedAudioFile;
+    AudioFormatManager formatManager;
     //[/UserVariables]
 
     //==============================================================================
     ScopedPointer<TextEditor> textEditor;
     ScopedPointer<TextButton> loadSampleButton;
-    ScopedPointer<Component> waveComponent;
+    ScopedPointer<WaveFormComponent> waveComponent;
     ScopedPointer<Component> envelopeComponent;
     ScopedPointer<Slider> attackSlider;
     ScopedPointer<Slider> decaySlider;

@@ -15,6 +15,10 @@
       <FILE id="aLv2zB" name="Sequencer.cpp" compile="1" resource="0" file="Source/Sequencer.cpp"/>
       <FILE id="vDzLKw" name="Sequencer.h" compile="0" resource="0" file="Source/Sequencer.h"/>
       <GROUP id="{4F38993A-CBCE-C933-C8D5-858B5034963D}" name="GUI">
+        <FILE id="MKL7zD" name="WavFormComponent.cpp" compile="1" resource="0"
+              file="Source/WavFormComponent.cpp"/>
+        <FILE id="YmJ5Na" name="WavFormComponent.h" compile="0" resource="0"
+              file="Source/WavFormComponent.h"/>
         <FILE id="MlbaL3" name="DrumPad.cpp" compile="1" resource="0" file="Source/DrumPad.cpp"/>
         <FILE id="z001Uc" name="DrumPad.h" compile="0" resource="0" file="Source/DrumPad.h"/>
         <FILE id="CWAsru" name="SampleSettingsComponent.cpp" compile="1" resource="0"

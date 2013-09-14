@@ -11,6 +11,7 @@ LOCAL_SRC_FILES := \
   ../../../Source/LAF.cpp\
   ../../../Source/MangoEventDispatch.cpp\
   ../../../Source/Sequencer.cpp\
+  ../../../Source/WavFormComponent.cpp\
   ../../../Source/DrumPad.cpp\
   ../../../Source/SampleSettingsComponent.cpp\
   ../../../Source/SettingsViewComponent.cpp\

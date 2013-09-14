@@ -238,12 +238,8 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
         {
             settingsComponent = new SettingsViewComponent();
         }
-        File file = drumController->getSampleFileForActivePad();
-        if (file.exists()) {
-            settingsComponent->setSelectedAudioFile(file);
-        }
-        
-        
+
+        settingsComponent->setSelectedAudioFile( drumController->getSampleFileForActivePad() );
         
         addAndMakeVisible(settingsComponent);
         settingsComponent->setTopLeftPosition(0, 0);
