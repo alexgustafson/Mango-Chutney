@@ -13,20 +13,21 @@
 
 #include "JuceHeader.h"
 #include "MangoEventDispatch.h"
-enum SequencerState {
-    
-    isStopped,
-    shouldStop,
-    shouldPlay,
-    isPlaying,
-    shouldPause,
-    isPaused
-    
-};
+
 
 class Sequencer : public EventListener
 {
 public:
+    enum SequencerState {
+        
+        isStopped,
+        shouldStop,
+        shouldPlay,
+        isPlaying,
+        shouldPause,
+        isPaused
+        
+    };
     
     struct Track
     {
@@ -98,6 +99,8 @@ public:
     Pattern pattern;
     Track track;
     Song song;
+    
+
     
     juce_DeclareSingleton (Sequencer, false)
     

@@ -1,5 +1,5 @@
-obj/local/armeabi/objs/juce_jni/__/__/__/Source/Sequencer.o: \
- jni/../../../Source/Sequencer.cpp jni/../../../Source/Sequencer.h \
+obj/local/armeabi/objs/juce_jni/__/__/__/Source/LAF.o: \
+ jni/../../../Source/LAF.cpp jni/../../../Source/LAF.h \
  ../../JuceLibraryCode/JuceHeader.h ../../JuceLibraryCode/AppConfig.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/juce_core.h \
@@ -460,10 +460,9 @@ obj/local/armeabi/objs/juce_jni/__/__/__/Source/Sequencer.o: \
  ../../JuceLibraryCode/modules/juce_video/playback/juce_DirectShowComponent.h \
  ../../JuceLibraryCode/modules/juce_video/playback/juce_QuickTimeMovieComponent.h \
  ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h \
- ../../JuceLibraryCode/BinaryData.h \
- jni/../../../Source/MangoEventDispatch.h
+ ../../JuceLibraryCode/BinaryData.h
 
-jni/../../../Source/Sequencer.h:
+jni/../../../Source/LAF.h:
 
 ../../JuceLibraryCode/JuceHeader.h:
 
@@ -1388,5 +1387,3 @@ jni/../../../Source/Sequencer.h:
 ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h:
 
 ../../JuceLibraryCode/BinaryData.h:
-
-jni/../../../Source/MangoEventDispatch.h:

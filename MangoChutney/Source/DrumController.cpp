@@ -61,12 +61,12 @@ void DrumController::addPad(DrumPad* drumPad)
 
 void DrumController::toggleSequencerPlayStop(Button* button)
 {
-    if (sequencer->getState() == isStopped) {
-        sequencer->setState(shouldPlay);
+    if (sequencer->getState() == Sequencer::SequencerState::isStopped) {
+        sequencer->setState(Sequencer::SequencerState::shouldPlay);
         button->setToggleState(true, false);
     }else
     {
-        sequencer->setState(shouldStop);
+        sequencer->setState(Sequencer::SequencerState::shouldStop);
         button->setToggleState(false, false);
     }
 
@@ -88,13 +88,45 @@ void DrumController::setFileForActivePad(const File file )
 
 void DrumController::saveDefaultSettings()
 {
-    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/padSettings.data"));
+
+    
+    juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
+    File dataFile;
+    #if JUCE_IOS
+     dataFile(File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents").getChildFile("Library/padSettings.data"));
+    #endif
+    
+    #if JUCE_ANDROID
+     dataFile(theDocumentDirectory("/storage/sdcard0").getChildFile("padSettings.data");
+    #endif
+                  
+    #if JUCE_OSX
+                   dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/padSettings.data"));
+    #endif
+    
+    
     saveSettings(dataFile);
 }
 
 void DrumController::loadDefaultSettings()
 {
-    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/padSettings.data"));
+
+    
+    juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
+    File dataFile;
+    #if JUCE_IOS
+     dataFile(File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents").getChildFile("Library/padSettings.data"));
+    #endif
+    
+    #if JUCE_ANDROID
+     dataFile(theDocumentDirectory("/storage/sdcard0").getChildFile("padSettings.data");
+    #endif
+                  
+    #if JUCE_OSX
+                   dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/padSettings.data"));
+    #endif
+    
+    
     loadSettings(dataFile);
 }
 
@@ -241,7 +273,7 @@ void DrumController::timerCallback()
         
         lastBeat = sequencer->beatCount;
         
-        if (sequencer->getState() != isPlaying)
+        if (sequencer->getState() != Sequencer::SequencerState::isPlaying)
         {
             stopTimer();
             return;

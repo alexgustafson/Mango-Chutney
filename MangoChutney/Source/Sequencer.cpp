@@ -13,7 +13,7 @@
 
 juce_ImplementSingleton (Sequencer)
 
-void Sequencer::setState(SequencerState newState)
+void Sequencer::setState(Sequencer::SequencerState newState)
 {
     
     switch (newState) {
@@ -32,7 +32,6 @@ void Sequencer::setState(SequencerState newState)
         default:
             break;
     }
-    
     
 }
 
@@ -81,14 +80,40 @@ int Sequencer::getActivePatternNr()
 
 void Sequencer::saveDefaultSettings()
 {
-
-    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/seqSettings.data"));
+    juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
+    File dataFile;
+    
+    #if JUCE_IOS
+        dataFile(File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents").getChildFile("Library/seqSettings.data"));
+    #endif
+    
+    #if JUCE_ANDROID
+         dataFile(theDocumentDirectory("/storage/sdcard0").getChildFile("seqSettings.data");
+    #endif
+    
+    #if JUCE_OSX
+         dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/seqSettings.data"));
+    #endif
+    
+    
     saveSettings(dataFile);
 }
 
 void Sequencer::loadDefaultSettings()
 {
-    File dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/seqSettings.data"));
+    juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
+    File dataFile;
+#if JUCE_IOS
+     dataFile(File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents").getChildFile("Library/seqSettings.data"));
+#endif
+    
+#if JUCE_ANDROID
+     dataFile(theDocumentDirectory("/storage/sdcard0").getChildFile("seqSettings.data");
+#endif
+                  
+#if JUCE_OSX
+                   dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/seqSettings.data"));
+#endif
     loadSettings(dataFile);
 }
 
@@ -180,16 +205,5 @@ void Sequencer::saveSettings(File &settingsFile)
 
 void Sequencer::eventListenerCallback (const String &message, void* payload)
 {
-    if( message.equalsIgnoreCase(EventDispatch::MSG_UPDATE_GUI_MODE) )
-    {
-        if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::playmode)
-        {
-            if (state == SequencerState::isPlaying) {
-                setState(SequencerState::shouldStop);
-            }else
-            {
-                setState(SequencerState::shouldPlay);
-            }
-        }
-    }
+
 }

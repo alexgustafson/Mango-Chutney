@@ -86,13 +86,12 @@ void WaveFormComponent::mouseDrag (const MouseEvent& e)
 {
     //[UserCode_mouseDrag] -- Add your code here...
 
-    if (startTime <= 0 || endTime > thumbnail.getTotalLength()) {
-        return;
-    }
     double window = endTime - startTime;
     double diff = (double)(e.x - e.getMouseDownX())/10000.0;
     startTime = startTime - diff;
     endTime = startTime + window;
+    if (startTime <= 0) startTime = 0;
+    if (endTime >= thumbnail.getTotalLength()) endTime = thumbnail.getTotalLength();
     repaint();
 
     //[/UserCode_mouseDrag]
@@ -147,7 +146,7 @@ void WaveFormComponent::mouseMagnify(const juce::MouseEvent &event, float scaleF
     double window = endTime - startTime;
     double center = startTime + (window / 2.0);
     
-    if (scaleFactor > 1.0) {
+    if (scaleFactor < 1.0) {
         if (startTime <= 0 && endTime >= thumbnail.getTotalLength()) {
             return;
         }
@@ -161,6 +160,7 @@ void WaveFormComponent::mouseMagnify(const juce::MouseEvent &event, float scaleF
     if (endTime >= thumbnail.getTotalLength()) endTime = thumbnail.getTotalLength();
     repaint();
 }
+
 
 //[/MiscUserCode]
 

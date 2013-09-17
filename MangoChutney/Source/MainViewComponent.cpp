@@ -384,7 +384,7 @@ void MainViewComponent::eventListenerCallback (const String &message, void* payl
         {
         }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::stepmode)
         {
-            if (sequencer->getState() == SequencerState::isPlaying) {
+            if (sequencer->getState() == Sequencer::SequencerState::isPlaying) {
                 
             }
         }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::patternmode)
