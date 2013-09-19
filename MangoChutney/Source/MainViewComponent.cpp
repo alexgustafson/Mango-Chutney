@@ -250,7 +250,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == selectButton)
     {
         //[UserButtonCode_selectButton] -- add your button handler code here..
-        drumController->setMode(Selectmode, buttonThatWasClicked);
+        drumController->setMode(DrumController::DrumMode::Selectmode, buttonThatWasClicked);
 
         //[/UserButtonCode_selectButton]
     }
@@ -264,13 +264,13 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == stepButton)
     {
         //[UserButtonCode_stepButton] -- add your button handler code here..
-        drumController->setMode(Stepmode, buttonThatWasClicked);
+        drumController->setMode(DrumController::DrumMode::Stepmode, buttonThatWasClicked);
         //[/UserButtonCode_stepButton]
     }
     else if (buttonThatWasClicked == patternButton)
     {
         //[UserButtonCode_patternButton] -- add your button handler code here..
-        drumController->setMode(Patternmode, buttonThatWasClicked);
+        drumController->setMode(DrumController::DrumMode::Patternmode, buttonThatWasClicked);
         //[/UserButtonCode_patternButton]
     }
 

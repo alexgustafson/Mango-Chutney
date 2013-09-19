@@ -19,12 +19,13 @@
 
 class DrumPad;
 
-enum DrumMode { Selectmode, Nomode, Stepmode, Patternmode };
 
 class DrumController : public EventListener,
                         public  Timer
 {
 public:
+    enum DrumMode { Selectmode, Nomode, Stepmode, Patternmode };
+    
     static DrumController* getInstance();
     
     ~DrumController ();
