@@ -81,22 +81,23 @@ int Sequencer::getActivePatternNr()
 void Sequencer::saveDefaultSettings()
 {
     juce::File theDocumentDirectory = File::getSpecialLocation(File::userDocumentsDirectory);
-    File dataFile;
     
     #if JUCE_IOS
-        dataFile(File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents").getChildFile("Library/seqSettings.data"));
+    File dataFile(File::getSpecialLocation(File::currentApplicationFile).getSiblingFile("Documents").getChildFile("Library/seqSettings.data"));
+    saveSettings(dataFile);
     #endif
     
     #if JUCE_ANDROID
-         dataFile(theDocumentDirectory("/storage/sdcard0").getChildFile("seqSettings.data");
+    File dataFile(theDocumentDirectory("/storage/sdcard0").getChildFile("seqSettings.data");
+    saveSettings(dataFile);
     #endif
     
     #if JUCE_OSX
-         dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/seqSettings.data"));
+    File     dataFile(juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory).getParentDirectory().getChildFile("Library/seqSettings.data"));
+                  saveSettings(dataFile);
     #endif
     
     
-    saveSettings(dataFile);
 }
 
 void Sequencer::loadDefaultSettings()
