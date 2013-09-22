@@ -2,40 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/armeabi-v7a/gdb.setup" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/libs/armeabi-v7a/gdbserver" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/armeabi/gdb.setup" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/libs/armeabi/gdbserver" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_opengl/juce_opengl.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_opengl/juce_opengl.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_graphics/juce_graphics.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_graphics/juce_graphics.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/PadFieldComponent.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/PadFieldComponent.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_core/juce_core.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_core/juce_core.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_gui_extra/juce_gui_extra.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_gui_extra/juce_gui_extra.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/DrumController.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/DrumController.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_gui_basics/juce_gui_basics.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_gui_basics/juce_gui_basics.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/MainViewComponent.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/MainViewComponent.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_formats/juce_audio_formats.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_formats/juce_audio_formats.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_cryptography/juce_cryptography.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_cryptography/juce_cryptography.o.d" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/armeabi-v7a/gdb.setup" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/armeabi/gdb.setup" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_processors/juce_audio_processors.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_processors/juce_audio_processors.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/Main.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/Main.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_events/juce_events.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_events/juce_events.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android.iml" afterPath="$PROJECT_DIR$/Android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_video/juce_video.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_video/juce_video.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Source/MainViewComponent.cpp" afterPath="$PROJECT_DIR$/../../Source/MainViewComponent.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/AudioEngine.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/AudioEngine.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Source/SampleVoice.h" afterPath="$PROJECT_DIR$/../../Source/SampleVoice.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/SampleVoice.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/SampleVoice.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_data_structures/juce_data_structures.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_data_structures/juce_data_structures.o.d" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Source/SampleVoice.cpp" afterPath="$PROJECT_DIR$/../../Source/SampleVoice.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_cryptography/juce_cryptography.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_cryptography/juce_cryptography.o.d" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_devices/juce_audio_devices.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_devices/juce_audio_devices.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/PadFieldComponent.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/PadFieldComponent.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Source/SampleVoice.cpp" afterPath="$PROJECT_DIR$/../../Source/SampleVoice.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_gui_extra/juce_gui_extra.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_gui_extra/juce_gui_extra.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_gui_basics/juce_gui_basics.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_gui_basics/juce_gui_basics.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_video/juce_video.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_video/juce_video.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/SampleVoice.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/SampleVoice.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/DrumController.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/DrumController.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_graphics/juce_graphics.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_graphics/juce_graphics.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_core/juce_core.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_core/juce_core.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Android.iml" afterPath="$PROJECT_DIR$/Android.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Source/SampleVoice.h" afterPath="$PROJECT_DIR$/../../Source/SampleVoice.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Source/MainViewComponent.cpp" afterPath="$PROJECT_DIR$/../../Source/MainViewComponent.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_events/juce_events.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_events/juce_events.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project.properties" afterPath="$PROJECT_DIR$/project.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/Main.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/Main.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/AudioEngine.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/AudioEngine.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_opengl/juce_opengl.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_opengl/juce_opengl.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_formats/juce_audio_formats.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_audio_formats/juce_audio_formats.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/MainViewComponent.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/Source/MainViewComponent.o.d" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_data_structures/juce_data_structures.o.d" afterPath="$PROJECT_DIR$/obj/local/armeabi/objs/juce_jni/__/__/__/JuceLibraryCode/modules/juce_data_structures/juce_data_structures.o.d" />
     </list>
     <ignored path="Android.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1371598907084" ignored="false" />
-    <file path="/fragment.java" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1371599218216" ignored="false" />
+    <file path="/fragment.java" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1379796621760" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/jbpm/lib/jbpm-support.jar.jar!/resources/schemas/jpdl-4.4.xsd" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1368434071369" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/Hibernate/lib/hibernate.jar!/resources/schemas/hibernate-configuration-4.0.xsd" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1368434071369" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/Hibernate/lib/hibernate.jar!/resources/schemas/hibernate-mapping-4.0.xsd" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1368434071369" ignored="false" />
@@ -360,6 +360,9 @@
     <file path="$APPLICATION_HOME_DIR$/plugins/JSF/lib/jsf-support.jar!/resources/schemas/composite.tld" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1372165597791" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/JSF/lib/jsf-support.jar!/resources/schemas/jsf_core.tld" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1372165597791" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/JSF/lib/jsf-support.jar!/resources/schemas/jsf-ui-2_0.tld" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1372165597791" ignored="false" />
+    <file path="$PROJECT_DIR$/untitled/res/values/strings.xml" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1379785521293" ignored="false" />
+    <file path="$PROJECT_DIR$/untitled/res/layout/main.xml" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1379785521739" ignored="false" />
+    <file path="$PROJECT_DIR$/untitled/src/com/example/untitled/MyActivity.java" changelist="c0a8e15f-4c35-48a9-b548-c2f5ce161d61" time="1379785521739" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -429,19 +432,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Android.iml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Android.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.62668467">
+            <state line="31" column="0" selection-start="1263" selection-end="1263" vertical-scroll-proportion="1.26703">
               <folding />
             </state>
           </provider>
@@ -471,11 +465,14 @@
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="14" />
-    <option name="y" value="24" />
-    <option name="width" value="1657" />
-    <option name="height" value="890" />
+    <option name="x" value="54" />
+    <option name="y" value="47" />
+    <option name="width" value="1280" />
+    <option name="height" value="774" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -521,6 +518,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -529,37 +528,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="untitled" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
-    <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
-    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="GenerateAntBuildDialog.outputFileNameProperty" value="android" />
-    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="options.searchVisible" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.Android">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -687,6 +693,24 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="untitled" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="untitled" />
+      <option name="ACTIVITY_CLASS" value="com.example.untitled.MyActivity" />
+      <option name="MODE" value="specific_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="USB_DEVICE" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <RunnerSettings RunnerId="AndroidDebugRunner" />
+      <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
+      <method />
+    </configuration>
     <configuration default="false" name="Android" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="Android" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -705,8 +729,9 @@
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
     </configuration>
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="Android Application.Android" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Android Application.untitled" />
+      <item index="1" class="java.lang.String" itemvalue="Android Application.Android" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -740,34 +765,34 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="14" y="24" width="1657" height="890" extended-state="0" />
+    <frame x="54" y="47" width="1280" height="774" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2491277" sideWeight="0.67142856" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24878444" sideWeight="0.6238532" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33059788" sideWeight="0.5045359" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937893" sideWeight="0.67134506" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32568806" sideWeight="0.49476624" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901555" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32090762" sideWeight="0.6238532" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3761468" sideWeight="0.49782744" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32937893" sideWeight="0.67134506" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24643078" sideWeight="0.6226415" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3773585" sideWeight="0.49782744" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32590857" sideWeight="0.49476624" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901555" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -803,7 +828,7 @@
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
-    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
     <option name="LIMIT_HISTORY" value="true" />
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
@@ -834,6 +859,13 @@
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+    <buildFile url="file://$PROJECT_DIR$/build.xml">
+      <targetFilters>
+        <filter targetName="clean" isVisible="false" />
+        <filter targetName="-pre-build" isVisible="false" />
+      </targetFilters>
+      <expanded value="true" />
+    </buildFile>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -845,9 +877,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Android.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="20" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="20" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -859,9 +889,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Android.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="0" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -873,9 +901,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Android.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -887,9 +913,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Android.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -901,9 +925,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Android.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="0" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
@@ -936,14 +958,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Android.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="18" column="0" selection-start="677" selection-end="677" vertical-scroll-proportion="0.675" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.62668467">
+        <state line="31" column="0" selection-start="1263" selection-end="1263" vertical-scroll-proportion="1.26703">
           <folding />
         </state>
       </provider>
@@ -965,7 +985,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Android</last-edited>
+          <last-edited>No facets are configured</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -988,7 +1008,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.7</last-edited>
+          <last-edited>Android 4.3 Platform</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1000,7 +1020,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Android</last-edited>
+          <last-edited>untitled</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

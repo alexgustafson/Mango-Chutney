@@ -42,6 +42,12 @@ DrumPad::DrumPad ()
     countDown = 1.0f;
     drumController = DrumController::getInstance();
     hasSampleLoaded = false;
+    
+    normalColor = Colour((0xff43709c));
+    selectedColor = Colour((0xfff0f8ff));
+    playedColor = Colour((0xfff0f8ff));
+    stepColor = Colour((0xfff0f8ff));
+    padColor = Colour((0xff43709c));
 
     //[/Constructor]
 }

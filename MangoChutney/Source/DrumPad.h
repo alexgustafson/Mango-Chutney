@@ -75,11 +75,11 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     WeakReference<DrumController> drumController;
     int padNr;
-    Colour normalColor = Colour((0xff43709c));
-    Colour selectedColor = Colour((0xfff0f8ff));
-    Colour playedColor = Colour((0xfff0f8ff));
-    Colour stepColor = Colour((0xfff0f8ff));
-    Colour padColor = Colour((0xff43709c));
+    Colour normalColor;
+    Colour selectedColor;
+    Colour playedColor;
+    Colour stepColor;
+    Colour padColor;
     Colour currentColor;
 
     float countDown;

@@ -250,7 +250,7 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == selectButton)
     {
         //[UserButtonCode_selectButton] -- add your button handler code here..
-        drumController->setMode(DrumController::DrumMode::Selectmode, buttonThatWasClicked);
+        drumController->setMode(DrumController::Selectmode, buttonThatWasClicked);
 
         //[/UserButtonCode_selectButton]
     }
@@ -264,13 +264,13 @@ void MainViewComponent::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == stepButton)
     {
         //[UserButtonCode_stepButton] -- add your button handler code here..
-        drumController->setMode(DrumController::DrumMode::Stepmode, buttonThatWasClicked);
+        drumController->setMode(DrumController::Stepmode, buttonThatWasClicked);
         //[/UserButtonCode_stepButton]
     }
     else if (buttonThatWasClicked == patternButton)
     {
         //[UserButtonCode_patternButton] -- add your button handler code here..
-        drumController->setMode(DrumController::DrumMode::Patternmode, buttonThatWasClicked);
+        drumController->setMode(DrumController::Patternmode, buttonThatWasClicked);
         //[/UserButtonCode_patternButton]
     }
 
@@ -356,7 +356,7 @@ void MainViewComponent::eventListenerCallback (const String &message, void* payl
             #endif
 
             #if JUCE_ANDROID
-                theDocumentDirectory("/storage/sdcard0/DrumSounds");
+                theDocumentDirectory.getSiblingFile("/storage/sdcard0/DrumSounds");
             #endif
 
             int flags = FileBrowserComponent::openMode |FileBrowserComponent::canSelectFiles |FileBrowserComponent::filenameBoxIsReadOnly;
@@ -374,20 +374,20 @@ void MainViewComponent::eventListenerCallback (const String &message, void* payl
 
     }else if(message.equalsIgnoreCase(EventDispatch::MSG_UPDATE_GUI_MODE))
     {
-        if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::playmode)
+        if(((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::playmode)
         {
             
-        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::setupmode)
+        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::setupmode)
         {
             
-        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::selectmode)
+        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::selectmode)
         {
-        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::stepmode)
+        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::stepmode)
         {
-            if (sequencer->getState() == Sequencer::SequencerState::isPlaying) {
+            if (sequencer->getState() == Sequencer::isPlaying) {
                 
             }
-        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::mode::patternmode)
+        }else if (((ModeUpdateEvent*)payload)->_mode == ModeUpdateEvent::patternmode)
         {
         }
 

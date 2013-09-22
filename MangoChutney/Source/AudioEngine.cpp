@@ -59,7 +59,7 @@ void SynthAudioSource::getNextAudioBlock (const AudioSourceChannelInfo& bufferTo
     MidiBuffer incomingMidi;
     midiCollector.removeNextBlockOfMessages (incomingMidi, bufferToFill.numSamples);
     
-    if (sequencer->getState() == Sequencer::SequencerState::isPlaying) {
+    if (sequencer->getState() == Sequencer::isPlaying) {
         
         for (int i = 0; i < bufferToFill.numSamples; i++) {
             sampleCounter++;

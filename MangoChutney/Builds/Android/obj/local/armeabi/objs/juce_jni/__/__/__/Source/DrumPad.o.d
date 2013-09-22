@@ -1,6 +1,5 @@
-obj/local/armeabi/objs/juce_jni/__/__/__/Source/PadFieldComponent.o: \
- jni/../../../Source/PadFieldComponent.cpp \
- jni/../../../Source/PadFieldComponent.h \
+obj/local/armeabi/objs/juce_jni/__/__/__/Source/DrumPad.o: \
+ jni/../../../Source/DrumPad.cpp jni/../../../Source/DrumPad.h \
  ../../JuceLibraryCode/JuceHeader.h ../../JuceLibraryCode/AppConfig.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/juce_audio_basics.h \
  ../../JuceLibraryCode/modules/juce_audio_basics/../juce_core/juce_core.h \
@@ -461,12 +460,12 @@ obj/local/armeabi/objs/juce_jni/__/__/__/Source/PadFieldComponent.o: \
  ../../JuceLibraryCode/modules/juce_video/playback/juce_DirectShowComponent.h \
  ../../JuceLibraryCode/modules/juce_video/playback/juce_QuickTimeMovieComponent.h \
  ../../JuceLibraryCode/modules/juce_video/capture/juce_CameraDevice.h \
- ../../JuceLibraryCode/BinaryData.h jni/../../../Source/DrumController.h \
- jni/../../../Source/AudioEngine.h jni/../../../Source/SampleVoice.h \
- jni/../../../Source/Sequencer.h jni/../../../Source/MangoEventDispatch.h \
- jni/../../../Source/DrumPad.h
+ ../../JuceLibraryCode/BinaryData.h \
+ jni/../../../Source/MangoEventDispatch.h \
+ jni/../../../Source/DrumController.h jni/../../../Source/AudioEngine.h \
+ jni/../../../Source/SampleVoice.h jni/../../../Source/Sequencer.h
 
-jni/../../../Source/PadFieldComponent.h:
+jni/../../../Source/DrumPad.h:
 
 ../../JuceLibraryCode/JuceHeader.h:
 
@@ -1392,6 +1391,8 @@ jni/../../../Source/PadFieldComponent.h:
 
 ../../JuceLibraryCode/BinaryData.h:
 
+jni/../../../Source/MangoEventDispatch.h:
+
 jni/../../../Source/DrumController.h:
 
 jni/../../../Source/AudioEngine.h:
@@ -1399,7 +1400,3 @@ jni/../../../Source/AudioEngine.h:
 jni/../../../Source/SampleVoice.h:
 
 jni/../../../Source/Sequencer.h:
-
-jni/../../../Source/MangoEventDispatch.h:
-
-jni/../../../Source/DrumPad.h:
